@@ -1,0 +1,102 @@
+var Character = Class.extend({
+	init: function(name, type, wears, wields, inven, skills, HP, movement){
+		this.name	=	name; // str // screen name
+		this.type	=	type; // str // in-program cat
+
+		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-legs, 3-right hand, 4-left hand, 5-feet]
+		this.onhead 	=	wears[0];
+		this.onbody	=	wears[1];
+		this.onlegs 	=	wears[2];
+		this.rhand	=	wears[3];
+		this.lhand	=	wears[4];
+		this.onfeet 	=	wears[5];
+		
+		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
+		
+		this.inven	=	inven; // array // [ item, item, ... ]
+		this.skills	=	skills; // array // [ { name : dmg/rng }, ... ]
+		this.HP		=	HP;
+		this.movement	=	movement;
+
+		this.coords = [];
+		this.currMove = 0;
+
+		this.wait = true;
+		this.dead = false;
+		
+		// Get gender
+		var prob = Math.ceil(Math.random()*10);
+		if(prob > 5){
+			this.gender = {
+				"demo": "male",
+				"type": "man",
+				"pro": "him",
+				"ppro": "his"
+			}; 
+		} else {
+			this.gender = {
+				"demo": "female",
+				"type": "woman",
+				"pro": "her",
+				"ppro": "her"
+			};
+		}
+	},
+	locIt: function(curr, prev){
+		// Set character position
+		Squares[curr].occupied = true;
+		Squares[curr].occupiedBy = this;
+		
+		var current = Squares[curr].onMap;
+		var previous;
+		var loc = [Squares[curr].x, Squares[curr].y];
+		this.coords = loc;
+		this.currentSquare = getSquare(this.coords).id;
+		
+		// Remove character from previous square
+		if(prev != undefined){
+			Squares[prev].occupied = false;
+			Squares[prev].occupiedBy = "";
+			
+			previous = Squares[prev].onMap;
+			findAndRemove(previous, '.p', this.ofType + ' ' + this.type);
+		}
+		// Add character to current square
+		findAndAdd(current, '.p', this.ofType + ' ' + this.type);
+		
+		if(getMapSq(this.coords).hasClass('lit') && this.ofType == 'monster'){
+			monstersMoving.text(this.name + ' moving...');
+		} else {
+			monstersMoving.text('You hear something moving...');
+		}
+		
+		// Attach tooltips
+		$('.' + this.type).tooltip({
+			items: "div[class]",
+			position: {my: 'center top+10', at: 'center middle'},
+			content: this.name
+		});
+	},
+	killed: function(){
+		this.dead = true;
+		this.movement = 0;
+		
+		var cChar = cloneToOverlay(this);
+		findAndRemove(Squares[this.currentSquare].onMap, '.p', this.type + ' ' + this.ofType); // reset UI
+		cChar.fadeOut('slow', function(){
+			$(this).remove();
+		});
+		
+		Squares[this.currentSquare].occupied = false; // empty Square obj
+		Squares[this.currentSquare].occupiedBy = "";
+		
+		// Remove from array; can't just splice at ID b/c ID->position changes on a splice
+		for(var i=0; i<this.group.length; i++){
+			if(this.ID == this.group[i].ID){
+				this.group.splice(i, 1);
+				break; // end loop
+			}
+		}
+		delete this; // remove object
+	}
+});
