@@ -1,22 +1,16 @@
-var Items = [];
-var Item = Class.extend({
-    init: function(name, type, ofType, supclass, dmg, material, twohand){
-   	 this.name = name;
-   	 this.type = type;
-	 this.ofType = ofType;
-   	 this.supclass = supclass;
-   	 this.dmg = dmg;
-   	 this.material = material;
-   	 this.twohand = twohand;
-   	 
-   	 //Items.push(this); // Need to track all items?
-    }
+var Weapons = [];
+var Weapon = Item.extend({
+	init: function(name, type, supclass, dmg, material, twohand){
+		this._super(name, type, "weapon", supclass, material); // push up to Item
+		this.dmg = dmg;
+		this.twohand = twohand;
+	}
 });
 
 // Sword subclass
-var Sword = Item.extend({
+var Sword = Weapon.extend({
 	init: function(name, type, dmg, material, twohand){
-		this._super(name, type, "weapon", "sword", dmg, material, twohand);
+		this._super(name, type, "sword", dmg, material, twohand);
 	}
 });
 
@@ -30,9 +24,9 @@ var shortsword = Sword.extend({ init: function(){ this._super("Short Sword", "sh
 var broadsword = Sword.extend({ init: function(){ this._super("Broad Sword", "broadsword", "1d10", "steel", true); } });
 
 // Staff subclass
-var Staff = Item.extend({
+var Staff = Weapon.extend({
 	init: function(name, type, dmg, material){
-		this._super(name, type, "weapon", "staff", dmg, material, true);
+		this._super(name, type, "staff", dmg, material, true);
 	}
 });
 
@@ -41,9 +35,9 @@ var woodenstaff = Staff.extend({ init: function(){ this._super("Wooden Staff", "
 
 
 // Appendage subclass
-var Appendage = Item.extend({
+var Appendage = Weapon.extend({
 	init: function(name, type, dmg, material){
-		this._super(name, type, "weapon", "appendage", dmg, material, false);
+		this._super(name, type, "appendage", dmg, material, false);
 	}
 });
 
