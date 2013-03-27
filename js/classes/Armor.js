@@ -23,4 +23,4 @@ var coifandkettle = Helmet.extend({ init: function(){ this._super("Coif and Kett
 var barbute = Helmet.extend({ init: function(){ this._super("Barbute", "barbute", "steel", -3); } });
 
 // Close helmet
-var closehelmet = Helmet.extend({ init: function(){ this._super("Close Helmet", "closehelmet", "steel", -4); } });
+var closehelmet = Helmet.extend({ init: function(){ this._super("Close Helmet", "closehelmet", "steel", -5); } });
