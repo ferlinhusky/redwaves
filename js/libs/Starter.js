@@ -12,9 +12,11 @@ var partyTable = '<table id="party" cellpadding="5">\
 		<tr id="label_row">\
 			<td class="label">&nbsp;</td>\
 			<td class="label">HP</td>\
-			<td class="label">MO</td>\
+			<td class="label">MV</td>\
 			<td class="label">WPN</td>\
 			<td class="label">ATK</td>\
+			<td class="label">AC</td>\
+			<td class="label">WEARS</td>\
 		</tr>\
 	</table>';
 

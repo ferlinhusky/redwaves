@@ -6,7 +6,7 @@ var Armor = Item.extend({
 	}
 });
 
-// Sword subclass
+// Helmet subclass
 var Helmet = Armor.extend({
 	init: function(name, type, material, ac){
 		this._super(name, type, "helmet", material, ac);
@@ -24,3 +24,25 @@ var barbute = Helmet.extend({ init: function(){ this._super("Barbute", "barbute"
 
 // Close helmet
 var closehelmet = Helmet.extend({ init: function(){ this._super("Close Helmet", "closehelmet", "steel", -4); } });
+
+// Body armor subclass
+var BodyArmor = Armor.extend({
+	init: function(name, type, material, ac){
+		this._super(name, type, "bodyarmor", material, ac);
+	}
+});
+
+// Scale
+var robe = BodyArmor.extend({ init: function(){ this._super("Robe", "robe", "cloth", -1); } });
+
+// Scale
+var scale = BodyArmor.extend({ init: function(){ this._super("Scale", "scale", "leather", -2); } });
+
+// Chain-mail
+var chainmail = BodyArmor.extend({ init: function(){ this._super("Chain-mail", "chainmail", "iron", -4); } });
+
+// Brigandine
+var brigandine = BodyArmor.extend({ init: function(){ this._super("Brigandine", "brigandine", "iron", -5); } });
+
+// Plate
+var plate = BodyArmor.extend({ init: function(){ this._super("Plate", "plate", "steel", -7); } });

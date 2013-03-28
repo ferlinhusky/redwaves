@@ -13,7 +13,17 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="stat"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="WPN">'+this.wields[1].name+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="WPN">'+this.wields[1].dmg+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+this.wields[1].dmg+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
+		
+		var wearing = [];
+		for(var i=0; i<wears.length; i++){
+			if(wears[i] != ""){
+				wearing.push(wears[i].name);
+			}
+		}
+		
+		$('#party tr.'+this.type).append('<td class="stat"><span class="WEARS">'+wearing.toString()+'</span></td>');
 		
 		formatPartyTable();
 	},
@@ -111,7 +121,7 @@ var Hero = Player.extend({
 	init: function(){ this._super(
 		"Hero",
 		"hero",
-		["","","","","",""],
+		[new coifandkettle, new scale,"","","",""],
 		["", new shortsword,"",""],
 		[],
 		[], 8, 4); 
@@ -123,7 +133,7 @@ var Fighter = Player.extend({
 	init: function(){ this._super(
 		"Fighter",
 		"fighter",
-		["","","","","",""],
+		[new barbute, new chainmail,"","","",""],
 		["", new longsword,"",""],
 		[],
 		[], 10, 6); 
@@ -135,7 +145,7 @@ var Knight = Player.extend({
 	init: function(){ this._super(
 		"Knight",
 		"knight",
-		["","","","","",""],
+		[new closehelmet, new plate,"","","",""],
 		["", new broadsword,"",""],
 		[],
 		[], 12, 5);
@@ -147,7 +157,7 @@ var Wizard = Player.extend({
 	init: function(){ this._super(
 		"Wizard",
 		"wizard",
-		["","","","","",""],
+		[new leatherhelm, new robe,"","","",""],
 		["", new woodenstaff,"",""],
 		[],
 		[], 4, 6);

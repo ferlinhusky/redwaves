@@ -24,6 +24,14 @@ var Character = Class.extend({
 		this.wait = true;
 		this.dead = false;
 		
+		var tempac = 0;
+		for(var i=0; i<this.wears.length; i++){
+			if(this.wears[i] != ""){
+				tempac += this.wears[i].ac;
+			}
+		}
+		this.ac = 10 + tempac;
+		
 		// Get gender
 		var prob = Math.ceil(Math.random()*10);
 		if(prob > 5){
