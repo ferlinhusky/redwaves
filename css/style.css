@@ -517,6 +517,8 @@ h3{
 .m_grid td.lit.up { background-color: #999; }
 .m_grid td.lit.down { background-color: #999; }
 
+.m_grid td.lit.spell_rng { background-color: yellow; }
+
 .m_grid td.lit.trail { background-color: red !important; } /* Show AI pathing */
 
 /*

@@ -35,6 +35,11 @@ var Player = Character.extend({
 		
 		// Check for doors
 		anyDoors(this.coords);
+		
+		// Wizard check
+		if(this.type == "wizard" && input.spellOn == true){
+			getSpellRange(this);
+		}
 	},
 	move: function(dir){
 		if(this.wait == false && this.currMove < this.movement){
@@ -79,7 +84,6 @@ var Player = Character.extend({
 			this.currentSquare = getSquare(this.coords).id;
 
 			//Successful Move
-			//Check all time, events, actions, etc. here
 			$('.'+this.ofType).removeClass('blink'); // stop blinking when a player moves
 			
 			if(isPassable == true){

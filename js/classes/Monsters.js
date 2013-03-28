@@ -23,12 +23,12 @@ var Monster = Character.extend({
 				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false);
 				if(path.length == 0){
 					path = temp_path;
-				} else if (path.length > 0 && temp_path.length < path.length){
+				} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
 					path = temp_path;
 				}
 			}
-			return path;
 		}
+		return path;
 	},
 	doTurn: function(){
 		var self = this;

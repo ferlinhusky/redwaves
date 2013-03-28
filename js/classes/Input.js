@@ -1,4 +1,5 @@
 var Input = function(){
+
 	/*
 		Functions to bind to
 	*/
@@ -66,7 +67,7 @@ var Input = function(){
 					},
 					title: capIt(getLocation()),
 					modal: true,
-                                        zIndex: 5000
+                    zIndex: 5000
 				});
 			}
 		};
@@ -95,22 +96,48 @@ var Input = function(){
 					var scoords = [xSq[i],ySq[j]];
 					var s = getMapSq(scoords);
 					var sobj = getSquare(scoords);
-					if(sobj.t.type == 'closed_door'){
-						s.removeClass('closed_door');
-						s.addClass('open_door');
-						sobj.t = OpenDoor;
-						sobj.passable = true;
-						// Update line of sight
-						getLineOfSight(loc);
-					} else if(sobj.t.type == 'open_door') {
-						s.removeClass('open_door');
-						s.addClass('closed_door');
-						sobj.t = ClosedDoor;
-						sobj.passable = false;
-						// Update line of sight
-						getLineOfSight(loc);
-					}
+                                if(sobj.t != undefined){
+                                                if(sobj.t.type == 'closed_door'){
+                                                        s.removeClass('closed_door');
+                                                        s.addClass('open_door');
+                                                        sobj.t = OpenDoor;
+                                                        sobj.passable = true;
+                                                        // Update line of sight
+                                                        getLineOfSight(loc);
+                                                        // Wizard check
+                                                        if(me.type == "wizard" && input.spellOn == true){
+                                                                getSpellRange(me);
+                                                        }
+                                                } else if(sobj.t.type == 'open_door') {
+                                                        s.removeClass('open_door');
+                                                        s.addClass('closed_door');
+                                                        sobj.t = ClosedDoor;
+                                                        sobj.passable = false;
+                                                        // Update line of sight
+                                                        getLineOfSight(loc);
+                                                        // Wizard check
+                                                        if(me.type == "wizard" && input.spellOn == true){
+                                                                getSpellRange(me);
+                                                        }
+                                                }
+                                                }
 				}
+			}
+		};
+		
+		// Handle spellcasting
+		this.spellOn = false;
+		this.handleSpell = function(){
+			if(this.spellOn == false){
+				if(me.type == "wizard"){ // doesn't hurt to make sure again
+					btnSpell.addClass('blink');
+					this.spellOn = true;
+					getSpellRange(me);
+				} else { btnSpell.button('disable'); return false; }
+			} else {
+				this.spellOn = false;
+				$('.lit, .unlit').removeClass('spell_rng'); // remove all spell ranges
+				btnSpell.removeClass('blink');
 			}
 		};
 		
@@ -215,6 +242,11 @@ var Input = function(){
 			disabled: false,
 			text: true
 		});
+		btnSpell.button({ 
+			icons: {primary:'ui-icon-script',secondary:''},
+			disabled: true,
+			text: true
+		});
 		btnOpenClose.button({ 
 			icons: {primary:'ui-icon-key',secondary:''},
 			disabled: true,
@@ -231,6 +263,7 @@ var Input = function(){
 		btnEnter.bind('click touchend', function(e){e.preventDefault(); input.enterLoc();});
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
+		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	

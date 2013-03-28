@@ -259,34 +259,73 @@ var getLineOfSight = function(c){
 	var mw = activeMap.width-1;
 	var mh = activeMap.height-1;
 	
+	var hilite = "lit";
+	
 	// Four corners separate, otherwise they're calculated twice each
-	Bresenham(c[0], c[1], 0, 0);
-	Bresenham(c[0], c[1], mw, 0);
-	Bresenham(c[0], c[1], 0, mw);
-	Bresenham(c[0], c[1], mw, mh);
+	Bresenham(c[0], c[1], 0, 0, hilite, true);
+	Bresenham(c[0], c[1], 0, mw, hilite, true);
+	
+	Bresenham(c[0], c[1], mw, 0, hilite, true);
+	Bresenham(c[0], c[1], mw, mh, hilite, true);
 	
 	// Loop borders, skipping corners
 	for(i=1; i<=mw; i++){
-		Bresenham(c[0], c[1], i, 0);
-		Bresenham(c[0], c[1], i, mh-1);
+		Bresenham(c[0], c[1], i, 0, hilite, true);
+		Bresenham(c[0], c[1], i, mh-1, hilite, true);
 	}
 	for(i=1; i<=mh; i++){
-		Bresenham(c[0], c[1], 0, i);
-		Bresenham(c[0], c[1], mw-1, i);
+		Bresenham(c[0], c[1], 0, i, hilite, true);
+		Bresenham(c[0], c[1], mw-1, i, hilite, true);
 	}
 };
 
+// Get Spell Range
+var getSpellRange = function(character){
+	$('.lit, .unlit').removeClass('spell_rng'); // remove all spell ranges
+	
+	var hilite = "spell_rng";
+	var c = character.coords;
+	
+	var rng = 2; // will be set by-spell in future
+	var c0m = c[0]-rng;
+	var c0p = c[0]+rng;
+	var c1m = c[1]-rng;
+	var c1p = c[1]+rng;
+	
+	// Hit the corner 1 square in
+	Bresenham(c[0], c[1], c0m+1, c1m+1, hilite, false);
+	Bresenham(c[0], c[1], c0m+1, c1p-1, hilite, false);
+	
+	Bresenham(c[0], c[1], c0p-1, c1m+1, hilite, false);
+	Bresenham(c[0], c[1], c0p-1, c1p-1, hilite, false);
+	
+	// Loop borders, skipping corners
+	for(var i=-rng; i<=rng; i++){
+		// Don't hit far corners (where i = range)
+		if(Math.abs(i)!= Math.abs(rng)){
+			Bresenham(c[0], c[1], c[0]-i, c1m, hilite, false);
+			Bresenham(c[0], c[1], c[0]+i, c1p, hilite, false);
+			Bresenham(c[0], c[1], c0m, c[1]-i, hilite, false);
+			Bresenham(c[0], c[1], c0p, c[1]+i, hilite, false);
+		}
+	}
+}
+
 // Bresenham's Line Algorithm
-var Bresenham = function (x0, y0, x1, y1){
+var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 	var dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
 	var dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
 	var err = (dx>dy ? dx : -dy)/2;
 	
 	while (true) {
-		getMapSq([x0,y0]).removeClass('lit');
-		getMapSq([x0,y0]).addClass('lit');
+		if(!getSquare([x0,y0]).passable && !hitpass) break; // If you don't want to highlight impassable areas, break now
+		
+		getMapSq([x0,y0]).removeClass(hilite);
+		getMapSq([x0,y0]).addClass(hilite);
 		if (x0 === x1 && y0 === y1) break;
-		if (!getSquare([x0,y0]).passable) break;
+		if (!getSquare([x0,y0]).passable){
+			break;
+		}
 		var e2 = err;
 		if (e2 > -dx) { err -= dy; x0 += sx; }
 		if (e2 < dy) { err += dx; y0 += sy; }
