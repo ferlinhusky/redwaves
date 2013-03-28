@@ -8,13 +8,33 @@ var Battle = function(att, def){
 		
 		// Attack for each die; e.g. 2d4
 		for(var j=0; j<tot_attks; j++){
-		    // Get attack damage
-		    var att_dmg = Math.floor(Math.random() * weapon.dmg.split('d')[1]);
+		    // Is it a hit?
+		    var ishit;
+		    var roll = Math.ceil(Math.random() * (20+j)); // 1-(20+j)
+		    
+		    var ac = def.ac;
+		    
+		    var target = 10 + def.ac;
+		    if(target <= 0) { target = 1; }
+		    if(roll <= target){
+			ishit = true;
+		    } else { ishit = false; }
 		
 		    // If 0, attacker misses; otherwise update defender HP and status line
-		    if(att_dmg == 0) {
+		    if(!ishit) {
 			    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' '  + weapon.name;
 		    } else {
+			    var dmg_red = 0; // damage reduction
+			    if(ac < 0){
+				var tac = Math.ceil(Math.random() * Math.abs(ac));
+				ac = -tac; // from -1 to neg ac value;
+				
+				var tdmg_red = Math.ceil(Math.random() * Math.abs(ac));
+				dmg_red = -tdmg_red; // set damage reduction
+			    }
+			    // Get attack damage
+			    var att_dmg = (Math.floor(Math.random() * weapon.dmg.split('d')[1])) + dmg_red;
+			    if(att_dmg <= 0) { att_dmg = 1; }
 			    HP_set(d1, -att_dmg);
 			    status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.ppro + ' ' + weapon.name + '</span>';
 		    }
