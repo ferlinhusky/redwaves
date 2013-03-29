@@ -100,7 +100,7 @@ $.ajax({
 	dataType: 'html',
 	success: function(data){
 		D_Help = {
-			title: 'Help &amp; About',
+			title: 'Help & About',
 			open: function(){},
 			content: data,
 			buttons: {
