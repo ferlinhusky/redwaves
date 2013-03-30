@@ -29,6 +29,7 @@ var Square = function(loc){
 		}
 		this.passable = this.t.passable;
 		this.onMap.addClass(this.t.type);
+		this.onMap.click(input.squareClick);
 	};
 	
 	this.lookAround = function(r){

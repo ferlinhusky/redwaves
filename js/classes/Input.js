@@ -1,5 +1,4 @@
 var Input = function(){
-
 	/*
 		Functions to bind to
 	*/
@@ -96,31 +95,31 @@ var Input = function(){
 					var scoords = [xSq[i],ySq[j]];
 					var s = getMapSq(scoords);
 					var sobj = getSquare(scoords);
-                                if(sobj.t != undefined){
-                                                if(sobj.t.type == 'closed_door'){
-                                                        s.removeClass('closed_door');
-                                                        s.addClass('open_door');
-                                                        sobj.t = OpenDoor;
-                                                        sobj.passable = true;
-                                                        // Update line of sight
-                                                        getLineOfSight(loc);
-                                                        // Wizard check
-                                                        if(me.type == "wizard" && input.spellOn == true){
-                                                                getSpellRange(me);
-                                                        }
-                                                } else if(sobj.t.type == 'open_door') {
-                                                        s.removeClass('open_door');
-                                                        s.addClass('closed_door');
-                                                        sobj.t = ClosedDoor;
-                                                        sobj.passable = false;
-                                                        // Update line of sight
-                                                        getLineOfSight(loc);
-                                                        // Wizard check
-                                                        if(me.type == "wizard" && input.spellOn == true){
-                                                                getSpellRange(me);
-                                                        }
-                                                }
-                                                }
+					if(sobj.t != undefined){
+						if(sobj.t.type == 'closed_door'){
+							s.removeClass('closed_door');
+							s.addClass('open_door');
+							sobj.t = OpenDoor;
+							sobj.passable = true;
+							// Update line of sight
+							getLineOfSight(loc);
+							// Wizard check
+							if(me.type == "wizard" && input.spellOn == true){
+								getSpellRange(me);
+							}
+						} else if(sobj.t.type == 'open_door') {
+							s.removeClass('open_door');
+							s.addClass('closed_door');
+							sobj.t = ClosedDoor;
+							sobj.passable = false;
+							// Update line of sight
+							getLineOfSight(loc);
+							// Wizard check
+							if(me.type == "wizard" && input.spellOn == true){
+								getSpellRange(me);
+							}
+						}
+					}
 				}
 			}
 		};
@@ -140,6 +139,29 @@ var Input = function(){
 				btnSpell.removeClass('blink');
 			}
 		};
+		
+		// Square click
+		this.squareClick = function(k){
+			// Capture click
+			k.preventDefault();
+			k.stopPropagation();
+			
+			var targetsq = $(k.currentTarget);
+			
+			// Get all attached square classes
+			var sqClasses = targetsq.attr('class').split(' ');
+			
+			// Activate spell
+			if($.inArray('spell_rng', sqClasses) > -1){
+				var sobj = Squares[targetsq.attr('data-sid')];
+				if(sobj.occupiedBy.ofType == "monster"){
+					var battle = new Battle(me, sobj.occupiedBy);
+					
+					// Track/update movement if not dead
+					MO_set(me, 1);
+				}
+			}		
+		}
 		
 		// Key press functions
 		this.doKeyUp = function(k) {

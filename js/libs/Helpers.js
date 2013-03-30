@@ -286,7 +286,7 @@ var getSpellRange = function(character){
 	var hilite = "spell_rng";
 	var c = character.coords;
 	
-	var rng = 2; // will be set by-spell in future
+	var rng = 3; // will be set by-spell in future
 	var c0m = c[0]-rng;
 	var c0p = c[0]+rng;
 	var c1m = c[1]-rng;
