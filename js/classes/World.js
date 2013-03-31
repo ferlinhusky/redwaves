@@ -32,7 +32,7 @@ var World = function(){
 		btnEndTurn.removeClass('blink'); input.spellOn = false;
 		btnOpenClose.button('disable');
 		btnSpell.removeClass('blink');
-		btnSpell.button('disable');
+		SpellSet.find('.button').button('disable');
 		monstersMoving.hide('fast');
 		
 		// Check for Players/Monsters defeated
@@ -66,7 +66,7 @@ var World = function(){
 				// Check for doors
 				anyDoors(me.coords);
 				// Check for Wizard
-				if(me.type == "wizard"){ btnSpell.button('enable'); }
+				if(me.type == "wizard"){ SpellSet.find('.button').button('enable'); }
 			}
 		} else if(this.activePlayer.ofType == "monster"){
 			if (this.activePlayer.dead == true) {

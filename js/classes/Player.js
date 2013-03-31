@@ -164,6 +164,6 @@ var Wizard = Player.extend({
 		[new leatherhelm, new robe,"","","",""],
 		["", new woodenstaff,"",""],
 		[],
-		[], 4, 6);
+		[new fireball, new freeze, new lightning], 4, 6);
 	}
 });

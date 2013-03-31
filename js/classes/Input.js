@@ -126,6 +126,38 @@ var Input = function(){
 		
 		// Handle spellcasting
 		this.spellOn = false;
+                this.spellMenu = false;
+                this.getSpells = function(){
+                    var spells = [];
+                    if(me.type == "wizard"){
+                        for(var i=0; i<me.skills.length; i++){
+                            if(me.skills[i].ofType == "spell"){
+                                spells.push(me.skills[i]);
+                            }
+                        }
+                    }
+                    return spells;
+                };
+                this.selectSpell = function(){
+                    if(!this.spellMenu) {
+                        menuSelectSpell.empty()
+                            .css({
+                                bottom: btnSpell.height() + 8,
+                                left: btnSpell.position().left + 1,
+                                width: SpellSet.width() - 8
+                             })
+                            .show('fast');
+                        var thespells = this.getSpells();
+                        for(var i=0; i<thespells.length; i++){
+                            // Add to spell selection
+                            menuSelectSpell.append(thespells[i].name + '<br/>');
+                        }
+                        this.spellMenu = true;
+                    } else {
+                        menuSelectSpell.hide('fast');
+                        this.spellMenu = false;
+                    }
+                };
 		this.handleSpell = function(){
 			if(this.spellOn == false){
 				if(me.type == "wizard"){ // doesn't hurt to make sure again
@@ -268,7 +300,11 @@ var Input = function(){
 			icons: {primary:'ui-icon-script',secondary:''},
 			disabled: true,
 			text: true
-		});
+		}).next().button({
+                                text: false,
+                                disabled: true,
+                                icons: {primary: "ui-icon-triangle-1-s"}
+                                }).parent().buttonset();
 		btnOpenClose.button({ 
 			icons: {primary:'ui-icon-key',secondary:''},
 			disabled: true,
@@ -286,6 +322,7 @@ var Input = function(){
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
+                btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	

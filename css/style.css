@@ -261,12 +261,13 @@ h3{
 	background: #CCC;
 	border: 1px solid #FFF;
 	overflow: hidden;
-	height: 40px;
+	/*height: 40px;*/
+	padding: 3px;
 }
-#bottom_cell {
+#bottom_cell {/*
 	height: 40px;
 	position: relative;
-}
+*/}
 
 /* Welcome */
 #welcome_screen {}
@@ -292,6 +293,12 @@ h3{
 	display: inline-block;
 	float: right;
 }
+#monsters_moving {
+    background: URL('../images/ajax-loader.gif') no-repeat;
+    padding-left: 20px;
+    margin-left: 10px;
+    display: none;
+}
 #whereami {
 	top: 11px;
 	left: 10px;
@@ -313,13 +320,13 @@ h3{
 #clock .ampm { font-size: 11px; line-height: 9px; margin: 2px 0px 0px 3px; }
 
 /* Buttons */
-#button_container {
+#button_container {/*
 	height: 30px;
 	position: absolute;
 	top: 4px;
 	left: 4px;
 	white-space:nowrap;
-}
+*/}
 #button_container .button {
 	height: 30px;
 	display: inline-block;
@@ -327,12 +334,16 @@ h3{
 #btn_inventory, #btn_notes,
 #btn_enter, #btn_opts { display: none !important; }
 
-#monsters_moving {
-    background: URL('../images/ajax-loader.gif') no-repeat;
-    padding-left: 20px;
-    margin-left: 10px;
+/* Menus */
+#menu_select_spell {
     display: none;
+    position: absolute;
+    height: auto;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
 }
+
 
 /* Dialogs */
 #dialog { font-size: .8em; }
