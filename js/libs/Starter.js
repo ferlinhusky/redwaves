@@ -79,7 +79,7 @@ var btnOpenClose = $('#btn_open_close');
 var SpellSet = $('#spellset')
     SpellSet.append('<div id="btn_spell" class="button action">Spell</div>');
     SpellSet.append('<div id="btn_select_spell" class="button action">Select Spell</div>');
-    SpellSet.append('<div id="menu_select_spell"></div>')
+    SpellSet.append('<ul id="menu_select_spell"></ul>');
 var btnSpell = $('#btn_spell');
 var btnSelectSpell = $('#btn_select_spell');
 var menuSelectSpell = $('#menu_select_spell');

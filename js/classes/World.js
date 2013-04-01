@@ -28,7 +28,7 @@ var World = function(){
 	this.endturn = function(){
 		// Reset UI bits
 		$('.p').removeClass('blink'); // remove any character blinks
-		$('.lit, .unlit').removeClass('spell_rng'); // remove all spell ranges
+		$('.lit, .unlit').removeClass('range'); // remove all spell ranges
 		btnEndTurn.removeClass('blink'); input.spellOn = false;
 		btnOpenClose.button('disable');
 		btnSpell.removeClass('blink');

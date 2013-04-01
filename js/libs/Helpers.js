@@ -281,12 +281,12 @@ var getLineOfSight = function(c){
 
 // Get Spell Range
 var getSpellRange = function(character){
-	$('.lit, .unlit').removeClass('spell_rng'); // remove all spell ranges
+	$('.lit, .unlit').removeClass('range fire ice energy'); // remove all spell ranges
 	
-	var hilite = "spell_rng";
 	var c = character.coords;
 	
-	var rng = 3; // will be set by-spell in future
+	var rng = character.readySpell.rng;
+	var hilite = "range " + character.readySpell.material;
 	var c0m = c[0]-rng;
 	var c0p = c[0]+rng;
 	var c1m = c[1]-rng;

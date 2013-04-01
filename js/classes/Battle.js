@@ -44,15 +44,17 @@ var Battle = function(att, def){
 		}
     };
 	this.doSpellAttack = function(a1, d1){
-		// Get attack damage
-		var att_dmg = Math.floor(Math.random() * 10);
-		if(att_dmg <= 0) {
-			status_line = a1.name + ' misses ' + d1.name + ' with [spell name]';
-		} else {
-			HP_set(d1, -att_dmg);
-			status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with [spell name]</span>';
-		}
-		Statuss.update(status_line);
+	    var spell = a1.readySpell;
+	    
+	    // Get attack damage
+	    var att_dmg = Math.floor(Math.random() * spell.dmg);
+	    if(att_dmg <= 0) {
+		    status_line = a1.name + ' misses ' + d1.name + ' with ' + spell.name;
+	    } else {
+		    HP_set(d1, -att_dmg);
+		    status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + spell.name + '</span>';
+	    }
+	    Statuss.update(status_line);
 	};
     this.doKilled = function(a1, d1){
 		Statuss.update('<b class="red">' + a1.name + ' kills ' + d1.name + '!</b>');

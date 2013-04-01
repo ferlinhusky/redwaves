@@ -127,49 +127,57 @@ var Input = function(){
 		// Handle spellcasting
 		this.spellOn = false;
                 this.spellMenu = false;
-                this.getSpells = function(){
-                    var spells = [];
-                    if(me.type == "wizard"){
-                        for(var i=0; i<me.skills.length; i++){
-                            if(me.skills[i].ofType == "spell"){
-                                spells.push(me.skills[i]);
-                            }
-                        }
-                    }
-                    return spells;
+                
+                this.showSpellMenu = function(){
+                    var offH = menuSelectSpell.outerHeight();
+                    menuSelectSpell
+                        .css({
+                           top: btnSpell.position().top - offH,
+                           left: btnSpell.position().left,
+                           width: SpellSet.width() - 8
+                        })
+                        .animate({
+                            opacity: 1
+                        }, 250);
+                    this.spellMenu = true;
                 };
+                
+                this.hideSpellMenu = function(){
+                    menuSelectSpell.animate({
+                                opacity: 0
+                            }, 250);
+                    this.spellMenu = false;
+                };
+                
+                this.setSpell = function(s){
+                    var spell = me.spells[s];
+                    btnSpell.button('option', 'label', spell.name);
+                    me.readySpell = spell;
+                    this.hideSpellMenu();
+                    if(this.spellOn == true){
+                        getSpellRange(me);
+                    }
+                }
+
                 this.selectSpell = function(){
                     if(!this.spellMenu) {
-                        menuSelectSpell.empty()
-                            .css({
-                                bottom: btnSpell.height() + 8,
-                                left: btnSpell.position().left + 1,
-                                width: SpellSet.width() - 8
-                             })
-                            .show('fast');
-                        var thespells = this.getSpells();
-                        for(var i=0; i<thespells.length; i++){
-                            // Add to spell selection
-                            menuSelectSpell.append(thespells[i].name + '<br/>');
-                        }
-                        this.spellMenu = true;
+                        this.showSpellMenu();
                     } else {
-                        menuSelectSpell.hide('fast');
-                        this.spellMenu = false;
+                        this.hideSpellMenu();
                     }
                 };
 		this.handleSpell = function(){
-			if(this.spellOn == false){
-				if(me.type == "wizard"){ // doesn't hurt to make sure again
-					btnSpell.addClass('blink');
-					this.spellOn = true;
-					getSpellRange(me);
-				} else { btnSpell.button('disable'); return false; }
-			} else {
-				this.spellOn = false;
-				$('.lit, .unlit').removeClass('spell_rng'); // remove all spell ranges
-				btnSpell.removeClass('blink');
-			}
+                    $('.lit, .unlit').removeClass('range'); // remove all spell ranges
+		    btnSpell.removeClass('blink');
+                    if(this.spellOn == false && me.readySpell != null){
+                            if(me.type == "wizard"){ // doesn't hurt to make sure again
+                                    btnSpell.addClass('blink');
+                                    this.spellOn = true;
+                                    getSpellRange(me);
+                            } else { btnSpell.button('disable'); return false; }
+                    } else {
+                            this.spellOn = false;
+                    }
 		};
 		
 		// Square click
@@ -184,14 +192,18 @@ var Input = function(){
 			var sqClasses = targetsq.attr('class').split(' ');
 			
 			// Activate spell
-			if($.inArray('spell_rng', sqClasses) > -1){
+			if($.inArray('range', sqClasses) > -1){
 				var sobj = Squares[targetsq.attr('data-sid')];
-				if(sobj.occupiedBy.ofType == "monster"){
+				if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
 					var battle = new Battle(me, sobj.occupiedBy);
 					
 					// Track/update movement if not dead
-					MO_set(me, 1);
-				}
+                                        me.move(); // update movement, activate end turn if necessary
+				} else if (me.currMove == me.movement){
+                                    btnSpell.removeClass('blink')
+                                        .button('disable');
+                                    btnSelectSpell.button('disable');
+                                }
 			}		
 		}
 		

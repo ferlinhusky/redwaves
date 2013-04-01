@@ -336,14 +336,10 @@ h3{
 
 /* Menus */
 #menu_select_spell {
-    display: none;
     position: absolute;
-    height: auto;
-    background-color: #f6f6f6;
-    border-bottom: 1px solid #ccc;
     padding: 5px;
+    opacity: 0;
 }
-
 
 /* Dialogs */
 #dialog { font-size: .8em; }
@@ -528,7 +524,9 @@ h3{
 .m_grid td.lit.up { background-color: #999; }
 .m_grid td.lit.down { background-color: #999; }
 
-.m_grid td.lit.spell_rng { background-color: yellow; }
+.m_grid td.lit.range.fire { background-color: red; }
+.m_grid td.lit.range.ice { background-color: blue; }
+.m_grid td.lit.range.energy { background-color: yellow; }
 
 .m_grid td.lit.trail { background-color: red !important; } /* Show AI pathing */
 

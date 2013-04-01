@@ -105,9 +105,15 @@ var Player = Character.extend({
 			}
 			if (this.currMove == this.movement){
 				btnEndTurn.addClass('blink');
+				btnSpell.removeClass('blink')
+                                        .button('disable');
+                                btnSelectSpell.button('disable');
 			}
 		} else if (this.currMove == this.movement){
 			btnEndTurn.addClass('blink');
+			btnSpell.removeClass('blink')
+				.button('disable');
+			btnSelectSpell.button('disable');
 		}
 	},
 	killed: function(){
@@ -164,6 +170,24 @@ var Wizard = Player.extend({
 		[new leatherhelm, new robe,"","","",""],
 		["", new woodenstaff,"",""],
 		[],
-		[new fireball, new freeze, new lightning], 4, 6);
+		[], 4, 6);
+		
+		this.spells = [
+			new fireball,
+			new freeze,
+			new lightning
+		];
+		this.readySpell = null;
+		
+		for(var i=0; i<this.spells.length; i++){
+			menuSelectSpell.append('<li><a href="javascript:void(0);" onclick="input.setSpell('+i+');">'+this.spells[i].name);
+		}
+		
+		// Create spell menu
+		menuSelectSpell.menu({
+			create: function(event, ui){
+				$(this).menu('collapse');
+			}
+		});
 	}
 });
