@@ -26,13 +26,12 @@ main.append('\
 	<table id="game_table" cellspacing="5" cellpadding="0">\
 		<tr>\
 			<td width="100%" valign="top" id="left_col">'+partyTable+'</td>\
-			<td id="status"></td>\
 		</tr>\
 		<tr>\
-			<td id="map_container_cell" height="100%" colspan="2"><div id="map_container"></div></td>\
+			<td id="map_container_cell" height="100%"><div id="map_container"><div id="status"></div></div></td>\
 		</tr>\
 		<tr>\
-			<td id="left_column" valign="top" colspan="2"><div id="bottom_cell"></div></td>\
+			<td id="left_column" valign="top"><div id="bottom_cell"></div></td>\
 		</tr>\
 	</table>\
 ');
@@ -68,7 +67,7 @@ var ButtonContainer = $('#button_container');
     ButtonContainer.append('<div id="btn_open_close" class="button action">Door</div>');
     ButtonContainer.append('<div id="spellset" class="button"></div>');
     ButtonContainer.append('<div id="btn_end_turn" class="button action">End Turn</div>');
-    ButtonContainer.append('<div id="monsters_moving" class="button action" style="display:none"></div>');
+    ButtonContainer.append('<div id="monsters_moving" class="button" style="display:none;"></div>');
     
 var btnInventory = $('#btn_inventory');
 var btnNotes = $('#btn_notes');

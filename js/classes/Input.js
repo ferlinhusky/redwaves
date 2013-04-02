@@ -313,10 +313,10 @@ var Input = function(){
 			disabled: true,
 			text: true
 		}).next().button({
-                                text: false,
-                                disabled: true,
-                                icons: {primary: "ui-icon-triangle-1-s"}
-                                }).parent().buttonset();
+			text: false,
+			disabled: true,
+			icons: {primary: "ui-icon-triangle-1-s"}
+			}).parent().buttonset();
 		btnOpenClose.button({ 
 			icons: {primary:'ui-icon-key',secondary:''},
 			disabled: true,
@@ -334,7 +334,7 @@ var Input = function(){
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
-                btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
+        btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	
@@ -389,20 +389,32 @@ var Input = function(){
 			// Tell Safari not to move the window. 
 			e.preventDefault(); 
 		});
-                // Init based on window size
-                if($(window).width() <= 480  && $('#button_container').find('.action').button()){
-                    $('#button_container').find('.action').button('option', 'text', false);
-                }
+		// Init based on window size
+		if($(window).width() <= 480  && $('#button_container').find('.action').button()){
+			$('#button_container').find('.action').button('option', 'text', false);
+		}
 		// Re-center on window resize
 		$(window).resize(function(){
                     centerOn(me);
                     oDialog.dialog('option', 'position', 'center');
+					
+					// Buttons become icon-only on small screens (small viewports)
                     if($(this).width() <= 480 && $('#button_container').find('.action').button()){
                         $('#button_container').find('.action').button('option', 'text', false);
                     } else if($('#button_container').find('.action').button()) {
                         $('#button_container').find('.action').button('option', 'text', true);
                         btnSelectSpell.button('option', 'text', false);
                     }
+					
+					// Make sure the Spell select dropdown (up?) doesn't unattach itself
+					if(menuSelectSpell.css('opacity') > 0){
+						var offH = menuSelectSpell.outerHeight();
+						 menuSelectSpell.css({
+                           top: btnSpell.position().top - offH,
+                           left: btnSpell.position().left,
+                           width: SpellSet.width() - 8
+                        });
+					}
 		});
 		// Make everything unselectable
 		$('.m_grid td.lit .quad').bind('selectstart', function(){return false;});
