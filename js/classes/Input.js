@@ -389,6 +389,10 @@ var Input = function(){
 			// Tell Safari not to move the window. 
 			e.preventDefault(); 
 		});
+                // Init based on window size
+                if($(window).width() <= 480  && $('#button_container').find('.action').button()){
+                    $('#button_container').find('.action').button('option', 'text', false);
+                }
 		// Re-center on window resize
 		$(window).resize(function(){
                     centerOn(me);
