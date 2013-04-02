@@ -391,8 +391,14 @@ var Input = function(){
 		});
 		// Re-center on window resize
 		$(window).resize(function(){
-			centerOn(me);
-			oDialog.dialog('option', 'position', 'center');
+                    centerOn(me);
+                    oDialog.dialog('option', 'position', 'center');
+                    if($(this).width() <= 480 && $('#button_container').find('.action').button()){
+                        $('#button_container').find('.action').button('option', 'text', false);
+                    } else if($('#button_container').find('.action').button()) {
+                        $('#button_container').find('.action').button('option', 'text', true);
+                        btnSelectSpell.button('option', 'text', false);
+                    }
 		});
 		// Make everything unselectable
 		$('.m_grid td.lit .quad').bind('selectstart', function(){return false;});

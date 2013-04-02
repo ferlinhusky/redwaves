@@ -13,10 +13,10 @@ var partyTable = '<table id="party" cellpadding="5">\
 			<td class="label">&nbsp;</td>\
 			<td class="label">HP</td>\
 			<td class="label">MV</td>\
-			<td class="label">WPN</td>\
+			<td class="label WPN">WPN</td>\
 			<td class="label">ATK</td>\
 			<td class="label">AC</td>\
-			<td class="label">WEARS</td>\
+			<td class="label WEARS">WEARS</td>\
 		</tr>\
 	</table>';
 
@@ -66,7 +66,7 @@ var ButtonContainer = $('#button_container');
     ButtonContainer.append('<div id="btn_opts" class="button action">Options</div>');
     ButtonContainer.append('<div id="btn_help" class="button action">Help</div>');
     ButtonContainer.append('<div id="btn_open_close" class="button action">Door</div>');
-    ButtonContainer.append('<div id="spellset" class="button action"></div>');
+    ButtonContainer.append('<div id="spellset" class="button"></div>');
     ButtonContainer.append('<div id="btn_end_turn" class="button action">End Turn</div>');
     ButtonContainer.append('<div id="monsters_moving" class="button action" style="display:none"></div>');
     

@@ -12,7 +12,7 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="member">'+this.name+'</td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="WPN">'+this.wields[1].name+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat stWPN"><span class="WPN">'+this.wields[1].name+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+this.wields[1].dmg+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
 		
@@ -23,7 +23,7 @@ var Player = Character.extend({
 			}
 		}
 		
-		$('#party tr.'+this.type).append('<td class="stat"><span class="WEARS">'+wearing.toString()+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat stWEARS"><span class="WEARS">'+wearing.toString()+'</span></td>');
 		
 		formatPartyTable();
 	},

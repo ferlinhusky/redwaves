@@ -224,7 +224,10 @@ h3{
 .clearing { clear: both; }
 
 /* Party */
-#party { margin-right: 10px; }
+#party {
+    margin-right: 10px;
+    width: 100%; /* Responsive! */
+}
 #party td { font-size: .8em; }
 #party td.label {
     color: #fff;
@@ -241,6 +244,11 @@ h3{
 #party tr.knight { background-color: darkseagreen; }
 #party tr.wizard { background-color: darkorchid; }
 #party .stat { text-align: center; }
+
+#party .label.WEARS,
+#party .label.WPN,
+#party .stWEARS,
+#party .stWPN { display: none; } /* Responsive */
 
 /* Loading */
 #loading_anim {
@@ -287,10 +295,10 @@ h3{
 	padding: 3px;
 	font-size: 11px;
 	overflow: auto;
-	height: 125px;
+	height: 100%;
 	width: 300px;
 	vertical-align: top;
-	display: inline-block;
+	display: none; /* Responsive! */
 	float: right;
 }
 #monsters_moving {
@@ -584,7 +592,12 @@ h3{
 
 @media only screen and (min-width: 480px) {
   /* Style adjustments for viewports 480px and over go here */
-
+    #status { display: inline-block; }
+    #party { width: auto; }
+    #party .label.WEARS,
+    #party .label.WPN,
+    #party .stWEARS,
+    #party .stWPN { display: table-cell; }
 }
 
 @media only screen and (min-width: 768px) {
