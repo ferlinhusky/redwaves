@@ -7,44 +7,38 @@ var Input = function(){
 
 			e.preventDefault();
 			e.stopPropagation();
-                        
-                        var targetsq = $(e.currentTarget);
-                        var sqClasses = [];
-                        
-                        if(targetsq.attr('class') != undefined){
-                            // Get all attached square classes
-                            sqClasses = targetsq.attr('class').split(' ');
-                        }
-                        
-			// Activate spell
+			
+			// Get target touched; set up empty square classes container
+			var targetsq = $(e.currentTarget);
+			var sqClasses = [];
+			
+			// If the target has classes, put them in the square classes container
+			if(targetsq.attr('class') != undefined){
+				// Get all attached square classes
+				sqClasses = targetsq.attr('class').split(' ');
+			}
+			
+			// Check if trying to attack ranged target or move
 			if($.inArray('range', sqClasses) > -1){
-				var sobj = Squares[targetsq.attr('data-sid')];
-				if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
-					var battle = new Battle(me, sobj.occupiedBy);
-					
-					// Track/update movement if not dead
-                                        me.move(); // update movement, activate end turn if necessary
-				} else if (me.currMove == me.movement){
-                                    btnSpell.removeClass('blink')
-                                        .button('disable');
-                                    btnSelectSpell.button('disable');
-                                }
+				this.checkRangedTarget(targetsq);
 			} else {
-                            var oe = e.originalEvent;
-                            if(oe.targetTouches){
-                                    oe = oe.changedTouches[0]; // changedTouches to capture touchend
-                            }
-                            myPos = Squares[me.currentSquare].onMap.offset();
-                            offX = Math.abs(oe.pageX-myPos.left);
-                            offY = Math.abs(oe.pageY-myPos.top);
-                            if(offX > offY){
-                                    if(oe.pageX > myPos.left) { me.move('right'); }
-                                    else { me.move('left'); }
-                                    } else {
-                                    if(oe.pageY > myPos.top) { me.move('down'); }
-                                    else { me.move('up'); }
-                            }
-                        }
+				var oe = e.originalEvent;
+				if(oe.targetTouches){
+					oe = oe.changedTouches[0]; // changedTouches to capture touchend
+				}
+				myPos = Squares[me.currentSquare].onMap.offset();
+				offX = Math.abs(oe.pageX-myPos.left);
+				offY = Math.abs(oe.pageY-myPos.top);
+				if(offX > offY){
+					if(oe.pageX > myPos.left) {
+						me.move('right');
+					} else { me.move('left'); }
+				} else {
+					if(oe.pageY > myPos.top) {
+						me.move('down');
+					} else { me.move('up'); }
+				}
+			}
 		};
 		
 		// Bind actions to map
@@ -149,6 +143,10 @@ var Input = function(){
 			}
 		};
 		
+	/*
+		Spells and Ranged Attacks
+	*/
+		
 		// Handle spellcasting
 		this.spellOn = false;
                 this.spellMenu = false;
@@ -192,17 +190,33 @@ var Input = function(){
                     }
                 };
 		this.handleSpell = function(){
-                    $('.lit, .unlit').removeClass('range'); // remove all spell ranges
-		    btnSpell.removeClass('blink');
-                    if(this.spellOn == false && me.readySpell != null){
-                            if(me.type == "wizard"){ // doesn't hurt to make sure again
-                                    btnSpell.addClass('blink');
-                                    this.spellOn = true;
-                                    getSpellRange(me);
-                            } else { btnSpell.button('disable'); return false; }
-                    } else {
-                            this.spellOn = false;
-                    }
+			$('.lit, .unlit').removeClass('range'); // remove all spell ranges
+			btnSpell.removeClass('blink');
+			if(this.spellOn == false && me.readySpell != null){
+				if(me.type == "wizard"){ // doesn't hurt to make sure again
+					btnSpell.addClass('blink');
+					this.spellOn = true;
+					getSpellRange(me);
+				} else { btnSpell.button('disable'); return false; }
+			} else {
+				this.spellOn = false;
+			}
+		};
+		
+		// Check for ranged target > tsq: target square
+		// If found, initiate ranged attack > new Battle
+		this.checkRangedTarget = function(tsq){
+			var sobj = Squares[tsq.attr('data-sid')];
+			if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
+				var battle = new Battle(me, sobj.occupiedBy);
+			
+				// Track/update movement if not dead
+				me.move(); // update movement, activate end turn if necessary
+			} else if (me.currMove == me.movement){
+				btnSpell.removeClass('blink')
+					.button('disable');
+				btnSelectSpell.button('disable');
+			}
 		};
 		
 		// Square click
@@ -215,21 +229,20 @@ var Input = function(){
 			// Get all attached square classes
 			var sqClasses = targetsq.attr('class').split(' ');
 			
-			// Activate spell
+			// Check if attempting to click a target in range
 			if($.inArray('range', sqClasses) > -1){
-				var sobj = Squares[targetsq.attr('data-sid')];
-				if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
-					var battle = new Battle(me, sobj.occupiedBy);
-					
-					// Track/update movement if not dead
-                                        me.move(); // update movement, activate end turn if necessary
-				} else if (me.currMove == me.movement){
-                                    btnSpell.removeClass('blink')
-                                        .button('disable');
-                                    btnSelectSpell.button('disable');
-                                }
+				this.checkRangedTarget(targetsq);
 			}
-		}
+		};
+		
+	/*
+		Key Captures
+	*/	
+		// High-level connectors
+		var moveUp = function(){ me.move('up'); };
+		var moveRight = function(){ me.move('right'); };
+		var moveDown = function(){ me.move('down'); };
+		var moveLeft = function(){ me.move('left'); };
 		
 		// Key press functions
 		this.doKeyUp = function(k) {
@@ -259,11 +272,10 @@ var Input = function(){
 			var M_D;
 			var M_D_title;
 			var M_D_buttons;
-                        var M_D_height;
+            var M_D_height;
 			input.unbindFromMap();
 			switch(type){
 				case "inventory" 	: M_D = D_Inventory; break;
-				case "notes" 		: M_D = D_Notes; break;
 				case "options" 		: M_D = D_Options; break;
 				case "help" 		: M_D = D_Help; break;
 				case "welcome" 		: M_D = D_Welcome; break;
@@ -286,9 +298,9 @@ var Input = function(){
 				oDialog.html(M_D.content);
 				M_D_title = M_D.title;
 				M_D_buttons = M_D.buttons;
-                                if(M_D.height != undefined){
-                                                M_D_height = M_D.height;
-                                } else { M_D_height = "auto"; }
+				if(M_D.height != undefined){
+					M_D_height = M_D.height;
+				} else { M_D_height = "auto"; }
 			}
 			oDialog.dialog({
 				open: M_D.open,
@@ -303,14 +315,8 @@ var Input = function(){
 			});
 		}
 	/*
-		Bindings and such
+		Button bindings, etc.
 	*/
-		// High-level connectors
-		var moveUp = function(){ me.move('up'); };
-		var moveRight = function(){ me.move('right'); };
-		var moveDown = function(){ me.move('down'); };
-		var moveLeft = function(){ me.move('left'); };
-		
 		// Action Buttons
 		btnInventory.button({
 			icons: {primary:'ui-icon-suitcase',secondary:''},
@@ -358,7 +364,7 @@ var Input = function(){
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
-                btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
+		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	

@@ -5,7 +5,8 @@ var doc = $(document);
 var LoadingAnim = '<img src="images/ajax-loader.gif" id="loading_anim" />';
 
 // Template for all map squares
-var SquareTemplate = '<div class="sq"><div class="quad b">&nbsp;</div><div class="quad t">&nbsp;</div><div class="quad i">&nbsp;</div><div class="quad p">&nbsp;</div></div>';
+//var SquareTemplate = '<div class="sq"><div class="quad b">&nbsp;</div><div class="quad t">&nbsp;</div><div class="quad i">&nbsp;</div><div class="quad p">&nbsp;</div></div>';
+var SquareTemplate = '<div class="sq"><div class="quad p">&nbsp;</div></div>';
 
 var partyTable = '<table id="party" cellpadding="5">\
 	    <colgroup></colgroup>\
@@ -70,7 +71,6 @@ var ButtonContainer = $('#button_container');
     ButtonContainer.append('<div id="monsters_moving" class="button" style="display:none;"></div>');
     
 var btnInventory = $('#btn_inventory');
-var btnNotes = $('#btn_notes');
 var btnEnter = $('#btn_enter');
 var btnOpts = $('#btn_opts');
 var btnHelp = $('#btn_help');

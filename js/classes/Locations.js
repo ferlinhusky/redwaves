@@ -17,8 +17,6 @@ var Tutorial = function(){
 		"Atomic_Beast_2": [26,8],
 		"Atomic_Beast_3": [46,10],
 		"Atomic_Beast_4": [46,11],
-		"Shaolin_Beatnik_1": [25,4],
-		"Shaolin_Beatnik_2": [26,4]
 	}
     }
 };
@@ -31,8 +29,8 @@ var Monastery = function(){
 	"width": 50,
 	"monsters": {
 		"Shaolin_Beatnik_1": [5,4],
-		"Atomic_Beast_1": [40,3],
-		"Atomic_Freak_1": [41,3]
+		"Shaolin_Beatnik_2": [40,3],
+		"Shaolin_Beatnik_3": [41,3]
 	}
     }
 };

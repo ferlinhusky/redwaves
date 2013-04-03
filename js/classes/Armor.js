@@ -23,7 +23,10 @@ var coifandkettle = Helmet.extend({ init: function(){ this._super("Coif and Kett
 var barbute = Helmet.extend({ init: function(){ this._super("Barbute", "barbute", "steel", -3); } });
 
 // Close helmet
-var closehelmet = Helmet.extend({ init: function(){ this._super("Close Helmet", "closehelmet", "steel", -4); } });
+var closehelmet = Helmet.extend({ init: function(){ this._super("Close helmet", "closehelmet", "steel", -4); } });
+
+// Cowboy hat
+var cowboyhat = Helmet.extend({ init: function(){ this._super("Cowboy hat", "cowboyhat", "felt", -1); } });
 
 // Body armor subclass
 var BodyArmor = Armor.extend({

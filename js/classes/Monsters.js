@@ -151,6 +151,54 @@ var Basilisk = Monster.extend({
   	}
 });
 
+// GHOST DRACULA
+var Ghost_Dracula = Monster.extend({
+	init: function(){
+    	this._super(
+			"Ghost Dracula",
+			"ghost_dracula",
+			"Ghost Draculas",
+			["","","","","",""],
+			[new fangs, "", "", ""],
+			[],
+			["paralyze", "freakout", "drain"],
+			15, 8
+		);
+  	}
+});
+
+// HELL DOG
+var Hell_Dog = Monster.extend({
+	init: function(){
+    	this._super(
+			"Hell Dog",
+			"hell_dog",
+			"Hell Dogs",
+			["","","","","",""],
+			[new fangs, "", "", ""],
+			[],
+			["hellfire"],
+			4, 7
+		);
+  	}
+});
+
+// HILLBILLY HELLION
+var Hillbilly_Hellion = Monster.extend({
+	init: function(){
+    	this._super(
+			"Hillbilly Hellion",
+			"hillbilly_hellion",
+			"Hillbilly Hellions",
+			["","","","","",""],
+			["", new shotgun, "", ""],
+			[],
+			["hellfire"],
+			4, 7
+		);
+  	}
+});
+
 // SHAOLIN BEATNIK
 var Shaolin_Beatnik = Monster.extend({
 	init: function(){
@@ -158,11 +206,27 @@ var Shaolin_Beatnik = Monster.extend({
 			"Shaolin Beatnik",
 			"shaolin_beatnik",
 			"Shaolin Beatniks",
-			["","","","","",""],
+			["", new robe,"","","",""],
 			["", new hand, new hand,""],
 			[],
 			["martial arts"],
 			5, 7
+		);
+  	}
+});
+
+// HILLBILLY HELLION
+var Son_of_Billy_the_Kid = Monster.extend({
+	init: function(){
+    	this._super(
+			"Son of Billy the Kid",
+			"son_of_billy_the_kid",
+			"Sons of Billy the Kid",
+			[new cowboyhat,"","","","",""],
+			["", new sixshooter, new sixshooter, ""],
+			[],
+			[],
+			4, 8
 		);
   	}
 });

@@ -23,6 +23,7 @@ var D_Loading = function(){
 
 var D_Welcome = {
 	title: 'Over red waves of sand',
+	content: $('#dialog_welcome').html(),
 	buttons: {
 		"Load": function() {
 			MapWorld = $('#pick_a_map').val();
@@ -33,6 +34,17 @@ var D_Welcome = {
 	height:300
 }
 
+var D_Help = {
+	title: 'Help & About',
+	content: $('#dialog_help').html(),
+	buttons: {
+		"Ok": function() {
+			$(this).dialog('close');
+		}
+	},
+	height:350
+}
+
 var D_Inventory = {
 	title: 'Inventory',
 	open: function(){},
@@ -41,24 +53,6 @@ var D_Inventory = {
 		"Close": function() {
 			$(this).dialog('close');
 		}
-	}
-}
-
-var Data_Notes;
-var D_Notes = {
-	title: 'Case Notes',
-	open: function(){
-		$('#notes').val(Data_Notes);
-	},
-	content: "<textarea id='notes'></textarea>",
-	buttons: {
-		"Save": function() {
-			Data_Notes = $('#notes').val();
-			$(this).dialog('close');
-		}/*,
-		"Close": function() {
-			$(this).dialog('close');
-		}*/
 	}
 }
 
@@ -90,27 +84,5 @@ $('#optHideFeatureNames').live('change',function(){
 	else{
 		hideFeatureNames = false;
 		$('.t_label').show(0);
-	}
-});
-
-var help_content;
-var D_Help;
-$.ajax({
-	url: 'help.html',
-	dataType: 'html',
-	success: function(data){
-		D_Help = {
-			title: 'Help & About',
-			open: function(){},
-			content: data,
-			buttons: {
-				"Ok": function() {
-					$(this).dialog('close');
-				}
-			}
-		}
-	},
-	error: function(){
-		alert("Unable to load help data");
 	}
 });
