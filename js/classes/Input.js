@@ -9,10 +9,13 @@ var Input = function(){
 			e.stopPropagation();
                         
                         var targetsq = $(e.currentTarget);
-			
-			// Get all attached square classes
-			var sqClasses = targetsq.attr('class').split(' ');
-			
+                        var sqClasses = [];
+                        
+                        if(targetsq.attr('class') != undefined){
+                            // Get all attached square classes
+                            sqClasses = targetsq.attr('class').split(' ');
+                        }
+                        
 			// Activate spell
 			if($.inArray('range', sqClasses) > -1){
 				var sobj = Squares[targetsq.attr('data-sid')];

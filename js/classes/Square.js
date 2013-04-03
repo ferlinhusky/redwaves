@@ -33,6 +33,9 @@ var Square = function(loc){
 		this.onMap.bind('click', function(e){
 			e.preventDefault();
 			input.squareClick(e);
+		}).bind('touchend', function(e){
+			e.preventDefault();
+			input.doMapClick(e);
 		});
 	};
 	
