@@ -431,7 +431,9 @@ h3{
 	text-align: center;
 	padding: 0px;
 	margin: 0px;
-	font-size: 10px;
+	/*font-size: 10px;*/
+	font-size: 20px;
+	line-height: 28px;
 	color: #FFF;
 	-moz-user-select: none;
 	-khtml-user-select: none;
@@ -453,10 +455,10 @@ h3{
 	box-shadow: 0 0 3px #bbb;*/ /* Looks hazy */
 }
 .m_grid td .sq {
-	/*height: 30px;
-	width: 30px;*/
-	height: 15px;
-	width: 15px;
+	height: 30px;
+	width: 30px;
+	/*height: 15px;
+	width: 15px;*/
 	position: relative;
 }
 
@@ -464,13 +466,15 @@ h3{
 .m_grid td.lit .quad {
     display: block;
     position: absolute;
-	top: 0px;
-	left: 0px;
+    top: 0px;
+    left: 0px;
     color: #FFF;
 }
 .m_grid td.lit .quad:before {
-    width: 15px;
-    height: 15px;
+    /*width: 15px;
+    height: 15px;*/
+    width: 30px;
+    height: 30px;
     display: inline-block;
     text-align: center;
     margin: 0px;
@@ -481,11 +485,13 @@ h3{
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 24px;
-    height: 24px;
+    /*width: 24px;
+    height: 24px;*/
+    width: 54px;
+    height: 54px;
+    padding: 3px;
     z-index: 0;
     text-align: right;
-    padding: 3px;
 }
 .m_grid td.lit .i {  }
 .m_grid td.lit .p { color: #000; }
@@ -605,10 +611,26 @@ h3{
     #party .label.WPN,
     #party .stWEARS,
     #party .stWPN { display: table-cell; }
-	#monsters_moving {
-		padding-left: 20px;
-		margin-left: 10px;
-	}
+    #monsters_moving {
+	    padding-left: 20px;
+	    margin-left: 10px;
+    }
+    .m_grid td {
+	font-size: 10px;
+	line-height: normal; 
+    }
+    .m_grid td .sq {
+	height: 15px;
+	width: 15px;
+    }
+    .m_grid td.lit .quad:before {
+	width: 15px;
+	height: 15px;
+    }
+    .m_grid td.lit .quad.t:before {
+	width: 24px;
+	height: 24px;
+    }
 }
 
 @media only screen and (min-width: 768px) {

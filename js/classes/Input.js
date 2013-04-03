@@ -4,22 +4,44 @@ var Input = function(){
 	*/
 		// Capture mobile tap
 		this.doMapClick = function(e){
+
 			e.preventDefault();
 			e.stopPropagation();
-			var oe = e.originalEvent;
-			if(oe.targetTouches){
-				oe = oe.changedTouches[0]; // changedTouches to capture touchend
-			}
-			myPos = Squares[me.currentSquare].onMap.offset();
-			offX = Math.abs(oe.pageX-myPos.left);
-			offY = Math.abs(oe.pageY-myPos.top);
-			if(offX > offY){
-				if(oe.pageX > myPos.left) { me.move('right'); }
-				else { me.move('left'); }
-				} else {
-				if(oe.pageY > myPos.top) { me.move('down'); }
-				else { me.move('up'); }
-			}
+                        
+                        var targetsq = $(e.currentTarget);
+			
+			// Get all attached square classes
+			var sqClasses = targetsq.attr('class').split(' ');
+			
+			// Activate spell
+			if($.inArray('range', sqClasses) > -1){
+				var sobj = Squares[targetsq.attr('data-sid')];
+				if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
+					var battle = new Battle(me, sobj.occupiedBy);
+					
+					// Track/update movement if not dead
+                                        me.move(); // update movement, activate end turn if necessary
+				} else if (me.currMove == me.movement){
+                                    btnSpell.removeClass('blink')
+                                        .button('disable');
+                                    btnSelectSpell.button('disable');
+                                }
+			} else {
+                            var oe = e.originalEvent;
+                            if(oe.targetTouches){
+                                    oe = oe.changedTouches[0]; // changedTouches to capture touchend
+                            }
+                            myPos = Squares[me.currentSquare].onMap.offset();
+                            offX = Math.abs(oe.pageX-myPos.left);
+                            offY = Math.abs(oe.pageY-myPos.top);
+                            if(offX > offY){
+                                    if(oe.pageX > myPos.left) { me.move('right'); }
+                                    else { me.move('left'); }
+                                    } else {
+                                    if(oe.pageY > myPos.top) { me.move('down'); }
+                                    else { me.move('up'); }
+                            }
+                        }
 		};
 		
 		// Bind actions to map
@@ -184,7 +206,6 @@ var Input = function(){
 		this.squareClick = function(k){
 			// Capture click
 			k.preventDefault();
-			k.stopPropagation();
 			
 			var targetsq = $(k.currentTarget);
 			
@@ -204,7 +225,7 @@ var Input = function(){
                                         .button('disable');
                                     btnSelectSpell.button('disable');
                                 }
-			}		
+			}
 		}
 		
 		// Key press functions
@@ -334,7 +355,7 @@ var Input = function(){
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
-        btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
+                btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	
