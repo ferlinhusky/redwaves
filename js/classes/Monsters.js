@@ -14,7 +14,10 @@ var Monster = Character.extend({
 		this.group.push(this);
 		this.readySpell;
 	},
-	findTarget: function(){
+	checkRanged: function(){
+		var range = false;
+		var target = "";
+		this.readySpell = null;
 		// Ranged weapon (non-spell) targeting
 		for(var i=0; i<this.wields.length; i++){
 			// Check if carrying a ranged weapon
@@ -22,15 +25,21 @@ var Monster = Character.extend({
 				this.readySpell = this.wields[i];
 				getSpellRange(this);
 				var howmanyinrange = $('.range .player').length; // how many .player are within .range
-				/*
-					Find total damage possible with full attack:
-						target player who can be killed by that the quickest (closest to zero)
-						if none can be, go by worst armor class
-				*/
-				//alert(Squares[$('.range .player').closest('.range').attr('data-sid')].occupiedBy.name);
+				if(howmanyinrange == 0){
+					break; // try again next move
+				} else {
+					// Initiate attack against a player in range
+					range = true;
+					target = Squares[$('.range .player').closest('.range').attr('data-sid')].occupiedBy;
+				}
 			}
 		}
-		
+		return { 
+			'range': range,
+			'target': target
+		};
+	},
+	findTarget: function(){		
 		var path = [];
 		if(Players.length == 0){
 			clearInterval(this.moveInterval);
@@ -67,6 +76,9 @@ var Monster = Character.extend({
 		if(this.currMove < this.movement){
 			var i = this.currMove; // readability
 			
+			// Check ranged attack from this location
+			var getRange = this.checkRanged();
+			
 			// If movement exceeds current path, get a new path
 			// Push empty items to simulate one long path
 			if(this.path[i] == undefined){
@@ -85,22 +97,28 @@ var Monster = Character.extend({
 			temp_coords[0] = this.path[i].x;
 			temp_coords[1] = this.path[i].y;
 			var temp_square = getSquare(temp_coords);
-	
-			if(temp_square.occupied) {
-				// attack if enemy
-				if(temp_square.occupiedBy.ofType == "player"){
-					this.wait = true;
-					var battle = new Battle(this, temp_square.occupiedBy);
-				}
+			
+			if(getRange.range == true){
+				input.spellOn = true; // For battle to recognize ranged/spell attack
+				var battle = new Battle(this, getRange.target);
+				input.spellOn = false;
 			} else {
-				// Do movement
-				this.coords[0] = this.path[i].x;
-				this.coords[1] = this.path[i].y;
-				var square = getSquare(this.coords);
-				this.currentSquare = getSquare(this.coords).id;
-				this.locIt(this.currentSquare, this.previousSquare);
-				// Set map position
-				centerOn(this);
+				if(temp_square.occupied) {
+					// attack if enemy
+					if(temp_square.occupiedBy.ofType == "player"){
+						this.wait = true;
+						var battle = new Battle(this, temp_square.occupiedBy);
+					}
+				} else {
+					// Do movement
+					this.coords[0] = this.path[i].x;
+					this.coords[1] = this.path[i].y;
+					var square = getSquare(this.coords);
+					this.currentSquare = getSquare(this.coords).id;
+					this.locIt(this.currentSquare, this.previousSquare);
+					// Set map position
+					centerOn(this);
+				}
 			}
 			MO_set(this, 1);
 		} else {

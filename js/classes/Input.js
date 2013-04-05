@@ -425,26 +425,31 @@ var Input = function(){
 		}
 		// Re-center on window resize
 		$(window).resize(function(){
-                    centerOn(me);
-                    oDialog.dialog('option', 'position', 'center');
-					
-					// Buttons become icon-only on small screens (small viewports)
-                    if($(this).width() <= 480 && $('#button_container').find('.action').button()){
-                        $('#button_container').find('.action').button('option', 'text', false);
-                    } else if($('#button_container').find('.action').button()) {
-                        $('#button_container').find('.action').button('option', 'text', true);
-                        btnSelectSpell.button('option', 'text', false);
-                    }
-					
-					// Make sure the Spell select dropdown (up?) doesn't unattach itself
-					if(menuSelectSpell.css('opacity') > 0){
-						var offH = menuSelectSpell.outerHeight();
-						 menuSelectSpell.css({
-                           top: btnSpell.position().top - offH,
-                           left: btnSpell.position().left,
-                           width: SpellSet.width() - 8
-                        });
-					}
+				// There's no activeMap until a selection is made at start
+				if(activeMap != null){
+					centerOn(me);
+				}
+				
+				oDialog.dialog('option', 'position', 'center');
+				
+				// Buttons become icon-only on small screens (small viewports)
+				if($(this).width() <= 480 && $('#button_container').find('.action').button()){
+					$('#button_container').find('.action').button('option', 'text', false);
+				} else if($('#button_container').find('.action').button()) {
+					$('#button_container').find('.action').button('option', 'text', true);
+					btnSelectSpell.button('option', 'text', false);
+				}
+				
+				
+				// Make sure the Spell select dropdown (up?) doesn't unattach itself
+				if(menuSelectSpell.css('opacity') > 0){
+					var offH = menuSelectSpell.outerHeight();
+					 menuSelectSpell.css({
+					   top: btnSpell.position().top - offH,
+					   left: btnSpell.position().left,
+					   width: SpellSet.width() - 8
+					});
+				}
 		});
 		// Make everything unselectable
 		$('.m_grid td.lit .quad').bind('selectstart', function(){return false;});

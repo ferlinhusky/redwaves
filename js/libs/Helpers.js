@@ -128,9 +128,9 @@ var findAndRemove = function(sq, q, i){
 	sq.find(q).removeClass(i);
 };
 
-// Update global ident var
+// Set global ident var
 var setIdent = function(i){
-	ident =  me.location.type + '_' + i;
+	ident =  MapWorld + '_' + i;
 };
 
 // Capitalize first letter

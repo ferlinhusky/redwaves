@@ -1,6 +1,9 @@
 // Assign document
 var doc = $(document);
 
+// Set some global vars
+var ident, activeMap = null;
+
 // Loading image
 var LoadingAnim = '<img src="images/ajax-loader.gif" id="loading_anim" />';
 
