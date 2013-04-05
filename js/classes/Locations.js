@@ -17,6 +17,7 @@ var Tutorial = function(){
 		"Atomic_Beast_2": [26,8],
 		"Atomic_Beast_3": [46,10],
 		"Atomic_Beast_4": [46,11],
+		"Hillbilly_Hellion_1": [25,11]
 	}
     }
 };

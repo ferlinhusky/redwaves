@@ -55,13 +55,14 @@ var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons"
 
 // Firearm subclass
 var Firearm = Weapon.extend({
-	init: function(name, type, dmg, material, twohand){
+	init: function(name, type, dmg, rng, material, twohand){
 		this._super(name, type, "firearm", dmg, material, twohand);
+		this.rng = rng;
 	}
 });
 
 // Shotgun
-var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", "2r6", "steel", true); } });
+var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", "2r6", 4, "steel", true); } });
 
 // Six shooter
 var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "sixshooter", "2r4", "steel", true); } });

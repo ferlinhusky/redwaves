@@ -12,8 +12,25 @@ var Monster = Character.extend({
 		this.ofType = "monster";
 		this.group = Monsters;
 		this.group.push(this);
+		this.readySpell;
 	},
 	findTarget: function(){
+		// Ranged weapon (non-spell) targeting
+		for(var i=0; i<this.wields.length; i++){
+			// Check if carrying a ranged weapon
+			if(this.wields[i].hasOwnProperty('rng')){
+				this.readySpell = this.wields[i];
+				getSpellRange(this);
+				var howmanyinrange = $('.range .player').length; // how many .player are within .range
+				/*
+					Find total damage possible with full attack:
+						target player who can be killed by that the quickest (closest to zero)
+						if none can be, go by worst armor class
+				*/
+				//alert(Squares[$('.range .player').closest('.range').attr('data-sid')].occupiedBy.name);
+			}
+		}
+		
 		var path = [];
 		if(Players.length == 0){
 			clearInterval(this.moveInterval);

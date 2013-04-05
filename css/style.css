@@ -488,6 +488,7 @@ h3{
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
 .m_grid td.lit .p.atomic_freak:before { content: 'a' !important; background-color: #3c0; color: #000; }
 .m_grid td.lit .p.basilisk:before { content: 'B' !important; background-color: DarkRed; color: #fff; }
+.m_grid td.lit .p.hillbilly_hellion:before { content: 'H' !important; background-color: Maroon; color: #fff; }
 .m_grid td.lit .p.shaolin_beatnik:before { content: 'S' !important; background-color: #f90; color: #000; }
 
 /* Battle */
@@ -527,6 +528,7 @@ h3{
 .m_grid td.lit.range.fire { background-color: red; }
 .m_grid td.lit.range.ice { background-color: blue; }
 .m_grid td.lit.range.energy { background-color: yellow; }
+.m_grid td.lit.range.steel { background-color: steelblue; }
 
 .m_grid td.lit.trail { background-color: red !important; } /* Show AI pathing */
 
