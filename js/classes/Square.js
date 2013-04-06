@@ -35,7 +35,9 @@ var Square = function(loc){
 			input.squareClick(e);
 		}).bind('touchend', function(e){
 			e.preventDefault();
-			input.doMapClick(e);
+			if(input.preventSquareClick == false){
+				input.doMapClick(e);
+			}
 		});
 	};
 	

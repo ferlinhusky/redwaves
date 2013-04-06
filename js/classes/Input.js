@@ -378,37 +378,40 @@ var Input = function(){
 	/*
 		Map Drag (touch)
 	*/
+                this.preventSquareClick = false; // tied to Square...keep it from registering click after drag
 		this.mapTouchDrag = function(mg){
-			mg.bind('touchstart', function(e){
-				e.preventDefault();
-                                e.stopPropagation();
-				var oe = e.originalEvent;
-                if(oe.targetTouches.length != 1){
-					return false;
-				}
-				var touch = oe.targetTouches[0];
-				var startX = mg.position().left;
-				var startY = mg.position().top;
-				var tStartX = touch.pageX;
-				var tStartY = touch.pageY;
-				mg.bind('touchmove', function(e){
-					e.preventDefault();
-					var oe = e.originalEvent;
-					var touch = oe.targetTouches[0];
-					mg.css('left', startX + (touch.pageX - tStartX));
-					mg.css('top', startY + (touch.pageY - tStartY));
-					return false;
-				});
-				mg.bind('touchend', function(e){
-					e.preventDefault();
-					if(Math.abs(mg.position().left - startX)<10 && Math.abs(mg.position().top - startY) <10){
-							input.doMapClick(e); // do a map click if the movement is incidental
-					}
-					mg.unbind('touchmove touchend');
-                                        return false;
-				});
-				return false;
-			});
+                    mg.bind('touchstart', function(e){
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var oe = e.originalEvent;
+                        if(oe.targetTouches.length != 1){
+                                return false;
+                        }
+                        var touch = oe.targetTouches[0];
+                        var startX = mg.position().left;
+                        var startY = mg.position().top;
+                        var tStartX = touch.pageX;
+                        var tStartY = touch.pageY;
+                        mg.bind('touchmove', function(e){
+                                e.preventDefault();
+                                input.preventSquareClick = true;
+                                var oe = e.originalEvent;
+                                var touch = oe.targetTouches[0];
+                                mg.css('left', startX + (touch.pageX - tStartX));
+                                mg.css('top', startY + (touch.pageY - tStartY));
+                                return false;
+                        });
+                        mg.bind('touchend', function(e){
+                                e.preventDefault();
+                                if(Math.abs(mg.position().left - startX)<10 && Math.abs(mg.position().top - startY) <10){
+                                    input.doMapClick(e); // do a map click if the movement is incidental
+                                }
+                                input.preventSquareClick = false;
+                                mg.unbind('touchmove touchend');
+                                return false;
+                        });
+                        return false;
+                    });
 		};
 	
 	/*
