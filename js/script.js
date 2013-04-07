@@ -21,5 +21,4 @@ var World = new World();
 
     Loading.closeMe();
 
-//oDialog.html($('#dialog_welcome'));
 input.M_Dialog('welcome'); 

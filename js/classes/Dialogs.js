@@ -28,7 +28,6 @@ var D_Welcome = {
 		"Load": function() {
 			MapWorld = $('#pick_a_map').val();
 			World.build();
-			$(this).dialog('close');
 		}
 	},
 	height:300

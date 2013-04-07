@@ -6,7 +6,9 @@ var World = function(){
 	
 	this.build = function(){
 		// Build map
-		this.Level = ( new Function('Map.init(new ' + MapWorld + '());') )();
+                this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
+                Map.init(this.Level);
+                input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 300);
 	};
 	
 	this.doorderofplay = function(){

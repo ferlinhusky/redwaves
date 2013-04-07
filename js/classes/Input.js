@@ -272,7 +272,7 @@ var Input = function(){
 			var M_D;
 			var M_D_title;
 			var M_D_buttons;
-            var M_D_height;
+                        var M_D_height;
 			input.unbindFromMap();
 			switch(type){
 				case "inventory" 	: M_D = D_Inventory; break;
@@ -285,6 +285,7 @@ var Input = function(){
 			if(type=="standard"){
 				oDialog.html(content);
 				M_D_title = title;
+                                M_D_height = height;
 				if(buttons) {
 					M_D_buttons = buttons;
 				} else {
@@ -303,7 +304,9 @@ var Input = function(){
 				} else { M_D_height = "auto"; }
 			}
 			oDialog.dialog({
-				open: M_D.open,
+                                closeOnEscape: false,
+                                open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog).hide(); },
+				//open: M_D.open,
 				close: function(){
 					input.bindToMap();
 				},
