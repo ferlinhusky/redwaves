@@ -3,6 +3,7 @@ var World = function(){
 	this.orderOfPlay = [];
 	var currentPlay = 0;
 	this.activePlayer;
+	this.gameover = false;
         
         this.reset = function(){
             $('#status').empty();
@@ -31,14 +32,15 @@ var World = function(){
 		this.endturn(); // Start
 	};
         
-        this.endgame = function(wl){
-            input.M_Dialog("standard", wl, this.Level.title, {
-                "OK": function(){
-                    //Loadwelcome(); Need a true reset to empty out everything w/o a refresh
-                    location.reload(true);
-                }
-            }, 300);
-        };
+	this.endgame = function(wl){
+		this.gameover = true;
+		input.M_Dialog("standard", wl, this.Level.title, {
+			"OK": function(){
+				//Loadwelcome(); Need a true reset to empty out everything w/o a refresh
+				location.reload(true);
+			}
+		}, 300);
+	};
 	
 	this.endturn = function(){
 		// Reset UI bits
@@ -50,52 +52,67 @@ var World = function(){
 		SpellSet.find('.button').button('disable');
 		monstersMoving.hide('fast');
 		
-		// Check for Players/Monsters defeated
-                if(Monsters.length == 0){
-                    this.endgame(this.Level.events.win);
-                    return false;
-                }
-		if(Players.length == 0){
-                    this.endgame(this.Level.events.lose);
-                    return false;
-                }
-
-		// Zero out unused moves for player
-		MO_set(me, me.movement - me.currMove);
+		// Check for Players/Monsters defeated & victory condition(s)
+		switch(this.Level.victory.type){
+			case "kill":
+				for(var i=0; i<Dead.length; i++){
+					if(this.Level.victory.value[0] == Dead[i].name)
+					{
+						this.endgame(World.Level.events.win);
+						break;
+					}
+				}
+				break;
+			default: break;
+		}
+		if(Monsters.length == 0 && this.gameover == false){
+			this.endgame(this.Level.events.win);
+			return false;
+		}
+		if(Players.length == 0 && this.gameover == false){
+			this.endgame(this.Level.events.lose);
+			return false;
+		}
 		
-		// Get new active Character
-		this.activePlayer = this.orderOfPlay[currentPlay];
-		
-		// Call before Monster move or get stuck in a loop FOREVER
-		currentPlay++;
-		if(currentPlay >= this.orderOfPlay.length) { currentPlay = 0; }
-		
-		// Need to skip over lost players or remove them from the queue upon .killed()
-		if(this.activePlayer.ofType == "player"){
-			if (this.activePlayer.dead == true) {
-				this.endturn();
-			} else {
-				$('.p.'+this.activePlayer.type).addClass('blink');
-				me = this.activePlayer;
-				// Indicate active player
-				centerOn(me);
-				// Turn off player move wait
-				MO_reset(me);
-				me.wait = false;
-				// Activate "end turn" button
-				btnEndTurn.button('enable');
-				// Check for doors
-				anyDoors(me.coords);
-				// Check for Wizard
-				if(me.type == "wizard"){ SpellSet.find('.button').button('enable'); }
-			}
-		} else if(this.activePlayer.ofType == "monster"){
-			if (this.activePlayer.dead == true) {
-				this.endturn();
-			} else {
-				centerOn(this.activePlayer);
-				btnEndTurn.button('disable');
-				this.activePlayer.doTurn();
+		// If game not over, continue with next turn
+		if(this.gameover == false){
+			// Zero out unused moves for player
+			MO_set(me, me.movement - me.currMove);
+			
+			// Get new active Character
+			this.activePlayer = this.orderOfPlay[currentPlay];
+			
+			// Call before Monster move or get stuck in a loop FOREVER
+			currentPlay++;
+			if(currentPlay >= this.orderOfPlay.length) { currentPlay = 0; }
+			
+			// Need to skip over lost players or remove them from the queue upon .killed()
+			if(this.activePlayer.ofType == "player"){
+				if (this.activePlayer.dead == true) {
+					this.endturn();
+				} else {
+					$('.p.'+this.activePlayer.type).addClass('blink');
+					me = this.activePlayer;
+					// Indicate active player
+					centerOn(me);
+					// Turn off player move wait
+					MO_reset(me);
+					me.wait = false;
+					// Activate "end turn" button
+					btnEndTurn.button('enable');
+					// Check for doors
+					anyDoors(me.coords);
+					// Check for Wizard
+					if(me.type == "wizard"){ SpellSet.find('.button').button('enable'); }
+				}
+			} else if(this.activePlayer.ofType == "monster"){
+				if (this.activePlayer.dead == true) {
+					this.endturn();
+				} else {
+					centerOn(this.activePlayer);
+					btnEndTurn.button('disable');
+					this.activePlayer.doTurn();
+				}
 			}
 		}
 	};

@@ -119,7 +119,7 @@ var Input = function(){
 							s.removeClass('closed_door');
 							s.addClass('open_door');
 							sobj.t = OpenDoor;
-							sobj.passable = true;
+							sobj.cthru = true;
 							// Update line of sight
 							getLineOfSight(loc);
 							// Wizard check
@@ -130,7 +130,7 @@ var Input = function(){
 							s.removeClass('open_door');
 							s.addClass('closed_door');
 							sobj.t = ClosedDoor;
-							sobj.passable = false;
+							sobj.cthru = false;
 							// Update line of sight
 							getLineOfSight(loc);
 							// Wizard check

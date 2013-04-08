@@ -265,3 +265,19 @@ var Son_of_Billy_the_Kid = Monster.extend({
 		);
   	}
 });
+
+// SNAKE MAN
+var Snake_Man = Monster.extend({
+	init: function(){
+    	this._super(
+			"Snake Man",
+			"snake_man",
+			"Snake Men",
+			["","","","","",""],
+			[new fangs, "","", ""],
+			[],
+			[],
+			6, 6
+		);
+  	}
+});

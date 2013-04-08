@@ -10,6 +10,7 @@ var Square = function(loc){
 	
 	// In-map
 	this.passable;
+	this.cthru;
 	this.isFeature = false;
 	this.occupied;
 	this.occupiedBy = {};
@@ -25,9 +26,14 @@ var Square = function(loc){
 			case "+" : this.t = ClosedDoor; break;
 			case "-" : this.t = OpenDoor; break;
 			case "^" : this.t = Start; break;
+			case "~" : this.t = River; break;
+			case ";" : this.t = Grass; break;
+			case "," : this.t = Dirt; break;
 			default : this.t = Floor; break;
 		}
 		this.passable = this.t.passable;
+		this.cthru = this.t.cthru;
+		
 		this.onMap.addClass(this.t.type);
 		
 		this.onMap.bind('click', function(e){

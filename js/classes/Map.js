@@ -52,7 +52,8 @@ var Map = function(){
 				
 				// Add monsters			
 				$.each(m.opts.monsters, function(key, value){
-					key_fmt = key.substr(0, key.length-2);
+					var spliton = key.lastIndexOf("_");
+					key_fmt = key.substr(0, spliton);
 					mon = ( new Function('var m = new ' + key_fmt + '(); return m;') )();
 					mon.locIt(getSquare(value).id);
 				});

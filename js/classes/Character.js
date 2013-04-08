@@ -1,3 +1,4 @@
+var Dead = [];
 var Character = Class.extend({
 	init: function(name, type, wears, wields, inven, skills, HP, movement){
 		this.name	=	name; // str // screen name
@@ -88,6 +89,7 @@ var Character = Class.extend({
 	killed: function(){
 		this.dead = true;
 		this.movement = 0;
+		Dead.push(this);
 		
 		var cChar = cloneToOverlay(this);
 		findAndRemove(Squares[this.currentSquare].onMap, '.p', this.type + ' ' + this.ofType); // reset UI

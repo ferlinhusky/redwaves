@@ -488,8 +488,10 @@ h3{
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
 .m_grid td.lit .p.atomic_freak:before { content: 'a' !important; background-color: #3c0; color: #000; }
 .m_grid td.lit .p.basilisk:before { content: 'B' !important; background-color: DarkRed; color: #fff; }
+.m_grid td.lit .p.hell_dog:before { content: 'H' !important; background-color: Brown; color: #fff; }
 .m_grid td.lit .p.hillbilly_hellion:before { content: 'H' !important; background-color: Maroon; color: #fff; }
 .m_grid td.lit .p.shaolin_beatnik:before { content: 'S' !important; background-color: #f90; color: #000; }
+.m_grid td.lit .p.snake_man:before { content: 'S' !important; background-color: #390; color: #000; }
 
 /* Battle */
 .m_grid td.lit .p.attacker:before { background-color: yellow !important; color: #000; }
@@ -531,20 +533,19 @@ h3{
 .m_grid td.lit.range.steel { background-color: steelblue; }
 
 .m_grid td.lit.trail { background-color: red !important; } /* Show AI pathing */
-
+.m_grid td.lit.river { background-color: #a0cdca; }
+.m_grid td.lit.grass { background-color: #7e9b2e; }
+.m_grid td.lit.dirt { background-color: #A37547; }
 /*
 .m_grid td.lit.desert, .desert { background-color: #d9b46a; }
 .m_grid td.lit.plains, .plains { background-color: #B87700; }
-.m_grid td.lit.grass, .grass { background-color: #7e9b2e; }
 .m_grid td.lit.sea, .sea { background-color: #3e7f8f; background-image: none; }
-.m_grid td.lit.river, .river { background-color: #a0cdca; }
 .m_grid td.lit.mountain, .mountain { background-color: #6e3519;}
 .m_grid td.lit.hill, .hill { background-color: #97793f; }
 
 .m_grid td.lit.low_grass, .low_grass { background-color: #B8B894;}
 .m_grid td.lit.concrete, concrete { background-color: #CCC; }
 .m_grid td.lit.forest, .forest { background-color: #0B360B;}
-.m_grid td.lit.dirt, .dirt { background-color: #A37547; }
 .m_grid td.lit.lake, .lake { background-color: #a0cdca; }
 */
 

@@ -134,7 +134,7 @@ var Hero = Player.extend({
 		[new coifandkettle, new scale,"","","",""],
 		["", new shortsword,"",""],
 		[],
-		[], 8, 4); 
+		[], 8, 6); 
 	}
 });
 
