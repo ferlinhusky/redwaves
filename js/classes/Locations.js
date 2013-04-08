@@ -1,6 +1,7 @@
 /*
-	Boards
+	Adventures
 */
+
 var Tutorial = function(){
     this.title = "Die! Said the Basilisk";
     this.type = "Tutorial";
@@ -40,7 +41,8 @@ var Tutorial = function(){
 	no armory in this game. Better luck next time!</p>",
 	"lose": "<p><b>YOU LOSE!</b></p><p>They say virtue is its own reward. Even if it wasn't\
 	it wouldn't matter because all of your characters are super dead.</p>"
-    }
+    };
+    this.status = "enabled";
 };
 
 var Monastery = function(){
@@ -56,4 +58,7 @@ var Monastery = function(){
 		"Shaolin_Beatnik_3": [41,3]
 	}
     }
+    this.status = "disabled";
 };
+
+var Locations = [new Tutorial, new Monastery];

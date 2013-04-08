@@ -3,6 +3,10 @@ var World = function(){
 	this.orderOfPlay = [];
 	var currentPlay = 0;
 	this.activePlayer;
+        
+        this.reset = function(){
+            $('#status').empty();
+        }
 	
 	this.build = function(){
 		// Build map
@@ -26,6 +30,15 @@ var World = function(){
 		}
 		this.endturn(); // Start
 	};
+        
+        this.endgame = function(wl){
+            input.M_Dialog("standard", wl, this.Level.title, {
+                "OK": function(){
+                    //Loadwelcome(); Need a true reset to empty out everything w/o a refresh
+                    location.reload(true);
+                }
+            }, 300);
+        };
 	
 	this.endturn = function(){
 		// Reset UI bits
@@ -38,8 +51,14 @@ var World = function(){
 		monstersMoving.hide('fast');
 		
 		// Check for Players/Monsters defeated
-		if(Players.length == 0){ alert("YOU LOSE! (refresh to restart for now)"); return false; } // temporary
-		if(Monsters.length == 0){ alert("YOU WIN! (refresh to restart for now)"); return false; } // temporary
+                if(Monsters.length == 0){
+                    this.endgame(this.Level.events.win);
+                    return false;
+                }
+		if(Players.length == 0){
+                    this.endgame(this.Level.events.lose);
+                    return false;
+                }
 
 		// Zero out unused moves for player
 		MO_set(me, me.movement - me.currMove);

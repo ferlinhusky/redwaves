@@ -2,6 +2,17 @@
 // Helper Functions
 //
 
+// Load up adventure selection
+var Loadwelcome = function(){
+    input.M_Dialog('welcome');
+
+    // Load up adventures
+    for(var i=0; i<Locations.length; i++){
+	var opt = '<option value="'+Locations[i].type+'" '+Locations[i].status+'>'+Locations[i].title+'</option>';
+	$('select#pick_a_map').append(opt);
+    }    
+}
+
 // Return a random number
 var getRandom = function(r){
 	var temp = Math.floor(Math.random()*r);

@@ -286,7 +286,7 @@ var Input = function(){
 				oDialog.html(content);
 				M_D_title = title;
                                 M_D_height = height;
-				if(buttons) {
+				if(buttons != false) {
 					M_D_buttons = buttons;
 				} else {
 					M_D_buttons = {

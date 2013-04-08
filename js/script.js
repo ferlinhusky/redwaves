@@ -3,6 +3,8 @@
 	Author: Graham Cranfield
 */
 
+
+
 var MapWorld;
 var input = new Input();
 var Statuss = new Statuss();
@@ -20,5 +22,5 @@ var Map = new Map();
 var World = new World();
 
     Loading.closeMe();
-
-input.M_Dialog('welcome'); 
+    
+Loadwelcome();
