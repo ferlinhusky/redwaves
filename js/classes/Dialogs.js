@@ -41,7 +41,7 @@ var D_Help = {
 			$(this).dialog('close');
 		}
 	},
-	height:350
+	height:375
 }
 
 var D_Inventory = {

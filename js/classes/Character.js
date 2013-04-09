@@ -80,11 +80,13 @@ var Character = Class.extend({
 		}
 		
 		// Attach tooltips
-		$('.' + this.type).tooltip({
-			items: "div[class]",
-			position: {my: 'center top+10', at: 'center middle'},
-			content: this.name
-		});
+		if(this.ofType == "monster"){
+			$('.' + this.type).tooltip({
+				items: "div[class]",
+				position: {my: 'center top+10', at: 'center middle'},
+				content: this.name
+			});
+		}
 	},
 	killed: function(){
 		this.dead = true;
