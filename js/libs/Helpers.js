@@ -330,13 +330,13 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 	var err = (dx>dy ? dx : -dy)/2;
 	
 	while (true) {
-		if(!getSquare([x0,y0]).cthru && !hitpass) break; // If you don't want to highlight non-cthru areas, break now
+		if(!getSquare([x0,y0]).cthru && !hitpass) return false; // If you don't want to highlight non-cthru areas, break now
 		
 		getMapSq([x0,y0]).removeClass(hilite);
 		getMapSq([x0,y0]).addClass(hilite);
-		if (x0 === x1 && y0 === y1) break;
+		if (x0 === x1 && y0 === y1) return false;
 		if (!getSquare([x0,y0]).cthru){
-			break;
+			return false;
 		}
 		var e2 = err;
 		if (e2 > -dx) { err -= dy; x0 += sx; }
