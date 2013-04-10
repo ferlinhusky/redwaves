@@ -120,6 +120,7 @@ var Player = Character.extend({
 		this._super();
 		// If killed during own turn
 		if(World.activePlayer === this){
+			unbuildItemMenu();
 			MO_zero(this); // Zero out movement
 			btnEndTurn.addClass('blink'); // Indicate end turn
 		}
