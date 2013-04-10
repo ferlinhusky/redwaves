@@ -321,7 +321,7 @@ h3{
 /* Buttons */
 #button_container {}
 #button_container .button { display: inline-block; }
-#btn_inventory, #btn_enter, #btn_opts { display: none !important; }
+#btn_opts { display: none !important; }
 
 #monsters_moving {
     background: URL('../images/ajax-loader.gif') no-repeat;
@@ -330,7 +330,8 @@ h3{
 }
 
 /* Menus */
-#menu_select_spell {
+#menu_select_spell,
+#menu_select_item {
     position: absolute;
 	top: -1000px;
     padding: 5px;

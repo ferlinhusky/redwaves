@@ -149,47 +149,48 @@ var Input = function(){
 		
 		// Handle spellcasting
 		this.spellOn = false;
-                this.spellMenu = false;
-                
-                this.showSpellMenu = function(){
-                    var offH = menuSelectSpell.outerHeight();
-                    menuSelectSpell
-                        .css({
-                           top: btnSpell.position().top - offH,
-                           left: btnSpell.position().left,
-                           width: SpellSet.width() - 8
-                        })
-                        .animate({
-                            opacity: 1
-                        }, 250);
-                    this.spellMenu = true;
-                };
-                
-                this.hideSpellMenu = function(){
-                    menuSelectSpell.animate({
-                                opacity: 0
-                            }, 250);
-                    this.spellMenu = false;
-                };
-                
-                this.setSpell = function(s){
-                    var spell = me.spells[s];
-                    btnSpell.button('option', 'label', spell.name);
-                    me.readySpell = spell;
-                    this.hideSpellMenu();
-                    if(this.spellOn == true){
-                        getSpellRange(me);
-                    }
-                }
+		this.spellMenu = false;
+		
+		this.showSpellMenu = function(){
+			var offH = menuSelectSpell.outerHeight();
+			menuSelectSpell
+				.css({
+				   top: btnSpell.position().top - offH,
+				   left: btnSpell.position().left,
+				   width: SpellSet.width() - 8
+				})
+				.animate({
+					opacity: 1
+				}, 250);
+			this.spellMenu = true;
+		};
+		
+		this.hideSpellMenu = function(){
+			menuSelectSpell.animate({
+						opacity: 0
+					}, 250);
+			this.spellMenu = false;
+		};
+		
+		this.setSpell = function(s){
+			var spell = me.spells[s];
+			btnSpell.button('option', 'label', spell.name);
+			me.readySpell = spell;
+			this.hideSpellMenu();
+			if(this.spellOn == true){
+				getSpellRange(me);
+			}
+		}
 
-                this.selectSpell = function(){
-                    if(!this.spellMenu) {
-                        this.showSpellMenu();
-                    } else {
-                        this.hideSpellMenu();
-                    }
-                };
+		this.selectSpell = function(){
+			if(!this.spellMenu) {
+				this.showSpellMenu();
+			} else {
+				this.hideSpellMenu();
+			}
+		};
 		this.handleSpell = function(){
+			input.hideSpellMenu();
 			$('.lit, .unlit').removeClass('range'); // remove all spell ranges
 			btnSpell.removeClass('blink');
 			if(this.spellOn == false && me.readySpell != null){
@@ -236,6 +237,54 @@ var Input = function(){
 		};
 		
 	/*
+		Item handling
+	*/
+		this.itemOn = false;
+		this.itemMenu = false;
+		
+		this.showItemMenu = function(){
+			var offH = menuSelectItem.outerHeight();
+			menuSelectItem
+				.css({
+				   top: btnItem.position().top - offH,
+				   left: btnItem.position().left,
+				   width: ItemSet.width() - 8
+				})
+				.animate({
+					opacity: 1
+				}, 250);
+			this.itemMenu = true;
+		};
+		
+		this.hideItemMenu = function(){
+			menuSelectItem.animate({
+						opacity: 0
+					}, 250, function(){
+						menuSelectItem.css('top', '-10000px');
+					});
+			this.itemMenu = false;
+		};
+		
+		this.setItem = function(s){
+			var zitem = me.inven[s];
+			btnItem.button('option', 'label', zitem.name);
+			me.readyItem = zitem;
+			this.hideItemMenu();
+		};
+
+		this.selectItem = function(){
+			if(!this.itemMenu) {
+				this.showItemMenu();
+			} else {
+				this.hideItemMenu();
+			}
+		};
+		
+		this.handleItem = function(){
+			me.readyItem.use();
+		};
+		
+	/*
 		Key Captures
 	*/	
 		// High-level connectors
@@ -272,7 +321,7 @@ var Input = function(){
 			var M_D;
 			var M_D_title;
 			var M_D_buttons;
-                        var M_D_height;
+            var M_D_height;
 			input.unbindFromMap();
 			switch(type){
 				case "inventory" 	: M_D = D_Inventory; break;
@@ -321,16 +370,6 @@ var Input = function(){
 		Button bindings, etc.
 	*/
 		// Action Buttons
-		btnInventory.button({
-			icons: {primary:'ui-icon-suitcase',secondary:''},
-			disabled: true,
-			text: false
-		});
-		btnEnter.button({ 
-			icons: {primary:'ui-icon-home',secondary:''},
-			disabled: true,
-			text: false
-		});
 		btnOpts.button({ 
 			icons: {primary:'ui-icon-wrench',secondary:''},
 			disabled: true,
@@ -341,6 +380,7 @@ var Input = function(){
 			disabled: false,
 			text: true
 		});
+		
 		btnSpell.button({ 
 			icons: {primary:'ui-icon-script',secondary:''},
 			disabled: true,
@@ -350,6 +390,17 @@ var Input = function(){
 			disabled: true,
 			icons: {primary: "ui-icon-triangle-1-s"}
 			}).parent().buttonset();
+			
+		btnItem.button({ 
+			icons: {primary:'ui-icon-suitcase',secondary:''},
+			disabled: true,
+			text: true
+		}).next().button({
+			text: false,
+			disabled: true,
+			icons: {primary: "ui-icon-triangle-1-s"}
+			}).parent().buttonset();
+			
 		btnOpenClose.button({ 
 			icons: {primary:'ui-icon-key',secondary:''},
 			disabled: true,
@@ -362,12 +413,12 @@ var Input = function(){
 		});
 		
 		// Touch events
-		btnInventory.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('inventory');});
-		btnEnter.bind('click touchend', function(e){e.preventDefault(); input.enterLoc();});
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
-		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
+			btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
+		btnItem.bind('click touchend', function(e){e.preventDefault(); input.handleItem();});
+			btnSelectItem.bind('click touchend', function(e){e.preventDefault(); input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	
@@ -375,46 +426,43 @@ var Input = function(){
 		var updateBtnState = function(b, val){
 			b.button( "option", "disabled", val );
 		};
-		this.updateActionButtons = function(s){
-			s.b != undefined ? updateBtnState(btnEnter, false) : updateBtnState(btnEnter, true)
-		};
 	/*
 		Map Drag (touch)
 	*/
-                this.preventSquareClick = false; // tied to Square...keep it from registering click after drag
+        this.preventSquareClick = false; // tied to Square...keep it from registering click after drag
 		this.mapTouchDrag = function(mg){
-                    mg.bind('touchstart', function(e){
-                        e.preventDefault();
-                        e.stopPropagation();
-                        var oe = e.originalEvent;
-                        if(oe.targetTouches.length != 1){
-                                return false;
-                        }
-                        var touch = oe.targetTouches[0];
-                        var startX = mg.position().left;
-                        var startY = mg.position().top;
-                        var tStartX = touch.pageX;
-                        var tStartY = touch.pageY;
-                        mg.bind('touchmove', function(e){
-                                e.preventDefault();
-                                input.preventSquareClick = true;
-                                var oe = e.originalEvent;
-                                var touch = oe.targetTouches[0];
-                                mg.css('left', startX + (touch.pageX - tStartX));
-                                mg.css('top', startY + (touch.pageY - tStartY));
-                                return false;
-                        });
-                        mg.bind('touchend', function(e){
-                                e.preventDefault();
-                                if(Math.abs(mg.position().left - startX)<10 && Math.abs(mg.position().top - startY) <10){
-                                    input.doMapClick(e); // do a map click if the movement is incidental
-                                }
-                                input.preventSquareClick = false;
-                                mg.unbind('touchmove touchend');
-                                return false;
-                        });
-                        return false;
-                    });
+			mg.bind('touchstart', function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				var oe = e.originalEvent;
+				if(oe.targetTouches.length != 1){
+						return false;
+				}
+				var touch = oe.targetTouches[0];
+				var startX = mg.position().left;
+				var startY = mg.position().top;
+				var tStartX = touch.pageX;
+				var tStartY = touch.pageY;
+				mg.bind('touchmove', function(e){
+						e.preventDefault();
+						input.preventSquareClick = true;
+						var oe = e.originalEvent;
+						var touch = oe.targetTouches[0];
+						mg.css('left', startX + (touch.pageX - tStartX));
+						mg.css('top', startY + (touch.pageY - tStartY));
+						return false;
+				});
+				mg.bind('touchend', function(e){
+						e.preventDefault();
+						if(Math.abs(mg.position().left - startX)<10 && Math.abs(mg.position().top - startY) <10){
+							input.doMapClick(e); // do a map click if the movement is incidental
+						}
+						input.preventSquareClick = false;
+						mg.unbind('touchmove touchend');
+						return false;
+				});
+				return false;
+			});
 		};
 	
 	/*
@@ -444,8 +492,8 @@ var Input = function(){
 				} else if($('#button_container').find('.action').button()) {
 					$('#button_container').find('.action').button('option', 'text', true);
 					btnSelectSpell.button('option', 'text', false);
+					btnSelectItem.button('option', 'text', false);
 				}
-				
 				
 				// Make sure the Spell select dropdown (up?) doesn't unattach itself
 				if(menuSelectSpell.css('opacity') > 0){
@@ -454,6 +502,16 @@ var Input = function(){
 					   top: btnSpell.position().top - offH,
 					   left: btnSpell.position().left,
 					   width: SpellSet.width() - 8
+					});
+				}
+				
+				// Make sure the Spell select dropdown (up?) doesn't unattach itself
+				if(menuSelectItem.css('opacity') > 0){
+					var offH = menuSelectItem.outerHeight();
+					 menuSelectItem.css({
+					   top: btnItem.position().top - offH,
+					   left: btnItem.position().left,
+					   width: ItemSet.width() - 8
 					});
 				}
 		});

@@ -44,17 +44,6 @@ var D_Help = {
 	height:375
 }
 
-var D_Inventory = {
-	title: 'Inventory',
-	open: function(){},
-	content: "Inventory goes here",
-	buttons: {
-		"Close": function() {
-			$(this).dialog('close');
-		}
-	}
-}
-
 var D_Options = {
 	title: 'Game Options',
 	open: function(){

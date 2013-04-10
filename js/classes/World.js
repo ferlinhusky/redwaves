@@ -48,8 +48,23 @@ var World = function(){
 		$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
 		btnEndTurn.removeClass('blink'); input.spellOn = false;
 		btnOpenClose.button('disable');
+		
 		btnSpell.removeClass('blink');
 		SpellSet.find('.button').button('disable');
+		input.hideSpellMenu();
+		
+		/*
+			Hide the item menu, then empty it out,
+			then create it (so it doesn't throw an error when you destroy it - first time use),
+			then destroy it, then reset the button label, then disble the Item buttons
+		*/
+		input.hideItemMenu();
+		menuSelectItem.empty();
+		menuSelectItem.menu();
+		menuSelectItem.menu('destroy');
+		btnItem.button('option', 'label', 'Item');
+		ItemSet.find('.button').button('disable');
+		
 		monstersMoving.hide('fast');
 		
 		// Check for Players/Monsters defeated & victory condition(s)
@@ -91,6 +106,10 @@ var World = function(){
 				if (this.activePlayer.dead == true) {
 					this.endturn();
 				} else {
+					// (Re)build the item menu
+					buildItemMenu();
+					
+					// Show who active player is
 					$('.p.'+this.activePlayer.type).addClass('blink');
 					me = this.activePlayer;
 					// Indicate active player

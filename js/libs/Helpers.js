@@ -238,6 +238,7 @@ var formatPartyTable = function(){
 var HP_set = function(obj, value){
 	obj.HP += value;
 	if(obj.HP < 0) { obj.HP = 0; } // No negative HP values
+	if(obj.HP > obj.maxHP) { obj.HP = obj.maxHP; } // No greater than maxHP values
 	$('tr.' + obj.type + ' .HP').text(obj.HP);
 };
 var MO_set = function(obj, value){
@@ -343,3 +344,27 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 		if (e2 < dy) { err += dx; y0 += sy; }
 	}
 }
+
+// Item menu
+var unbuildItemMenu = function(){
+	input.hideItemMenu();
+	menuSelectItem.empty();
+	menuSelectItem.menu();
+	menuSelectItem.menu('destroy');
+	btnItem.button('option', 'label', 'Item');
+	ItemSet.find('.button').button('disable');
+};
+
+var buildItemMenu = function(){
+	World.activePlayer.readyItem = null;
+	// Rebuild item menu, if necessary
+	for(var i=0; i<World.activePlayer.inven.length; i++){
+		menuSelectItem.append('<li><a href="javascript:void(0);" onclick="input.setItem('+i+');">'+World.activePlayer.inven[i].name);
+	}
+	if(World.activePlayer.inven.length > 0){
+		ItemSet.find('.button').button('enable');
+	} else {
+		ItemSet.find('.button').button('disable');
+	}
+	menuSelectItem.menu();
+};

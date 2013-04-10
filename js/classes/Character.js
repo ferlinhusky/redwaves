@@ -17,7 +17,11 @@ var Character = Class.extend({
 		this.inven	=	inven; // array // [ item, item, ... ]
 		this.skills	=	skills; // array // [ { name : dmg/rng }, ... ]
 		this.HP		=	HP;
+		this.maxHP	=	HP;
 		this.movement	=	movement;
+		
+		this.readyItem = null;
+		this.medication = []; // any herbs or pills taken
 
 		this.coords = [];
 		this.currMove = 0;

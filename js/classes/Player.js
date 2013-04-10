@@ -133,7 +133,7 @@ var Hero = Player.extend({
 		"hero",
 		[new coifandkettle, new scale,"","","",""],
 		["", new shortsword,"",""],
-		[],
+		[new tron],
 		[], 8, 6); 
 	}
 });
@@ -145,7 +145,7 @@ var Fighter = Player.extend({
 		"fighter",
 		[new barbute, new chainmail,"","","",""],
 		["", new longsword,"",""],
-		[],
+		[new phyton],
 		[], 10, 6); 
 	}
 });
@@ -157,7 +157,7 @@ var Knight = Player.extend({
 		"knight",
 		[new closehelmet, new plate,"","","",""],
 		["", new broadsword,"",""],
-		[],
+		[new glory, new maddog],
 		[], 12, 5);
 	}
 });
@@ -184,10 +184,6 @@ var Wizard = Player.extend({
 		}
 		
 		// Create spell menu
-		menuSelectSpell.menu({
-			create: function(event, ui){
-				$(this).menu('collapse');
-			}
-		});
+		menuSelectSpell.menu();
 	}
 });
