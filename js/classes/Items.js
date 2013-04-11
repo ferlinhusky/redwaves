@@ -49,10 +49,10 @@ var Medicine = Item.extend({
 		// Glory
 		var glory = Painkiller.extend({ init: function(){ this._super("Glory", "glory", "herb", 11); } });
 		
-	// Psychotropic subclass
-	var Psychotropic = Medicine.extend({
+	// Stimulant subclass
+	var Stimulant = Medicine.extend({
 		init: function(name, type, material){
-			this._super(name, type, "psychotropic", material);
+			this._super(name, type, "stimulant", material);
 		},
 		use: function(){
 			this._super();
@@ -61,9 +61,9 @@ var Medicine = Item.extend({
 	});
 	
 		// Mad Dog
-		var maddog = Psychotropic.extend({ init: function(){ this._super("Mad dog", "maddog", "pill"); } });
+		var maddog = Stimulant.extend({ init: function(){ this._super("Mad dog", "maddog", "pill"); } });
 		
 		// Tron
-		var tron = Psychotropic.extend({ init: function(){ this._super("Tron", "tron", "pill"); } });
+		var tron = Stimulant.extend({ init: function(){ this._super("Tron", "tron", "pill"); } });
 		
 		

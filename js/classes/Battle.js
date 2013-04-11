@@ -10,8 +10,15 @@ var Battle = function(att, def){
 					tot_attks = 1; // only one attack with a weapon at close range
 					wpn_dmg = weapon.dmg_cl; // get close range damageS
 				} else {
-					tot_attks = weapon.dmg.split('d')[0];
-					wpn_dmg = weapon.dmg.split('d')[1];
+					tot_attks = new Number(weapon.dmg.split('d')[0]);
+					for(var j=0; j<a1.medication.length; j++){
+					    switch(a1.medication[j].name){
+						case "Mad dog": tot_attks += 1; break;
+						case "Tron" : tot_attks += 2; break;
+						default: break;
+					    }
+					}
+					wpn_dmg = new Number(weapon.dmg.split('d')[1]);
 				}
 	
 				// Attack for each die; e.g. 2d4
