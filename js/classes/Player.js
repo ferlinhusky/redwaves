@@ -7,6 +7,8 @@ var Player = Character.extend({
 		this.group = Players;
 		this.group.push(this);
 		
+		this.map="";
+		
 		// Update UI
 		$('#party').append('<tr class="'+this.type+'">');
 		$('#party tr.'+this.type).append('<td class="member">'+this.name+'</td>');
@@ -27,11 +29,11 @@ var Player = Character.extend({
 		
 		formatPartyTable();
 	},
-	locIt: function(curr, prev){
+	locIt: function(curr, prev, first){
 		this._super(curr, prev);
 
 		// Update line of sight
-		getLineOfSight(this.coords);
+		if(first != true){ getLineOfSight(this.coords); }
 		
 		// Check for doors
 		anyDoors(this.coords);

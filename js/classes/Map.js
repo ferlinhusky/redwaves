@@ -40,7 +40,7 @@ var Map = function(){
 				for(var i=0; i<Players.length; i++){
 					p = Players[i];
 					p.currentSquare = getSquare(startPoints[i]).id;
-					p.locIt(Players[i].currentSquare, p.previousSquare);
+					p.locIt(Players[i].currentSquare, p.previousSquare, true);
 				}
 				
 				// Center map

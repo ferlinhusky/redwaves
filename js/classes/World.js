@@ -29,6 +29,7 @@ var World = function(){
 				this.orderOfPlay.push(Monsters[i]);
 			}
 		}
+                this.activePlayer = this.orderOfPlay[0];
 		this.endturn(); // Start
 	};
         
@@ -43,6 +44,16 @@ var World = function(){
 	};
 	
 	this.endturn = function(){
+		// Save map lit/unlit for players
+		if( World.activePlayer.ofType == "player" && World.activePlayer.dead == false ){
+			World.activePlayer.map = "";
+			$('.m_grid td').each(function(key, value){
+				if($(this).hasClass('lit')){
+					World.activePlayer.map += "1";
+				} else { World.activePlayer.map += "0"; }
+			});
+		}
+		
 		// Reset UI bits
 		$('.p').removeClass('blink'); // remove any character blinks
 		$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
@@ -109,18 +120,36 @@ var World = function(){
 					// (Re)build the item menu
 					buildItemMenu();
 					
+					// Show by-player fog of war
+                                        $('.m_grid td').removeClass('lit');
+					if(this.activePlayer.map.length > 0){
+                                            $('.m_grid td').each(function(key, value){
+                                                    if(World.activePlayer.map.charAt(key)=="1"){
+                                                            $(this).addClass('lit');
+                                                    }
+                                            });
+					}
+					
+					// Update line of sight / fog of war for doors, etc. that may have been opened
+					getLineOfSight(this.activePlayer.coords);
+					
 					// Show who active player is
 					$('.p.'+this.activePlayer.type).addClass('blink');
 					me = this.activePlayer;
+					
 					// Indicate active player
 					centerOn(me);
+					
 					// Turn off player move wait
 					MO_reset(me);
 					me.wait = false;
+					
 					// Activate "end turn" button
 					btnEndTurn.button('enable');
+					
 					// Check for doors
 					anyDoors(me.coords);
+					
 					// Check for Wizard
 					if(me.type == "wizard"){ SpellSet.find('.button').button('enable'); }
 				}

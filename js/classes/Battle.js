@@ -1,5 +1,16 @@
 var Battle = function(att, def){
 	this.doBattle = function(a1, d1){
+		// If a player hidden to the user is attacked, show player's position
+		if(def.ofType == "player" && def.map.length > 0){
+			$('.m_grid td').each(function(key, value){
+				$(this).removeClass('lit');
+				
+				if(def.map.charAt(key)=="1"){
+					$(this).addClass('lit');
+				}
+			});
+		}
+					
 		// Check each part of the body for a weapon
 		for(var i=0; i < a1.wields.length; i++){
 			if(a1.wields[i] != ""){

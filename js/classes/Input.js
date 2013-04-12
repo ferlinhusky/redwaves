@@ -416,9 +416,9 @@ var Input = function(){
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
-			btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
+		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); input.handleItem();});
-			btnSelectItem.bind('click touchend', function(e){e.preventDefault(); input.selectItem();});
+		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	

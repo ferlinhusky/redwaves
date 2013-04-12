@@ -32,7 +32,11 @@ main.append('\
 			<td width="100%" valign="top" id="left_col">'+partyTable+'</td>\
 		</tr>\
 		<tr>\
-			<td id="map_container_cell" height="100%"><div id="map_container"><div id="status"></div></div></td>\
+			<td id="map_container_cell" height="100%">\
+				<div id="map_container">\
+					<div id="status"></div>\
+				</div>\
+			</td>\
 		</tr>\
 		<tr>\
 			<td id="left_column" valign="top"><div id="bottom_cell"></div></td>\
