@@ -479,6 +479,7 @@ var Input = function(){
 		}
 		// Re-center on window resize
 		$(window).resize(function(){
+
 				// There's no activeMap until a selection is made at start
 				if(activeMap != null){
 					centerOn(me);
