@@ -289,6 +289,8 @@ var getLineOfSight = function(c){
 		Bresenham(c[0], c[1], 0, i, hilite, true);
 		Bresenham(c[0], c[1], mw-1, i, hilite, true);
 	}
+	
+	$('.lit').removeClass('unlit visited');
 };
 
 // Get Range

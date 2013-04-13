@@ -49,8 +49,10 @@ var World = function(){
 			World.activePlayer.map = "";
 			$('.m_grid td').each(function(key, value){
 				if($(this).hasClass('lit')){
-					World.activePlayer.map += "1";
-				} else { World.activePlayer.map += "0"; }
+				    World.activePlayer.map += "1";
+				} else if ($(this).hasClass('visited')){
+                                    World.activePlayer.map += "2";
+                                } else { World.activePlayer.map += "0"; }
 			});
 		}
 		
@@ -121,11 +123,12 @@ var World = function(){
 					buildItemMenu();
 					
 					// Show by-player fog of war
-                                        $('.m_grid td').removeClass('lit');
+                                        $('.m_grid td').removeClass('lit visited')
+                                            .addClass('unlit');
 					if(this.activePlayer.map.length > 0){
                                             $('.m_grid td').each(function(key, value){
-                                                    if(World.activePlayer.map.charAt(key)=="1"){
-                                                            $(this).addClass('lit');
+                                                    if(World.activePlayer.map.charAt(key) != "0"){
+                                                        $(this).addClass('visited');
                                                     }
                                             });
 					}

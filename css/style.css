@@ -433,13 +433,13 @@ h3{
 	visibility: hidden;
 	border: none;
 }
-.m_grid td.lit {
+.m_grid td.visited {
+	opacity: .7;
+}
+.m_grid td.lit,
+.m_grid td.visited {
 	visibility: visible;
 	border: 1px solid #ccc;
-	
-	/*-moz-box-shadow: 0 0 3px #bbb;
-	-webkit-box-shadow: 0 0 3px#bbb;
-	box-shadow: 0 0 3px #bbb;*/ /* Looks hazy */
 }
 .m_grid td .sq {
 	height: 30px;
@@ -515,29 +515,29 @@ h3{
 .m_grid td.lit .b.gateway:after { content: '[G]'; background-color: #FFF; color: #000; }
 
 /* Terrain */
-.m_grid td.lit { background: URL('../images/sq_fade.png'); }
-.m_grid td.lit.floor { background-color: #666; }
-.m_grid td.lit.wall { background-color: #000; }
+.m_grid td { background: URL('../images/sq_fade.png'); }
+.m_grid td.floor { background-color: #666; }
+.m_grid td.wall { background-color: #000; }
 
-.m_grid td.lit.closed_door { background-color: #960; }
-.m_grid td.lit.closed_door .p:before { content: '+'; }
-.m_grid td.lit.open_door { background-color: #f90; }
-.m_grid td.lit.open_door .p:before { content: '-'; }
+.m_grid td.closed_door { background-color: #960; }
+.m_grid td.closed_door .p:before { content: '+'; }
+.m_grid td.open_door { background-color: #f90; }
+.m_grid td.open_door .p:before { content: '-'; }
 
-.m_grid td.lit.start { background-color: #999; }
+.m_grid td.start { background-color: #999; }
 
-.m_grid td.lit.up { background-color: #999; }
-.m_grid td.lit.down { background-color: #999; }
+.m_grid td.up { background-color: #999; }
+.m_grid td.down { background-color: #999; }
 
-.m_grid td.lit.range.fire { background-color: red; }
-.m_grid td.lit.range.ice { background-color: blue; }
-.m_grid td.lit.range.energy { background-color: yellow; }
-.m_grid td.lit.range.steel { background-color: steelblue; }
+.m_grid td.range.fire { background-color: red; }
+.m_grid td.range.ice { background-color: blue; }
+.m_grid td.range.energy { background-color: yellow; }
+.m_grid td.range.steel { background-color: steelblue; }
 
-.m_grid td.lit.trail { background-color: red !important; } /* Show AI pathing */
-.m_grid td.lit.river { background-color: #a0cdca; }
-.m_grid td.lit.grass { background-color: #7e9b2e; }
-.m_grid td.lit.dirt { background-color: #A37547; }
+.m_grid td.trail { background-color: red !important; } /* Show AI pathing */
+.m_grid td.river { background-color: #a0cdca; }
+.m_grid td.grass { background-color: #7e9b2e; }
+.m_grid td.dirt { background-color: #A37547; }
 /*
 .m_grid td.lit.desert, .desert { background-color: #d9b46a; }
 .m_grid td.lit.plains, .plains { background-color: #B87700; }
