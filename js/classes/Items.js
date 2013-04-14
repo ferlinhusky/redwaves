@@ -20,12 +20,14 @@ var Medicine = Item.extend({
 		// Unbuild the item menu
 		unbuildItemMenu();
 		// Remove item from inventory
+		
 		for(var i=0; i<World.activePlayer.inven.length; i++){
 			if(World.activePlayer.inven[i].name == this.name){
 				World.activePlayer.inven.splice(i, 1);
 				break; // end loop
 			}
 		}
+		
 		// (Re)build the item menu
 		buildItemMenu();
 	}

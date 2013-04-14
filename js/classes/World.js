@@ -65,18 +65,8 @@ var World = function(){
 		btnSpell.removeClass('blink');
 		SpellSet.find('.button').button('disable');
 		input.hideSpellMenu();
-		
-		/*
-			Hide the item menu, then empty it out,
-			then create it (so it doesn't throw an error when you destroy it - first time use),
-			then destroy it, then reset the button label, then disble the Item buttons
-		*/
-		input.hideItemMenu();
-		menuSelectItem.empty();
-		menuSelectItem.menu();
-		menuSelectItem.menu('destroy');
-		btnItem.button('option', 'label', 'Item');
-		ItemSet.find('.button').button('disable');
+
+                unbuildItemMenu();
 		
 		monstersMoving.hide('fast');
 		
