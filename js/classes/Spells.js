@@ -3,7 +3,8 @@ var Spell = Item.extend({
 		this._super(name, type, "spell", supclass, material); // push up to Item
 		this.dmg = dmg;
 		this.rng = rng;
-	}
+	},
+        cast: function(){}
 });
 
 // Attack subclass
