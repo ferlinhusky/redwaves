@@ -5,4 +5,5 @@ var OpenDoor = { type: 'open_door', passable: true, label: 'Open Door', cthru: t
 var River = { type: 'river', passable: false, label: 'River', cthru: true };
 var Grass = { type: 'grass', passable: true, label: 'Grass', cthru: true };
 var Dirt = { type: 'dirt', passable: true, label: 'Dirt', cthru: true };
+var Pit = { type: 'pit', passable: false, label: 'Pit', cthru: true };
 var Start = { type: 'start', passable: true, label: 'Start', cthru: true };

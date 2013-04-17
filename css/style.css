@@ -539,9 +539,11 @@ h3{
 .m_grid td.river { background-color: #a0cdca; }
 .m_grid td.grass { background-color: #7e9b2e; }
 .m_grid td.dirt { background-color: #A37547; }
-.m_grid td.hole {
+.m_grid td.pit {
     background-color: Maroon;
     -webkit-box-shadow: inset 2px 2px 4px 0px black;
+	-moz-box-shadow: inset 2px 2px 4px 0px black;
+	box-shadow: inset 2px 2px 4px 0px black;
 }
 
 /*

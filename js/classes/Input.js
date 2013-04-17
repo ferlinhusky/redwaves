@@ -205,20 +205,10 @@ var Input = function(){
 		};
 		
 		// Check for ranged target > tsq: target square
-		// If found, initiate ranged attack > new Battle
+		// If found, cast spell
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
-                        World.activePlayer.readySpell.cast(sobj);
-			/*if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
-				var battle = new Battle(me, sobj.occupiedBy);
-			
-				// Track/update movement if not dead
-				me.move(); // update movement, activate end turn if necessary
-			} else if (me.currMove == me.movement){
-				btnSpell.removeClass('blink')
-					.button('disable');
-				btnSelectSpell.button('disable');
-			}*/
+            World.activePlayer.readySpell.cast(sobj);
 		};
 		
 		// Square click

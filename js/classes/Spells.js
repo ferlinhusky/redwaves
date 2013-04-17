@@ -43,8 +43,19 @@ var lightning = Attack.extend({ init: function(){ this._super("Lightning", "ligh
 // Earthquake
 var earthquake = Spell.extend({
     init: function(){
-        this._super("Earthquake", "earthquake", "physical", 4, "earth", 6, function(){
-            alert(this.name);
+        this._super("Earthquake", "earthquake", "physical", 0, "earth", 6, function(sobj, ap){
+            $('.range.earth').each(function(){
+				var chance = Math.ceil(Math.random()*10);
+				if(chance == 1 && !$(this).hasClass('pit')){
+					$(this).addClass('pit');
+					var psobj = Squares[$(this).attr('data-sid')];
+					psobj.t = Pit;
+					psobj.passable = psobj.t.passable;
+					psobj.cthru = psobj.t.cthru;
+				}
+			});
+			input.handleSpell();
+			ap.move();
         });
     }
 });
