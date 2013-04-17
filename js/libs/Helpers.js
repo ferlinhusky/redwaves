@@ -294,7 +294,7 @@ var getLineOfSight = function(c){
 };
 
 // Get Range
-var allranges = "range fire ice energy steel";
+var allranges = "range fire ice energy earth steel";
 var getSpellRange = function(character){
 	$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
 	

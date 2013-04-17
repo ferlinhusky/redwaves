@@ -178,7 +178,8 @@ var Wizard = Player.extend({
 		this.spells = [
 			new fireball,
 			new freeze,
-			new lightning
+			new lightning,
+			new earthquake
 		];
 		this.readySpell = null;
 		

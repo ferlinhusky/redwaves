@@ -532,6 +532,7 @@ h3{
 .m_grid td.range.fire { background-color: red; }
 .m_grid td.range.ice { background-color: blue; }
 .m_grid td.range.energy { background-color: yellow; }
+.m_grid td.range.earth { background-color: brown; }
 .m_grid td.range.steel { background-color: steelblue; }
 
 .m_grid td.trail { background-color: red !important; } /* Show AI pathing */

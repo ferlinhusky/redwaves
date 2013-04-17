@@ -208,7 +208,8 @@ var Input = function(){
 		// If found, initiate ranged attack > new Battle
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
-			if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
+                        World.activePlayer.readySpell.cast(sobj);
+			/*if(sobj.occupiedBy.ofType == "monster" && me.currMove < me.movement){
 				var battle = new Battle(me, sobj.occupiedBy);
 			
 				// Track/update movement if not dead
@@ -217,7 +218,7 @@ var Input = function(){
 				btnSpell.removeClass('blink')
 					.button('disable');
 				btnSelectSpell.button('disable');
-			}
+			}*/
 		};
 		
 		// Square click
