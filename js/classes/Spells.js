@@ -44,7 +44,9 @@ var lightning = Attack.extend({ init: function(){ this._super("Lightning", "ligh
 var earthquake = Spell.extend({
     init: function(){
         this._super("Earthquake", "earthquake", "physical", 0, "earth", 6, function(sobj, ap){
+		$('#map_container').effect('shake', 'fast');
             $('.range.earth').each(function(){
+				// Create random pits
 				var chance = Math.ceil(Math.random()*10);
 				if(chance == 1 && !$(this).hasClass('pit')){
 					$(this).addClass('pit');
@@ -52,6 +54,19 @@ var earthquake = Spell.extend({
 					psobj.t = Pit;
 					psobj.passable = psobj.t.passable;
 					psobj.cthru = psobj.t.cthru;
+					// Check if character falls in and is hurt/killed
+					if (psobj.occupied) {
+						var dmg = Math.ceil(Math.random()*5);
+						var status_line;
+						HP_set(psobj.occupiedBy, -dmg);
+						if(psobj.occupiedBy.HP <= 0){
+							status_line = '<span class="red">' + psobj.occupiedBy.name + ' falls in a pit and dies!</span>';	
+							psobj.occupiedBy.killed();
+						} else {
+							status_line = '<span class="red">' + psobj.occupiedBy.name + ' falls in a pit!</span>';	
+						}
+						Statuss.update(status_line);
+					}
 				}
 			});
 			input.handleSpell();
