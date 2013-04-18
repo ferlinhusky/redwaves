@@ -8,18 +8,23 @@
 <em>over red waves of sand I will not come back</em></p>
 
 <h3>April 2013</h3>
-<p>This is a fighting/adventure game in a semi-ASCII style, written in javascript/jQuery. It's still in development but no commit should break basic functionality. If you run it, it'll work up to what I've written that day.</p>
+<p>This is a fighting/adventure game in a semi-ASCII style, written in javascript/jQuery. It's
+still in development but no commit should break basic functionality. If you run it, it'll work
+up to what I've written that day.</p>
 
 <h3>To run</h3>
-<p>Download the package and run index.html in your browser. Runs smoothly in Chrome, mostly smooth in Firefox and slow to sad in older versions of IE.</p>
+<p>Download the package and run index.html in your browser. Runs smoothly in Chrome, mostly smooth
+in Firefox and slow to sad in older versions of IE.</p>
 
-<h3>What works</h3>
-
-<p>Startup, movement, combat, opening doors, AI pathing/targeting, line-of-sight, spellcasting, win/loss messages. There's a lot to go.</p>
+<p>Works well in iOS Safari; no idea about Android phones. Worked well in iOS Chrome up until their
+last update when their fullscreen deal screwed the page height calculation (or, according to Google,
+it's Apple's fault for not properly recalculating page height when the scrollbar is offset; whatever,
+it doesn't look right in Chrome for iPhone).
 
 <h3>What I'm working on</h3>
 
-<p>Better combat, multiple maps, by-player fog of war, more weapons/armor/items, custom customizing</p>
+<p>Improving combat, more items/spells/etc., maybe a storyline, who knows. I come up with an idea
+in the morning and try to get it coded by the end of the day, or maybe over a couple of days.</p>
 
 <h3>Stuff I didn't write</h3>
 
