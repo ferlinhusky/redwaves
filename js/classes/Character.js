@@ -72,25 +72,15 @@ var Character = Class.extend({
 			Squares[prev].occupiedBy = "";
 			
 			previous = Squares[prev].onMap;
-			findAndRemove(previous, '.p', this.ofType + ' ' + this.type);
+			findAndRemove(previous, '.p', this.ofType + ' ' + this.type + ' ' + this.ID);
 		}
 		// Add character to current square
-		findAndAdd(current, '.p', this.ofType + ' ' + this.type);
+		findAndAdd(current, '.p', this.ofType + ' ' + this.type + ' ' + this.ID);
 		
 		if(getMapSq(this.coords).hasClass('lit') && this.ofType == 'monster'){
 			monstersMoving.text(this.name + ' moving...');
 		} else {
 			monstersMoving.text('You hear something moving...');
-		}
-		
-		// Attach tooltips
-		if(this.ofType == "monster"){
-			if($('.' + this.type).tooltip()){ $('.' + this.type).tooltip('destroy'); }
-			$('.' + this.type).tooltip({
-				items: "div[class]",
-				position: {my: 'center top+10', at: 'center middle'},
-				content: this.name
-			});
 		}
 	},
 	killed: function(){

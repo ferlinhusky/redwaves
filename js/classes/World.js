@@ -69,7 +69,14 @@ var World = function(){
                                     World.activePlayer.map += "2";
                                 } else { World.activePlayer.map += "0"; }
 			});
-		}
+		} else if ( World.activePlayer.ofType == "monster" && World.activePlayer.dead == false ){
+                    // Attach tooltips
+                    $('.' + World.activePlayer.ID).tooltip({
+                            items: "div[class]",
+                            position: {my: 'center top+10', at: 'center middle'},
+                            content: World.activePlayer.name
+                    });
+                }
 		
 		// Check for Players/Monsters defeated & victory condition(s)
 		switch(this.Level.victory.type){
@@ -148,6 +155,9 @@ var World = function(){
 					if(me.type == "wizard"){ SpellSet.find('.button').button('enable'); }
 				}
 			} else if(this.activePlayer.ofType == "monster"){
+                                if($('.' + this.activePlayer.ID).tooltip()){
+                                    $('.' + this.activePlayer.ID).tooltip('destroy');
+                                }
 				if (this.activePlayer.dead == true) {
 					this.endturn();
 				} else {

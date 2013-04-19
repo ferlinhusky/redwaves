@@ -8,7 +8,7 @@ var Monster = Character.extend({
 		this.moveInterval;
 		this.path;
 		
-		this.ID = Monsters.length;
+		this.ID = "monster_" + Monsters.length;
 		this.ofType = "monster";
 		this.group = Monsters;
 		this.group.push(this);
@@ -128,6 +128,9 @@ var Monster = Character.extend({
 	},
 	killed: function(){
 		clearInterval(this.moveInterval);
+		if($('.' + this.ID).tooltip()){
+                        $('.' + this.ID).tooltip('destroy');
+                }
 		this._super();
 		// If killed on its own turn
 		if(World.activePlayer === this){

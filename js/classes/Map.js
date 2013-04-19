@@ -56,6 +56,12 @@ var Map = function(){
 					key_fmt = key.substr(0, spliton);
 					mon = ( new Function('var m = new ' + key_fmt + '(); return m;') )();
 					mon.locIt(getSquare(value).id);
+					// Attach tooltips
+					$('.' + mon.ID).tooltip({
+						items: "div[class]",
+						position: {my: 'center top+10', at: 'center middle'},
+						content: mon.name
+					});
 				});
 				
 				// Sort out play order

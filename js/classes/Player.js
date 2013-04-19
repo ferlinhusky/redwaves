@@ -2,7 +2,7 @@ var Players = [];
 var Player = Character.extend({
 	init: function(name, type, wears, wields, inven, skills, HP, movement){
 		this._super(name, type, wears, wields, inven, skills, HP, movement);
-		this.ID = Players.length;
+		this.ID = "player_" + Players.length;
 		this.ofType = "player";
 		this.group = Players;
 		this.group.push(this);
