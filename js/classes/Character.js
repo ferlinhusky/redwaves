@@ -85,6 +85,7 @@ var Character = Class.extend({
 		
 		// Attach tooltips
 		if(this.ofType == "monster"){
+			if($('.' + this.type).tooltip()){ $('.' + this.type).tooltip('destroy'); }
 			$('.' + this.type).tooltip({
 				items: "div[class]",
 				position: {my: 'center top+10', at: 'center middle'},

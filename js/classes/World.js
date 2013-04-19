@@ -44,6 +44,21 @@ var World = function(){
 	};
 	
 	this.endturn = function(){
+                // Reset UI bits
+                btnEndTurn.removeClass('blink')
+                    .button('disable');                
+		btnOpenClose.button('disable');
+		btnSpell.removeClass('blink');
+		SpellSet.find('.button').button('disable');
+                input.spellOn = false;
+		input.hideSpellMenu();
+
+                unbuildItemMenu();
+		
+                $('.p').removeClass('blink'); // remove any character blinks
+		$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
+		monstersMoving.hide('fast');
+                
 		// Save map lit/unlit for players
 		if( World.activePlayer.ofType == "player" && World.activePlayer.dead == false ){
 			World.activePlayer.map = "";
@@ -55,20 +70,6 @@ var World = function(){
                                 } else { World.activePlayer.map += "0"; }
 			});
 		}
-		
-		// Reset UI bits
-		$('.p').removeClass('blink'); // remove any character blinks
-		$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
-		btnEndTurn.removeClass('blink'); input.spellOn = false;
-		btnOpenClose.button('disable');
-		
-		btnSpell.removeClass('blink');
-		SpellSet.find('.button').button('disable');
-		input.hideSpellMenu();
-
-                unbuildItemMenu();
-		
-		monstersMoving.hide('fast');
 		
 		// Check for Players/Monsters defeated & victory condition(s)
 		switch(this.Level.victory.type){
@@ -151,7 +152,6 @@ var World = function(){
 					this.endturn();
 				} else {
 					centerOn(this.activePlayer);
-					btnEndTurn.button('disable');
 					this.activePlayer.doTurn();
 				}
 			}
