@@ -89,11 +89,12 @@ var Player = Character.extend({
 			$('.'+this.ofType).removeClass('blink'); // stop blinking when a player moves
 			
 			if(isPassable == true){
-				this.lastDir = dir;
-
-				this.locIt(this.currentSquare, this.previousSquare);
-				// Set map position
-				centerOn(this);
+				if(this.currentSquare != this.previousSquare){
+					this.lastDir = dir;
+					this.locIt(this.currentSquare, this.previousSquare);
+					// Set map position
+					centerOn(this);
+				}
 
 				// Track movement
 				MO_set(this, 1);
