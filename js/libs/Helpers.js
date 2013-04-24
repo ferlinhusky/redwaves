@@ -4,7 +4,7 @@
 
 // Load up adventure selection
 var Loadwelcome = function(){
-    input.M_Dialog('welcome');
+    Input.M_Dialog('welcome');
 
     // Load up adventures
     for(var i=0; i<Locations.length; i++){
@@ -49,10 +49,10 @@ var cloneToOverlay = function(obj){
 
 // Get Location
 var getLocation = function(){
-	if(me.location.name != undefined){
-		return me.location.name;
+	if(World.activePlayer.location.name != undefined){
+		return World.activePlayer.location.name;
 	} else {
-		return me.location.type;
+		return World.activePlayer.location.type;
 	}
 };
 
@@ -93,7 +93,7 @@ var anyDoors = function(loc){
 
 // Grid helpers
 var newGrid = function(){
-	return '<table id="'+ident+'_grid" cellspacing="0" cellpadding="0" class="m_grid '+me.location.type+'_grid"></table>';
+	return '<table id="'+ident+'_grid" cellspacing="0" cellpadding="0" class="m_grid '+World.Level.type+'_grid"></table>';
 };
 var getGrid = function(){
 	return $('#'+ident+'_grid');
@@ -196,7 +196,7 @@ var addMapLabel = function(s){
 
 // Context replace strings for name and such
 var contextReplace = function(s){
-	var sr = s.replace('{name}', me.name);
+	var sr = s.replace('{name}', World.activePlayer.name);
 	return sr;
 }
 
@@ -349,7 +349,7 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 
 // Item menu
 var unbuildItemMenu = function(){
-	input.hideItemMenu();
+	Input.hideItemMenu();
 	menuSelectItem.empty();
 	menuSelectItem.menu();
 	menuSelectItem.menu('destroy');
@@ -361,7 +361,7 @@ var buildItemMenu = function(){
 	World.activePlayer.readyItem = null;
 	// Rebuild item menu, if necessary
 	for(var i=0; i<World.activePlayer.inven.length; i++){
-		menuSelectItem.append('<li><a href="javascript:void(0);" onclick="input.setItem('+i+');">'+World.activePlayer.inven[i].name);
+		menuSelectItem.append('<li><a href="javascript:void(0);" onclick="Input.setItem('+i+');">'+World.activePlayer.inven[i].name);
 	}
 	if(World.activePlayer.inven.length > 0){
 		ItemSet.find('.button').button('enable');

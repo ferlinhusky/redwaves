@@ -39,7 +39,7 @@ var Player = Character.extend({
 		anyDoors(this.coords);
 		
 		// Wizard check
-		if(this.type == "wizard" && input.spellOn == true){
+		if(this.type == "wizard" && Input.spellOn == true){
 			getSpellRange(this);
 		}
 	},
@@ -185,10 +185,38 @@ var Wizard = Player.extend({
 		this.readySpell = null;
 		
 		for(var i=0; i<this.spells.length; i++){
-			menuSelectSpell.append('<li><a href="javascript:void(0);" onclick="input.setSpell('+i+');">'+this.spells[i].name);
+			menuSelectSpell.append('<li><a href="javascript:void(0);" onclick="Input.setSpell('+i+');">'+this.spells[i].name);
 		}
 		
 		// Create spell menu
 		menuSelectSpell.menu();
 	}
+});
+
+// WEREWOLF
+var Werewolf = Player.extend({
+	init: function(){
+    	this._super(
+			"Werewolf",
+			"werewolf",
+			["","","","","",""],
+			[new fangs, new claw, new claw, ""],
+			[],
+			[], 6, 7
+		);
+  	}
+});
+
+// LAMIA
+var Lamia = Player.extend({
+	init: function(){
+    	this._super(
+			"Lamia",
+			"lamia",
+			["","","","","",""],
+			[new fangs, new claw, new claw, ""],
+			[],
+			[], 8, 5
+		);
+  	}
 });

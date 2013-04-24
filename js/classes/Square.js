@@ -38,11 +38,11 @@ var Square = function(loc){
 		
 		this.onMap.bind('click', function(e){
 			e.preventDefault();
-			input.squareClick(e);
+			Input.squareClick(e);
 		}).bind('touchend', function(e){
 			e.preventDefault();
-			if(input.preventSquareClick == false){
-				input.doMapClick(e);
+			if(Input.preventSquareClick == false){
+				Input.doMapClick(e);
 			}
 		});
 	};

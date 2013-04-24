@@ -2,11 +2,11 @@ var D_Standard = {}
 
 var D_Loading = function(){
 	this.openMe = function(t,s){
-		input.unbindFromMap();
+		Input.unbindFromMap();
 		oDialog.html(s);
 		oDialog.dialog({
 			close: function(){
-				input.bindToMap();
+				Input.bindToMap();
 			},
 			title: t,
 			modal: true,

@@ -93,14 +93,14 @@ var Battle = function(att, def){
 			findAndAdd(Squares[att.currentSquare].onMap, '.p', 'attacker');
 			findAndAdd(Squares[def.currentSquare].onMap, '.p', 'defender');
 			
-			if(input.spellOn == true){ // spell attack
+			if(Input.spellOn == true){ // spell attack
 				this.doSpellAttack(att, def);
 			} else { this.doBattle(att, def); }
 			
 			// If defender killed
 			if(def.HP <= 0){
 				this.doKilled(att, def);
-			} else if(!input.spellOn) {
+			} else if(!Input.spellOn) {
 				// else do counterattack
 				this.doBattle(def, att);
 				

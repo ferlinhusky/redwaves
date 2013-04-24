@@ -26,17 +26,17 @@ var Input = function(){
 				if(oe.targetTouches){
 					oe = oe.changedTouches[0]; // changedTouches to capture touchend
 				}
-				myPos = Squares[me.currentSquare].onMap.offset();
+				myPos = Squares[World.activePlayer.currentSquare].onMap.offset();
 				offX = Math.abs(oe.pageX-myPos.left);
 				offY = Math.abs(oe.pageY-myPos.top);
 				if(offX > offY){
 					if(oe.pageX > myPos.left) {
-						me.move('right');
-					} else { me.move('left'); }
+						World.activePlayer.move('right');
+					} else { World.activePlayer.move('left'); }
 				} else {
 					if(oe.pageY > myPos.top) {
-						me.move('down');
-					} else { me.move('up'); }
+						World.activePlayer.move('down');
+					} else { World.activePlayer.move('up'); }
 				}
 			}
 		};
@@ -63,7 +63,7 @@ var Input = function(){
 				oDialog.html(msg);
 				oDialog.dialog({
 					close: function(){
-						input.bindToMap();
+						Input.bindToMap();
 					},
 					buttons: { 
 						"Y": function() {
@@ -92,7 +92,7 @@ var Input = function(){
 		
 		// Enter location
 		this.enterLoc = function(){
-			var sq = Squares[me.currentSquare];
+			var sq = Squares[World.activePlayer.currentSquare];
 			if(sq.b != undefined){
 				previousMaps.push(activeMap);
 				Map.saveMe(activeMap);
@@ -104,7 +104,7 @@ var Input = function(){
 		
 		// Do open-close door
 		this.openCloseDoor = function(){
-			loc = me.coords;
+			loc = World.activePlayer.coords;
 			var x = new Number(loc[0]);
 			var y = new Number(loc[1]);
 			var xSq = [x-1, x, x+1];
@@ -123,8 +123,8 @@ var Input = function(){
 							// Update line of sight
 							getLineOfSight(loc);
 							// Wizard check
-							if(me.type == "wizard" && input.spellOn == true){
-								getSpellRange(me);
+							if(World.activePlayer.type == "wizard" && Input.spellOn == true){
+								getSpellRange(World.activePlayer);
 							}
 						} else if(sobj.t.type == 'open_door') {
 							s.removeClass('open_door');
@@ -134,8 +134,8 @@ var Input = function(){
 							// Update line of sight
 							getLineOfSight(loc);
 							// Wizard check
-							if(me.type == "wizard" && input.spellOn == true){
-								getSpellRange(me);
+							if(World.activePlayer.type == "wizard" && Input.spellOn == true){
+								getSpellRange(World.activePlayer);
 							}
 						}
 					}
@@ -173,12 +173,12 @@ var Input = function(){
 		};
 		
 		this.setSpell = function(s){
-			var spell = me.spells[s];
+			var spell = World.activePlayer.spells[s];
 			btnSpell.button('option', 'label', spell.name);
-			me.readySpell = spell;
+			World.activePlayer.readySpell = spell;
 			this.hideSpellMenu();
 			if(this.spellOn == true){
-				getSpellRange(me);
+				getSpellRange(World.activePlayer);
 			}
 		}
 
@@ -190,14 +190,14 @@ var Input = function(){
 			}
 		};
 		this.handleSpell = function(){
-			input.hideSpellMenu();
+			Input.hideSpellMenu();
 			$('.lit, .unlit').removeClass('range'); // remove all spell ranges
 			btnSpell.removeClass('blink');
-			if(this.spellOn == false && me.readySpell != null){
-				if(me.type == "wizard"){ // doesn't hurt to make sure again
+			if(this.spellOn == false && World.activePlayer.readySpell != null){
+				if(World.activePlayer.type == "wizard"){ // doesn't hurt to make sure again
 					btnSpell.addClass('blink');
 					this.spellOn = true;
-					getSpellRange(me);
+					getSpellRange(World.activePlayer);
 				} else { btnSpell.button('disable'); return false; }
 			} else {
 				this.spellOn = false;
@@ -257,9 +257,9 @@ var Input = function(){
 		};
 		
 		this.setItem = function(s){
-			var zitem = me.inven[s];
+			var zitem = World.activePlayer.inven[s];
 			btnItem.button('option', 'label', zitem.name);
-			me.readyItem = zitem;
+			World.activePlayer.readyItem = zitem;
 			this.hideItemMenu();
 		};
 
@@ -272,17 +272,17 @@ var Input = function(){
 		};
 		
 		this.handleItem = function(){
-			me.readyItem.use();
+			World.activePlayer.readyItem.use();
 		};
 		
 	/*
 		Key Captures
 	*/	
 		// High-level connectors
-		var moveUp = function(){ me.move('up'); };
-		var moveRight = function(){ me.move('right'); };
-		var moveDown = function(){ me.move('down'); };
-		var moveLeft = function(){ me.move('left'); };
+		var moveUp = function(){ World.activePlayer.move('up'); };
+		var moveRight = function(){ World.activePlayer.move('right'); };
+		var moveDown = function(){ World.activePlayer.move('down'); };
+		var moveLeft = function(){ World.activePlayer.move('left'); };
 		
 		// Key press functions
 		this.doKeyUp = function(k) {
@@ -293,7 +293,7 @@ var Input = function(){
 				// return
 				case 13: wait(); break;
 				// spacebar (enter bldg)
-				case 32: input.enterLoc(); break;
+				case 32: Input.enterLoc(); break;
 				// left
 				case 37: moveLeft(); break;
 				// up
@@ -313,7 +313,7 @@ var Input = function(){
 			var M_D_title;
 			var M_D_buttons;
             var M_D_height;
-			input.unbindFromMap();
+			Input.unbindFromMap();
 			switch(type){
 				case "inventory" 	: M_D = D_Inventory; break;
 				case "options" 		: M_D = D_Options; break;
@@ -348,7 +348,7 @@ var Input = function(){
                                 open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog).hide(); },
 				//open: M_D.open,
 				close: function(){
-					input.bindToMap();
+					Input.bindToMap();
 				},
 				buttons: M_D_buttons,
 				title: M_D_title,
@@ -404,13 +404,13 @@ var Input = function(){
 		});
 		
 		// Touch events
-		btnOpts.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('options');});
-		btnHelp.bind('click touchend', function(e){e.preventDefault(); input.M_Dialog('help');});
-		btnSpell.bind('click touchend', function(e){e.preventDefault(); input.handleSpell();});
-		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); input.selectSpell();});
-		btnItem.bind('click touchend', function(e){e.preventDefault(); input.handleItem();});
-		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); input.selectItem();});
-		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); input.openCloseDoor();});
+		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
+		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
+		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
+		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
+		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
+		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
+		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	
 		// Update Action Buttons
@@ -436,7 +436,7 @@ var Input = function(){
 				var tStartY = touch.pageY;
 				mg.bind('touchmove', function(e){
 						e.preventDefault();
-						input.preventSquareClick = true;
+						Input.preventSquareClick = true;
 						var oe = e.originalEvent;
 						var touch = oe.targetTouches[0];
 						mg.css('left', startX + (touch.pageX - tStartX));
@@ -446,9 +446,9 @@ var Input = function(){
 				mg.bind('touchend', function(e){
 						e.preventDefault();
 						if(Math.abs(mg.position().left - startX)<10 && Math.abs(mg.position().top - startY) <10){
-							input.doMapClick(e); // do a map click if the movement is incidental
+							Input.doMapClick(e); // do a map click if the movement is incidental
 						}
-						input.preventSquareClick = false;
+						Input.preventSquareClick = false;
 						mg.unbind('touchmove touchend');
 						return false;
 				});
@@ -473,7 +473,7 @@ var Input = function(){
 
 				// There's no activeMap until a selection is made at start
 				if(activeMap != null){
-					centerOn(me);
+					centerOn(World.activePlayer);
 				}
 				
 				oDialog.dialog('option', 'position', 'center');

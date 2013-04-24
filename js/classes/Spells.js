@@ -11,7 +11,7 @@ var Spell = Item.extend({
             var ap = World.activePlayer;
             if(ap.currMove < ap.movement){
                 this.callback(sobj, ap);
-            } else if (me.currMove == me.movement){
+            } else if (ap.currMove == ap.movement){
                 btnSpell.removeClass('blink')
                         .button('disable');
                 btnSelectSpell.button('disable');
@@ -69,7 +69,7 @@ var earthquake = Spell.extend({
 					}
 				}
 			});
-			input.handleSpell();
+			Input.handleSpell();
 			ap.move();
         });
     }

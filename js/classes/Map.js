@@ -5,7 +5,6 @@ var Map = function(){
 		m.id = 0;
 		m.squares = [];
 		var startPoints = [];
-		me.location = m;
 		
 		// Generate map
 		setIdent(m.id);
@@ -45,7 +44,7 @@ var Map = function(){
 				
 				// Center map
 				centerOn(Players[0]);
-				input.mapTouchDrag(m.mg);
+				Input.mapTouchDrag(m.mg);
 				m.mg.draggable({
 					cursor: 'move'
 				});

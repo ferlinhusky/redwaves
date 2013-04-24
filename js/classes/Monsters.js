@@ -99,9 +99,9 @@ var Monster = Character.extend({
 			var temp_square = getSquare(temp_coords);
 			
 			if(getRange.range == true){
-				input.spellOn = true; // For battle to recognize ranged/spell attack
+				Input.spellOn = true; // For battle to recognize ranged/spell attack
 				var battle = new Battle(this, getRange.target);
-				input.spellOn = false;
+				Input.spellOn = false;
 			} else {
 				if(temp_square.occupied) {
 					// attack if enemy

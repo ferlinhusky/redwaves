@@ -21,12 +21,15 @@ var Character = Class.extend({
 		this.movement	=	movement;
 		
 		this.readyItem = null;
+		this.spells = [];
 		this.medication = []; // any herbs or pills taken
 
 		this.coords = [];
 		this.currMove = 0;
 
 		this.wait = true;
+		this.paralyzed = false;
+		this.slow = false;
 		this.dead = false;
 		
 		var tempac = 0;
