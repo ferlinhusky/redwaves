@@ -49,15 +49,22 @@
     
     <!-- Select team dialog -->
     <div class="dialog_content" id="dialog_select_team">
-    	<p>You need three "friends" (allies?) to, let's face it, kill
-        with/for you.</p>
-        
-    	<input type="checkbox" id="st_fighter" /><label for="st_fighter">Fighter</label>
-        <input type="checkbox" id="st_knight" /><label for="st_knight">Knight</label>
-        <input type="checkbox" id="st_wizard" /><label for="st_wizard">Wizard</label>
-        <input type="checkbox" id="st_thief" /><label for="st_thief">Thief</label>
-        <input type="checkbox" id="st_wolfman" /><label for="st_wolfman">Wolfman</label>
-        <input type="checkbox" id="st_lamia" /><label for="st_lamia">Lamia</label>
+    	<p>You need three "friends" to, let's face it, kill for you.</p>
+	
+	<table width="100%" cellspacing="5" align="center">
+		<tr>
+			<td>
+				<input type="checkbox" id="st_fighter" class="select_team_opt"/><label for="st_fighter">Fighter</label><br/>
+				<input type="checkbox" id="st_knight" class="select_team_opt"/><label for="st_knight">Knight</label><br/>
+				<input type="checkbox" id="st_wizard" class="select_team_opt" /><label for="st_wizard">Wizard</label><br/>
+			</td>
+			<td>
+				<input type="checkbox" id="st_thief" class="select_team_opt" /><label for="st_thief">Thief</label><br/>
+				<input type="checkbox" id="st_wolfman" class="select_team_opt" /><label for="st_wolfman">Wolfman</label><br/>
+				<input type="checkbox" id="st_lamia" class="select_team_opt" /><label for="st_lamia">Lamia</label>
+			</td>
+		</tr>
+	</table>
     </div>
 
     <!-- Help dialog -->
@@ -82,7 +89,7 @@
 	<!--! end of #container -->
 	<script src="js/classes.js"></script>
 	<!-- jQuery -->
-	<script src="js/libs/jquery-1.7.1.min.js"></script>
+	<script src="js/libs/jquery-1.9.1.min.js"></script>
 	<script src="js/libs/jquery-ui.js"></script>
 	<!-- Setup and support functions -->
 	<script src="js/libs/Starter.js"></script>

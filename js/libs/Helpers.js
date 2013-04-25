@@ -8,14 +8,14 @@ var Loadwelcome = function(){
 
     // Load up adventures
     for(var i=0; i<Locations.length; i++){
-	var opt = '<option value="'+Locations[i].type+'" '+Locations[i].status+'>'+Locations[i].title+'</option>';
-	$('select#pick_a_map').append(opt);
+		var opt = '<option value="'+Locations[i].type+'" '+Locations[i].status+'>'+Locations[i].title+'</option>';
+		$('select#pick_a_map').append(opt);
     }    
 }
 
 var Loadselectteam = function(){
 	Input.M_Dialog('select_team');
-	$('#dialog_select_team input[type="checkbox"]').button();
+	$('.select_team_opt').button();
 }
 
 // Return a random number

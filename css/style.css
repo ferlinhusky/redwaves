@@ -351,9 +351,8 @@ h3{
 }
 #dialog label {
 	font-size: 11px !important;
-	position: relative;
-	top: -2px;
-	left: 3px;
+	margin: 2px;
+	width: 120px;
 }
 #dialog ul {
     padding: 0 0 0 10px;
