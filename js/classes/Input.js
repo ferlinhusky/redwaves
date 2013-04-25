@@ -319,6 +319,7 @@ var Input = function(){
 				case "options" 		: M_D = D_Options; break;
 				case "help" 		: M_D = D_Help; break;
 				case "welcome" 		: M_D = D_Welcome; break;
+                                case "select_team" 	: M_D = D_Select_Team; break;
 				case "standard"		: M_D = D_Standard; break;
 				default: break;
 			}

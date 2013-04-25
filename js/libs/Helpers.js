@@ -13,6 +13,11 @@ var Loadwelcome = function(){
     }    
 }
 
+var Loadselectteam = function(){
+	Input.M_Dialog('select_team');
+	$('#dialog_select_team input[type="checkbox"]').button();
+}
+
 // Return a random number
 var getRandom = function(r){
 	var temp = Math.floor(Math.random()*r);
