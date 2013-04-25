@@ -13,9 +13,20 @@ var Loadwelcome = function(){
     }    
 }
 
+var checkSelectedTeam = function(){
+	if($('.select_team_opt:checked').length == 3){
+		$('.ui-dialog-buttonpane button:contains("Ready")').button('enable');
+	} else { $('.ui-dialog-buttonpane button:contains("Ready")').button('disable'); }
+}
 var Loadselectteam = function(){
 	Input.M_Dialog('select_team');
-	$('.select_team_opt').button();
+	if ($('.select_team_opt').button()) {
+		$('.select_team_opt').button('destroy');
+	}
+	
+	checkSelectedTeam();
+		
+	$('.select_team_opt').button().change(checkSelectedTeam);
 }
 
 // Return a random number

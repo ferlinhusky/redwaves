@@ -36,6 +36,9 @@ var D_Select_Team = {
 	title: 'Pick your team!',
 	content: $('#dialog_select_team').html(),
 	buttons: {
+		"Back": function(){
+			Loadwelcome();	
+		},
 		"Ready!": function() {
 			MapWorld = $('#pick_a_map').val();
 			World.build();
