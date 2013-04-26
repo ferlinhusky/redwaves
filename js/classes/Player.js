@@ -204,7 +204,7 @@ var Wolfman = Player.extend({
     	this._super(
 			"Wolfman",
 			"wolfman",
-			["","","","","",""],
+			["",new hide,"","","",""],
 			[new fangs, new claw, new claw, ""],
 			[],
 			[], 6, 7
