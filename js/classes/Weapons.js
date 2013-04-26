@@ -14,6 +14,9 @@ var Sword = Weapon.extend({
 	}
 });
 
+// Dagger
+var dagger = Sword.extend({ init: function(){ this._super("Dagger", "dagger", "1d3", "steel", false); } });
+
 // Long sword
 var longsword = Sword.extend({ init: function(){ this._super("Long sword", "longsword", "1d6", "steel", false); } });
 

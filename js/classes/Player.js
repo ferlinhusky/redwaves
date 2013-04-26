@@ -10,13 +10,12 @@ var Player = Character.extend({
 		this.map="";
 		
 		// Update UI
-		$('#party').append('<tr class="'+this.type+'">');
-		$('#party tr.'+this.type).append('<td class="member">'+this.name+'</td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat stWPN"><span class="WPN">'+this.wields[1].name+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+this.wields[1].dmg+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
+		var wielding = [];
+		for(var i=0; i<wields.length; i++){
+			if(wields[i] != ""){
+				wielding.push(wields[i].name);
+			}
+		}
 		
 		var wearing = [];
 		for(var i=0; i<wears.length; i++){
@@ -24,7 +23,13 @@ var Player = Character.extend({
 				wearing.push(wears[i].name);
 			}
 		}
-		
+		$('#party').append('<tr class="'+this.type+'">');
+		$('#party tr.'+this.type).append('<td class="member">'+this.name+'</td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat stWPN"><span class="WPN">'+wielding.toString()+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+this.wields[1].dmg+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat stWEARS"><span class="WEARS">'+wearing.toString()+'</span></td>');
 		
 		formatPartyTable();
@@ -100,7 +105,7 @@ var Player = Character.extend({
 				MO_set(this, 1);
 			} else if (square.occupied){
 				if (square.occupiedBy.ofType == "monster"){
-					var battle = new Battle(me, square.occupiedBy);
+					var battle = new Battle(World.activePlayer, square.occupiedBy);
 					
 					// Track/update movement if not dead
 					if(!this.dead){ MO_set(this, 1); }
@@ -193,12 +198,12 @@ var Wizard = Player.extend({
 	}
 });
 
-// WEREWOLF
-var Werewolf = Player.extend({
+// Wolfman
+var Wolfman = Player.extend({
 	init: function(){
     	this._super(
-			"Werewolf",
-			"werewolf",
+			"Wolfman",
+			"wolfman",
 			["","","","","",""],
 			[new fangs, new claw, new claw, ""],
 			[],
@@ -219,4 +224,16 @@ var Lamia = Player.extend({
 			[], 8, 5
 		);
   	}
+});
+
+// THIEF
+var Thief = Player.extend({
+	init: function(){ this._super(
+		"Thief",
+		"thief",
+		[new leatherhelm, "","","","",""],
+		["", new dagger, new dagger,""],
+		[new maddog],
+		[], 8, 5);
+	}
 });

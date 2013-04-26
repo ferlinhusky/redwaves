@@ -41,21 +41,37 @@ var Character = Class.extend({
 		this.ac = 10 + tempac;
 		
 		// Get gender
-		var prob = Math.ceil(Math.random()*10);
-		if(prob > 5){
+		if(this.type == "wolfman"){
 			this.gender = {
 				"demo": "male",
 				"type": "man",
 				"pro": "him",
 				"ppro": "his"
 			}; 
-		} else {
+		} else if (this.type == "lamia"){
 			this.gender = {
 				"demo": "female",
 				"type": "woman",
 				"pro": "her",
 				"ppro": "her"
 			};
+		} else {
+			var prob = Math.ceil(Math.random()*10);
+			if(prob > 5){
+				this.gender = {
+					"demo": "male",
+					"type": "man",
+					"pro": "him",
+					"ppro": "his"
+				}; 
+			} else {
+				this.gender = {
+					"demo": "female",
+					"type": "woman",
+					"pro": "her",
+					"ppro": "her"
+				};
+			}
 		}
 	},
 	locIt: function(curr, prev){

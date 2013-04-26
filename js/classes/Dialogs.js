@@ -26,6 +26,7 @@ var D_Welcome = {
 	content: $('#dialog_welcome').html(),
 	buttons: {
 		"Load": function() {
+			MapWorld = $('#pick_a_map').val();
 			Loadselectteam();
 		}
 	},
@@ -40,7 +41,11 @@ var D_Select_Team = {
 			Loadwelcome();	
 		},
 		"Ready!": function() {
-			MapWorld = $('#pick_a_map').val();
+			$('#party').css('display', 'table');
+			var hero = new Hero();
+			$('.select_team_opt:checked').each(function(){
+				var player = ( new Function('var p = new ' + $(this).val() + '(); return p;') )();
+			});
 			World.build();
 		}
 	},

@@ -227,6 +227,7 @@ h3{
 #party {
     margin-right: 10px;
     width: 100%; /* Responsive! */
+    display: none;
 }
 #party td { font-size: .8em; }
 #party td.label {
@@ -243,6 +244,9 @@ h3{
 #party tr.fighter { background-color: lightcoral; }
 #party tr.knight { background-color: darkseagreen; }
 #party tr.wizard { background-color: darkorchid; }
+#party tr.wolfman { background-color: lightgray; }
+#party tr.lamia { background-color: hotpink; }
+#party tr.thief { background-color: olive; color: #fff; }
 #party .stat { text-align: center; }
 
 #party .label.WEARS,
@@ -479,11 +483,13 @@ h3{
 .m_grid td.lit .p:before { background: URL('../images/sq_fade.png') no-repeat; }
 
 /* Player */
-.m_grid td.lit .p.me:before { content: '@' !important; background-color: #fff; color: #000; }
 .m_grid td.lit .p.hero:before { content: '@' !important; background-color: rgb(91, 194, 228); color: #000; }
 .m_grid td.lit .p.fighter:before { content: '@' !important; background-color: lightcoral; color: #000; }
 .m_grid td.lit .p.knight:before { content: '@' !important; background-color: darkseagreen; color: #000; }
 .m_grid td.lit .p.wizard:before { content: '@' !important; background-color: darkorchid; color: #000; }
+.m_grid td.lit .p.wolfman:before { content: '@' !important; background-color: lightgray; color: #000; }
+.m_grid td.lit .p.lamia:before { content: '@' !important; background-color: hotpink; color: #000; }
+.m_grid td.lit .p.thief:before { content: '@' !important; background-color: olive; color: #000; }
 
 /* Monsters */
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
