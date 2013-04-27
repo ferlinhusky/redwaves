@@ -422,14 +422,27 @@ h3{
 	text-align: center;
 	padding: 0px;
 	margin: 0px;
-	font-size: 20px;
-	line-height: 28px;
+	font-size: 10px;
+	line-height: normal; 
 	color: #FFF;
 	-moz-user-select: none;
 	-khtml-user-select: none;
 	-webkit-user-select: none;
 	user-select: none; 
 }
+
+.m_grid td .quad {
+    height: 15px;
+    width: 15px;
+}
+
+/* Zoomed in (for ranged attack selection) */
+.m_grid.zoom td { font-size: 24px; }
+.m_grid.zoom td .quad {
+    height: 30px;
+    width: 30px;
+}
+.m_grid.zoom td.lit .p:before { background: URL('../images/sq_fade.png') no-repeat; }
 
 /* HaZy...make .visited style hazy/blurry w/box shadow or will hurt your eyes???? */
 .m_grid td.unlit {
@@ -444,43 +457,17 @@ h3{
 	visibility: visible;
 	border: 1px solid #ccc;
 }
-.m_grid td .sq {
-	height: 30px;
-	width: 30px;
-	position: relative;
-}
 
 /* Square layout */
-.m_grid td.lit .quad {
-    display: block;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    color: #FFF;
-}
-.m_grid td.lit .quad:before {
-    width: 30px;
-    height: 30px;
+.m_grid td.lit .quad:before {    
     display: inline-block;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
+    height: 100%;
+    width: 100%;
 }
-.m_grid td.lit .b { z-index: 1; }
-.m_grid td.lit .quad.t:before {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 54px;
-    height: 54px;
-    padding: 3px;
-    z-index: 0;
-    text-align: right;
-}
-.m_grid td.lit .i {  }
+
 .m_grid td.lit .p { color: #000; }
 
-.m_grid td.lit .p:before { background: URL('../images/sq_fade.png') no-repeat; }
+.m_grid td.lit .p:before { background: URL('../images/sq_fade_sm.png') no-repeat; }
 
 /* Player */
 .m_grid td.lit .p.hero:before { content: '@' !important; background-color: rgb(91, 194, 228); color: #000; }
@@ -612,23 +599,6 @@ h3{
 	    padding-left: 20px;
 	    margin-left: 10px;
     }
-    .m_grid td {
-		font-size: 10px;
-		line-height: normal; 
-    }
-    .m_grid td .sq {
-		height: 15px;
-		width: 15px;
-    }
-    .m_grid td.lit .quad:before {
-		width: 15px;
-		height: 15px;
-    }
-    .m_grid td.lit .quad.t:before {
-		width: 24px;
-		height: 24px;
-    }
-	.m_grid td.lit .p:before { background: URL('../images/sq_fade_sm.png') no-repeat; }
 }
 
 @media only screen and (min-width: 768px) {

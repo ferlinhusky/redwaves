@@ -52,6 +52,7 @@ var World = function(){
 		SpellSet.find('.button').button('disable');
                 Input.spellOn = false;
 		Input.hideSpellMenu();
+                $('.m_grid').removeClass('zoom');
 
                 unbuildItemMenu();
 		

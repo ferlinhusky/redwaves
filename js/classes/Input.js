@@ -195,12 +195,20 @@ var Input = function(){
 			btnSpell.removeClass('blink');
 			if(this.spellOn == false && World.activePlayer.readySpell != null){
 				if(World.activePlayer.type == "wizard"){ // doesn't hurt to make sure again
-					btnSpell.addClass('blink');
+					if($(window).width() <= 480 ){
+                                            $('.m_grid').addClass('zoom'); // make only for small screen
+                                            centerOn(World.activePlayer);
+                                        }
+                                        btnSpell.addClass('blink');
 					this.spellOn = true;
 					getSpellRange(World.activePlayer);
 				} else { btnSpell.button('disable'); return false; }
 			} else {
-				this.spellOn = false;
+                            if($('.m_grid').hasClass('zoom')){
+                                $('.m_grid').removeClass('zoom');
+                                centerOn(World.activePlayer);
+                            }
+			    this.spellOn = false;
 			}
 		};
 		
