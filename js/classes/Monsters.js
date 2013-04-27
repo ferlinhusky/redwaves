@@ -13,6 +13,8 @@ var Monster = Character.extend({
 		this.group = Monsters;
 		this.group.push(this);
 		this.readySpell;
+		
+		this.target = null;
 	},
 	checkRanged: function(){
 		var range = false;
@@ -46,12 +48,21 @@ var Monster = Character.extend({
 			World.endturn();
 		} else {
 			for(var i=0; i<Players.length; i++){
-				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false);
-				if(path.length == 0){
-					path = temp_path;
-				} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
-					path = temp_path;
+				// Only target players you can see
+				// Need to save last know position of players who have moved out of sight, but were once visible
+				var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
+				if(cansee == true){
+					temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false);
+					if(path.length == 0){
+						path = temp_path;
+					} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
+						path = temp_path;
+					}
 				}
+			}
+			if(path.length == 0 && this.target != null){
+				path = astar.search(Squares, getSquare(this.coords), getSquare(this.target.coords), false);
+				this.target = null;
 			}
 		}
 		return path;
@@ -62,6 +73,7 @@ var Monster = Character.extend({
 		if (this.path.length == 0){
 			World.endturn();
 		} else {
+			centerOn(this);
 			monstersMoving.show('fast');
 			if(getMapSq(this.coords).hasClass('lit')){
 				monstersMoving.text(this.name + ' moving...');
@@ -125,6 +137,10 @@ var Monster = Character.extend({
 			clearInterval(this.moveInterval);
 			World.endturn();
 		}
+	},
+	seesPlayer: function(p){
+		this.target = p;
+		this.target.coords = p.coords; // remember last coords seen
 	},
 	killed: function(){
 		clearInterval(this.moveInterval);

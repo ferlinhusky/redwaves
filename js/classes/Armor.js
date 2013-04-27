@@ -38,6 +38,9 @@ var BodyArmor = Armor.extend({
 // Hide
 var hide = BodyArmor.extend({ init: function(){ this._super("Hide", "hide", "hide", -2); } });
 
+// Leather tunic
+var leathertunic = BodyArmor.extend({ init: function(){ this._super("Leather tunic", "leathertunic", "hide", -2); } });
+
 // Scale
 var robe = BodyArmor.extend({ init: function(){ this._super("Robe", "robe", "cloth", -1); } });
 

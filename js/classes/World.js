@@ -154,13 +154,12 @@ var World = function(){
 					if(this.activePlayer.type == "wizard"){ SpellSet.find('.button').button('enable'); }
 				}
 			} else if(this.activePlayer.ofType == "monster"){
-                                if($('.' + this.activePlayer.ID).tooltip()){
-                                    $('.' + this.activePlayer.ID).tooltip('destroy');
-                                }
+				if($('.' + this.activePlayer.ID).tooltip()){
+					$('.' + this.activePlayer.ID).tooltip('destroy');
+				}
 				if (this.activePlayer.dead == true) {
 					this.endturn();
 				} else {
-					centerOn(this.activePlayer);
 					this.activePlayer.doTurn();
 				}
 			}

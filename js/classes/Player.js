@@ -206,7 +206,7 @@ var Wolfman = Player.extend({
 			"wolfman",
 			["",new hide,"","","",""],
 			[new fangs, new claw, new claw, ""],
-			[],
+			[new tron],
 			[], 6, 7
 		);
   	}
@@ -231,7 +231,7 @@ var Thief = Player.extend({
 	init: function(){ this._super(
 		"Thief",
 		"thief",
-		[new leatherhelm, "","","","",""],
+		[new leatherhelm, new leathertunic,"","","",""],
 		["", new dagger, new dagger,""],
 		[new maddog],
 		[], 8, 5);

@@ -83,6 +83,7 @@ var D_Options = {
 }
 // Option settings
 var hideFeatureNames = false;
+/*
 $('#optHideFeatureNames').live('change',function(){
 	if($(this).attr('checked')=='checked'){
 		hideFeatureNames = 'checked';
@@ -93,3 +94,4 @@ $('#optHideFeatureNames').live('change',function(){
 		$('.t_label').show(0);
 	}
 });
+*/

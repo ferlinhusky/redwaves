@@ -347,14 +347,32 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 	var dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
 	var dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
 	var err = (dx>dy ? dx : -dy)/2;
-	
+
 	while (true) {
-		if(!getSquare([x0,y0]).cthru && !hitpass) return false; // If you don't want to highlight non-cthru areas, break now
+		var sq = getSquare([x0,y0]);
+		var msq = getMapSq([x0,y0]);
 		
-		getMapSq([x0,y0]).removeClass(hilite);
-		getMapSq([x0,y0]).addClass(hilite);
-		if (x0 === x1 && y0 === y1) return false;
-		if (!getSquare([x0,y0]).cthru){
+		
+		if(!sq.cthru && !hitpass) return false; // If you don't want to highlight non-cthru areas, break now
+		
+		if(hilite != "monster_target"){
+			msq.removeClass(hilite);
+			msq.addClass(hilite);
+		}
+		
+		if(World.activePlayer.ofType == "player" && sq.occupied){
+			if(sq.occupiedBy.ofType == "monster"){
+				sq.occupiedBy.seesPlayer(World.activePlayer);
+			}
+		}
+		
+		if (x0 === x1 && y0 === y1){
+			cansee = true;
+			if(hilite == "monster_target") { return true; } // Targeting for Monsters
+			return false; // end of the line
+		}
+		
+		if (!sq.cthru){
 			return false;
 		}
 		var e2 = err;
