@@ -15,6 +15,7 @@ var Monster = Character.extend({
 		this.readySpell;
 		
 		this.target = null;
+		this.opendoors = false;
 	},
 	checkRanged: function(){
 		var range = false;
@@ -43,6 +44,7 @@ var Monster = Character.extend({
 	},
 	findTarget: function(){		
 		var path = [];
+		this.opendoors = false;
 		if(Players.length == 0){
 			clearInterval(this.moveInterval);
 			World.endturn();
@@ -61,8 +63,13 @@ var Monster = Character.extend({
 				}
 			}
 			if(path.length == 0 && this.target != null){
-				path = astar.search(Squares, getSquare(this.coords), getSquare(this.target.coords), false);
-				this.target = null;
+				// Ignore doors
+				path = astar.search(Squares, getSquare(this.coords), getSquare(this.target.coords), false, true);
+				//this.target = null;
+				if(path.length > 0){
+					// Set open doors flag
+					this.opendoors = true;
+				}
 			}
 		}
 		return path;
@@ -126,6 +133,13 @@ var Monster = Character.extend({
 					this.coords[0] = this.path[i].x;
 					this.coords[1] = this.path[i].y;
 					var square = getSquare(this.coords);
+					// If can open doors, do it (if necessary)
+					if(this.opendoors == true && square.t.type == "closed_door"){
+						getMapSq(this.coords).removeClass('closed_door');
+						getMapSq(this.coords).addClass('open_door');
+						square.t = OpenDoor;
+						square.cthru = true;
+					}
 					this.currentSquare = getSquare(this.coords).id;
 					this.locIt(this.currentSquare, this.previousSquare);
 					// Set map position

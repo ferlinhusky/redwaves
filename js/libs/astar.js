@@ -21,7 +21,7 @@ var astar = {
             return node.f; 
         });
     },
-    search: function(grid, start, end, diagonal, heuristic) {
+    search: function(grid, start, end, diagonal, ignoreDoors, heuristic) {
         astar.init(grid);
         heuristic = heuristic || astar.manhattan;
         diagonal = !!diagonal;
@@ -55,11 +55,12 @@ var astar = {
             for(var i=0, il = neighbors.length; i < il; i++) {
                 var neighbor = neighbors[i];
 
-                //if(neighbor.closed || neighbor.isWall()) {
 		if(neighbor.closed || !neighbor.t.passable || neighbor.occupiedBy.ofType == "monster") {
                     // Not a valid node to process, skip to next neighbor.
 		    // If the node is occupied by a "player", end the path and re-target
-                    continue;
+		    if(neighbor.t.type == "closed_door" && ignoreDoors == true){
+			var zud;
+		    } else { continue; }
                 }
 
                 // The g score is the shortest distance from start to current node.
