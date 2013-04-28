@@ -48,7 +48,7 @@ var earthquake = Spell.extend({
             $('.range.earth').each(function(){
 				// Create random pits
 				var chance = Math.ceil(Math.random()*10);
-				if(chance == 1 && !$(this).hasClass('pit')){
+				if(chance == 1 && !$(this).hasClass('pit') && !$(this).hasClass('start')){
 					$(this).addClass('pit');
 					var psobj = Squares[$(this).attr('data-sid')];
 					psobj.t = Pit;
