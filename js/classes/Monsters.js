@@ -14,8 +14,8 @@ var Monster = Character.extend({
 		this.group.push(this);
 		this.readySpell;
 		
+		this.targets = [];
 		this.target = null;
-		this.opendoors = false;
 	},
 	checkRanged: function(){
 		var range = false;
@@ -42,33 +42,61 @@ var Monster = Character.extend({
 			'target': target
 		};
 	},
+	recalibrate: function(){
+		for(var i=0; i<Players.length; i++){
+			var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
+			if(cansee == true){
+				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false, true);
+				// Change course if a visible target is closer
+				if (temp_path.length < this.path.length && temp_path.length > 0){
+					this.path = [];
+					// tie up with current position or else will jump ahead
+					// push empty spaces in
+					for(var j=0; j<this.currMove; j++){
+						this.path.push("");
+					}
+					for(var j=0; j<temp_path.length; j++){
+						this.path.push(temp_path[j]);
+					}
+				}
+				// Update visible target player coords
+				var temptarget = this.addTarget(Players[i]);
+				this.targets.push(temptarget);
+			}
+		}
+	},
 	findTarget: function(){		
 		var path = [];
-		this.opendoors = false;
 		if(Players.length == 0){
 			clearInterval(this.moveInterval);
 			World.endturn();
 		} else {
-			for(var i=0; i<Players.length; i++){
-				// Only target players you can see
-				// Need to save last know position of players who have moved out of sight, but were once visible
-				var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
-				if(cansee == true){
-					temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false);
+			var temp_path;
+			// If there's a target coord(s)
+			if(this.targets.length > 0){
+				for(var i=0; i<this.targets.length; i++){
+					temp_path = astar.search(Squares, getSquare(this.coords), getSquare(this.targets[i].coords), false);
 					if(path.length == 0){
 						path = temp_path;
 					} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
 						path = temp_path;
 					}
 				}
-			}
-			if(path.length == 0 && this.target != null){
-				// Ignore doors
-				path = astar.search(Squares, getSquare(this.coords), getSquare(this.target.coords), false, true);
-				//this.target = null;
-				if(path.length > 0){
-					// Set open doors flag
-					this.opendoors = true;
+			} else {
+			// If not, get the nearest player(s), make targets
+				for(var i=0; i<Players.length; i++){
+					// Only target players you can see
+					var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
+					if(cansee == true){
+						temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false);
+						if(path.length == 0){
+							path = temp_path;
+						} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
+							path = temp_path;
+						}
+						var temptarget = this.addTarget(Players[i]);
+						this.targets.push(temptarget);
+					}
 				}
 			}
 		}
@@ -102,6 +130,10 @@ var Monster = Character.extend({
 			// Push empty items to simulate one long path
 			if(this.path[i] == undefined){
 				this.path = this.findTarget();
+				if(this.path.length == 0){
+					clearInterval(this.moveInterval);
+					World.endturn();
+				}
 				this.path.reverse();
 				for(var j=0; j<i; j++){
 					this.path.push("");
@@ -134,7 +166,7 @@ var Monster = Character.extend({
 					this.coords[1] = this.path[i].y;
 					var square = getSquare(this.coords);
 					// If can open doors, do it (if necessary)
-					if(this.opendoors == true && square.t.type == "closed_door"){
+					if(square.t.type == "closed_door"){
 						getMapSq(this.coords).removeClass('closed_door');
 						getMapSq(this.coords).addClass('open_door');
 						square.t = OpenDoor;
@@ -146,15 +178,30 @@ var Monster = Character.extend({
 					centerOn(this);
 				}
 			}
-			MO_set(this, 1);
+			MO_set(this, 1); // update movement
+			this.recalibrate(); // recalibrate targets
 		} else {
 			clearInterval(this.moveInterval);
 			World.endturn();
 		}
 	},
+	addTarget: function(t){
+		var temptarget = {};
+		temptarget.type = t.type;
+		temptarget.coords = t.coords;
+		
+		for(var i = 0; i < this.targets.length; i++){
+			// If it's a current target, drop the old reference
+			if(this.targets[i].type == temptarget.type){
+				this.targets.splice(i, 1);
+			}
+		}
+		
+		return temptarget;
+	},
 	seesPlayer: function(p){
-		this.target = p;
-		this.target.coords = p.coords; // remember last coords seen
+		var temptarget = this.addTarget(p);
+		this.targets.push(temptarget);
 	},
 	killed: function(){
 		clearInterval(this.moveInterval);

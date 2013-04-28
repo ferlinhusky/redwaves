@@ -25,6 +25,7 @@ var astar = {
         astar.init(grid);
         heuristic = heuristic || astar.manhattan;
         diagonal = !!diagonal;
+	ignoreDoors = ignoreDoors || true
 
         var openHeap = astar.heap();
 
