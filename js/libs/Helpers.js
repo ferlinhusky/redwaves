@@ -362,7 +362,7 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 		
 		if(World.activePlayer.ofType == "player" && sq.occupied){
 			if(sq.occupiedBy.ofType == "monster"){
-				sq.occupiedBy.seesPlayer(World.activePlayer);
+				sq.occupiedBy.addTarget(World.activePlayer);
 			}
 		}
 		

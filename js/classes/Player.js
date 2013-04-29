@@ -128,6 +128,7 @@ var Player = Character.extend({
 		this._super();
 		// If killed during own turn
 		if(World.activePlayer === this){
+			// trasmit death to monsters in sight
 			unbuildItemMenu();
 			MO_zero(this); // Zero out movement
 			btnEndTurn.addClass('blink'); // Indicate end turn

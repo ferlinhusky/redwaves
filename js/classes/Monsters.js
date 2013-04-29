@@ -42,6 +42,25 @@ var Monster = Character.extend({
 			'target': target
 		};
 	},
+	addTarget: function(t){
+		var temptarget = {};
+		var isnew = true;
+		
+		temptarget.type = t.type;
+		temptarget.coords = t.coords;
+		
+		for(var i = 0; i < this.targets.length; i++){
+			// If it's a current target, drop the old reference
+			if(this.targets[i].type == temptarget.type){
+				this.targets.splice(i, 1, temptarget);
+				isnew = false;
+			}
+		}
+		
+		if(isnew){
+			this.targets.push(temptarget);
+		}
+	},
 	recalibrate: function(){
 		for(var i=0; i<Players.length; i++){
 			var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
@@ -60,8 +79,7 @@ var Monster = Character.extend({
 					}
 				}
 				// Update visible target player coords
-				var temptarget = this.addTarget(Players[i]);
-				this.targets.push(temptarget);
+				this.addTarget(Players[i]);
 			}
 		}
 	},
@@ -94,8 +112,7 @@ var Monster = Character.extend({
 						} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
 							path = temp_path;
 						}
-						var temptarget = this.addTarget(Players[i]);
-						this.targets.push(temptarget);
+						this.addTarget(Players[i]);
 					}
 				}
 			}
@@ -184,24 +201,6 @@ var Monster = Character.extend({
 			clearInterval(this.moveInterval);
 			World.endturn();
 		}
-	},
-	addTarget: function(t){
-		var temptarget = {};
-		temptarget.type = t.type;
-		temptarget.coords = t.coords;
-		
-		for(var i = 0; i < this.targets.length; i++){
-			// If it's a current target, drop the old reference
-			if(this.targets[i].type == temptarget.type){
-				this.targets.splice(i, 1);
-			}
-		}
-		
-		return temptarget;
-	},
-	seesPlayer: function(p){
-		var temptarget = this.addTarget(p);
-		this.targets.push(temptarget);
 	},
 	killed: function(){
 		clearInterval(this.moveInterval);
