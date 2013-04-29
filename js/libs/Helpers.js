@@ -355,11 +355,12 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 		
 		if(!sq.cthru && !hitpass) return false; // If you don't want to highlight non-cthru areas, break now
 		
-		if(hilite != "monster_target"){
+		if(hilite != "monster_target" && hilite != "player_killed"){
 			msq.removeClass(hilite);
 			msq.addClass(hilite);
 		}
 		
+		// Check player in view of monster
 		if(World.activePlayer.ofType == "player" && sq.occupied){
 			if(sq.occupiedBy.ofType == "monster"){
 				sq.occupiedBy.addTarget(World.activePlayer);
@@ -367,8 +368,7 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 		}
 		
 		if (x0 === x1 && y0 === y1){
-			cansee = true;
-			if(hilite == "monster_target") { return true; } // Targeting for Monsters
+			if(hilite == "monster_target" || hilite == "player_killed") { return true; } // Targeting for Monsters / Monster sees player killed
 			return false; // end of the line
 		}
 		

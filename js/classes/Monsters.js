@@ -61,6 +61,14 @@ var Monster = Character.extend({
 			this.targets.push(temptarget);
 		}
 	},
+	removeTarget: function(t){
+		for(var i = 0; i < this.targets.length; i++){
+			// If it's a current target, splice it out
+			if(this.targets[i].type == t.type){
+				this.targets.splice(i, 1);
+			}
+		}
+	},
 	recalibrate: function(){
 		for(var i=0; i<Players.length; i++){
 			var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);

@@ -126,9 +126,15 @@ var Player = Character.extend({
 	},
 	killed: function(){
 		this._super();
+		// Trasmit death to monsters in sight
+		for(var i=0; i<Monsters.length; i++){
+			var cansee = Bresenham(this.coords[0], this.coords[1], Monsters[i].coords[0], Monsters[i].coords[1], "player_killed", true);
+			if (cansee) {
+				Monsters[i].removeTarget(this);
+			}
+		}
 		// If killed during own turn
 		if(World.activePlayer === this){
-			// trasmit death to monsters in sight
 			unbuildItemMenu();
 			MO_zero(this); // Zero out movement
 			btnEndTurn.addClass('blink'); // Indicate end turn
