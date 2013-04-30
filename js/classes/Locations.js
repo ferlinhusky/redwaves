@@ -9,6 +9,9 @@ var Tutorial = function(){
     this.opts = {
 		"height": 30,
 		"width": 40,
+		"items": {
+		    "tron_1": [30, 7]  
+		},
 		"monsters": {
 			"Basilisk_1": [15, 9],
 			"Snake_Man_1": [7, 15],

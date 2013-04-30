@@ -107,6 +107,16 @@ var anyDoors = function(loc){
 	}
 }
 
+// Any items?
+var anyItems = function(loc){
+	var square = getSquare(loc);
+	if(square.containsA.is == "item"){
+		btnPickup.button('enable');
+	} else {
+		btnPickup.button('disable');
+	}
+}
+
 // Grid helpers
 var newGrid = function(){
 	return '<table id="'+ident+'_grid" cellspacing="0" cellpadding="0" class="m_grid '+World.Level.type+'_grid"></table>';

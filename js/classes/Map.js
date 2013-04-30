@@ -35,19 +35,12 @@ var Map = function(){
 					}
 				}
 				
-				// Place player
+				// Add players
 				for(var i=0; i<Players.length; i++){
 					p = Players[i];
 					p.currentSquare = getSquare(startPoints[i]).id;
 					p.locIt(Players[i].currentSquare, p.previousSquare, true);
 				}
-				
-				// Center map
-				centerOn(Players[0]);
-				Input.mapTouchDrag(m.mg);
-				m.mg.draggable({
-					cursor: 'move'
-				});
 				
 				// Add monsters			
 				$.each(m.opts.monsters, function(key, value){
@@ -61,6 +54,21 @@ var Map = function(){
 						position: {my: 'center top+10', at: 'center middle'},
 						content: mon.name
 					});
+				});
+				
+				// Add items			
+				$.each(m.opts.items, function(key, value){
+					var spliton = key.lastIndexOf("_");
+					key_fmt = key.substr(0, spliton);
+					item = ( new Function('var i = new ' + key_fmt + '(); return i;') )();
+					item.drop(getSquare(value).id);
+				});
+				
+				// Center map
+				centerOn(Players[0]);
+				Input.mapTouchDrag(m.mg);
+				m.mg.draggable({
+					cursor: 'move'
 				});
 				
 				// Sort out play order

@@ -48,6 +48,7 @@ var World = function(){
                 btnEndTurn.removeClass('blink')
                     .button('disable');                
 		btnOpenClose.button('disable');
+                btnPickup.button('disable');
 		btnSpell.removeClass('blink');
 		SpellSet.find('.button').button('disable');
                 Input.spellOn = false;
@@ -148,8 +149,9 @@ var World = function(){
 					// Activate "end turn" button
 					btnEndTurn.button('enable');
 					
-					// Check for doors
+					// Check for doors, items
 					anyDoors(this.activePlayer.coords);
+                                        anyItems(this.activePlayer.coords);
 					
 					// Check for Wizard
 					if(this.activePlayer.type == "wizard"){ SpellSet.find('.button').button('enable'); }

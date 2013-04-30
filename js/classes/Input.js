@@ -282,6 +282,13 @@ var Input = function(){
 		this.handleItem = function(){
 			World.activePlayer.readyItem.use();
 		};
+                
+                this.pickupItem = function(){
+                    var square = getSquare(World.activePlayer.coords);
+                    var item = square.containsA;
+                    item.pickup(square.id);
+                    btnPickup.button('disable');
+                }
 		
 	/*
 		Key Captures
@@ -406,6 +413,11 @@ var Input = function(){
 			disabled: true,
 			text: true
 		});
+                btnPickup.button({ 
+			icons: {primary:'ui-icon-arrowreturnthick-1-n',secondary:''},
+			disabled: true,
+			text: true
+		});
 		btnEndTurn.button({ 
 			icons: {primary:'ui-icon-refresh',secondary:''},
 			disabled: true,
@@ -420,6 +432,7 @@ var Input = function(){
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
+                btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
 	
 		// Update Action Buttons

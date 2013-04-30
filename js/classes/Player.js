@@ -99,6 +99,13 @@ var Player = Character.extend({
 					this.locIt(this.currentSquare, this.previousSquare);
 					// Set map position
 					centerOn(this);
+					
+					// Check for items
+					if(square.containsA.is == "item"){
+						btnPickup.button('enable');
+					} else {
+						btnPickup.button('disable');
+					}
 				}
 
 				// Track movement
@@ -149,7 +156,7 @@ var Hero = Player.extend({
 		"hero",
 		[new coifandkettle, new scale,"","","",""],
 		["", new shortsword,"",""],
-		[new tron],
+		[new phyton],
 		[], 8, 6); 
 	}
 });

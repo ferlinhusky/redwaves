@@ -469,6 +469,9 @@ h3{
 
 .m_grid td.lit .p:before { background: URL('../images/sq_fade_sm.png') no-repeat; }
 
+/* Items */
+.m_grid td.lit .p.tron:before { content: '*t*' !important; background-color: blue; color: #000; }
+
 /* Player */
 .m_grid td.lit .p.hero:before { content: '@' !important; background-color: rgb(91, 194, 228); color: #000; }
 .m_grid td.lit .p.fighter:before { content: '@' !important; background-color: lightcoral; color: #000; }
@@ -490,21 +493,6 @@ h3{
 /* Battle */
 .m_grid td.lit .p.attacker:before { background-color: yellow !important; color: #000; }
 .m_grid td.lit .p.defender:before { background-color: red !important; color: #fff; }
-
-/* Buildings */
-.m_grid td.lit .b.metropolis:after { content: '[M]'; background-color: #333; }
-.m_grid td.lit .b.city:after { content: '[C]'; background-color: #004fbb; }
-.m_grid td.lit .b.village:after { content: '[v]'; background-color: #bb6e00; }
-.m_grid td.lit .b.small_town:after { content: '[t]'; background-color: #666; }
-
-.m_grid td.lit .b.office:after { content: '[o]'; background-color: #F69; }
-.m_grid td.lit .b.portal:after { content: '[X]'; background-color: #FFF; color: #0F0; }
-.m_grid td.lit .b.house:after { content: '[h]'; background-color: #5d3f00; }
-.m_grid td.lit .b.shop:after { content: '[S]'; background-color: #a87e00; }
-.m_grid td.lit .b.restaurant:after { content: '[R]'; background-color: #9500c6; }
-.m_grid td.lit .b.temple:after { content: '[T]'; background-color: #00dcb5; }
-.m_grid td.lit .b.sanctuary:after { content: '[s]'; background-color: #000; }
-.m_grid td.lit .b.gateway:after { content: '[G]'; background-color: #FFF; color: #000; }
 
 /* Terrain */
 .m_grid td { background: URL('../images/sq_fade.png'); }
@@ -534,22 +522,9 @@ h3{
 .m_grid td.pit {
     background-color: Maroon;
     -webkit-box-shadow: inset 2px 2px 4px 0px black;
-	-moz-box-shadow: inset 2px 2px 4px 0px black;
-	box-shadow: inset 2px 2px 4px 0px black;
+    -moz-box-shadow: inset 2px 2px 4px 0px black;
+    box-shadow: inset 2px 2px 4px 0px black;
 }
-
-/*
-.m_grid td.lit.desert, .desert { background-color: #d9b46a; }
-.m_grid td.lit.plains, .plains { background-color: #B87700; }
-.m_grid td.lit.sea, .sea { background-color: #3e7f8f; background-image: none; }
-.m_grid td.lit.mountain, .mountain { background-color: #6e3519;}
-.m_grid td.lit.hill, .hill { background-color: #97793f; }
-
-.m_grid td.lit.low_grass, .low_grass { background-color: #B8B894;}
-.m_grid td.lit.concrete, concrete { background-color: #CCC; }
-.m_grid td.lit.forest, .forest { background-color: #0B360B;}
-.m_grid td.lit.lake, .lake { background-color: #a0cdca; }
-*/
 
 /* =============================================================================
    Non-semantic helper classes

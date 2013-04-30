@@ -1,12 +1,44 @@
 var Items = [];
 var Item = Class.extend({
 	init: function(name, type, ofType, supclass, material){
+		this.is = "item";
 		this.name = name;
 		this.type = type;
 		this.ofType = ofType;
 		this.supclass = supclass;
 		this.material = material;
+		this.ID = Items.length;
 		Items.push(this);
+	},
+	pickup: function(curr){
+		// Remove item from current square
+		Squares[curr].contains = false;
+		Squares[curr].containsA = "";
+		
+		current = Squares[curr].onMap;
+		findAndRemove(current, '.p', 'item ' + this.type);
+		
+		// Add to inventory
+		Statuss.update('<b>' + World.activePlayer.name + ' picks up ' + this.name + '!</b>');
+		// Unbuild the item menu
+		unbuildItemMenu();
+		// Push to inventory
+		World.activePlayer.inven.push(this);
+		// (Re)build the item menu
+		buildItemMenu();
+	},
+	drop: function(curr){
+		Squares[curr].contains = true;
+		Squares[curr].containsA = this;
+		
+		// Set item position
+		var current = Squares[curr].onMap;
+		var loc = [Squares[curr].x, Squares[curr].y];
+		this.coords = loc;
+		this.currentSquare = getSquare(this.coords).id;
+		
+		// Add item to current square
+		findAndAdd(current, '.p', 'item ' + this.type + ' ' + this.ID);
 	}
 });
 
