@@ -1,19 +1,21 @@
 // THE WORLD IS AN ENGINE
 var World = function(){
-	this.orderOfPlay = [];
-	var currentPlay = 0;
-	this.activePlayer;
-	this.gameover = false;
-        
-        this.reset = function(){
-            $('#status').empty();
-        }
+
+	this.resetvars = function(){
+		this.orderOfPlay = [];
+		this.currentPlay = 0;
+		this.activePlayer = null;
+		this.gameover = false;
+	}
 	
 	this.build = function(){
+		// Zero out vars
+		this.resetvars();
+		
 		// Build map
-                this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
-                Map.init(this.Level);
-                Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 300);
+        this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
+        Map.init(this.Level);
+        Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 300);
 	};
 	
 	this.doorderofplay = function(){
@@ -37,8 +39,23 @@ var World = function(){
 		this.gameover = true;
 		Input.M_Dialog("standard", wl, this.Level.title, {
 			"OK": function(){
-				//Loadwelcome(); Need a true reset to empty out everything w/o a refresh
-				location.reload(true);
+				// Clear out object arrays
+				Players = [];
+				Monsters = [];
+				Items = [];
+				Weapons = [];
+				Armors = [];
+				Squares = [];
+				
+				// Clear out the UI
+				$('.m_grid').remove();
+				$('#party .player_row').remove();
+				$('#party').css('display', 'none');
+				$('#status').empty();
+				$('#dialog').dialog('close');
+			
+				// Load the welcome dialog
+				Loadwelcome();
 			}
 		}, 300);
 	};
@@ -108,11 +125,11 @@ var World = function(){
 			MO_set(this.activePlayer, this.activePlayer.movement - this.activePlayer.currMove);
 			
 			// Get new active Character
-			this.activePlayer = this.orderOfPlay[currentPlay];
+			this.activePlayer = this.orderOfPlay[this.currentPlay];
 			
 			// Call before Monster move or get stuck in a loop FOREVER
-			currentPlay++;
-			if(currentPlay >= this.orderOfPlay.length) { currentPlay = 0; }
+			this.currentPlay++;
+			if(this.currentPlay >= this.orderOfPlay.length) { this.currentPlay = 0; }
 			
 			// Need to skip over lost players or remove them from the queue upon .killed()
 			if(this.activePlayer.ofType == "player"){

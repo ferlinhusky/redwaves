@@ -29,7 +29,6 @@ var Map = function(){
 						m.squares.push(n);
 						n.addToRow(row, false, map_ascii.charAt(n.id));
 						if(map_ascii.charAt(n.id) == "^"){
-							//me.coords = [j,i];
 							startPoints.push([j,i]);
 						}
 					}

@@ -11,21 +11,20 @@ var LoadingAnim = '<img src="images/ajax-loader.gif" id="loading_anim" />';
 //var SquareTemplate = '<div class="sq"><div class="quad b">&nbsp;</div><div class="quad t">&nbsp;</div><div class="quad i">&nbsp;</div><div class="quad p">&nbsp;</div></div>';
 var SquareTemplate = '<div class="sq"><div class="quad p">&nbsp;</div></div>';
 
-var partyTable = '<table id="party" cellpadding="5">\
-	    <colgroup></colgroup>\
-		<tr id="label_row">\
-			<td class="label">&nbsp;</td>\
-			<td class="label">HP</td>\
-			<td class="label">MV</td>\
-			<td class="label WPN">WPN</td>\
-			<td class="label">ATK</td>\
-			<td class="label">AC</td>\
-			<td class="label WEARS">WEARS</td>\
-		</tr>\
-	</table>';
-
-// Assign main
 var main = $('#main');
+var partyTable = '<table id="party" cellpadding="5">\
+			<colgroup></colgroup>\
+			<tr id="label_row">\
+				<td class="label">&nbsp;</td>\
+				<td class="label">HP</td>\
+				<td class="label">MV</td>\
+				<td class="label WPN">WPN</td>\
+				<td class="label">ATK</td>\
+				<td class="label">AC</td>\
+				<td class="label WEARS">WEARS</td>\
+			</tr>\
+		</table>';
+		
 main.append('\
 	<table id="game_table" cellspacing="5" cellpadding="0">\
 		<tr>\

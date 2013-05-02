@@ -2,6 +2,28 @@
 // Helper Functions
 //
 
+/*
+	// Reset game
+	var resetGame = function(){
+		
+		// Clear out object arrays
+		Players = [];
+		Monsters = [];
+		Items = [];
+		Weapons = [];
+		Armors = [];
+		Squares = [];
+		
+		// Clear out the UI
+		$('.m_grid').remove();
+		$('#party .player_row').remove();
+		$('#dialog').dialog('close');
+	
+		// Load the welcome dialog
+		Loadwelcome();
+	}
+*/
+
 // Load up adventure selection
 var Loadwelcome = function(){
     Input.M_Dialog('welcome');

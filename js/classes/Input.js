@@ -432,8 +432,8 @@ var Input = function(){
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
-                btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
-		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endturn();});
+        btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
+		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
 		var updateBtnState = function(b, val){

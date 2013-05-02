@@ -11,6 +11,8 @@ var Item = Class.extend({
 		Items.push(this);
 	},
 	pickup: function(curr){
+		//getMapSq(World.activePlayer.coords).effect("transfer", { to: $('#btn_item') }, 1000);
+		
 		// Remove item from current square
 		Squares[curr].contains = false;
 		Squares[curr].containsA = "";

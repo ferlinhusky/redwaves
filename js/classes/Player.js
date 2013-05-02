@@ -23,7 +23,7 @@ var Player = Character.extend({
 				wearing.push(wears[i].name);
 			}
 		}
-		$('#party').append('<tr class="'+this.type+'">');
+		$('#party').append('<tr class="'+this.type+' player_row">');
 		$('#party tr.'+this.type).append('<td class="member">'+this.name+'</td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
