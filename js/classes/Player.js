@@ -157,7 +157,8 @@ var Hero = Player.extend({
 		[new coifandkettle, new scale,"","","",""],
 		["", new shortsword,"",""],
 		[new phyton],
-		[], 8, 6); 
+		// extra dmg against big boss
+		["heroism"], 8, 6); 
 	}
 });
 
@@ -169,7 +170,8 @@ var Fighter = Player.extend({
 		[new barbute, new chainmail,"","","",""],
 		["", new longsword,"",""],
 		[new phyton],
-		[], 10, 6); 
+		// extra hp when near death
+		["tenacity"], 10, 6); 
 	}
 });
 
@@ -181,7 +183,8 @@ var Knight = Player.extend({
 		[new closehelmet, new plate,"","","",""],
 		["", new broadsword,"",""],
 		[new glory, new maddog],
-		[], 12, 5);
+		// +n sword damage
+		["swordsmanship"], 12, 5);
 	}
 });
 
@@ -193,7 +196,8 @@ var Wizard = Player.extend({
 		[new leatherhelm, new robe,"","","",""],
 		["", new woodenstaff,"",""],
 		[],
-		[], 4, 6);
+		// half spell dmg
+		["necromancy"], 4, 6);
 		
 		this.spells = [
 			new fireball,
@@ -214,29 +218,28 @@ var Wizard = Player.extend({
 
 // Wolfman
 var Wolfman = Player.extend({
-	init: function(){
-    	this._super(
-			"Wolfman",
-			"wolfman",
-			["",new hide,"","","",""],
-			[new fangs, new claw, new claw, ""],
-			[new tron],
-			[], 6, 7
-		);
+	init: function(){ this._super(
+		"Wolfman",
+		"wolfman",
+		["",new hide,"","","",""],
+		[new fangs, new claw, new claw, ""],
+		[new tron],
+		// sees in grayscale - update UI
+		// see hidden characters up to 10 sq away
+		["keenness"], 6, 12);
   	}
 });
 
 // LAMIA
 var Lamia = Player.extend({
-	init: function(){
-    	this._super(
-			"Lamia",
-			"lamia",
-			["","","","","",""],
-			[new fangs, new claw, new claw, ""],
-			[],
-			[], 8, 5
-		);
+	init: function(){this._super(
+		"Lamia",
+		"lamia",
+		["","","","","",""],
+		[new fangs, new claw, new claw, ""],
+		[],
+		// chance of paralyzing enemy for n turns
+		["paralyze"], 8, 5);
   	}
 });
 
@@ -248,6 +251,7 @@ var Thief = Player.extend({
 		[new leatherhelm, new leathertunic,"","","",""],
 		["", new dagger, new dagger,""],
 		[new maddog],
-		[], 8, 5);
+		// drops from monster target list when out of sight
+		["stealth"], 8, 5);
 	}
 });
