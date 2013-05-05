@@ -32,8 +32,9 @@ it doesn't look right in Chrome for iPhone).
 
 <h3>What I'm working on</h3>
 
-<p>Improving combat, more items/spells/etc., maybe a storyline, who knows. I come up with an idea
-in the morning and try to get it coded by the end of the day, or maybe over a couple of days.</p>
+<p>Right now, player customizations and maybe a storyline. I come up with an idea in the morning and
+try to get it coded by the end of the day, or maybe over a couple of days. It's like agile development
+without all the index cards and standing.</p>
 
 <h3>Stuff I didn't write</h3>
 
