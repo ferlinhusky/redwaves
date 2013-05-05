@@ -21,6 +21,12 @@ got that like you wouldn't believe.</p>
 <p>What about items? Check. A wolfman? Check. HTML tables? ...DOUBLE CHECK. So come on, play it. It's
 fun and I keep working on it like every day so it'll just get better. CONFIDENCE.</p>
 
+<h3>What I'm working on now</h3>
+
+<p>Right now, player customizations and maybe a storyline. I come up with an idea in the morning and
+try to get it coded by the end of the day, or maybe over a couple of days. It's like agile development
+without all the index cards and standing.</p>
+
 <h3>To run</h3>
 <p>Download the package and run index.html in your browser. Runs smoothly in Chrome, mostly smooth
 in Firefox and slow to sad in older versions of IE.</p>
@@ -29,12 +35,6 @@ in Firefox and slow to sad in older versions of IE.</p>
 last update when their fullscreen deal screwed the page height calculation (or, according to Google,
 it's Apple's fault for not properly recalculating page height when the scrollbar is offset; whatever,
 it doesn't look right in Chrome for iPhone).
-
-<h3>What I'm working on</h3>
-
-<p>Right now, player customizations and maybe a storyline. I come up with an idea in the morning and
-try to get it coded by the end of the day, or maybe over a couple of days. It's like agile development
-without all the index cards and standing.</p>
 
 <h3>Stuff I didn't write</h3>
 
