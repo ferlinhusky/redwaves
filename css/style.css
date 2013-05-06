@@ -471,15 +471,23 @@ h3{
 
 /* Items */
 .m_grid td.lit .p.tron:before { content: '*t*' !important; background-color: blue; color: #000; }
+    .m_grid.dogvision td.lit .p.item:before { background-color: #707070; color: #000; }
 
 /* Player */
 .m_grid td.lit .p.hero:before { content: '@' !important; background-color: rgb(91, 194, 228); color: #000; }
+        .m_grid.dogvision td.lit .p.hero:before { background-color: #b2b2b2; }
 .m_grid td.lit .p.fighter:before { content: '@' !important; background-color: lightcoral; color: #000; }
+        .m_grid.dogvision td.lit .p.fighter:before { background-color: #b5b5b5; }
 .m_grid td.lit .p.knight:before { content: '@' !important; background-color: darkseagreen; color: #000; }
+        .m_grid.dogvision td.lit .p.knight:before { background-color: #b5b5b5; }
 .m_grid td.lit .p.wizard:before { content: '@' !important; background-color: darkorchid; color: #000; }
+    .m_grid.dogvision td.lit .p.wizard:before { background-color: #b5b5b5; }
 .m_grid td.lit .p.wolfman:before { content: '@' !important; background-color: lightgray; color: #000; }
+        .m_grid.dogvision td.lit .p.wolfman:before { background-color: #e2e2e2; }
 .m_grid td.lit .p.lamia:before { content: '@' !important; background-color: hotpink; color: #000; }
+        .m_grid.dogvision td.lit .p.lamia:before { background-color: #c7c7c7; }
 .m_grid td.lit .p.thief:before { content: '@' !important; background-color: olive; color: #000; }
+        .m_grid.dogvision td.lit .p.thief:before { background-color: #b5b5b5; }
 
 /* Monsters */
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
@@ -489,19 +497,26 @@ h3{
 .m_grid td.lit .p.hillbilly_hellion:before { content: 'H' !important; background-color: Maroon; color: #fff; }
 .m_grid td.lit .p.shaolin_beatnik:before { content: 'S' !important; background-color: #f90; color: #000; }
 .m_grid td.lit .p.snake_man:before { content: 'S' !important; background-color: #390; color: #000; }
+    .m_grid.dogvision td.lit .p.monster:before { background-color: #666; color: #fff; }
 
 /* Battle */
 .m_grid td.lit .p.attacker:before { background-color: yellow !important; color: #000; }
+    .m_grid.dogvision td.lit .p.attacker:before { background-color: lightgray !important; }
 .m_grid td.lit .p.defender:before { background-color: red !important; color: #fff; }
+    .m_grid.dogvision td.lit .p.defender:before { background-color: darkgray !important; }
 
 /* Terrain */
 .m_grid td { background: URL('../images/sq_fade.png'); }
 .m_grid td.floor { background-color: #666; }
+    .m_grid.dogvision td.floor { background-color: #666; }
 .m_grid td.wall { background-color: #000; }
+    .m_grid.dogvision td.wall { background-color: #333; }
 
 .m_grid td.closed_door { background-color: #960; }
+    .m_grid.dogvision td.closed_door { background-color: #b5b5b5; }
 .m_grid td.closed_door .p:before { content: '+'; }
 .m_grid td.open_door { background-color: #f90; }
+    .m_grid.dogvision td.open_door { background-color: #cbcbcb; }
 .m_grid td.open_door .p:before { content: '-'; }
 
 .m_grid td.start { background-color: #999; }
@@ -517,14 +532,18 @@ h3{
 
 .m_grid td.trail { background-color: red !important; } /* Show AI pathing */
 .m_grid td.river { background-color: #a0cdca; }
+    .m_grid.dogvision td.river { background-color: #cdcdcd; }
 .m_grid td.grass { background-color: #7e9b2e; }
+    .m_grid.dogvision td.grass { background-color: #9e9e9e; }
 .m_grid td.dirt { background-color: #A37547; }
+    .m_grid.dogvision td.dirt { background-color: #a5a5a5; }
 .m_grid td.pit {
     background-color: Maroon;
     -webkit-box-shadow: inset 2px 2px 4px 0px black;
     -moz-box-shadow: inset 2px 2px 4px 0px black;
     box-shadow: inset 2px 2px 4px 0px black;
 }
+    .m_grid.dogvision td.pit { background-color: #7a7a7a; }
 
 /* =============================================================================
    Non-semantic helper classes

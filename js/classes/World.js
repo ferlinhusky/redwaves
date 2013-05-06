@@ -71,6 +71,7 @@ var World = function(){
                 Input.spellOn = false;
 		Input.hideSpellMenu();
                 $('.m_grid').removeClass('zoom');
+                $('.m_grid').removeClass('dogvision');
 
                 unbuildItemMenu();
 		
@@ -138,6 +139,11 @@ var World = function(){
 				} else {
 					// (Re)build the item menu
 					buildItemMenu();
+                                        
+                                        // If canine, add dogvision
+                                        if(this.activePlayer.type == "wolfman"){
+                                            $('.m_grid').addClass('dogvision');
+                                        }
 					
 					// Show by-player fog of war
                                         $('.m_grid td').removeClass('lit visited')
