@@ -24,9 +24,9 @@ var Battle = function(att, def){
 					tot_attks = new Number(weapon.dmg.split('d')[0]);
 					for(var j=0; j<a1.medication.length; j++){
 					    switch(a1.medication[j].name){
-						case "Mad dog": tot_attks += 1; break;
-						case "Tron" : tot_attks += 2; break;
-						default: break;
+							case "Mad dog": tot_attks += 1; break;
+							case "Tron" : tot_attks += 2; break;
+							default: break;
 					    }
 					}
 					wpn_dmg = new Number(weapon.dmg.split('d')[1]);
@@ -60,7 +60,24 @@ var Battle = function(att, def){
 						}
 						// Get attack damage
 						var att_dmg = (Math.floor(Math.random() * wpn_dmg)) + dmg_red;
-						if(att_dmg <= 0) { att_dmg = 1; }
+						
+						// Check for swordsmanship
+						if(a1.hasSkill('swordsmanship') && weapon.supclass == "sword"){
+							att_dmg += 2;
+						}
+						
+						// Check for heroism skill; double dmg on attack, half dmg when defending against boss monster
+						if(World.Level.victory.type == "kill"){
+							if(World.Level.victory.value[0] == d1.name && a1.hasSkill('heroism')){
+								//console.log("attacked by hero");
+								att_dmg *= 2;
+							} else if (World.Level.victory.value[0] == a1.name && d1.hasSkill('heroism')){
+								//console.log("defended by hero");
+								var temp_att_dmg = att_dmg;
+								att_dmg = Math.floor(temp_att_dmg/2);
+							}
+						}
+						if(att_dmg <= 1) { att_dmg = 1; }
 						HP_set(d1, -att_dmg);
 						status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.ppro + ' ' + weapon.name + '</span>';
 					}
@@ -74,9 +91,15 @@ var Battle = function(att, def){
 	    
 	    // Get attack damage
 	    var att_dmg = Math.floor(Math.random() * spell.dmg);
+		
 	    if(att_dmg <= 0) {
 		    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' ' + spell.name;
 	    } else {
+			// Check for necromancy; half spell damage to defender w/ it
+			if(d1.hasSkill('necromancy')){
+				var temp_att_dmg = att_dmg;
+				att_dmg = Math.floor(temp_att_dmg/2);
+			}
 		    HP_set(d1, -att_dmg);
 		    status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.ppro + ' ' + spell.name + '</span>';
 	    }

@@ -74,6 +74,11 @@ var Character = Class.extend({
 			}
 		}
 	},
+	hasSkill:  function(s){
+		if($.inArray(s, this.skills) > -1){
+			return true;
+		} else { return false; }
+	},
 	locIt: function(curr, prev){
 		// Set character position
 		Squares[curr].occupied = true;

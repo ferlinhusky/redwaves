@@ -157,7 +157,7 @@ var Hero = Player.extend({
 		[new coifandkettle, new scale,"","","",""],
 		["", new shortsword,"",""],
 		[new phyton],
-		// extra dmg against big boss
+		// dlb dmg att/half dmg def against big boss (added)
 		["heroism"], 8, 6); 
 	}
 });
@@ -170,7 +170,7 @@ var Fighter = Player.extend({
 		[new barbute, new chainmail,"","","",""],
 		["", new longsword,"",""],
 		[new phyton],
-		// extra hp when near death
+		// if 2HP or less, 50% chance of getting back 1HP (added)
 		["tenacity"], 10, 6); 
 	}
 });
@@ -183,7 +183,7 @@ var Knight = Player.extend({
 		[new closehelmet, new plate,"","","",""],
 		["", new broadsword,"",""],
 		[new glory, new maddog],
-		// +n sword damage
+		// +n sword damage (added)
 		["swordsmanship"], 12, 5);
 	}
 });
@@ -196,7 +196,7 @@ var Wizard = Player.extend({
 		[new leatherhelm, new robe,"","","",""],
 		["", new woodenstaff,"",""],
 		[],
-		// half spell dmg
+		// half spell dmg (added)
 		["necromancy"], 4, 6);
 		
 		this.spells = [
@@ -224,7 +224,6 @@ var Wolfman = Player.extend({
 		["",new hide,"","","",""],
 		[new fangs, new claw, new claw, ""],
 		[new tron],
-		// sees in grayscale - update UI
 		// see hidden characters up to 10 sq away
 		["keenness"], 6, 12);
   	}
