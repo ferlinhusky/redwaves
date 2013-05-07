@@ -250,7 +250,7 @@ var Thief = Player.extend({
 		[new leatherhelm, new leathertunic,"","","",""],
 		["", new dagger, new dagger,""],
 		[new maddog],
-		// drops from monster target list when out of sight
+		// drops from monster target list when out of sight (added)
 		["stealth"], 8, 5);
 	}
 });

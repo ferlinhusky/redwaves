@@ -88,6 +88,8 @@ var Monster = Character.extend({
 				}
 				// Update visible target player coords
 				this.addTarget(Players[i]);
+			} else if (Players[i].hasSkill('stealth')){
+				this.removeTarget(Players[i]);
 			}
 		}
 	},
@@ -121,6 +123,8 @@ var Monster = Character.extend({
 							path = temp_path;
 						}
 						this.addTarget(Players[i]);
+					} else if (Players[i].hasSkill('stealth')){
+						this.removeTarget(Players[i]);
 					}
 				}
 			}
