@@ -186,6 +186,9 @@ var World = function(){
 				// Check for doors, items
 				anyDoors(this.activePlayer.coords);
 				anyItems(this.activePlayer.coords);
+                                
+                                // Check for keenness
+                                this.activePlayer.checkKeenness();
 				
 				// Check for Wizard
 				if(this.activePlayer.type == "wizard"){

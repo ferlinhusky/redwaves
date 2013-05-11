@@ -42,30 +42,7 @@ var Player = Character.extend({
 			getLineOfSight(this.coords);
 			
 			// Check keenness; see characters within 5 squares
-			if(this.hasSkill('keenness')){
-				var rng = 5;
-				var x = new Number(this.coords[0]);
-				var y = new Number(this.coords[1]);
-				var xSq = [];
-					for(var i=-rng; i<=rng; i++) {
-						if( x+i >=0 && x+i < World.Level.opts.width  ) { xSq.push(x+i); }
-					}
-				var ySq = [];
-					for(var i=-rng; i<=rng; i++) {
-						if( y+i >=0 && y+i < World.Level.opts.height ) { ySq.push(y+i); }
-					}
-					
-				for (i=0; i<ySq.length; i++){
-					for (j=0; j<xSq.length; j++){
-						var mapsq = getMapSq([xSq[i],ySq[j]]);
-						var sq = getSquare([xSq[i],ySq[j]]);
-						if(sq.occupied){
-							mapsq.removeClass('unlit visited');
-							mapsq.addClass('lit');
-						}
-					}
-				}
-			}
+			this.checkKeenness();
 		}
 		
 		// Check for doors
@@ -171,6 +148,32 @@ var Player = Character.extend({
 			unbuildItemMenu();
 			MO_zero(this); // Zero out movement
 			btnEndTurn.addClass('blink'); // Indicate end turn
+		}
+	},
+	checkKeenness: function(){
+		if(this.hasSkill('keenness')){
+			var rng = 5;
+			var x = new Number(this.coords[0]);
+			var y = new Number(this.coords[1]);
+			var xSq = [];
+				for(var i=-rng; i<=rng; i++) {
+					if( x+i >=0 && x+i < World.Level.opts.width  ) { xSq.push(x+i); }
+				}
+			var ySq = [];
+				for(var i=-rng; i<=rng; i++) {
+					if( y+i >=0 && y+i < World.Level.opts.height ) { ySq.push(y+i); }
+				}
+				
+			for (i=0; i<ySq.length; i++){
+				for (j=0; j<xSq.length; j++){
+					var mapsq = getMapSq([xSq[i],ySq[j]]);
+					var sq = getSquare([xSq[i],ySq[j]]);
+					if(sq.occupied){
+						mapsq.removeClass('unlit visited');
+						mapsq.addClass('lit');
+					}
+				}
+			}
 		}
 	}
 });
