@@ -38,7 +38,35 @@ var Player = Character.extend({
 		this._super(curr, prev);
 
 		// Update line of sight
-		if(first != true){ getLineOfSight(this.coords); }
+		if(first != true){
+			getLineOfSight(this.coords);
+			
+			// Check keenness; see characters within 5 squares
+			if(this.hasSkill('keenness')){
+				var rng = 5;
+				var x = new Number(this.coords[0]);
+				var y = new Number(this.coords[1]);
+				var xSq = [];
+					for(var i=-rng; i<=rng; i++) {
+						if( x+i >=0 && x+i < World.Level.opts.width  ) { xSq.push(x+i); }
+					}
+				var ySq = [];
+					for(var i=-rng; i<=rng; i++) {
+						if( y+i >=0 && y+i < World.Level.opts.height ) { ySq.push(y+i); }
+					}
+					
+				for (i=0; i<ySq.length; i++){
+					for (j=0; j<xSq.length; j++){
+						var mapsq = getMapSq([xSq[i],ySq[j]]);
+						var sq = getSquare([xSq[i],ySq[j]]);
+						if(sq.occupied){
+							mapsq.removeClass('unlit visited');
+							mapsq.addClass('lit');
+						}
+					}
+				}
+			}
+		}
 		
 		// Check for doors
 		anyDoors(this.coords);
@@ -114,21 +142,19 @@ var Player = Character.extend({
 				if (square.occupiedBy.ofType == "monster"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
 					
-					// Track/update movement if not dead
-					if(!this.dead){ MO_set(this, 1); }
+					// If paralyzed
+					if(this.paralyzed > 0){
+						endturnUI();
+						// Zero out unused moves for player
+						MO_set(this, this.movement - this.currMove);
+					} else if(!this.dead){ MO_set(this, 1); } // else if not dead, updated movement
 				}
 			}
 			if (this.currMove == this.movement){
-				btnEndTurn.addClass('blink');
-				btnSpell.removeClass('blink')
-                                        .button('disable');
-                                btnSelectSpell.button('disable');
+				endturnUI();
 			}
 		} else if (this.currMove == this.movement){
-			btnEndTurn.addClass('blink');
-			btnSpell.removeClass('blink')
-				.button('disable');
-			btnSelectSpell.button('disable');
+			endturnUI();
 		}
 	},
 	killed: function(){
@@ -224,7 +250,7 @@ var Wolfman = Player.extend({
 		["",new hide,"","","",""],
 		[new fangs, new claw, new claw, ""],
 		[new tron],
-		// see hidden characters up to 10 sq away
+		// see hidden characters up to 5 sq away (added)
 		["keenness"], 6, 12);
   	}
 });
@@ -237,7 +263,7 @@ var Lamia = Player.extend({
 		["","","","","",""],
 		[new fangs, new claw, new claw, ""],
 		[],
-		// chance of paralyzing enemy for n turns
+		// chance of paralyzing enemy for n turns (added)
 		["paralyze"], 8, 5);
   	}
 });

@@ -28,7 +28,7 @@ var Character = Class.extend({
 		this.currMove = 0;
 
 		this.wait = true;
-		this.paralyzed = false;
+		this.paralyzed = 0;
 		this.slow = false;
 		this.dead = false;
 		

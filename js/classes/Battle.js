@@ -66,6 +66,20 @@ var Battle = function(att, def){
 							att_dmg += 2;
 						}
 						
+						// Check for paralyze attack
+						if(a1.hasSkill('paralyze')){
+							var paralyze_turns = (Math.floor(Math.random() * 2));
+							var more_txt;
+							if(d1.paralyzed > 0) { more_txt = " more "; } else { more_txt = " "; }
+							d1.paralyzed += paralyze_turns;
+							if(paralyze_turns > 0){
+								var turn_txt;
+								if(paralyze_turns == 1) { turn_txt = "turn"; } else { turn_txt = "turns"; }
+								status_line = '<span class="red">' + a1.name + '\'s attack paralyzes ' + d1.name + ' for ' + paralyze_turns + more_txt + turn_txt +'</span>';
+								Statuss.update(status_line);
+							}
+						}
+						
 						// Check for heroism skill; double dmg on attack, half dmg when defending against boss monster
 						if(World.Level.victory.type == "kill"){
 							if(World.Level.victory.value[0] == d1.name && a1.hasSkill('heroism')){
@@ -123,8 +137,12 @@ var Battle = function(att, def){
 			// If defender killed
 			if(def.HP <= 0){
 				this.doKilled(att, def);
+			} else if(def.paralyzed > 0){
+				// ...else if defender paralyzed
+				status_line = '<span class="red">' + def.name + ' is powerless to counterattack!</span>';
+				Statuss.update(status_line);
 			} else if(!Input.spellOn) {
-				// else do counterattack
+				// else if not a spell attack, do counterattack
 				this.doBattle(def, att);
 				
 				// If attacker killed

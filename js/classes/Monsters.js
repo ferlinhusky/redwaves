@@ -149,7 +149,7 @@ var Monster = Character.extend({
 		}
 	},
 	move: function(){
-		if(this.currMove < this.movement){
+		if(this.currMove < this.movement && this.paralyzed == 0){
 			var i = this.currMove; // readability
 			
 			// Check ranged attack from this location

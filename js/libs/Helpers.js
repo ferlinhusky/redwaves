@@ -2,28 +2,6 @@
 // Helper Functions
 //
 
-/*
-	// Reset game
-	var resetGame = function(){
-		
-		// Clear out object arrays
-		Players = [];
-		Monsters = [];
-		Items = [];
-		Weapons = [];
-		Armors = [];
-		Squares = [];
-		
-		// Clear out the UI
-		$('.m_grid').remove();
-		$('#party .player_row').remove();
-		$('#dialog').dialog('close');
-	
-		// Load the welcome dialog
-		Loadwelcome();
-	}
-*/
-
 // Load up adventure selection
 var Loadwelcome = function(){
     Input.M_Dialog('welcome');
@@ -440,4 +418,11 @@ var buildItemMenu = function(){
 		ItemSet.find('.button').button('disable');
 	}
 	menuSelectItem.menu();
+};
+
+var endturnUI = function(){
+	btnEndTurn.addClass('blink');
+	btnSpell.removeClass('blink')
+		.button('disable');
+	btnSelectSpell.button('disable');
 };

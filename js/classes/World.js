@@ -61,9 +61,9 @@ var World = function(){
 	};
 	
 	this.endturn = function(){
-                // Reset UI bits
-                btnEndTurn.removeClass('blink')
-                    .button('disable');                
+		// Reset UI bits
+		btnEndTurn.removeClass('blink')
+			.button('disable');                
 		btnOpenClose.button('disable');
                 btnPickup.button('disable');
 		btnSpell.removeClass('blink');
@@ -132,62 +132,67 @@ var World = function(){
 			this.currentPlay++;
 			if(this.currentPlay >= this.orderOfPlay.length) { this.currentPlay = 0; }
 			
+			// Remove tooltips; end turn if activePlayer dead - else check paralyzed
+			if($('.' + this.activePlayer.ID).tooltip()){
+				$('.' + this.activePlayer.ID).tooltip('destroy');
+			}
+			if (this.activePlayer.dead == true) {
+				this.endturn();
+				return false;
+			} else if (this.activePlayer.paralyzed > 0){
+				Statuss.update('<span>' + this.activePlayer.name + ' is paralyzed</span>');
+				this.activePlayer.paralyzed--;
+				this.endTurn();
+				return false;
+			}
+			
 			// Need to skip over lost players or remove them from the queue upon .killed()
 			if(this.activePlayer.ofType == "player"){
-				if (this.activePlayer.dead == true) {
-					this.endturn();
-				} else {
-					// (Re)build the item menu
-					buildItemMenu();
-                                        
-                                        // If canine, add dogvision
-                                        if(this.activePlayer.type == "wolfman"){
-                                            $('.m_grid').addClass('dogvision');
-                                        }
-					
-					// Show by-player fog of war
-                                        $('.m_grid td').removeClass('lit visited')
-                                            .addClass('unlit');
-					if(this.activePlayer.map.length > 0){
-                                            $('.m_grid td').each(function(key, value){
-                                                    if(World.activePlayer.map.charAt(key) != "0"){
-                                                        $(this).addClass('visited');
-                                                    }
-                                            });
-					}
-					
-					// Update line of sight / fog of war for doors, etc. that may have been opened
-					getLineOfSight(this.activePlayer.coords);
-					
-					// Show who active player is
-					$('.p.'+this.activePlayer.type).addClass('blink');
-					
-					// Indicate active player
-					centerOn(this.activePlayer);
-					
-					// Turn off player move wait
-					MO_reset(this.activePlayer);
-					this.activePlayer.wait = false;
-					
-					// Activate "end turn" button
-					btnEndTurn.button('enable');
-					
-					// Check for doors, items
-					anyDoors(this.activePlayer.coords);
-                                        anyItems(this.activePlayer.coords);
-					
-					// Check for Wizard
-					if(this.activePlayer.type == "wizard"){ SpellSet.find('.button').button('enable'); }
+				// (Re)build the item menu
+				buildItemMenu();
+									
+				// If canine, add dogvision
+				if(this.activePlayer.type == "wolfman"){
+					$('.m_grid').addClass('dogvision');
+				}
+				
+				// Show by-player fog of war
+				$('.m_grid td').removeClass('lit visited')
+					.addClass('unlit');
+				if(this.activePlayer.map.length > 0){
+					$('.m_grid td').each(function(key, value){
+						if(World.activePlayer.map.charAt(key) != "0"){
+							$(this).addClass('visited');
+						}
+					});
+				}
+				
+				// Update line of sight / fog of war for doors, etc. that may have been opened
+				getLineOfSight(this.activePlayer.coords);
+				
+				// Show who active player is
+				$('.p.'+this.activePlayer.type).addClass('blink');
+				
+				// Indicate active player
+				centerOn(this.activePlayer);
+				
+				// Turn off player move wait
+				MO_reset(this.activePlayer);
+				this.activePlayer.wait = false;
+				
+				// Activate "end turn" button
+				btnEndTurn.button('enable');
+				
+				// Check for doors, items
+				anyDoors(this.activePlayer.coords);
+				anyItems(this.activePlayer.coords);
+				
+				// Check for Wizard
+				if(this.activePlayer.type == "wizard"){
+					SpellSet.find('.button').button('enable');
 				}
 			} else if(this.activePlayer.ofType == "monster"){
-				if($('.' + this.activePlayer.ID).tooltip()){
-					$('.' + this.activePlayer.ID).tooltip('destroy');
-				}
-				if (this.activePlayer.dead == true) {
-					this.endturn();
-				} else {
-					this.activePlayer.doTurn();
-				}
+				 this.activePlayer.doTurn();
 			}
 		}
 	};
