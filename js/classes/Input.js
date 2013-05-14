@@ -382,9 +382,16 @@ var Input = function(){
 			disabled: true,
 			text: false
 		});
+		
 		btnHelp.button({ 
 			icons: {primary:'ui-icon-lightbulb',secondary:''},
 			disabled: false,
+			text: true
+		});
+		
+		btnSave.button({ 
+			icons: {primary:'ui-icon-disk',secondary:''},
+			disabled: true,
 			text: true
 		});
 		
@@ -427,6 +434,7 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
+		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('save');});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
