@@ -373,6 +373,24 @@ var Input = function(){
 				zIndex: 5000
 			});
 		}
+		
+		/*
+				Save Game
+		*/
+		this.saveGame = function(){
+				var savedata = [];
+				for (var i=0; i<Players.length; i++) {
+						var jobj = "{";
+								Players[i].type;
+						jobj += "}";
+						savedata.push(jobj);
+				}
+				$.post('save.php', { saveobj: savedata.toString() }, function(msg) {
+						alert(msg);
+				});
+		}
+		
+		
 	/*
 		Button bindings, etc.
 	*/
@@ -391,7 +409,7 @@ var Input = function(){
 		
 		btnSave.button({ 
 			icons: {primary:'ui-icon-disk',secondary:''},
-			disabled: true,
+			disabled: false,
 			text: true
 		});
 		
@@ -434,7 +452,7 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('save');});
+		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.saveGame();});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
