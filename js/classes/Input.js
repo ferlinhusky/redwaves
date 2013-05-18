@@ -375,19 +375,46 @@ var Input = function(){
 		}
 		
 		/*
-				Save Game
+		    Save Game
 		*/
 		this.saveGame = function(){
-				var savedata = [];
-				for (var i=0; i<Players.length; i++) {
-						var jobj = "{";
-								Players[i].type;
-						jobj += "}";
-						savedata.push(jobj);
-				}
-				$.post('save.php', { saveobj: savedata.toString() }, function(msg) {
-						alert(msg);
-				});
+                    var jsonObj = [];
+                    
+                    for(var j=0; j<Players.length; j++){
+                    
+                        var pwields=[]; var pwears=[]; var pinven=[]; var pspells=[];
+                        
+                        for(var i=0; i < Players[j].wields.length; i++){ pwields.push(Players[j].wields[i].type); }
+                        for(var i=0; i < Players[j].wears.length; i++){ pwears.push(Players[j].wears[i].type); }
+                        for(var i=0; i < Players[j].inven.length; i++){ pinven.push(Players[j].inven[i].type); }
+                        for(var i=0; i < Players[j].spells.length; i++){ pspells.push(Players[j].spells[i].type); }
+                        
+                        jsonObj.push({
+                                    type: Players[j].type,
+                                    gender: Players[j].gender.demo,
+                                    hp: Players[j].maxHP,
+                                    move: Players[j].maxMove,
+                                    skills: Players[j].skills,
+                                    weapons: pwields,
+                                    wears: pwears,
+                                    inven: pinven,
+                                    spells: pspells
+                                }
+                        );
+                    }
+                    
+                    var postData = JSON.stringify(jsonObj);
+                    var postArray = {saveobj:postData};
+                    
+                    $.ajax({
+                        url: 'save.php',
+                        dataType: "json",
+                        data: postArray,
+                        type: 'POST',
+                        success: function(data){
+                            alert(data);
+                        }
+                    })
 		}
 		
 		

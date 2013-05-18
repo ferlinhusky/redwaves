@@ -6,8 +6,8 @@
         3. send 100 char value to email address
     */
 
-    $saveobj = $_GET["saveobj"];
-    $email = $_GET["email"];
+    $saveobj = $_POST["saveobj"];
+    $email = $_POST["email"];
     
     // Validate email address
     /*if(!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -42,5 +42,8 @@
     //$bin = decbin(26);
     //$bin = substr("00000000", 0, 8 - strlen($bin)).$bin;
 
-    echo var_dump(json_decode($saveobj));
+    $json = stripslashes($_POST["saveobj"]);
+    $output = json_decode($json);
+    
+    echo var_dump($output);
 ?>

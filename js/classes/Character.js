@@ -19,6 +19,7 @@ var Character = Class.extend({
 		this.HP		=	HP;
 		this.maxHP	=	HP;
 		this.movement	=	movement;
+		this.maxMove	=	movement;
 		
 		this.readyItem = null;
 		this.spells = [];
