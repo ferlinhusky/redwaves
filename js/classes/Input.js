@@ -408,11 +408,13 @@ var Input = function(){
                     
                     $.ajax({
                         url: 'save.php',
-                        dataType: "json",
                         data: postArray,
                         type: 'POST',
                         success: function(data){
                             alert(data);
+                        },
+                        error: function(xhr, a, b){
+                            alert(a + ": " + b);
                         }
                     })
 		}
