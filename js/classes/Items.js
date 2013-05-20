@@ -80,10 +80,10 @@ var Medicine = Item.extend({
 	});
 	
 		// Phyton
-		var phyton = Painkiller.extend({ init: function(){ this._super("Phyton", "phyton", "herb", 3); } });
+		var phyton = Painkiller.extend({ init: function(){ this._super("Phyton", "phyton", "herb", 3); this.refID=1; } });
 		
 		// Glory
-		var glory = Painkiller.extend({ init: function(){ this._super("Glory", "glory", "herb", 11); } });
+		var glory = Painkiller.extend({ init: function(){ this._super("Glory", "glory", "herb", 11); this.refID=2; } });
 		
 	// Stimulant subclass
 	var Stimulant = Medicine.extend({
@@ -97,9 +97,9 @@ var Medicine = Item.extend({
 	});
 	
 		// Mad Dog
-		var maddog = Stimulant.extend({ init: function(){ this._super("Mad dog", "maddog", "pill"); } });
+		var maddog = Stimulant.extend({ init: function(){ this._super("Mad dog", "maddog", "pill"); this.refID=3; } });
 		
 		// Tron
-		var tron = Stimulant.extend({ init: function(){ this._super("Tron", "tron", "pill"); } });
+		var tron = Stimulant.extend({ init: function(){ this._super("Tron", "tron", "pill"); this.refID=4; } });
 		
 		

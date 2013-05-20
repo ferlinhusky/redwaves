@@ -30,13 +30,16 @@
     array_push($pcl, "n","o","p","q","r","s","t","u","v","w","x","y","z");
     array_push($pcl, "0","1","2","3","4","5","6","7","8","9","_","!");
 
-    $json = stripslashes($_POST["saveobj"]);
-    $output = json_decode($json, true);
+    // Player data
+    $playerdata = stripslashes($_POST["playerdata"]);
+    $playeroutput = json_decode($playerdata, true);
     
     $type = '00000000';
     $gender = '';
-    foreach($output as $p){
-        // Type
+    $level = '';
+    $inven = '';
+    foreach($playeroutput as $p){
+        // Type - 8 bits
         switch($p["type"]){
             case "knight": $type = substr_replace($type, '1', 0, 1);
                 break;
@@ -56,14 +59,43 @@
                 break;
             default: break;
         }
-        // Gender
+        // Gender - 4 bits
         switch($p["gender"]){
             case "male": $gender.="1"; break;
             default: $gender.="0"; break;
         }
+        // Level - 32 bits (4x8)
+        $templevel = decbin($p["level"]);
+        $level.=substr("00000000", 0, 8 - strlen($templevel)).$templevel;
+        
+        // Inventory - 80 bits (4x20)
+        $invenarray = array($p["inven"][0], $p["inven"][1], $p["inven"][2], $p["inven"][3]);
+        foreach($invenarray as $pin){
+            if($pin != NULL){
+                $tempinven = decbin($pin["refID"]);
+                $inven.=substr("000000", 0, 5 - strlen($tempinven)).$tempinven;
+            } else {
+                $inven.='00000';
+            }
+        }
+        
+        // Skill
+        
+        // Armor
+        
+        // HP
+        
+        // Movement
+        
+        // Weapon
+        
     }
     
-    $raw = str_split($type.$gender, 6);
+    // Party items
+    
+    // Meta data
+    
+    $raw = str_split($type.$gender.$level.$inven."00", 6);
     $passcode = '';
     
     foreach($raw as $r){

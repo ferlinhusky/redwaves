@@ -392,6 +392,7 @@ var Input = function(){
                         jsonObj.push({
                                     type: Players[j].type,
                                     gender: Players[j].gender.demo,
+                                    level: Players[j].level,
                                     hp: Players[j].maxHP,
                                     move: Players[j].maxMove,
                                     skills: Players[j].skills,
@@ -404,7 +405,7 @@ var Input = function(){
                     }
                     
                     var postData = JSON.stringify(jsonObj);
-                    var postArray = {saveobj:postData};
+                    var postArray = {playerdata:postData};
                     
                     $.ajax({
                         url: 'save.php',

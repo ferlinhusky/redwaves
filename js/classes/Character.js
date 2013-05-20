@@ -28,6 +28,7 @@ var Character = Class.extend({
 		this.coords = [];
 		this.currMove = 0;
 
+		this.level = 1;
 		this.wait = true;
 		this.paralyzed = 0;
 		this.slow = false;
