@@ -1,6 +1,6 @@
 var Spell = Item.extend({
-	init: function(name, type, supclass, dmg, material, rng, callback){
-		this._super(name, type, "spell", supclass, material); // push up to Item
+	init: function(name, type, supclass, dmg, material, rng, callback, refID){
+		this._super(name, type, "spell", supclass, material, refID); // push up to Item
 		this.dmg = dmg;
 		this.rng = rng;
                 if(callback != undefined){
@@ -21,24 +21,24 @@ var Spell = Item.extend({
 
 // Attack subclass
 var Attack = Spell.extend({
-    init: function(name, type, dmg, material, rng){
+    init: function(name, type, dmg, material, rng, refID){
             this._super(name, type, "attack", dmg, material, rng, function(sobj, ap){
             if(sobj.occupiedBy.ofType == "monster"){
                 var battle = new Battle(ap, sobj.occupiedBy);
                 ap.move();
             }
-        });
+        }, refID);
     }
 });
 
 // Fireball
-var fireball = Attack.extend({ init: function(){ this._super("Fireball", "fireball", 10, "fire", 3); } });
+var fireball = Attack.extend({ init: function(){ this._super("Fireball", "fireball", 10, "fire", 3, 17); } });
 
 // Freeze
-var freeze = Attack.extend({ init: function(){ this._super("Freeze", "freeze", 6, "ice", 5); } });
+var freeze = Attack.extend({ init: function(){ this._super("Freeze", "freeze", 6, "ice", 5, 18); } });
 
 // Lighting
-var lightning = Attack.extend({ init: function(){ this._super("Lightning", "lightning", 4, "energy", 7); } });
+var lightning = Attack.extend({ init: function(){ this._super("Lightning", "lightning", 4, "energy", 7, 19); } });
 
 // Earthquake
 var earthquake = Spell.extend({
@@ -71,6 +71,6 @@ var earthquake = Spell.extend({
 			});
 			Input.handleSpell();
 			ap.move();
-        });
+        }, 20);
     }
 });

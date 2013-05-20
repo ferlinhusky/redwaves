@@ -187,7 +187,7 @@ var Hero = Player.extend({
 		["", new shortsword,"",""],
 		[new phyton],
 		// dlb dmg att/half dmg def against big boss (added)
-		["heroism"], 8, 6); 
+		[new heroism], 8, 6); 
 	}
 });
 
@@ -200,7 +200,7 @@ var Fighter = Player.extend({
 		["", new longsword,"",""],
 		[new phyton],
 		// if 2HP or less, 50% chance of getting back 1HP (added)
-		["tenacity"], 10, 6); 
+		[new tenacity], 10, 6); 
 	}
 });
 
@@ -213,7 +213,7 @@ var Knight = Player.extend({
 		["", new broadsword,"",""],
 		[new glory, new maddog],
 		// +n sword damage (added)
-		["swordsmanship"], 12, 5);
+		[new swordsmanship], 12, 5);
 	}
 });
 
@@ -226,7 +226,7 @@ var Wizard = Player.extend({
 		["", new woodenstaff,"",""],
 		[],
 		// half spell dmg (added)
-		["necromancy"], 4, 6);
+		[new necromancy], 4, 6);
 		
 		this.spells = [
 			new fireball,
@@ -254,7 +254,7 @@ var Wolfman = Player.extend({
 		[new fangs, new claw, new claw, ""],
 		[new tron],
 		// see hidden characters up to 5 sq away (added)
-		["keenness"], 6, 12);
+		[new keenness], 6, 12);
   	}
 });
 
@@ -267,7 +267,7 @@ var Lamia = Player.extend({
 		[new fangs, new claw, new claw, ""],
 		[],
 		// chance of paralyzing enemy for n turns (added)
-		["paralyze"], 8, 5);
+		[new paralyze], 8, 5);
   	}
 });
 
@@ -280,6 +280,6 @@ var Thief = Player.extend({
 		["", new dagger, new dagger,""],
 		[new maddog],
 		// drops from monster target list when out of sight (added)
-		["stealth"], 8, 5);
+		[new stealth], 8, 5);
 	}
 });

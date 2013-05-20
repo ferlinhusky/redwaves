@@ -16,6 +16,11 @@ var Character = Class.extend({
 		
 		this.inven	=	inven; // array // [ item, item, ... ]
 		this.skills	=	skills; // array // [ { name : dmg/rng }, ... ]
+		this.skillnames = [];
+			// Be sure that if skills are updated at any time during a session, that skillnames[] gets updated as well
+			for (var i=0; i<this.skills.length; i++) {
+				this.skillnames.push(this.skills[i].name);
+			}	
 		this.HP		=	HP;
 		this.maxHP	=	HP;
 		this.movement	=	movement;
@@ -77,7 +82,7 @@ var Character = Class.extend({
 		}
 	},
 	hasSkill:  function(s){
-		if($.inArray(s, this.skills) > -1){
+		if($.inArray(s, this.skillnames) > -1){
 			return true;
 		} else { return false; }
 	},

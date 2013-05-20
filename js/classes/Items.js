@@ -1,6 +1,6 @@
 var Items = [];
 var Item = Class.extend({
-	init: function(name, type, ofType, supclass, material){
+	init: function(name, type, ofType, supclass, material, refID){
 		this.is = "item";
 		this.name = name;
 		this.type = type;
@@ -8,6 +8,7 @@ var Item = Class.extend({
 		this.supclass = supclass;
 		this.material = material;
 		this.ID = Items.length;
+		this.refID = refID;
 		Items.push(this);
 	},
 	pickup: function(curr){
@@ -46,8 +47,8 @@ var Item = Class.extend({
 
 // Medicine
 var Medicine = Item.extend({
-	init: function(name, type, supclass, material){
-		this._super(name, type, "medicine", supclass, material); // push up to Item
+	init: function(name, type, supclass, material, refID){
+		this._super(name, type, "medicine", supclass, material, refID); // push up to Item
 	},
 	use: function(){
 		Statuss.update('<b>' + World.activePlayer.name + ' uses ' + this.name + '!</b>');
@@ -69,8 +70,8 @@ var Medicine = Item.extend({
 
 	// Painkiller subclass
 	var Painkiller = Medicine.extend({
-		init: function(name, type, material, heals){
-			this._super(name, type, "painkiller", material);
+		init: function(name, type, material, heals, refID){
+			this._super(name, type, "painkiller", material, refID);
 			this.heals = heals;
 		},
 		use: function(){
@@ -80,15 +81,15 @@ var Medicine = Item.extend({
 	});
 	
 		// Phyton
-		var phyton = Painkiller.extend({ init: function(){ this._super("Phyton", "phyton", "herb", 3); this.refID=1; } });
+		var phyton = Painkiller.extend({ init: function(){ this._super("Phyton", "phyton", "herb", 3, 1); } });
 		
 		// Glory
-		var glory = Painkiller.extend({ init: function(){ this._super("Glory", "glory", "herb", 11); this.refID=2; } });
+		var glory = Painkiller.extend({ init: function(){ this._super("Glory", "glory", "herb", 11, 2); } });
 		
 	// Stimulant subclass
 	var Stimulant = Medicine.extend({
-		init: function(name, type, material){
-			this._super(name, type, "stimulant", material);
+		init: function(name, type, material, refID){
+			this._super(name, type, "stimulant", material, refID);
 		},
 		use: function(){
 			this._super();
@@ -97,9 +98,9 @@ var Medicine = Item.extend({
 	});
 	
 		// Mad Dog
-		var maddog = Stimulant.extend({ init: function(){ this._super("Mad dog", "maddog", "pill"); this.refID=3; } });
+		var maddog = Stimulant.extend({ init: function(){ this._super("Mad dog", "maddog", "pill", 3); } });
 		
 		// Tron
-		var tron = Stimulant.extend({ init: function(){ this._super("Tron", "tron", "pill"); this.refID=4; } });
+		var tron = Stimulant.extend({ init: function(){ this._super("Tron", "tron", "pill", 4); } });
 		
 		

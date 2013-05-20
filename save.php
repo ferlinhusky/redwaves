@@ -38,6 +38,13 @@
     $gender = '';
     $level = '';
     $inven = '';
+    $skills = '';
+    $armor = '';
+    $hp = '';
+    $movement = '';
+    $spells = '';
+    $weapons = '';
+    
     foreach($playeroutput as $p){
         // Type - 8 bits
         switch($p["type"]){
@@ -64,6 +71,7 @@
             case "male": $gender.="1"; break;
             default: $gender.="0"; break;
         }
+        
         // Level - 32 bits (4x8)
         $templevel = decbin($p["level"]);
         $level.=substr("00000000", 0, 8 - strlen($templevel)).$templevel;
@@ -73,29 +81,70 @@
         foreach($invenarray as $pin){
             if($pin != NULL){
                 $tempinven = decbin($pin["refID"]);
-                $inven.=substr("000000", 0, 5 - strlen($tempinven)).$tempinven;
+                $inven.=substr("000000", 0, 6 - strlen($tempinven)).$tempinven;
             } else {
-                $inven.='00000';
+                $inven.='000000';
             }
         }
         
         // Skill
+        $skillarray = array($p["skills"][0], $p["skills"][1], $p["skills"][2], $p["skills"][3]);
+        foreach($skillarray as $psk){
+            if($psk != NULL){
+                $tempskill = decbin($psk["refID"]);
+                $skills.=substr("00000", 0, 5 - strlen($tempskill)).$tempskill;
+            } else {
+                $skills.='00000';
+            }
+        }
         
         // Armor
+        $armorarray = array($p["wears"][0], $p["wears"][1], $p["wears"][2], $p["wears"][3], $p["wears"][4], $p["wears"][5]);
+        foreach($armorarray as $par){
+            if($par != NULL){
+                $temparmor = decbin($par["refID"]);
+                $armor.=substr("000000", 0, 6 - strlen($temparmor)).$temparmor;
+            } else {
+                $armor.='000000';
+            }
+        }
         
         // HP
+        $temphp = decbin($p["hp"]);
+        $hp.=substr("0000000", 0, 7 - strlen($temphp)).$temphp;
         
         // Movement
+        $tempmov = decbin($p["move"]);
+        $movement.=substr("00000", 0, 5 - strlen($tempmov)).$tempmov;
         
-        // Weapon
+        // Spells
+        $spellarray = array($p["spells"][0], $p["spells"][1], $p["spells"][2], $p["spells"][3]);
+        foreach($spellarray as $psp){
+            if($psp != NULL){
+                $tempspell = decbin($psp["refID"]);
+                $spells.=substr("0000", 0, 4 - strlen($tempspell)).$tempspell;
+            } else {
+                $spells.='0000';
+            }
+        }
         
+        // Weapons
+        $wpnarray = array($p["weapons"][0], $p["weapons"][1], $p["weapons"][2], $p["weapons"][3]);
+        foreach($wpnarray as $pwpn){
+            if($pwpn != NULL){
+                $tempwpn = decbin($pwpn["refID"]);
+                $weapons.=substr("000000", 0, 6 - strlen($tempwpn)).$tempwpn;
+            } else {
+                $weapons.='000000';
+            }
+        }
     }
     
     // Party items
     
     // Meta data
     
-    $raw = str_split($type.$gender.$level.$inven."00", 6);
+    $raw = str_split($type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons, 6);
     $passcode = '';
     
     foreach($raw as $r){
