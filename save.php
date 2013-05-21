@@ -128,9 +128,9 @@
         }
     }
     
-    // Party items
+    // WAIT Party items: unequipped inventory items shared
     
-    // Meta data
+    // WAIT Meta data: level completed, gold
     
     // Split full data string into 6 bit strings
     // 572 bytes total...need 576 to be even, hence the random 4 digit binary
