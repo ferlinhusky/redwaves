@@ -15,16 +15,16 @@ var Sword = Weapon.extend({
 });
 
 // Dagger
-var dagger = Sword.extend({ init: function(){ this._super("Dagger", "dagger", "1d3", "steel", false, 21); } });
+var dagger = Sword.extend({ init: function(){ this._super("Dagger", "dagger", "1d3", "steel", false, 1); } });
 
 // Long sword
-var longsword = Sword.extend({ init: function(){ this._super("Long sword", "longsword", "1d6", "steel", false, 22); } });
+var longsword = Sword.extend({ init: function(){ this._super("Long sword", "longsword", "1d6", "steel", false, 2); } });
 
 // Short sword
-var shortsword = Sword.extend({ init: function(){ this._super("Short sword", "shortsword", "1d4", "steel", false, 23); } });
+var shortsword = Sword.extend({ init: function(){ this._super("Short sword", "shortsword", "1d4", "steel", false, 3); } });
 
 // Broad sword
-var broadsword = Sword.extend({ init: function(){ this._super("Broad sword", "broadsword", "1d10", "steel", true, 24); } });
+var broadsword = Sword.extend({ init: function(){ this._super("Broad sword", "broadsword", "1d10", "steel", true, 4); } });
 
 // Staff subclass
 var Staff = Weapon.extend({
@@ -34,7 +34,7 @@ var Staff = Weapon.extend({
 });
 
 // Wooden Staff
-var woodenstaff = Staff.extend({ init: function(){ this._super("Wooden staff", "woodenstaff", "1d2", "wood", 25); } });
+var woodenstaff = Staff.extend({ init: function(){ this._super("Wooden staff", "woodenstaff", "1d2", "wood", 5); } });
 
 
 // Appendage subclass
@@ -45,16 +45,16 @@ var Appendage = Weapon.extend({
 });
 
 // Fangs
-var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d4", "bone", 26); } });
+var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d4", "bone", 6); } });
 
 // Hand
-var hand = Appendage.extend({ init: function(){ this._super("Hand", "hand", "1d1", "flesh", 27); } });
+var hand = Appendage.extend({ init: function(){ this._super("Hand", "hand", "1d1", "flesh", 7); } });
 
 // Claw
-var claw = Appendage.extend({ init: function(){ this._super("Claw", "claw", "1d4", "flesh", 28); } });
+var claw = Appendage.extend({ init: function(){ this._super("Claw", "claw", "1d4", "flesh", 8); } });
 
 // Talons
-var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 29); } });
+var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 9); } });
 
 // Firearm subclass
 var Firearm = Weapon.extend({
@@ -66,13 +66,13 @@ var Firearm = Weapon.extend({
 });
 
 // Crossbow
-var crossbow = Firearm.extend({ init: function(){ this._super("Crossbow", "crossbow", 3, 3, 3, "wood", true, 30); } });
+var crossbow = Firearm.extend({ init: function(){ this._super("Crossbow", "crossbow", 3, 3, 3, "wood", true, 10); } });
 
 // English Longbow
-var englishlongbow = Firearm.extend({ init: function(){ this._super("English longbow", "englishlongbow", 3, 1, 5, "steel", true, 31); } });
+var englishlongbow = Firearm.extend({ init: function(){ this._super("English longbow", "englishlongbow", 3, 1, 5, "steel", true, 11); } });
 
 // Shotgun
-var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", 6, 3, 4, "steel", true, 32); } });
+var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", 6, 3, 4, "steel", true, 12); } });
 
 // Six shooter
-var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "sixshooter", 4, 1, 6, "steel", true, 33); } });
+var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "sixshooter", 4, 1, 6, "steel", true, 13); } });

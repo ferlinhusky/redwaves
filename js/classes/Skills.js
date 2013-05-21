@@ -6,22 +6,22 @@ var Skill = Class.extend({
 });
 
 // Heroism
-var heroism = Skill.extend({ init: function(){ this._super("heroism", 34); } });
+var heroism = Skill.extend({ init: function(){ this._super("heroism", 1); } });
 
 // Tenacity
-var tenacity = Skill.extend({ init: function(){ this._super("tenacity", 35); } });
+var tenacity = Skill.extend({ init: function(){ this._super("tenacity", 2); } });
 
 // Swordsmanship
-var swordsmanship = Skill.extend({ init: function(){ this._super("swordsmanship", 36); } });
+var swordsmanship = Skill.extend({ init: function(){ this._super("swordsmanship", 3); } });
 
 // Necromancy
-var necromancy = Skill.extend({ init: function(){ this._super("necromancy", 37); } });
+var necromancy = Skill.extend({ init: function(){ this._super("necromancy", 4); } });
 
 // Keenness
-var keenness = Skill.extend({ init: function(){ this._super("keenness", 38); } });
+var keenness = Skill.extend({ init: function(){ this._super("keenness", 5); } });
 
 // Paralyze
-var paralyze = Skill.extend({ init: function(){ this._super("paralyze", 39); } });
+var paralyze = Skill.extend({ init: function(){ this._super("paralyze", 6); } });
 
 // Stealth
-var stealth = Skill.extend({ init: function(){ this._super("stealth", 40); } });
+var stealth = Skill.extend({ init: function(){ this._super("stealth", 7); } });

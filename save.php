@@ -10,19 +10,17 @@
     $email = $_POST["email"];
     
     /*
-        Skills          0000
-        Spells          0000
-        Inventory item  00000
-        Weapons         000000
-        Armor           000000
-        Store item      000000
-        Level Complete  000000
-        Movement        000000
-        HP              0000000
+        Players 00000000
+        Gender  0000
+        Level   00000000
+        Item    000000
+        Skill   00000
+        Armor   000000
+        HP      0000000
+        Move    00000
+        Spells  0000
+        Weapons 000000
     */
-    
-    //$bin = decbin(26);
-    //$bin = substr("00000000", 0, 8 - strlen($bin)).$bin;
     
     $pcl = array("A","B","C","D","E","F","G","H","I","J","K","L","M");
     array_push($pcl, "N","O","P","Q","R","S","T","U","V","V","W","X","Y","Z");
@@ -76,7 +74,7 @@
         $templevel = decbin($p["level"]);
         $level.=substr("00000000", 0, 8 - strlen($templevel)).$templevel;
         
-        // Inventory - 80 bits (4x20)
+        // Inventory - 96 bits (4x24)
         $invenarray = array($p["inven"][0], $p["inven"][1], $p["inven"][2], $p["inven"][3]);
         foreach($invenarray as $pin){
             if($pin != NULL){
@@ -87,7 +85,7 @@
             }
         }
         
-        // Skill
+        // Skill - 80 bits (4x20)
         $skillarray = array($p["skills"][0], $p["skills"][1], $p["skills"][2], $p["skills"][3]);
         foreach($skillarray as $psk){
             if($psk != NULL){
@@ -98,7 +96,7 @@
             }
         }
         
-        // Armor
+        // Armor - 144 bits (4x36)
         $armorarray = array($p["wears"][0], $p["wears"][1], $p["wears"][2], $p["wears"][3], $p["wears"][4], $p["wears"][5]);
         foreach($armorarray as $par){
             if($par != NULL){
@@ -109,15 +107,15 @@
             }
         }
         
-        // HP
+        // HP - 28 bits (4x7)
         $temphp = decbin($p["hp"]);
         $hp.=substr("0000000", 0, 7 - strlen($temphp)).$temphp;
         
-        // Movement
+        // Movement - 20 bits (4x5)
         $tempmov = decbin($p["move"]);
         $movement.=substr("00000", 0, 5 - strlen($tempmov)).$tempmov;
         
-        // Spells
+        // Spells - 64 bits (4x16)
         $spellarray = array($p["spells"][0], $p["spells"][1], $p["spells"][2], $p["spells"][3]);
         foreach($spellarray as $psp){
             if($psp != NULL){
@@ -128,7 +126,7 @@
             }
         }
         
-        // Weapons
+        // Weapons - 96 bits (4x24)
         $wpnarray = array($p["weapons"][0], $p["weapons"][1], $p["weapons"][2], $p["weapons"][3]);
         foreach($wpnarray as $pwpn){
             if($pwpn != NULL){
@@ -144,16 +142,45 @@
     
     // Meta data
     
-    $raw = str_split($type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons, 6);
+    // Split full data string into 6 bit strings
+    // 572 bytes total...need 576 to be even, hence the random 4 digit binary
+    // Don't forget to lop it off when reading back in
+    $rand = rand(0, 15);
+    $randbin = decbin($rand);
+    $randbinfmt = substr("0000", 0, 4 - strlen($randbin)).$randbin;
+    
+    $binarydata = $randbinfmt.$type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons;
+    $raw = str_split($binarydata, 6);
     $passcode = '';
     
+    // Convert binary strings into passcode value
     foreach($raw as $r){
         $passcode.=$pcl[bindec($r)];
     }
     
-    echo $passcode;
+    // Convert repeating "A"s (blocks of 000000) into blanks followed by the count of consecutive "A"s
+    $passcodefmt='';
+    $passcodechars = str_split($passcode);
+    $acount = 0;
+    for($i=0; $i<count($passcodechars); $i++){
+        if($passcodechars[$i]=="A"){
+            $acount++;
+            if($i == count($passcodechars)-1){
+                // If last char is "A", do final concat
+                $passcodefmt.=" ".$pcl[$acount];
+            }
+        } else {
+            if($acount>0){
+                $passcodefmt.=" ".$pcl[$acount]; // append a blank to indicate series of "A" + "A" count for that block
+                $acount=0; // reset "A" count
+            }
+            $passcodefmt.=$passcodechars[$i];
+        }
+    }
     
-       // Validate email address
+    echo $passcodefmt;
+    
+    // Validate email address
     /*if(!filter_var($email, FILTER_VALIDATE_EMAIL))
     {
         echo $email." is not a valid address.";

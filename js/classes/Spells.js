@@ -32,13 +32,13 @@ var Attack = Spell.extend({
 });
 
 // Fireball
-var fireball = Attack.extend({ init: function(){ this._super("Fireball", "fireball", 10, "fire", 3, 17); } });
+var fireball = Attack.extend({ init: function(){ this._super("Fireball", "fireball", 10, "fire", 3, 1); } });
 
 // Freeze
-var freeze = Attack.extend({ init: function(){ this._super("Freeze", "freeze", 6, "ice", 5, 18); } });
+var freeze = Attack.extend({ init: function(){ this._super("Freeze", "freeze", 6, "ice", 5, 2); } });
 
 // Lighting
-var lightning = Attack.extend({ init: function(){ this._super("Lightning", "lightning", 4, "energy", 7, 19); } });
+var lightning = Attack.extend({ init: function(){ this._super("Lightning", "lightning", 4, "energy", 7, 3); } });
 
 // Earthquake
 var earthquake = Spell.extend({
@@ -71,6 +71,6 @@ var earthquake = Spell.extend({
 			});
 			Input.handleSpell();
 			ap.move();
-        }, 20);
+        }, 4);
     }
 });

@@ -14,19 +14,19 @@ var Helmet = Armor.extend({
 });
 
 // Leather helm
-var leatherhelm = Helmet.extend({ init: function(){ this._super("Leather helm", "leatherhelm", "leather", -1, 5); } });
+var leatherhelm = Helmet.extend({ init: function(){ this._super("Leather helm", "leatherhelm", "leather", -1, 1); } });
 
 // Kettle hat w/ chain coif
-var coifandkettle = Helmet.extend({ init: function(){ this._super("Coif and Kettle", "coifandkettle", "steel", -2, 6); } });
+var coifandkettle = Helmet.extend({ init: function(){ this._super("Coif and Kettle", "coifandkettle", "steel", -2, 2); } });
 
 // Barbute
-var barbute = Helmet.extend({ init: function(){ this._super("Barbute", "barbute", "steel", -3, 7); } });
+var barbute = Helmet.extend({ init: function(){ this._super("Barbute", "barbute", "steel", -3, 3); } });
 
 // Close helmet
-var closehelmet = Helmet.extend({ init: function(){ this._super("Close helmet", "closehelmet", "steel", -4, 8); } });
+var closehelmet = Helmet.extend({ init: function(){ this._super("Close helmet", "closehelmet", "steel", -4, 4); } });
 
 // Cowboy hat
-var cowboyhat = Helmet.extend({ init: function(){ this._super("Cowboy hat", "cowboyhat", "felt", -1, 9); } });
+var cowboyhat = Helmet.extend({ init: function(){ this._super("Cowboy hat", "cowboyhat", "felt", -1, 5); } });
 
 // Body armor subclass
 var BodyArmor = Armor.extend({
@@ -36,22 +36,22 @@ var BodyArmor = Armor.extend({
 });
 
 // Hide
-var hide = BodyArmor.extend({ init: function(){ this._super("Hide", "hide", "hide", -2, 10); } });
+var hide = BodyArmor.extend({ init: function(){ this._super("Hide", "hide", "hide", -2, 6); } });
 
 // Leather tunic
-var leathertunic = BodyArmor.extend({ init: function(){ this._super("Leather tunic", "leathertunic", "hide", -2, 11); } });
+var leathertunic = BodyArmor.extend({ init: function(){ this._super("Leather tunic", "leathertunic", "hide", -2, 7); } });
 
 // Scale
-var robe = BodyArmor.extend({ init: function(){ this._super("Robe", "robe", "cloth", -1, 12); } });
+var robe = BodyArmor.extend({ init: function(){ this._super("Robe", "robe", "cloth", -1, 8); } });
 
 // Scale
-var scale = BodyArmor.extend({ init: function(){ this._super("Scale", "scale", "leather", -2, 13); } });
+var scale = BodyArmor.extend({ init: function(){ this._super("Scale", "scale", "leather", -2, 9); } });
 
 // Chain-mail
-var chainmail = BodyArmor.extend({ init: function(){ this._super("Chain-mail", "chainmail", "iron", -4, 14); } });
+var chainmail = BodyArmor.extend({ init: function(){ this._super("Chain-mail", "chainmail", "iron", -4, 10); } });
 
 // Brigandine
-var brigandine = BodyArmor.extend({ init: function(){ this._super("Brigandine", "brigandine", "iron", -5, 15); } });
+var brigandine = BodyArmor.extend({ init: function(){ this._super("Brigandine", "brigandine", "iron", -5, 11); } });
 
 // Plate
-var plate = BodyArmor.extend({ init: function(){ this._super("Plate", "plate", "steel", -7, 16); } });
+var plate = BodyArmor.extend({ init: function(){ this._super("Plate", "plate", "steel", -7, 12); } });
