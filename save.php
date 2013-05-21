@@ -1,14 +1,4 @@
-<?php
-
-    /*
-        1. receive Player objects (JSON) and email address from app
-        2. convert data to password
-        3. send 100 char value to email address
-    */
-
-    $saveobj = $_POST["saveobj"];
-    $email = $_POST["email"];
-    
+<?php    
     /*
         Players 00000000
         Gender  0000
@@ -181,20 +171,23 @@
     echo $passcodefmt;
     
     // Validate email address
-    /*if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-    {
-        echo $email." is not a valid address.";
-    }
-    else
-    {
-        $to = $email;
-        $subject = "Over red waves of sand > Saved Game > ".date("Y-m-d");
-        $message = $hash;
-        $from = "orwos@artsick.com";
-        
-        $headers = "From:" . $from;
-        mail($to,$subject,$message,$headers);
-        
-        echo "Save has been sent to ".$email;
-    }*/
+    /*
+        $email = $_POST["email"];
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            echo $email." is not a valid address.";
+        }
+        else
+        {
+            $to = $email;
+            $subject = "Over red waves of sand > Saved Game > ".date("Y-m-d");
+            $message = $passcodefmt;
+            $from = "orwos@artsick.com";
+            
+            $headers = "From:" . $from;
+            mail($to,$subject,$message,$headers);
+            
+            echo "Save has been sent to ".$email;
+        }
+    */
 ?>
