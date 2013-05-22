@@ -22,7 +22,7 @@
     $playerdata = stripslashes($_POST["playerdata"]);
     $playeroutput = json_decode($playerdata, true);
     
-    $type = '00000000';
+    $type = '';
     $gender = '';
     $level = '';
     $inven = '';
@@ -34,23 +34,23 @@
     $weapons = '';
     
     foreach($playeroutput as $p){
-        // Type - 8 bits
+        // Type - 12 bits
         switch($p["type"]){
-            case "knight": $type = substr_replace($type, '1', 0, 1);
+            case "knight": $type.="0000";
                 break;
-            case "wizard": $type = substr_replace($type, '1', 1, 1);
+            case "wizard": $type.="0001";
                 break;
-            case "fighter": $type = substr_replace($type, '1', 2, 1);
+            case "fighter": $type.="0010";
                 break;
-            case "wolfman": $type = substr_replace($type, '1', 3, 1);
+            case "wolfman": $type.="0011";
                 break;
-            case "lamia": $type = substr_replace($type, '1', 4, 1);
+            case "lamia": $type.="0100";
                 break;
-            case "thief": $type = substr_replace($type, '1', 5, 1);
+            case "thief": $type.="0101";
                 break;
-            case "emperor": $type = substr_replace($type, '1', 6, 1);
+            case "emperor": $type.="0110";
                 break;
-            case "automoton": $type = substr_replace($type, '1', 7, 1);
+            case "automoton": $type.="0111";
                 break;
             default: break;
         }
@@ -132,14 +132,15 @@
     
     // WAIT Meta data: level completed, gold
     
-    // Split full data string into 6 bit strings
-    // 572 bytes total...need 576 to be even, hence the random 4 digit binary
-    // Don't forget to lop it off when reading back in
-    $rand = rand(0, 15);
-    $randbin = decbin($rand);
-    $randbinfmt = substr("0000", 0, 4 - strlen($randbin)).$randbin;
+    // Split full data string into 6 bit strings - 576 bits total
     
-    $binarydata = $randbinfmt.$type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons;
+        /*  For non-divisible by 6 bits, add a random bit to the end
+            $rand = rand(0, 15);
+            $randbin = decbin($rand);
+            $randbinfmt = substr("000", 0, 3 - strlen($randbin)).$randbin;
+        */
+    
+    $binarydata = $type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons;
     $raw = str_split($binarydata, 6);
     $passcode = '';
     
