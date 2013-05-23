@@ -384,10 +384,10 @@ var Input = function(){
                     
                         var pwields=[]; var pwears=[]; var pinven=[]; var pspells=[];
                         
-                        for(var i=0; i < Players[j].wields.length; i++){ pwields.push(Players[j].wields[i].type); }
-                        for(var i=0; i < Players[j].wears.length; i++){ pwears.push(Players[j].wears[i].type); }
-                        for(var i=0; i < Players[j].inven.length; i++){ pinven.push(Players[j].inven[i].type); }
-                        for(var i=0; i < Players[j].spells.length; i++){ pspells.push(Players[j].spells[i].type); }
+                        for(var i=0; i < Players[j].wields.length; i++){ pwields.push(Players[j].wields[i]); }
+                        for(var i=0; i < Players[j].wears.length; i++){ pwears.push(Players[j].wears[i]); }
+                        for(var i=0; i < Players[j].inven.length; i++){ pinven.push(Players[j].inven[i]); }
+                        for(var i=0; i < Players[j].spells.length; i++){ pspells.push(Players[j].spells[i]); }
                         
                         jsonObj.push({
                                     type: Players[j].type,
