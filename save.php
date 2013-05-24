@@ -20,7 +20,7 @@
 
     // Player data
     $playerdata = stripslashes($_POST["playerdata"]);
-    $playeroutput = json_decode($playerdata, true);
+    $playeroutput = json_decode($playerdata);
     
     $type = '';
     $gender = '';
@@ -33,9 +33,9 @@
     $spells = '';
     $weapons = '';
     
-    foreach($playeroutput as $p){
+    foreach($playeroutput->players as $p){
         // Type - 12 bits
-        switch($p["type"]){
+        switch($p->type){
             case "knight": $type.="0000"; break;
             case "wizard": $type.="0001"; break;
             case "fighter": $type.="0010"; break;
@@ -47,20 +47,20 @@
             default: break;
         }
         // Gender - 4 bits
-        switch($p["gender"]){
+        switch($p->gender){
             case "male": $gender.="1"; break;
             default: $gender.="0"; break;
         }
         
         // Level - 32 bits (4x8)
-        $templevel = decbin($p["level"]);
+        $templevel = decbin($p->level);
         $level.=substr("00000000", 0, 8 - strlen($templevel)).$templevel;
         
         // Inventory - 96 bits (4x24)
-        $invenarray = array($p["inven"][0], $p["inven"][1], $p["inven"][2], $p["inven"][3]);
+        $invenarray = array($p->inven[0], $p->inven[1], $p->inven[2], $p->inven[3]);
         foreach($invenarray as $pin){
             if($pin != NULL){
-                $tempinven = decbin($pin["refID"]);
+                $tempinven = decbin($pin->refID);
                 $inven.=substr("000000", 0, 6 - strlen($tempinven)).$tempinven;
             } else {
                 $inven.='000000';
@@ -68,10 +68,10 @@
         }
         
         // Skill - 80 bits (4x20)
-        $skillarray = array($p["skills"][0], $p["skills"][1], $p["skills"][2], $p["skills"][3]);
+        $skillarray = array($p->skills[0], $p->skills[1], $p->skills[2], $p->skills[3]);
         foreach($skillarray as $psk){
             if($psk != NULL){
-                $tempskill = decbin($psk["refID"]);
+                $tempskill = decbin($psk->refID);
                 $skills.=substr("00000", 0, 5 - strlen($tempskill)).$tempskill;
             } else {
                 $skills.='00000';
@@ -79,10 +79,10 @@
         }
         
         // Armor - 144 bits (4x36)
-        $armorarray = array($p["wears"][0], $p["wears"][1], $p["wears"][2], $p["wears"][3], $p["wears"][4], $p["wears"][5]);
+        $armorarray = array($p->wears[0], $p->wears[1], $p->wears[2], $p->wears[3], $p->wears[4], $p->wears[5]);
         foreach($armorarray as $par){
             if($par != NULL){
-                $temparmor = decbin($par["refID"]);
+                $temparmor = decbin($par->refID);
                 $armor.=substr("000000", 0, 6 - strlen($temparmor)).$temparmor;
             } else {
                 $armor.='000000';
@@ -90,18 +90,18 @@
         }
         
         // HP - 28 bits (4x7)
-        $temphp = decbin($p["hp"]);
+        $temphp = decbin($p->hp);
         $hp.=substr("0000000", 0, 7 - strlen($temphp)).$temphp;
         
         // Movement - 20 bits (4x5)
-        $tempmov = decbin($p["move"]);
+        $tempmov = decbin($p->move);
         $movement.=substr("00000", 0, 5 - strlen($tempmov)).$tempmov;
         
         // Spells - 64 bits (4x16)
-        $spellarray = array($p["spells"][0], $p["spells"][1], $p["spells"][2], $p["spells"][3]);
+        $spellarray = array($p->spells[0], $p->spells[1], $p->spells[2], $p->spells[3]);
         foreach($spellarray as $psp){
             if($psp != NULL){
-                $tempspell = decbin($psp["refID"]);
+                $tempspell = decbin($psp->refID);
                 $spells.=substr("0000", 0, 4 - strlen($tempspell)).$tempspell;
             } else {
                 $spells.='0000';
@@ -109,10 +109,10 @@
         }
         
         // Weapons - 96 bits (4x24)
-        $wpnarray = array($p["weapons"][0], $p["weapons"][1], $p["weapons"][2], $p["weapons"][3]);
+        $wpnarray = array($p->weapons[0], $p->weapons[1], $p->weapons[2], $p->weapons[3]);
         foreach($wpnarray as $pwpn){
             if($pwpn != NULL){
-                $tempwpn = decbin($pwpn["refID"]);
+                $tempwpn = decbin($pwpn->refID);
                 $weapons.=substr("000000", 0, 6 - strlen($tempwpn)).$tempwpn;
             } else {
                 $weapons.='000000';
@@ -121,8 +121,11 @@
     }
     
     // WAIT Party items: unequipped inventory items shared
+    $store=$playeroutput->store;
     
     // WAIT Meta data: level completed, gold
+    $levelcomplete=$playeroutput->levelcomplete;
+    $gold=$playeroutput->gold;
     
     // Split full data string into 6 bit strings - 576 bits total
     

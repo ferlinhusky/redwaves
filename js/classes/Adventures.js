@@ -3,6 +3,7 @@
 */
 
 var Tutorial = function(){
+    this.refID = 1;
     this.title = "Die! Said the Basilisk";
     this.type = "Tutorial";
     this.map = "tutorial_map.txt";
@@ -10,7 +11,7 @@ var Tutorial = function(){
 		"height": 30,
 		"width": 40,
 		"items": {
-		    "tron_1": [30, 7]  
+		    "tron_1": [30, 7]
 		},
 		"monsters": {
 			"Basilisk_1": [15, 9],
@@ -63,6 +64,7 @@ var Tutorial = function(){
 };
 
 var Monastery = function(){
+    this.refID = 2;
     this.title = "Kill, Shaolin Beatniks! Kill!";
     this.type = "Monastery";
     this.map = "monastery_map.txt";

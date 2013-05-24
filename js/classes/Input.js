@@ -378,7 +378,8 @@ var Input = function(){
 		    Save Game
 		*/
 		this.saveGame = function(){
-                    var jsonObj = [];
+                    var jsonObj = {};
+                    var jsonPlayers = [];
                     
                     for(var j=0; j<Players.length; j++){
                     
@@ -389,7 +390,7 @@ var Input = function(){
                         for(var i=0; i < Players[j].inven.length; i++){ pinven.push(Players[j].inven[i]); }
                         for(var i=0; i < Players[j].spells.length; i++){ pspells.push(Players[j].spells[i]); }
                         
-                        jsonObj.push({
+                        jsonPlayers.push({
                                     type: Players[j].type,
                                     gender: Players[j].gender.demo,
                                     level: Players[j].level,
@@ -403,6 +404,11 @@ var Input = function(){
                                 }
                         );
                     }
+                    
+                    jsonObj.players = jsonPlayers;
+                    jsonObj.levelcomplete = 1;
+                    jsonObj.gold = 500;
+                    jsonObj.store = ['','','','','',''];
                     
                     var postData = JSON.stringify(jsonObj);
                     var postArray = {playerdata:postData};
