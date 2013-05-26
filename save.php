@@ -32,6 +32,9 @@
     $movement = '';
     $spells = '';
     $weapons = '';
+    $store = '';
+    $gold = '';
+    $levelcomplete = '';
     
     foreach($playeroutput->players as $p){
         // Type - 12 bits
@@ -120,14 +123,25 @@
         }
     }
     
-    // WAIT Party items: unequipped inventory items shared
-    $store=$playeroutput->store;
+    // Store (shared) items - 36 bits
+    foreach($playeroutput->store as $sitem){
+        if($sitem != NULL){
+            $tempitem = decbin($sitem->refID);
+            $store.=substr("000000", 0, 6 - strlen($tempitem)).$tempitem;
+        } else {
+            $store.='000000';
+        }
+    }
     
-    // WAIT Meta data: level completed, gold
-    $levelcomplete=$playeroutput->levelcomplete;
-    $gold=$playeroutput->gold;
+    // Level completed - 6 bits
+    $templevelcomplete = decbin($playeroutput->levelcomplete);
+    $levelcomplete = substr("000000", 0, 6 - strlen($templevelcomplete)).$templevelcomplete;
     
-    // Split full data string into 6 bit strings - 576 bits total
+    // Gold - 12 bits
+    $tempgold = decbin($playeroutput->gold);
+    $gold = substr("000000000000", 0, 12 - strlen($tempgold)).$tempgold;
+    
+    // Split full data string into 6 bit strings - 630 bits total
     
         /*  For non-divisible by 6 bits, add a random bit to the end
             $rand = rand(0, 15);
@@ -135,7 +149,7 @@
             $randbinfmt = substr("000", 0, 3 - strlen($randbin)).$randbin;
         */
     
-    $binarydata = $type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons;
+    $binarydata = $type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons.$store.$gold.$levelcomplete;
     $raw = str_split($binarydata, 6);
     $passcode = '';
     

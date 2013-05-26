@@ -1,4 +1,11 @@
 <?php
+    class GameData {
+        public $players=array();
+        public $gold='';
+        public $levelcomplete='';
+        public $store=array();
+    }
+    
     class Player {
         public $type='';
         public $gender='';
@@ -46,7 +53,7 @@
     }
     
     // If block isn't exactly 576 chars, return error
-    if(strlen($pcodebinarystr) != 576){
+    if(strlen($pcodebinarystr) != 630){
         echo json_encode(array("error"=>"Passcode not valid"));
     } else {
         // Split the rest into usable blocks
@@ -61,6 +68,9 @@
             396-415 Max Movement
             416-479 Spells
             480-575 Weapons
+            576-611 Store
+            612-623 Gold
+            624-629 Level Complete
         */
         $pcw = $pcodebinarystr;
         
@@ -81,8 +91,12 @@
             $pmaxmove = str_split($maxmove, 5);
         $spells = substr($pcw, 416, 64);
             $pspells = str_split($spells, 16);
-        $weapons = substr($pcw, 480);
+        $weapons = substr($pcw, 480, 96);
             $pweapons = str_split($weapons, 24);
+        $store = substr($pcw, 576, 36);
+            $pstore = str_split($store, 6);
+        $gold = bindec(substr($pcw, 612, 12));
+        $levelcomplete = bindec(substr($pcw, 624));
         
         // Create Players array
         $Players = array();
@@ -166,7 +180,18 @@
             array_push($Players, $player);
         }
         
+        // Store - 6x000000
+        $mystore = array();
+        for($j=0; $j<6; $j++){
+            array_push($mystore, bindec($pstore[$j]));
+        }
+        
         // Return JSON data
-        echo json_encode($Players); 
+        $Gamedata = new GameData();
+        $Gamedata->players = $Players;
+        $Gamedata->gold = $gold;
+        $Gamedata->levelcomplete = $levelcomplete;
+        $Gamedata->store = $mystore;
+        echo json_encode($Gamedata); 
     }
 ?>

@@ -408,7 +408,7 @@ var Input = function(){
                     jsonObj.players = jsonPlayers;
                     jsonObj.levelcomplete = 1;
                     jsonObj.gold = 500;
-                    jsonObj.store = ['','','','','',''];
+                    jsonObj.store = [0,0,0,0,0,0];
                     
                     var postData = JSON.stringify(jsonObj);
                     var postArray = {playerdata:postData};
