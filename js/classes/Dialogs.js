@@ -30,7 +30,7 @@ var D_Welcome = {
 			Loadselectteam();
 		}
 	},
-	height:300
+	height:325
 }
 
 var D_Select_Team = {
@@ -49,7 +49,7 @@ var D_Select_Team = {
 			World.build();
 		}
 	},
-	height:300
+	height:325
 }
 
 var D_Help = {

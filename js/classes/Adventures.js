@@ -56,7 +56,7 @@ var Tutorial = function(){
 	the Basilisk. Unfortunately when you step into the TIME PORTAL\
 	science turns the gold into lead. Fortunately you can spend lead\
 	just as easily as gold in the game armory. Unfortunately there is\
-	no armory in this game. Better luck next time!</p>",
+	no armory at this time. Better luck next time!</p>",
 	"lose": "<p><b>YOU LOSE!</b></p><p>They say virtue is its own reward. Even if it wasn't\
 	it wouldn't matter because all of your characters are super dead.</p>"
     };

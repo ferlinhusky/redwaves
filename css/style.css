@@ -368,6 +368,10 @@ h3{
 	color: #666;
 }
 .dialog_content { display: none; }
+#passcode {
+    background-color: magenta;
+    color: #fff;
+}
 
 /* Map container */
 #map_container_cell {

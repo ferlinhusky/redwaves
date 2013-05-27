@@ -418,7 +418,7 @@ var Input = function(){
                         data: postArray,
                         type: 'POST',
                         success: function(data){
-                            alert(data);
+                            $('#passcode').text(data);
                         },
                         error: function(xhr, a, b){
                             alert(a + ": " + b);
@@ -488,13 +488,13 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.saveGame();});
+		btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
-        btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
+                btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons

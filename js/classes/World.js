@@ -15,7 +15,7 @@ var World = function(){
 		// Build map
         this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
         Map.init(this.Level);
-        Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 300);
+        Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 325);
 	};
 	
 	this.doorderofplay = function(){
@@ -36,8 +36,9 @@ var World = function(){
 	};
         
 	this.endgame = function(wl){
+                var passcode = "<p><b>Passcode</b><br/><span id='passcode'></span></p>";
 		this.gameover = true;
-		Input.M_Dialog("standard", wl, this.Level.title, {
+		Input.M_Dialog("standard", wl + passcode, this.Level.title, {
 			"OK": function(){
 				// Clear out object arrays
 				Players = [];
@@ -57,13 +58,16 @@ var World = function(){
 				// Load the welcome dialog
 				Loadwelcome();
 			}
-		}, 300);
+		}, 325);
+                
+                // Get passcode
+                Input.saveGame();
 	};
 	
 	this.endturn = function(){
 		// Reset UI bits
 		btnEndTurn.removeClass('blink')
-			.button('disable');                
+		    .button('disable');                
 		btnOpenClose.button('disable');
                 btnPickup.button('disable');
 		btnSpell.removeClass('blink');

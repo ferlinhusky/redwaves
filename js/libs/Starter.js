@@ -69,7 +69,7 @@ var ButtonContainer = $('#button_container');
     // Add buttons to container
     ButtonContainer.append('<div id="btn_opts" class="button action">Options</div>');
     ButtonContainer.append('<div id="btn_help" class="button action">Help</div>');
-    ButtonContainer.append('<div id="btn_save" class="button action">Save</div>');
+    ButtonContainer.append('<div id="btn_save" class="button action">(Test)</div>');
     ButtonContainer.append('<div id="btn_open_close" class="button action">Door</div>');
     ButtonContainer.append('<div id="btn_pickup" class="button action">Pick up</div>');
     ButtonContainer.append('<div id="spellset" class="button"></div>');
