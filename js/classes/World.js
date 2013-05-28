@@ -36,10 +36,10 @@ var World = function(){
 	};
         
 	this.endgame = function(wl){
-                var passcode = "<p><b>Passcode</b><br/><span id='passcode'></span></p>";
+        var passcode = "<p><b>Passcode</b><br/><span id='passcode'></span></p><p><b>Email</b> <span id='emailpasscoderesponse'></span><br/><input type='text' name='emailpasscode' id='emailpasscode'/></p>";
 		this.gameover = true;
 		Input.M_Dialog("standard", wl + passcode, this.Level.title, {
-			"OK": function(){
+			"Play on": function(){
 				// Clear out object arrays
 				Players = [];
 				Monsters = [];
@@ -57,6 +57,27 @@ var World = function(){
 			
 				// Load the welcome dialog
 				Loadwelcome();
+			},
+			"Email passcode": function(){
+				$('#emailpasscoderesponse').css('color', '#333');
+				$('#emailpasscoderesponse').text('Attempting to send...');
+				$.ajax({
+					url: 'email.php?passcode='+ $('#passcode').text() +'&email='+$("#emailpasscode").val(),
+					type: 'POST',
+					success: function(data){
+						if (data != "Success") {
+							$('#emailpasscoderesponse').css('color', 'red');
+						} else {
+							$('#emailpasscoderesponse').css('color', 'green');
+						}
+						
+						$('#emailpasscoderesponse').text(data);
+					},
+					error: function(){
+						$('#emailpasscoderesponse').css('color', 'red');
+						$('#emailpasscoderesponse').text('Unknown error. Sorry :(');
+					}
+				})
 			}
 		}, 325);
                 

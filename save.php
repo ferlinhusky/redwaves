@@ -179,25 +179,4 @@
     }
     
     echo $passcodefmt;
-    
-    // Validate email address
-    /*
-        $email = $_POST["email"];
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-        {
-            echo $email." is not a valid address.";
-        }
-        else
-        {
-            $to = $email;
-            $subject = "Over red waves of sand > Saved Game > ".date("Y-m-d");
-            $message = $passcodefmt;
-            $from = "orwos@artsick.com";
-            
-            $headers = "From:" . $from;
-            mail($to,$subject,$message,$headers);
-            
-            echo "Save has been sent to ".$email;
-        }
-    */
 ?>
