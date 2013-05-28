@@ -426,6 +426,13 @@ var Input = function(){
                     })
 		}
 		
+		/*
+				Load Game
+		*/
+		this.loadgame = function(data){
+				// Convert JSON (data) to game data, update UI accordingly
+		}
+		
 		
 	/*
 		Button bindings, etc.
@@ -488,7 +495,7 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win); });
+		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.loadgame(); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});

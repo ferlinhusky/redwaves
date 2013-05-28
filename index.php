@@ -34,14 +34,10 @@
     <div class="dialog_content" id="dialog_welcome">
     	<p>
             <i>
-                In all four directions<br/>
-                my fortune it grows<br/>
-                but over red waves of sand<br/>
-                the wind never blows<br/>
-                white sand at dusk<br/>
-                turns orange before black<br/>
-                over red waves of sand<br/>
-                I will not come back
+                In all four directions my fortune it grows,<br/>
+                but over red waves of sand the wind never blows,<br/>
+                white sand at dusk turns orange before black,<br/>
+                over red waves of sand I will not come back.
             </i>
         </p>
         <select id="pick_a_map"></select>
@@ -88,6 +84,9 @@
             <a href="mailto:kingmountain@gmail.com">kingmountain@gmail.com</a>
         </p>
     </div>
+	<script>
+		var passcode = "<?php echo $_GET["passcode"]; ?>";
+	</script>
     
 	<!--! end of #container -->
 	<script src="js/classes.js"></script>

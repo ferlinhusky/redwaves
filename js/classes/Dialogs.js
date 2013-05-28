@@ -25,9 +25,12 @@ var D_Welcome = {
 	title: 'Over red waves of sand',
 	content: $('#dialog_welcome').html(),
 	buttons: {
-		"Load": function() {
+		"Start new": function() {
 			MapWorld = $('#pick_a_map').val();
 			Loadselectteam();
+		},
+		"Load game": function() {
+			
 		}
 	},
 	height:325
