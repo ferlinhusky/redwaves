@@ -347,9 +347,6 @@ h3{
 #dialog textarea {
 	font-size: 11px !important;
 	border: none;
-	width: 95%;
-	height: 95%;
-	padding: 10px;
 	background-color: #DDD;
 	color: #333;
 }
@@ -371,6 +368,11 @@ h3{
 #passcode {
     background-color: #333;
     color: #fff;
+}
+#enter_passcode {
+    height: 30px;
+    width: 275px;
+    margin-bottom: 10px;
 }
 
 /* Map container */

@@ -32,15 +32,15 @@
     
     <!-- Welcome dialog -->
     <div class="dialog_content" id="dialog_welcome">
-    	<p>
-            <i>
-                In all four directions my fortune it grows,<br/>
-                but over red waves of sand the wind never blows,<br/>
-                white sand at dusk turns orange before black,<br/>
-                over red waves of sand I will not come back.
-            </i>
-        </p>
-        <select id="pick_a_map"></select>
+	<p><i>In all four directions my fortune it grows,<br/>
+                but over red waves of sand the wind never blows.</i></p>
+    	<p><b>Start a new game</b><br/>
+	    Click "Play" to go right into your first adventure!</p>
+	<p><b>Load a game</b>
+		Enter your passcode and click "Load" to continue your
+	journey! </p>
+	<textarea id="enter_passcode"></textarea>
+        <select style="display: none;" id="pick_a_map"></select>
     </div>
     
     <!-- Select team dialog -->
@@ -84,6 +84,16 @@
             <a href="mailto:kingmountain@gmail.com">kingmountain@gmail.com</a>
         </p>
     </div>
+    
+    <!-- End of game passcode -->
+    <div id="passcode_addon">
+	<p><b>Passcode</b><br/>
+	<span id='passcode'></span></p>
+	
+	<p><b>Email</b> <span id='emailpasscoderesponse'></span><br/>
+	<input type='text' name='emailpasscode' id='emailpasscode'/></p>
+    </div>
+    
 	<script>
 		var passcode = "<?php echo $_GET["passcode"]; ?>";
 	</script>

@@ -36,53 +36,52 @@ var World = function(){
 	};
         
 	this.endgame = function(wl){
-        var passcode = "<p><b>Passcode</b><br/><span id='passcode'></span></p><p><b>Email</b> <span id='emailpasscoderesponse'></span><br/><input type='text' name='emailpasscode' id='emailpasscode'/></p>";
-		this.gameover = true;
-		Input.M_Dialog("standard", wl + passcode, this.Level.title, {
-			"Play on": function(){
-				// Clear out object arrays
-				Players = [];
-				Monsters = [];
-				Items = [];
-				Weapons = [];
-				Armors = [];
-				Squares = [];
-				
-				// Clear out the UI
-				$('.m_grid').remove();
-				$('#party .player_row').remove();
-				$('#party').css('display', 'none');
-				$('#status').empty();
-				$('#dialog').dialog('close');
-			
-				// Load the welcome dialog
-				Loadwelcome();
-			},
-			"Email passcode": function(){
-				$('#emailpasscoderesponse').css('color', '#333');
-				$('#emailpasscoderesponse').text('Attempting to send...');
-				$.ajax({
-					url: 'email.php?passcode='+ $('#passcode').text() +'&email='+$("#emailpasscode").val(),
-					type: 'POST',
-					success: function(data){
-						if (data != "Success") {
-							$('#emailpasscoderesponse').css('color', 'red');
-						} else {
-							$('#emailpasscoderesponse').css('color', 'green');
-						}
-						
-						$('#emailpasscoderesponse').text(data);
-					},
-					error: function(){
-						$('#emailpasscoderesponse').css('color', 'red');
-						$('#emailpasscoderesponse').text('Unknown error. Sorry :(');
-					}
-				})
-			}
-		}, 325);
-                
-                // Get passcode
-                Input.saveGame();
+            this.gameover = true;
+            Input.M_Dialog("standard", wl + $('#passcode_addon').html(), this.Level.title, {
+                    "Play on": function(){
+                            // Clear out object arrays
+                            Players = [];
+                            Monsters = [];
+                            Items = [];
+                            Weapons = [];
+                            Armors = [];
+                            Squares = [];
+                            
+                            // Clear out the UI
+                            $('.m_grid').remove();
+                            $('#party .player_row').remove();
+                            $('#party').css('display', 'none');
+                            $('#status').empty();
+                            $('#dialog').dialog('close');
+                    
+                            // Load the welcome dialog
+                            Loadwelcome();
+                    },
+                    "Email passcode": function(){
+                            $('#emailpasscoderesponse').css('color', '#333');
+                            $('#emailpasscoderesponse').text('Attempting to send...');
+                            $.ajax({
+                                    url: 'email.php?passcode='+ $('#passcode').text() +'&email='+$("#emailpasscode").val(),
+                                    type: 'POST',
+                                    success: function(data){
+                                            if (data != "Success") {
+                                                    $('#emailpasscoderesponse').css('color', 'red');
+                                            } else {
+                                                    $('#emailpasscoderesponse').css('color', 'green');
+                                            }
+                                            
+                                            $('#emailpasscoderesponse').text(data);
+                                    },
+                                    error: function(){
+                                            $('#emailpasscoderesponse').css('color', 'red');
+                                            $('#emailpasscoderesponse').text('Unknown error. Sorry :(');
+                                    }
+                            })
+                    }
+            }, 325);
+            
+            // Get passcode
+            Input.saveGame();
 	};
 	
 	this.endturn = function(){

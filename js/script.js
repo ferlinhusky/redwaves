@@ -19,7 +19,8 @@ Loadwelcome();
 
 // If arriving from email (passcode in URL)
 if (passcode.length > 0) {
-	$.ajax({
+    $('#enter_passcode').text(passcode);
+	/*$.ajax({
 		url:'load.php?passcode='+passcode,
 		dataType: 'json',
 		success: function(data){
@@ -32,5 +33,5 @@ if (passcode.length > 0) {
 		error: function(){
 			alert("Error loading data. Sorry :(");
 		}
-	});
+	});*/
 }
