@@ -369,7 +369,7 @@ h3{
     background-color: #333;
     color: #fff;
 }
-#enter_passcode {
+.enter_passcode {
     height: 30px;
     width: 275px;
     margin-bottom: 10px;

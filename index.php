@@ -37,9 +37,8 @@
     	<p><b>Start a new game</b><br/>
 	    Click "Play" to go right into your first adventure!</p>
 	<p><b>Load a game</b>
-		Enter your passcode and click "Load" to continue your
-	journey! </p>
-	<textarea id="enter_passcode"></textarea>
+		Enter your passcode and click "Play" to continue your journey!</p>
+	<textarea class="enter_passcode"><?php echo $_GET["passcode"]; ?></textarea>
         <select style="display: none;" id="pick_a_map"></select>
     </div>
     

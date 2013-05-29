@@ -26,8 +26,27 @@ var D_Welcome = {
 	content: $('#dialog_welcome').html(),
 	buttons: {
 		"Play": function() {
-			MapWorld = $('#pick_a_map').val();
-			Loadselectteam();
+			var pcode = $('.ui-dialog .enter_passcode').val();
+			if (pcode.length > 0) {
+				$.ajax({
+					url:'load.php?passcode='+pcode,
+					dataType: 'json',
+					success: function(data){
+						if (data.error) {
+							alert(data.error);
+						} else {
+							alert("Valid passcode!");
+							//Input.loadgame(data);
+						}
+					},
+					error: function(){
+						alert("Error loading data. Sorry :(");
+					}
+				});
+			} else {
+				MapWorld = $('#pick_a_map').val();
+				Loadselectteam();
+			}
 		}
 	},
 	height:325
