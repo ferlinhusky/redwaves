@@ -15,7 +15,7 @@ var World = function(){
 		// Build map
         this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
         Map.init(this.Level);
-        Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 325);
+        Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 375);
 	};
 	
 	this.doorderofplay = function(){

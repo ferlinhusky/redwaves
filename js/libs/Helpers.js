@@ -6,11 +6,14 @@
 var Loadwelcome = function(){
     Input.M_Dialog('welcome');
 
-    // Load up adventures
-    for(var i=0; i<Locations.length; i++){
-		var opt = '<option value="'+Locations[i].type+'" '+Locations[i].status+'>'+Locations[i].title+'</option>';
-		$('select.pick_a_map').append(opt);
-    }    
+    // Load up next adventure
+	var curradv = Adventures[currentadventure];
+	MapWorld = curradv.type;
+	$('.ui-dialog .next_adventure').text(curradv.title);
+	$('.ui-dialog .next_adventure').css({
+		"color": curradv.titlecolors[0],
+		"background-color": curradv.titlecolors[1]
+	});
 }
 
 var checkSelectedTeam = function(){

@@ -36,10 +36,13 @@
                 but over red waves of sand the wind never blows.</i></p>
     	<p><b>Start a new game</b><br/>
 	    Click "Play" to go right into your first adventure!</p>
-	<p><b>Load a game</b>
-		Enter your passcode and click "Play" to continue your journey!</p>
+	<p><b>Load a game</b><br/>
+		Enter and verify your passcode, then click "Play" to continue your journey!</p>
 	<textarea class="enter_passcode"><?php echo $_GET["passcode"]; ?></textarea>
-        <select class="pick_a_map"></select>
+	<br/><a href="javascript:Input.verifypasscode();" class="verify_passcode">Verify passcode</a>
+	<p><b>Next adventure</b></p>
+	<p class="next_adventure"></p>
+        <!-- <select class="pick_a_map"></select> --->
     </div>
     
     <!-- Select team dialog -->

@@ -26,30 +26,10 @@ var D_Welcome = {
 	content: $('#dialog_welcome').html(),
 	buttons: {
 		"Play": function() {
-			var pcode = $('.ui-dialog .enter_passcode').val();
-			if (pcode.length > 0) {
-				$.ajax({
-					url:'load.php?passcode='+pcode,
-					dataType: 'json',
-					success: function(data){
-						if (data.error) {
-							alert(data.error);
-						} else {
-							alert("Valid passcode!");
-							//Input.loadgame(data);
-						}
-					},
-					error: function(){
-						alert("Error loading data. Sorry :(");
-					}
-				});
-			} else {
-				MapWorld = $('.ui-dialog .pick_a_map').val();
-				Loadselectteam();
-			}
+			Loadselectteam();
 		}
 	},
-	height:325
+	height:375
 }
 
 var D_Select_Team = {
@@ -68,7 +48,7 @@ var D_Select_Team = {
 			World.build();
 		}
 	},
-	height:325
+	height:375
 }
 
 var D_Help = {

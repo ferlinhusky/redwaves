@@ -431,8 +431,34 @@ var Input = function(){
 		*/
 		this.loadgame = function(data){
 				// Convert JSON (data) to game data, update UI accordingly
+				
+				// Get level to play
+				currentadventure = data.levelcomplete;
+				Loadwelcome();
 		}
 		
+		/*
+				Verify passcode
+		*/
+		this.verifypasscode = function(){
+				var pcode = $('.ui-dialog .enter_passcode').val();
+				if (pcode.length > 0) {
+				$.ajax({
+					url:'load.php?passcode='+pcode,
+					dataType: 'json',
+					success: function(data){
+						if (data.error) {
+							alert(data.error);
+						} else {
+							Input.loadgame(data);
+						}
+					},
+					error: function(){
+						alert("Error loading data. Sorry :(");
+					}
+				});
+				}
+		};
 		
 	/*
 		Button bindings, etc.
@@ -495,13 +521,13 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.loadgame(); });
+		/*TEST*/btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
-                btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
+        btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons

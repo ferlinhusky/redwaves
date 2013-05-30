@@ -4,7 +4,8 @@
 
 var Tutorial = function(){
     this.refID = 1;
-    this.title = "Die! Said the Basilisk";
+    this.title = "Die, said the Basilisk. Die!";
+	this.titlecolors = ["red", "black"];
     this.type = "Tutorial";
     this.map = "tutorial_map.txt";
     this.opts = {
@@ -67,6 +68,7 @@ var Tutorial = function(){
 var Monastery = function(){
     this.refID = 2;
     this.title = "Kill, Shaolin Beatniks! Kill!";
+	this.titlecolors = ["yellow", "darkorange"];
     this.type = "Monastery";
     this.map = "monastery_map.txt";
     this.opts = {
@@ -107,4 +109,4 @@ var Monastery = function(){
     this.status = "enabled";
 };
 
-var Locations = [new Tutorial, new Monastery];
+var Adventures = [new Tutorial, new Monastery];

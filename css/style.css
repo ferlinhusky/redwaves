@@ -365,14 +365,31 @@ h3{
 	color: #666;
 }
 .dialog_content { display: none; }
+
+/* Welcome dialog */
 #passcode {
     background-color: #333;
     color: #fff;
+}
+.verify_passcode {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: -5px;
+    color: blue;
 }
 .enter_passcode {
     height: 30px;
     width: 275px;
     margin-bottom: 10px;
+}
+.next_adventure {
+    font-family: georgia;
+    font-weight: bold;
+    padding: 10px 5px 10px 5px;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: -10px;
 }
 
 /* Map container */
