@@ -35,9 +35,13 @@ var World = function(){
 		this.endturn(); // Start
 	};
         
-	this.endgame = function(wl){
+	this.endgame = function(wl, state){
             this.gameover = true;
-            Input.M_Dialog("standard", wl + $('#passcode_addon').html(), this.Level.title, {
+			if (state == "win") {
+				// Update current adventure
+				currentadventure += 1;
+				
+				Input.M_Dialog("standard", wl + $('#passcode_addon').html(), this.Level.title, {
                     "Play on": function(){
                             // Clear out object arrays
                             Players = [];
@@ -78,10 +82,11 @@ var World = function(){
                                     }
                             })
                     }
-            }, 325);
-            
-            // Get passcode
-            Input.saveGame();
+				}, 325);
+				
+				// Get passcode
+				Input.saveGame();	
+			}
 	};
 	
 	this.endturn = function(){
@@ -128,7 +133,7 @@ var World = function(){
 				for(var i=0; i<Dead.length; i++){
 					if(this.Level.victory.value[0] == Dead[i].name)
 					{
-						this.endgame(World.Level.events.win);
+						this.endgame(World.Level.events.win, "win");
 						break;
 					}
 				}
@@ -136,11 +141,11 @@ var World = function(){
 			default: break;
 		}
 		if(Monsters.length == 0 && this.gameover == false){
-			this.endgame(this.Level.events.win);
+			this.endgame(this.Level.events.win, "win");
 			return false;
 		}
 		if(Players.length == 0 && this.gameover == false){
-			this.endgame(this.Level.events.lose);
+			this.endgame(this.Level.events.lose, "lose");
 			return false;
 		}
 		
