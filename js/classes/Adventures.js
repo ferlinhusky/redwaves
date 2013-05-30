@@ -35,7 +35,8 @@ var Tutorial = function(){
 			"Hell_Dog_3": [22, 21],
 			"Hell_Dog_4": [28, 11],
 			"Hell_Dog_5": [32, 11]
-		}
+		},
+		"gold": 500
     };
 	this.victory = {
 		"type": "kill",
@@ -76,7 +77,8 @@ var Monastery = function(){
 			"Shaolin_Beatnik_1": [19, 3],
 			"Shaolin_Beatnik_2": [21, 3],
 			"Master_Killer_1": [20, 3]
-		}
+		},
+		"gold": 750
     };
     this.victory = {
 		"type": "kill",
