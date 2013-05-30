@@ -69,15 +69,40 @@ var Monastery = function(){
     this.type = "Monastery";
     this.map = "monastery_map.txt";
     this.opts = {
-		"height": 15,
-		"width": 50,
+		"height": 30,
+		"width": 39,
+		"items": {},
 		"monsters": {
-			"Shaolin_Beatnik_1": [5,4],
-			"Shaolin_Beatnik_2": [40,3],
-			"Shaolin_Beatnik_3": [41,3]
+			"Shaolin_Beatnik_1": [19, 3],
+			"Shaolin_Beatnik_2": [21, 3],
+			"Master_Killer_1": [20, 3]
 		}
-    }
-    this.status = "disabled";
+    };
+    this.victory = {
+		"type": "kill",
+		"value": ["Master Killer", 1] // type and # to kill
+	};
+    this.events = {
+	"preamble": "<p>You and your companions find yourselves at the\
+	entrance of an incredibly blocky temple complex. A convenient\
+	villager tells you of the Shaolin Beatniks who reside within and\
+	of their brutal master...the Master Killer!</p><p><b>Objective:\
+	Defeat the Master Killer!</b></p>\
+	<p><i>Hint: He was the best, so he killed the rest!</i></p>",
+	"meet": {
+	    "Master_Killer_1":{
+		"Master_Killer_1": "Chi...the life energy within all of us.\
+		Chi...the energy of nature, the shaper of existence. Chi...\
+		rules everything around me."
+	    }
+	},
+	"win": "<p><b>YOU WIN!</b></p><p>Congratulations! You receive 750 gold for defeating\
+	the Master Killer. Now the money *did* kind of come from looting what was basically\
+	the villagers' stolen goods, but hey, TIME PORTAL.</p>",
+	"lose": "<p><b>YOU LOSE!</b></p><p>All of your heads are on pikes outside of\
+	the temple complex. The villagers are all super-sad. Good one.</p>"
+    };
+    this.status = "enabled";
 };
 
 var Locations = [new Tutorial, new Monastery];

@@ -9,7 +9,7 @@ var Loadwelcome = function(){
     // Load up adventures
     for(var i=0; i<Locations.length; i++){
 		var opt = '<option value="'+Locations[i].type+'" '+Locations[i].status+'>'+Locations[i].title+'</option>';
-		$('select#pick_a_map').append(opt);
+		$('select.pick_a_map').append(opt);
     }    
 }
 

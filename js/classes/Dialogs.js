@@ -44,7 +44,7 @@ var D_Welcome = {
 					}
 				});
 			} else {
-				MapWorld = $('#pick_a_map').val();
+				MapWorld = $('.ui-dialog .pick_a_map').val();
 				Loadselectteam();
 			}
 		}

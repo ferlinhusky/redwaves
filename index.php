@@ -39,7 +39,7 @@
 	<p><b>Load a game</b>
 		Enter your passcode and click "Play" to continue your journey!</p>
 	<textarea class="enter_passcode"><?php echo $_GET["passcode"]; ?></textarea>
-        <select style="display: none;" id="pick_a_map"></select>
+        <select class="pick_a_map"></select>
     </div>
     
     <!-- Select team dialog -->

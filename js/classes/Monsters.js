@@ -325,6 +325,22 @@ var Hillbilly_Hellion = Monster.extend({
   	}
 });
 
+// MASTER KILLER
+var Master_Killer = Monster.extend({
+	init: function(){
+    	this._super(
+			"Master Killer",
+			"master_killer",
+			"Master Killers",
+			["", new robe,"","","",""],
+			["", new hand, new hand,""],
+			[],
+			["martial arts"],
+			25, 7
+		);
+  	}
+});
+
 // SHAOLIN BEATNIK
 var Shaolin_Beatnik = Monster.extend({
 	init: function(){
