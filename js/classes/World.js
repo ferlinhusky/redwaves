@@ -9,10 +9,10 @@ var World = function(){
 	}
 	
 	this.build = function(){
-		// Zero out vars
-		this.resetvars();
-		
-		// Build map
+        // Zero out vars
+        this.resetvars();
+        
+        // Build map
         this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
         Map.init(this.Level);
         Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 375);
@@ -37,11 +37,11 @@ var World = function(){
         
 	this.endgame = function(wl, state){
             this.gameover = true;
-			if (state == "win") {
-				// Update current adventure
-				currentadventure += 1;
-				
-				Input.M_Dialog("standard", wl + $('#passcode_addon').html(), this.Level.title, {
+	    if (state == "win") {
+                // Update current adventure
+                currentadventure += 1;
+                
+                Input.M_Dialog("standard", wl + $('#passcode_addon').html(), this.Level.title, {
                     "Play on": function(){
                             // Clear out object arrays
                             Players = [];
@@ -82,11 +82,33 @@ var World = function(){
                                     }
                             })
                     }
-				}, 325);
-				
-				// Get passcode
-				Input.saveGame();	
-			}
+                }, 375);
+                
+                // Get passcode
+                Input.saveGame();	
+            } else {
+                Input.M_Dialog("standard", wl, this.Level.title, {
+                    "Try again": function(){
+                            // Clear out object arrays
+                            Players = [];
+                            Monsters = [];
+                            Items = [];
+                            Weapons = [];
+                            Armors = [];
+                            Squares = [];
+                            
+                            // Clear out the UI
+                            $('.m_grid').remove();
+                            $('#party .player_row').remove();
+                            $('#party').css('display', 'none');
+                            $('#status').empty();
+                            $('#dialog').dialog('close');
+                    
+                            // Load the welcome dialog
+                            Loadwelcome();
+                    }
+                }, 375);
+            }
 	};
 	
 	this.endturn = function(){

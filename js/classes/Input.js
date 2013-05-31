@@ -418,7 +418,7 @@ var Input = function(){
                         data: postArray,
                         type: 'POST',
                         success: function(data){
-                            $('#passcode').text(data);
+                            $('.ui-dialog #passcode').text(data);
                         },
                         error: function(xhr, a, b){
                             alert(a + ": " + b);
@@ -430,34 +430,45 @@ var Input = function(){
 				Load Game
 		*/
 		this.loadgame = function(data){
-				// Convert JSON (data) to game data, update UI accordingly
-				
-				// Get level to play
-				currentadventure = data.levelcomplete;
-				Loadwelcome();
+                    // Convert JSON (data) to game data, update UI accordingly
+                    
+                    // Get level to play
+                    currentadventure = data.levelcomplete;
+                    // Load up next adventure
+                    var curradv = Adventures[currentadventure];
+                    MapWorld = curradv.type;
+                    $('.ui-dialog .next_adventure').text(curradv.title);
+                    $('.ui-dialog .next_adventure').css({
+                            "color": curradv.titlecolors[0],
+                            "background-color": curradv.titlecolors[1]
+                    });
+                    //Loadwelcome();
 		}
 		
 		/*
-				Verify passcode
+		    Verify passcode
 		*/
 		this.verifypasscode = function(){
-				var pcode = $('.ui-dialog .enter_passcode').val();
-				if (pcode.length > 0) {
-				$.ajax({
-					url:'load.php?passcode='+pcode,
-					dataType: 'json',
-					success: function(data){
-						if (data.error) {
-							alert(data.error);
-						} else {
-							Input.loadgame(data);
-						}
-					},
-					error: function(){
-						alert("Error loading data. Sorry :(");
-					}
-				});
-				}
+                    var pcode = $('.ui-dialog .enter_passcode').val();
+                    if (pcode.length > 0) {
+                        $.ajax({
+                                url:'load.php?passcode='+pcode,
+                                dataType: 'json',
+                                success: function(data){
+                                    $('.ui-dialog .enter_passcode').css('color', 'white');
+                                    if (data.error) {
+                                        alert(data.error);
+                                        $('.ui-dialog .enter_passcode').css('background-color', 'red');
+                                    } else {
+                                        $('.ui-dialog .enter_passcode').css('background-color', 'green');
+                                        Input.loadgame(data);
+                                    }
+                                },
+                                error: function(){
+                                        alert("Error loading data. Sorry :(");
+                                }
+                        });
+                    }
 		};
 		
 	/*
@@ -527,7 +538,7 @@ var Input = function(){
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
-        btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
+                btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons

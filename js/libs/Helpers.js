@@ -4,9 +4,9 @@
 
 // Load up adventure selection
 var Loadwelcome = function(){
-    Input.M_Dialog('welcome');
+	Input.M_Dialog('welcome');
 
-    // Load up next adventure
+	// Load up next adventure - move this to Input.loadgame
 	var curradv = Adventures[currentadventure];
 	MapWorld = curradv.type;
 	$('.ui-dialog .next_adventure').text(curradv.title);

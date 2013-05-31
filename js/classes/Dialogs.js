@@ -80,17 +80,3 @@ var D_Options = {
 		}
 	}
 }
-// Option settings
-var hideFeatureNames = false;
-/*
-$('#optHideFeatureNames').live('change',function(){
-	if($(this).attr('checked')=='checked'){
-		hideFeatureNames = 'checked';
-		$('.t_label').hide(0);
-	}
-	else{
-		hideFeatureNames = false;
-		$('.t_label').show(0);
-	}
-});
-*/
