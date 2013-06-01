@@ -3,7 +3,6 @@ var doc = $(document);
 
 // Set some global vars
 var ident, activeMap = null;
-var currentadventure = 0;
 
 // Loading image
 var LoadingAnim = '<img src="images/ajax-loader.gif" id="loading_anim" />';

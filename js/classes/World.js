@@ -39,8 +39,10 @@ var World = function(){
             this.gameover = true;
 	    if (state == "win") {
                 // Update current adventure
-                currentadventure += 1;
+                Party.levelcomplete += 1;
+                Party.gold += this.Level.opts.gold;
                 
+                // Passcode addon should show next adventure, and not return to home screen
                 Input.M_Dialog("standard", wl + $('#passcode_addon').html(), this.Level.title, {
                     "Play on": function(){
                             // Clear out object arrays

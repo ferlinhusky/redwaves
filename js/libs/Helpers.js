@@ -2,12 +2,15 @@
 // Helper Functions
 //
 
+// Capitalize a string
+function capitalise(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
+
 // Load up adventure selection
 var Loadwelcome = function(){
 	Input.M_Dialog('welcome');
 
 	// Load up next adventure - move this to Input.loadgame
-	var curradv = Adventures[currentadventure];
+	var curradv = Adventures[Party.levelcomplete];
 	MapWorld = curradv.type;
 	$('.ui-dialog .next_adventure').text(curradv.title);
 	$('.ui-dialog .next_adventure').css({

@@ -117,6 +117,7 @@
 	<script src="js/classes/Player.js"></script>
 	<script src="js/classes/Monsters.js"></script>
 	<script src="js/classes/Battle.js"></script>
+	<script src="js/classes/Party.js"></script>
 	<!-- Items -->
 	<script src="js/classes/Items.js"></script>
 	<script src="js/classes/Weapons.js"></script>

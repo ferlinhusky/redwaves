@@ -26,7 +26,12 @@ var D_Welcome = {
 	content: $('#dialog_welcome').html(),
 	buttons: {
 		"Play": function() {
-			Loadselectteam();
+			// If passcode used, jump straight into the game
+			if(Input.passcodeverified)
+			{
+				Input.passcodeverified = false;
+				World.build();
+			} else { Loadselectteam(); }
 		}
 	},
 	height:375
@@ -41,6 +46,7 @@ var D_Select_Team = {
 		},
 		"Ready!": function() {
 			$('#party').css('display', 'table');
+
 			var hero = new Hero();
 			$('.select_team_opt:checked').each(function(){
 				var player = ( new Function('var p = new ' + $(this).val() + '(); return p;') )();

@@ -12,6 +12,7 @@ var Loading = new D_Loading();
 
 var Map = new Map();
 var World = new World();
+var Party = new Party();
 
     Loading.closeMe();
     

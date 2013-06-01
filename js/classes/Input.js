@@ -406,9 +406,9 @@ var Input = function(){
                     }
                     
                     jsonObj.players = jsonPlayers;
-                    jsonObj.levelcomplete = currentadventure;
-                    jsonObj.gold = 500;
-                    jsonObj.store = [0,0,0,0,0,0];
+                    jsonObj.levelcomplete = Party.levelcomplete;
+                    jsonObj.gold = Party.gold;
+                    jsonObj.store = Party.store;
                     
                     var postData = JSON.stringify(jsonObj);
                     var postArray = {playerdata:postData};
@@ -427,27 +427,42 @@ var Input = function(){
 		}
 		
 		/*
-				Load Game
+		    Load Game
 		*/
 		this.loadgame = function(data){
-                    // Convert JSON (data) to game data, update UI accordingly
+                    // Reset player/party stuff
+                    $('#party tr.player_row').remove();
+                    $('#party').css('display', 'table');
+                    Players = [];
+                    Party.levelcomplete = 0;
+                    Party.gold = 0;
+                    Party.store = [0,0,0,0,0,0];
                     
-                    // Get level to play
-                    currentadventure = data.levelcomplete;
+                    // Create Players
+                    for(var i=0; i<data.players.length; i++){
+                        var player = ( new Function('var p = new ' + capitalise(data.players[i].type) + '(); return p;') )();
+                        // Update player attributes/wpsn/items/etc.
+                    }
+                    
+                    // Update Party
+                    Party.levelcomplete = data.levelcomplete;
+                    Party.gold = data.gold;
+                    Party.store = data.store;
+                    
                     // Load up next adventure
-                    var curradv = Adventures[currentadventure];
+                    var curradv = Adventures[Party.levelcomplete];
                     MapWorld = curradv.type;
                     $('.ui-dialog .next_adventure').text(curradv.title);
                     $('.ui-dialog .next_adventure').css({
                             "color": curradv.titlecolors[0],
                             "background-color": curradv.titlecolors[1]
                     });
-                    //Loadwelcome();
 		}
 		
 		/*
 		    Verify passcode
 		*/
+                this.passcodeverified = false;
 		this.verifypasscode = function(){
                     var pcode = $('.ui-dialog .enter_passcode').val();
                     if (pcode.length > 0) {
@@ -460,6 +475,7 @@ var Input = function(){
                                         alert(data.error);
                                         $('.ui-dialog .enter_passcode').css('background-color', 'red');
                                     } else {
+                                        Input.passcodeverified = true;
                                         $('.ui-dialog .enter_passcode').css('background-color', 'green');
                                         Input.loadgame(data);
                                     }
