@@ -440,8 +440,19 @@ var Input = function(){
                     
                     // Create Players
                     for(var i=0; i<data.players.length; i++){
-                        var player = ( new Function('var p = new ' + capitalise(data.players[i].type) + '(); return p;') )();
+						var pdata = data.players[i];
+                        var player = ( new Function('var p = new ' + capitalise(pdata.type) + '(); return p;') )();
                         // Update player attributes/wpsn/items/etc.
+								//gender
+								player.gender = setGender(pdata.gender);
+								//level
+								//hp
+								//movement
+								//inventory
+								//weapons
+								//armor
+								//skills
+								//spells
                     }
                     
                     // Update Party

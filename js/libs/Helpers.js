@@ -292,6 +292,27 @@ var MO_zero = function(obj){
 	$('tr.' + obj.type + ' .MO').text('0');
 };
 
+// Set gender
+var setGender = function(g){
+	var gender = {};
+	if (g=="male") {
+		gender = {
+			"demo": "male",
+			"type": "man",
+			"pro": "him",
+			"ppro": "his"
+		};
+	} else {
+		gender = {
+			"demo": "female",
+			"type": "woman",
+			"pro": "her",
+			"ppro": "her"
+		};
+	}
+	return gender;
+}
+
 // Get Line of Sight
 var getLineOfSight = function(c){
 	/*

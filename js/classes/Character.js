@@ -48,37 +48,12 @@ var Character = Class.extend({
 		this.ac = 10 + tempac;
 		
 		// Get gender
-		if(this.type == "wolfman"){
-			this.gender = {
-				"demo": "male",
-				"type": "man",
-				"pro": "him",
-				"ppro": "his"
-			}; 
-		} else if (this.type == "lamia"){
-			this.gender = {
-				"demo": "female",
-				"type": "woman",
-				"pro": "her",
-				"ppro": "her"
-			};
+		if(this.type == "wolfman"){ this.gender = setGender("male");
+		} else if (this.type == "lamia"){ this.gender = setGender("female");
 		} else {
 			var prob = Math.ceil(Math.random()*10);
-			if(prob > 5){
-				this.gender = {
-					"demo": "male",
-					"type": "man",
-					"pro": "him",
-					"ppro": "his"
-				}; 
-			} else {
-				this.gender = {
-					"demo": "female",
-					"type": "woman",
-					"pro": "her",
-					"ppro": "her"
-				};
-			}
+			if(prob > 5){ this.gender = setGender("male");
+			} else { this.gender = setGender("female"); }
 		}
 	},
 	hasSkill:  function(s){
