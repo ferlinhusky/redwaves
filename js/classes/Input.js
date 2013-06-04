@@ -443,16 +443,25 @@ var Input = function(){
 						var pdata = data.players[i];
                         var player = ( new Function('var p = new ' + capitalise(pdata.type) + '(); return p;') )();
                         // Update player attributes/wpsn/items/etc.
-								//gender
-								player.gender = setGender(pdata.gender);
-								//level
-								//hp
-								//movement
-								//inventory
-								//weapons
-								//armor
-								//skills
-								//spells
+                            //gender
+                            player.gender = setGender(pdata.gender);
+                            //level
+                            player.level = pdata.level;
+                            //hp
+                            player.maxHP = pdata.maxhp;
+                            player.HP = pdata.maxhp;
+                            //movement
+                            player.movement = pdata.maxmove;
+                            player.maxMove = pdata.maxmove;
+                            //inventory
+                            player.inven = [];
+                            $.grep(pdata.inventory, function(el, ind){
+                                
+                            });
+                            //weapons
+                            //armor
+                            //skills
+                            //spells
                     }
                     
                     // Update Party

@@ -1,4 +1,3 @@
-var Items = [];
 var Item = Class.extend({
 	init: function(name, type, ofType, supclass, material, refID){
 		this.is = "item";
@@ -9,7 +8,6 @@ var Item = Class.extend({
 		this.material = material;
 		this.ID = Items.length;
 		this.refID = refID;
-		Items.push(this);
 	},
 	pickup: function(curr){
 		//getMapSq(World.activePlayer.coords).effect("transfer", { to: $('#btn_item') }, 1000);

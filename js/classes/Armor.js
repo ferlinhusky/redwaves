@@ -1,4 +1,3 @@
-var Armors = [];
 var Armor = Item.extend({
 	init: function(name, type, supclass, material, ac, refID){
 		this._super(name, type, "armor", supclass, material, refID); // push up to Item

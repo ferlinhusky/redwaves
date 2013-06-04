@@ -1,4 +1,3 @@
-var Weapons = [];
 var Weapon = Item.extend({
 	init: function(name, type, supclass, dmg, material, twohand, refID){
 		this._super(name, type, "weapon", supclass, material, refID); // push up to Item
