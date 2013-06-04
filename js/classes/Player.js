@@ -267,7 +267,7 @@ var Lamia = Player.extend({
 		[new fangs, new claw, new claw, ""],
 		[],
 		// chance of paralyzing enemy for n turns (added)
-		[new paralyze], 8, 5);
+		[new paralyze, new aquatic], 8, 5);
   	}
 });
 

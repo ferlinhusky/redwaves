@@ -6,7 +6,6 @@ var Item = Class.extend({
 		this.ofType = ofType;
 		this.supclass = supclass;
 		this.material = material;
-		this.ID = Items.length;
 		this.refID = refID;
 	},
 	pickup: function(curr){

@@ -25,3 +25,6 @@ var paralyze = Skill.extend({ init: function(){ this._super("paralyze", 6); } })
 
 // Stealth
 var stealth = Skill.extend({ init: function(){ this._super("stealth", 7); } });
+
+// Aquatic
+var aquatic = Skill.extend({ init: function(){ this._super("aquatic", 8); } });

@@ -5,12 +5,12 @@ var Character = Class.extend({
 		this.type	=	type; // str // in-program cat
 
 		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-legs, 3-right hand, 4-left hand, 5-feet]
-		this.onhead 	=	wears[0];
+		/*this.onhead 	=	wears[0];
 		this.onbody	=	wears[1];
 		this.onlegs 	=	wears[2];
 		this.rhand	=	wears[3];
 		this.lhand	=	wears[4];
-		this.onfeet 	=	wears[5];
+		this.onfeet 	=	wears[5];*/
 		
 		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
 		

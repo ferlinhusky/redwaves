@@ -439,29 +439,81 @@ var Input = function(){
                     Party.store = [0,0,0,0,0,0];
                     
                     // Create Players
-                    for(var i=0; i<data.players.length; i++){
-						var pdata = data.players[i];
+                    for(var j=0; j<data.players.length; j++){
+						var pdata = data.players[j];
                         var player = ( new Function('var p = new ' + capitalise(pdata.type) + '(); return p;') )();
+
                         // Update player attributes/wpsn/items/etc.
-                            //gender
+                            
+							//gender
                             player.gender = setGender(pdata.gender);
-                            //level
+                            
+							//level
                             player.level = pdata.level;
-                            //hp
+                            
+							//hp
                             player.maxHP = pdata.maxhp;
                             player.HP = pdata.maxhp;
-                            //movement
+                            
+							//movement
                             player.movement = pdata.maxmove;
                             player.maxMove = pdata.maxmove;
-                            //inventory
-                            player.inven = [];
-                            $.grep(pdata.inventory, function(el, ind){
-                                
-                            });
-                            //weapons
-                            //armor
-                            //skills
+                            
+							//inventory
+							player.inven = [];
+							for (var i=0; i<pdata.inventory.length; i++) {
+								var tmp;
+								if (pdata.inventory[i] != 0) {
+										tmp = ( new Function('var p = new ' + InventoryItems[pdata.inventory[i]] + '(); return p;') )();
+										player.inven.push(tmp);
+								}
+							}
+                            
+							//weapons
+							player.wields = [];
+							for (var i=0; i<pdata.weapons.length; i++) {
+								var tmp;
+								if (pdata.weapons[i] != 0) {
+										tmp = ( new Function('var p = new ' + Weapons[pdata.weapons[i]] + '(); return p;') )();
+										player.wields.push(tmp);
+								} else { player.wields.push(""); }
+							}
+                            
+							//armor
+							player.wears = [];
+							for (var i=0; i<pdata.armor.length; i++) {
+								var tmp;
+								if (pdata.armor[i] != 0) {
+										tmp = ( new Function('var p = new ' + Armors[pdata.armor[i]] + '(); return p;') )();
+										player.wears.push(tmp);
+								} else { player.wears.push(""); }
+							}
+                            
+							//skills
+							player.skills = [];
+							for (var i=0; i<pdata.skills.length; i++) {
+								var tmp;
+								if (pdata.skills[i] != 0) {
+										tmp = ( new Function('var p = new ' + Skills[pdata.skills[i]] + '(); return p;') )();
+										player.skills.push(tmp);
+								}
+							
+							}
+								// skillnames
+								player.skillnames = [];
+								for (var i=0; i<player.skills.length; i++) {
+									player.skillnames.push(player.skills[i].name);
+								}
+								
                             //spells
+							player.spells = [];
+							for (var i=0; i<pdata.spells.length; i++) {
+								var tmp;
+								if (pdata.spells[i] != 0) {
+										tmp = ( new Function('var p = new ' + Skills[pdata.spells[i]] + '(); return p;') )();
+										player.spells.push(tmp);
+								}
+							}
                     }
                     
                     // Update Party
@@ -470,20 +522,29 @@ var Input = function(){
                     Party.store = data.store;
                     
                     // Load up next adventure
-                    var curradv = Adventures[Party.levelcomplete];
-                    MapWorld = curradv.type;
-                    $('.ui-dialog .next_adventure').text(curradv.title);
-                    $('.ui-dialog .next_adventure').css({
-                            "color": curradv.titlecolors[0],
-                            "background-color": curradv.titlecolors[1]
-                    });
+					if (Party.levelcomplete >= Adventures.length) {
+						$('.ui-dialog .next_adventure').html("You've done 'em all. <a href='http://www.twitter.com/HuskyFerlin'>When more?</a>");
+						$('.ui-dialog .next_adventure').css({
+								"color": "#333",
+								"background-color": "#fff"
+						});
+						$(".ui-dialog-buttonpane button:contains('Play')").button("disable");
+					} else {
+						var curradv = Adventures[Party.levelcomplete];
+						MapWorld = curradv.type;
+						$('.ui-dialog .next_adventure').text(curradv.title);
+						$('.ui-dialog .next_adventure').css({
+								"color": curradv.titlecolors[0],
+								"background-color": curradv.titlecolors[1]
+						});
+					}
 		}
 		
 		/*
 		    Verify passcode
 		*/
                 this.passcodeverified = false;
-		this.verifypasscode = function(){
+				this.verifypasscode = function(){
                     var pcode = $('.ui-dialog .enter_passcode').val();
                     if (pcode.length > 0) {
                         $.ajax({

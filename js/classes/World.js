@@ -41,9 +41,16 @@ var World = function(){
                 // Update current adventure
                 Party.levelcomplete += 1;
                 Party.gold += this.Level.opts.gold;
+				
+				// Dialog content
+				var dialogcontent = wl + $('#passcode_addon').html();
+				if (Party.levelcomplete >= Adventures.length){
+					dialogcontent += "<p><b>You have completed all available adventures. Come back later for more\
+					or <a href='http://www.twitter.com/HuskyFerlin'>keep up with the feed</a> to see when another has been added. Thanks!</b></p>"
+				}
                 
                 // Passcode addon should show next adventure, and not return to home screen
-                Input.M_Dialog("standard", wl + $('#passcode_addon').html(), this.Level.title, {
+                Input.M_Dialog("standard", dialogcontent, this.Level.title, {
                     "Play on": function(){
                             // Clear out object arrays
                             Players = [];
@@ -85,6 +92,11 @@ var World = function(){
                             })
                     }
                 }, 375);
+				
+				// If last adventure, disable Play On
+				if (Party.levelcomplete >= Adventures.length) {
+					$(".ui-dialog-buttonpane button:contains('Play on')").button("disable");
+				}
                 
                 // Get passcode
                 Input.saveGame();	

@@ -513,9 +513,11 @@ h3{
         .m_grid.dogvision td.lit .p.thief:before { background-color: #b5b5b5; }
 
 /* Monsters */
+.m_grid td.lit .p.basilisk:before { content: 'B' !important; background-color: DarkRed; color: #fff; }
+.m_grid td.lit .p.master_killer:before { content: 'M' !important; background-color: Gold; color: #333; }
+
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
 .m_grid td.lit .p.atomic_freak:before { content: 'a' !important; background-color: #3c0; color: #000; }
-.m_grid td.lit .p.basilisk:before { content: 'B' !important; background-color: DarkRed; color: #fff; }
 .m_grid td.lit .p.hell_dog:before { content: 'H' !important; background-color: Brown; color: #fff; }
 .m_grid td.lit .p.hillbilly_hellion:before { content: 'H' !important; background-color: Maroon; color: #fff; }
 .m_grid td.lit .p.shaolin_beatnik:before { content: 'S' !important; background-color: #f90; color: #000; }

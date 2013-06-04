@@ -1,9 +1,9 @@
-var InventoryItems = [
+var InventoryItems = ["",
     "phyton", "glory",
     "maddog", "tron"
 ];
 
-var Weapons = [
+var Weapons = ["",
     "dagger",
     "shortsword",
     "longsword",
@@ -16,14 +16,26 @@ var Weapons = [
     "shotgun", "sixshooter"
 ];
 
-var Armors = [
+var Armors = ["",
     "leatherhelm",
     "coifandkettle",
     "barbute",
     "closehelmet",
-    "cowboyhat"
+    "cowboyhat",
+	"hide",
+	"leathertunic", "robe",
+	"scale", "chainmail",
+	"brigandine", "plate"
 ];
 
-var Skills = [];
+var Skills = ["",
+	"heroism", "tenacity",
+	"swordsmanship", "necromancy",
+	"keenness", "paralyze",
+	"stealth", "aquatic"
+];
 
-var Spells = [];
+var Spells = ["",
+	"fireball", "freeze",
+	"lightning", "earthquake"
+];

@@ -126,7 +126,7 @@
 	<script src="js/classes/Spells.js"></script>
 	<script src="js/classes/Skills.js"></script>
 	<!-- Reference -->
-	<script src="js/classes/ReferenceArrays.js"></script>
+	<script src="js/libs/ReferenceArrays.js"></script>
 	<!-- Features -->
 	<script src="js/classes/Terrain.js"></script>
         <!-- Adventures -->
