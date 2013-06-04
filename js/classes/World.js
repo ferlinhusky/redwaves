@@ -53,41 +53,40 @@ var World = function(){
                 Input.M_Dialog("standard", dialogcontent, this.Level.title, {
                     "Play on": function(){
                             // Clear out object arrays
-                            Players = [];
                             Monsters = [];
-                            Items = [];
-                            Weapons = [];
-                            Armors = [];
                             Squares = [];
+							
+							// Reset Player HP
+							for (var i=0; i<Players.length; i++) { Players[i].HP = Players[i].maxHP; }
                             
                             // Clear out the UI
                             $('.m_grid').remove();
-                            $('#party .player_row').remove();
-                            $('#party').css('display', 'none');
-                            $('#status').empty();
+							$('#status').empty();
                             $('#dialog').dialog('close');
                     
-                            // Load the welcome dialog
-                            Loadwelcome();
+                            // Load the next adventure
+                            var curradv = Adventures[Party.levelcomplete];
+							MapWorld = curradv.type;
+							World.build();
                     },
                     "Email passcode": function(){
-                            $('#emailpasscoderesponse').css('color', '#333');
-                            $('#emailpasscoderesponse').text('Attempting to send...');
+                            $('.ui-dialog #emailpasscoderesponse').css('color', '#333');
+                            $('.ui-dialog #emailpasscoderesponse').text('Attempting to send...');
                             $.ajax({
-                                    url: 'email.php?passcode='+ $('#passcode').text() +'&email='+$("#emailpasscode").val(),
+                                    url: 'email.php?passcode='+ $('.ui-dialog #passcode').text() +'&email='+$(".ui-dialog #emailpasscode").val() + '&adventure='+Adventures[Party.levelcomplete-1].title,
                                     type: 'POST',
                                     success: function(data){
                                             if (data != "Success") {
-                                                    $('#emailpasscoderesponse').css('color', 'red');
+                                                    $('.ui-dialog #emailpasscoderesponse').css('color', 'red');
                                             } else {
-                                                    $('#emailpasscoderesponse').css('color', 'green');
+                                                    $('.ui-dialog #emailpasscoderesponse').css('color', 'green');
                                             }
                                             
-                                            $('#emailpasscoderesponse').text(data);
+                                            $('.ui-dialog #emailpasscoderesponse').text(data);
                                     },
                                     error: function(){
-                                            $('#emailpasscoderesponse').css('color', 'red');
-                                            $('#emailpasscoderesponse').text('Unknown error. Sorry :(');
+                                            $('.ui-dialog #emailpasscoderesponse').css('color', 'red');
+                                            $('.ui-dialog #emailpasscoderesponse').text('Unknown error. Sorry :(');
                                     }
                             })
                     }
@@ -104,22 +103,21 @@ var World = function(){
                 Input.M_Dialog("standard", wl, this.Level.title, {
                     "Try again": function(){
                             // Clear out object arrays
-                            Players = [];
                             Monsters = [];
-                            Items = [];
-                            Weapons = [];
-                            Armors = [];
                             Squares = [];
+							
+							// Reset Player HP
+							for (var i=0; i<Players.length; i++) { Players[i].HP = Players[i].maxHP; }
                             
                             // Clear out the UI
                             $('.m_grid').remove();
-                            $('#party .player_row').remove();
-                            $('#party').css('display', 'none');
                             $('#status').empty();
                             $('#dialog').dialog('close');
                     
-                            // Load the welcome dialog
-                            Loadwelcome();
+                            // Load the same adventure
+                            var curradv = Adventures[Party.levelcomplete];
+							MapWorld = curradv.type;
+							World.build();
                     }
                 }, 375);
             }

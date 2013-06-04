@@ -4,6 +4,7 @@
     // Validate email address
     $email = $_GET["email"];
     $passcode = urldecode($_GET["passcode"]);
+    $adventure = urldecode($_GET["adventure"]);
     
     if(!filter_var($email, FILTER_VALIDATE_EMAIL))
     {
@@ -13,7 +14,8 @@
     {
         $to = $email;
         $subject = "Over red waves of sand: Saved Game ".date("Y-m-d");
-        $message = "<p>Click the passcode below to get right back in it.</p>".
+        $message = "<p><b>".$adventure."</b> - Completed</p>".
+            "<p>Click the passcode below to get right back in it.</p>".
             "<p><a href='http://www.artsick.com/redwaves/index.php?passcode=".$passcode."'>".$passcode."</a></p>".
             "<p>Or, if you don't trust email links, copy the passcode and paste it into the box when prompted.</p>".
             "<p><b>".$passcode."</b></p>".

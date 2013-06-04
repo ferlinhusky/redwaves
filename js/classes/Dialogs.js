@@ -27,9 +27,8 @@ var D_Welcome = {
 	buttons: {
 		"Play": function() {
 			// If passcode used, jump straight into the game
-			if(Input.passcodeverified || World.gameover == true)
+			if(Input.passcodeverified)
 			{
-				// If from game over, will need to load players from passcode as if verifying
 				Input.passcodeverified = false;
 				World.build();
 			} else { Loadselectteam(); }
