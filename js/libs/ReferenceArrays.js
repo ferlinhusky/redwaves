@@ -22,20 +22,20 @@ var Armors = ["",
     "barbute",
     "closehelmet",
     "cowboyhat",
-	"hide",
-	"leathertunic", "robe",
-	"scale", "chainmail",
-	"brigandine", "plate"
+    "hide",
+    "leathertunic", "robe",
+    "scale", "chainmail",
+    "brigandine", "plate"
 ];
 
 var Skills = ["",
-	"heroism", "tenacity",
-	"swordsmanship", "necromancy",
-	"keenness", "paralyze",
-	"stealth", "aquatic"
+    "heroism", "tenacity",
+    "swordsmanship", "necromancy",
+    "keenness", "paralyze",
+    "stealth", "aquatic"
 ];
 
 var Spells = ["",
-	"fireball", "freeze",
-	"lightning", "earthquake"
+    "fireball", "freeze",
+    "lightning", "earthquake"
 ];

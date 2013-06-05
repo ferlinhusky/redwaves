@@ -459,61 +459,60 @@ var Input = function(){
                             player.movement = pdata.maxmove;
                             player.maxMove = pdata.maxmove;
                             
-							//inventory
-							player.inven = [];
-							for (var i=0; i<pdata.inventory.length; i++) {
-								var tmp;
-								if (pdata.inventory[i] != 0) {
-										tmp = ( new Function('var p = new ' + InventoryItems[pdata.inventory[i]] + '(); return p;') )();
-										player.inven.push(tmp);
-								}
-							}
-                            
-							//weapons
-							player.wields = [];
-							for (var i=0; i<pdata.weapons.length; i++) {
-								var tmp;
-								if (pdata.weapons[i] != 0) {
-										tmp = ( new Function('var p = new ' + Weapons[pdata.weapons[i]] + '(); return p;') )();
-										player.wields.push(tmp);
-								} else { player.wields.push(""); }
-							}
-                            
-							//armor
-							player.wears = [];
-							for (var i=0; i<pdata.armor.length; i++) {
-								var tmp;
-								if (pdata.armor[i] != 0) {
-										tmp = ( new Function('var p = new ' + Armors[pdata.armor[i]] + '(); return p;') )();
-										player.wears.push(tmp);
-								} else { player.wears.push(""); }
-							}
-                            
-							//skills
-							player.skills = [];
-							for (var i=0; i<pdata.skills.length; i++) {
-								var tmp;
-								if (pdata.skills[i] != 0) {
-										tmp = ( new Function('var p = new ' + Skills[pdata.skills[i]] + '(); return p;') )();
-										player.skills.push(tmp);
-								}
-							
-							}
-								// skillnames
-								player.skillnames = [];
-								for (var i=0; i<player.skills.length; i++) {
-									player.skillnames.push(player.skills[i].name);
-								}
-								
+                            //inventory
+                            player.inven = [];
+                            for (var i=0; i<pdata.inventory.length; i++) {
+                                    var tmp;
+                                    if (pdata.inventory[i] != 0) {
+                                                    tmp = ( new Function('var p = new ' + InventoryItems[pdata.inventory[i]] + '(); return p;') )();
+                                                    player.inven.push(tmp);
+                                    }
+                            }
+
+                            //weapons
+                            player.wields = [];
+                            for (var i=0; i<pdata.weapons.length; i++) {
+                                    var tmp;
+                                    if (pdata.weapons[i] != 0) {
+                                                    tmp = ( new Function('var p = new ' + Weapons[pdata.weapons[i]] + '(); return p;') )();
+                                                    player.wields.push(tmp);
+                                    } else { player.wields.push(""); }
+                            }
+
+                            //armor
+                            player.wears = [];
+                            for (var i=0; i<pdata.armor.length; i++) {
+                                    var tmp;
+                                    if (pdata.armor[i] != 0) {
+                                                    tmp = ( new Function('var p = new ' + Armors[pdata.armor[i]] + '(); return p;') )();
+                                                    player.wears.push(tmp);
+                                    } else { player.wears.push(""); }
+                            }
+
+                            //skills
+                            player.skills = [];
+                            for (var i=0; i<pdata.skills.length; i++) {
+                                    var tmp;
+                                    if (pdata.skills[i] != 0) {
+                                                    tmp = ( new Function('var p = new ' + Skills[pdata.skills[i]] + '(); return p;') )();
+                                                    player.skills.push(tmp);
+                                    }
+                            }
+                                    // skillnames
+                                    player.skillnames = [];
+                                    for (var i=0; i<player.skills.length; i++) {
+                                            player.skillnames.push(player.skills[i].name);
+                                    }
+                                    
                             //spells
-							player.spells = [];
-							for (var i=0; i<pdata.spells.length; i++) {
-								var tmp;
-								if (pdata.spells[i] != 0) {
-										tmp = ( new Function('var p = new ' + Skills[pdata.spells[i]] + '(); return p;') )();
-										player.spells.push(tmp);
-								}
-							}
+                            player.spells = [];
+                            for (var i=0; i<pdata.spells.length; i++) {
+                                    var tmp;
+                                    if (pdata.spells[i] != 0) {
+                                                    tmp = ( new Function('var p = new ' + Skills[pdata.spells[i]] + '(); return p;') )();
+                                                    player.spells.push(tmp);
+                                    }
+                            }
                     }
                     
                     // Update Party
@@ -522,22 +521,22 @@ var Input = function(){
                     Party.store = data.store;
                     
                     // Load up next adventure
-					if (Party.levelcomplete >= Adventures.length) {
-						$('.ui-dialog .next_adventure').html("You've done 'em all. <a href='http://www.twitter.com/HuskyFerlin'>When more?</a>");
-						$('.ui-dialog .next_adventure').css({
-								"color": "#333",
-								"background-color": "#fff"
-						});
-						$(".ui-dialog-buttonpane button:contains('Play')").button("disable");
-					} else {
-						var curradv = Adventures[Party.levelcomplete];
-						MapWorld = curradv.type;
-						$('.ui-dialog .next_adventure').text(curradv.title);
-						$('.ui-dialog .next_adventure').css({
-								"color": curradv.titlecolors[0],
-								"background-color": curradv.titlecolors[1]
-						});
-					}
+                    if (Party.levelcomplete >= Adventures.length) {
+                            $('.ui-dialog .next_adventure').html("You've done 'em all. <a href='http://www.twitter.com/HuskyFerlin'>When more?</a>");
+                            $('.ui-dialog .next_adventure').css({
+                                            "color": "#333",
+                                            "background-color": "#fff"
+                            });
+                            $(".ui-dialog-buttonpane button:contains('Play')").button("disable");
+                    } else {
+                            var curradv = Adventures[Party.levelcomplete];
+                            MapWorld = curradv.type;
+                            $('.ui-dialog .next_adventure').text(curradv.title);
+                            $('.ui-dialog .next_adventure').css({
+                                            "color": curradv.titlecolors[0],
+                                            "background-color": curradv.titlecolors[1]
+                            });
+                    }
 		}
 		
 		/*
@@ -584,11 +583,11 @@ var Input = function(){
 			text: true
 		});
 		
-		btnSave.button({ 
+		/*btnSave.button({ 
 			icons: {primary:'ui-icon-disk',secondary:''},
 			disabled: false,
 			text: true
-		});
+		});*/
 		
 		btnSpell.button({ 
 			icons: {primary:'ui-icon-script',secondary:''},
@@ -629,7 +628,7 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		/*TEST*/btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		//btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
