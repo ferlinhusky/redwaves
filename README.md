@@ -25,7 +25,7 @@ fun and I keep working on it like every day so it'll just get better. CONFIDENCE
 
 <ol>
 <li>Fixing some save and combat issues.</li>
-<li>Adding an armory/shop you know what I mean: a placer where you can buy things for your character. I'm thinking
+<li>Adding an armory/shop you know what I mean: a place where you can buy things for your character. I'm thinking
 of calling it <b>Equipment House</b>. EQUIPMENT HOUUUUUSE!</li>
 <li>Adding more @dventures&trade; because the first one is boring me and the second one isn't finished.
 </ol>
