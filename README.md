@@ -35,7 +35,7 @@ try to get it coded by the end of the day, or maybe over a couple of days. It's 
 without all the index cards and standing.</p>
 
 <h3>To run</h3>
-<p>Download the package and run index.html in your browser. Runs smoothly in Chrome, mostly smooth
+<p>Download the package and copy all the files to a new folder on your local server; home is index.php. Runs smoothly in Chrome, mostly smooth
 in Firefox and slow to sad in older versions of IE.</p>
 
 <p>Works well in iOS Safari; no idea about Android phones. Worked well in iOS Chrome up until their
