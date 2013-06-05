@@ -2,9 +2,9 @@
 
 <h3>Lo-fi adventure gaming in javascript</h3>
 
-<h3>May 2013</h3>
+<h3>June 2013</h3>
 <p>This is a fighting/adventure game in a semi-ASCII style, written in javascript/jQuery. It's
-still in development but no commit should break basic functionality. If you run it, it'll work
+still in development but no commit should break basic functionality. If you run it, it'll (mostly) work
 up to what I've written that day.</p>
 
 <h3>Features</h3>
@@ -23,7 +23,14 @@ fun and I keep working on it like every day so it'll just get better. CONFIDENCE
 
 <h3>What I'm working on now</h3>
 
-<p>Right now, player customizations and maybe a storyline. I come up with an idea in the morning and
+<ol>
+<li>Fixing some save and combat issues.</li>
+<li>Adding an armory/shop you know what I mean: a placer where you can buy things for your character. I'm thinking
+of calling it <b>Equipment House</b>. EQUIPMENT HOUUUUUSE!</li>
+<li>Adding more @dventures&trade; because the first one is boring me and the second one isn't finished.
+</ol>
+
+<p>I usually come up with an idea in the morning and
 try to get it coded by the end of the day, or maybe over a couple of days. It's like agile development
 without all the index cards and standing.</p>
 
