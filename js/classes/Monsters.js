@@ -10,8 +10,8 @@ var Monster = Character.extend({
 		
 		this.ID = "monster_" + Monsters.length;
 		this.ofType = "monster";
-		this.group = Monsters;
-		this.group.push(this);
+		//this.group = Monsters;
+		Monsters.push(this);
 		this.readySpell;
 		
 		this.targets = [];
@@ -239,7 +239,7 @@ var Atomic_Beast = Monster.extend({
 			["","","","","",""],
 			["", new claw, new claw,""],
 			[],
-			["radiation"],
+			[new radiation],
 			4, 4
 		);
   	}
@@ -255,7 +255,7 @@ var Atomic_Freak = Monster.extend({
 			["","","","","",""],
 			["", new hand, new hand,""],
 			[],
-			["radiation"],
+			[new radiation],
 			3, 5
 		);
   	}
@@ -271,7 +271,7 @@ var Basilisk = Monster.extend({
 			["","","","","",""],
 			[new fangs, new claw, new claw, new talons],
 			[],
-			["paralyze"],
+			[new paralyze],
 			20, 10
 		);
   	}
@@ -287,7 +287,7 @@ var Ghost_Dracula = Monster.extend({
 			["","","","","",""],
 			[new fangs, "", "", ""],
 			[],
-			["paralyze", "freakout", "drain"],
+			[new paralyze, new freakout, new drain],
 			15, 8
 		);
   	}
@@ -303,7 +303,7 @@ var Hell_Dog = Monster.extend({
 			["","","","","",""],
 			[new fangs, "", "", ""],
 			[],
-			["hellfire"],
+			[new hellfire],
 			4, 7
 		);
   	}
@@ -319,7 +319,7 @@ var Hillbilly_Hellion = Monster.extend({
 			["","","","","",""],
 			["", new shotgun, "", ""],
 			[],
-			["hellfire"],
+			[new hellfire],
 			4, 7
 		);
   	}
@@ -335,7 +335,7 @@ var Master_Killer = Monster.extend({
 			["", new robe,"","","",""],
 			["", new hand, new hand,""],
 			[],
-			["martial arts"],
+			[new martialarts],
 			25, 7
 		);
   	}
@@ -351,7 +351,7 @@ var Shaolin_Beatnik = Monster.extend({
 			["", new robe,"","","",""],
 			["", new hand, new hand,""],
 			[],
-			["martial arts"],
+			[new martialarts],
 			5, 7
 		);
   	}

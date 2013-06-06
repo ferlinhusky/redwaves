@@ -28,3 +28,18 @@ var stealth = Skill.extend({ init: function(){ this._super("stealth", 7); } });
 
 // Aquatic
 var aquatic = Skill.extend({ init: function(){ this._super("aquatic", 8); } });
+
+// Hellfire
+var hellfire = Skill.extend({ init: function(){ this._super("hellfire", 9); } });
+
+// Martial Arts
+var martialarts = Skill.extend({ init: function(){ this._super("martialarts", 10); } });
+
+// Freakout
+var freakout = Skill.extend({ init: function(){ this._super("freakout", 10); } });
+
+// Radiation
+var radiation = Skill.extend({ init: function(){ this._super("radiation", 11); } });
+
+// Drain
+var drain = Skill.extend({ init: function(){ this._super("drain", 10); } });

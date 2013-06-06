@@ -32,7 +32,10 @@ var Skills = ["",
     "heroism", "tenacity",
     "swordsmanship", "necromancy",
     "keenness", "paralyze",
-    "stealth", "aquatic"
+    "stealth", "aquatic",
+	"hellfire", "martialarts",
+	"freakout", "radiation",
+	"drain"
 ];
 
 var Spells = ["",
