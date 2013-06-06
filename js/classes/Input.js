@@ -381,22 +381,22 @@ var Input = function(){
                     var jsonObj = {};
                     var jsonPlayers = [];
                     
-                    for(var j=0; j<Players.length; j++){
+                    for(var j=0; j<Party.members.length; j++){
                     
                         var pwields=[]; var pwears=[]; var pinven=[]; var pspells=[];
                         
-                        for(var i=0; i < Players[j].wields.length; i++){ pwields.push(Players[j].wields[i]); }
-                        for(var i=0; i < Players[j].wears.length; i++){ pwears.push(Players[j].wears[i]); }
-                        for(var i=0; i < Players[j].inven.length; i++){ pinven.push(Players[j].inven[i]); }
-                        for(var i=0; i < Players[j].spells.length; i++){ pspells.push(Players[j].spells[i]); }
+                        for(var i=0; i < Party.members[j].wields.length; i++){ pwields.push(Party.members[j].wields[i]); }
+                        for(var i=0; i < Party.members[j].wears.length; i++){ pwears.push(Party.members[j].wears[i]); }
+                        for(var i=0; i < Party.members[j].inven.length; i++){ pinven.push(Party.members[j].inven[i]); }
+                        for(var i=0; i < Party.members[j].spells.length; i++){ pspells.push(Party.members[j].spells[i]); }
                         
                         jsonPlayers.push({
-                                    type: Players[j].type,
-                                    gender: Players[j].gender.demo,
-                                    level: Players[j].level,
-                                    hp: Players[j].maxHP,
-                                    move: Players[j].maxMove,
-                                    skills: Players[j].skills,
+                                    type: Party.members[j].type,
+                                    gender: Party.members[j].gender.demo,
+                                    level: Party.members[j].level,
+                                    hp: Party.members[j].maxHP,
+                                    move: Party.members[j].maxMove,
+                                    skills: Party.members[j].skills,
                                     weapons: pwields,
                                     wears: pwears,
                                     inven: pinven,

@@ -6,6 +6,7 @@ var Player = Character.extend({
 		this.ofType = "player";
 		this.group = Players;
 		this.group.push(this);
+		Party.members.push(this);
 		
 		this.map="";
 		
