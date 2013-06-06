@@ -34,9 +34,37 @@ var World = function(){
                 this.activePlayer = this.orderOfPlay[0];
 		this.endturn(); // Start
 	};
-        
+	
+	this.playnext = function(){
+		// Clear out object arrays
+		Players = [];
+		Monsters = [];
+		Squares = [];
+		
+		// Reset Players
+		for (var i=0; i<Party.members.length; i++) {
+			Party.members[i].HP = Party.members[i].maxHP;
+			Party.members[i].movement = Party.members[i].maxMove;
+			Party.members[i].readyItem = null;
+			Party.members[i].dead = false;
+			Party.members[i].paralyzed = 0;
+			Party.members[i].slow = false;
+			Players[i] = Party.members[i];
+		}
+		
+		// Clear out the UI
+		$('.m_grid').remove();
+		$('#status').empty();
+		$('#dialog').dialog('close');
+
+		// Load the next adventure
+		var curradv = Adventures[Party.levelcomplete];
+		MapWorld = curradv.type;
+		World.build();
+	};
+	
 	this.endgame = function(wl, state){
-            this.gameover = true;
+        this.gameover = true;
 	    if (state == "win") {
                 // Update current adventure
                 Party.levelcomplete += 1;
@@ -52,23 +80,8 @@ var World = function(){
                 // Passcode addon should show next adventure, and not return to home screen
                 Input.M_Dialog("standard", dialogcontent, this.Level.title, {
                     "Play on": function(){
-                            // Clear out object arrays
-                            Monsters = [];
-                            Squares = [];
-							
-							// Reset Player HP
-							for (var i=0; i<Players.length; i++) { Players[i].HP = Players[i].maxHP; }
-                            
-                            // Clear out the UI
-                            $('.m_grid').remove();
-							$('#status').empty();
-                            $('#dialog').dialog('close');
-                    
-                            // Load the next adventure
-                            var curradv = Adventures[Party.levelcomplete];
-							MapWorld = curradv.type;
-							World.build();
-                    },
+						this.playnext();
+					},
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');
                             $('.ui-dialog #emailpasscoderesponse').text('Attempting to send...');
@@ -102,24 +115,9 @@ var World = function(){
             } else {
                 Input.M_Dialog("standard", wl, this.Level.title, {
                     "Try again": function(){
-                            // Clear out object arrays
-                            Monsters = [];
-                            Squares = [];
-							
-							// Reset Player HP
-							for (var i=0; i<Players.length; i++) { Players[i].HP = Players[i].maxHP; }
-                            
-                            // Clear out the UI
-                            $('.m_grid').remove();
-                            $('#status').empty();
-                            $('#dialog').dialog('close');
-                    
-                            // Load the same adventure
-                            var curradv = Adventures[Party.levelcomplete];
-							MapWorld = curradv.type;
-							World.build();
-                    }
-                }, 375);
+						this.playnext();
+					}
+				}, 375);
             }
 	};
 	

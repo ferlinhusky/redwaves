@@ -103,10 +103,17 @@ var Character = Class.extend({
 		Squares[this.currentSquare].occupied = false; // empty Square obj
 		Squares[this.currentSquare].occupiedBy = "";
 		
+		var group;
+		switch (this.ofType) {
+			case "monster"	: group = Monsters; break;
+			case "player"	: group = Players; break;
+			default			: break;
+		}
+		
 		// Remove from array; can't just splice at ID b/c ID->position changes on a splice
-		for(var i=0; i<this.group.length; i++){
-			if(this.ID == this.group[i].ID){
-				this.group.splice(i, 1);
+		for(var i=0; i<group.length; i++){
+			if(this.ID == group[i].ID){
+				group.splice(i, 1);
 				break; // end loop
 			}
 		}

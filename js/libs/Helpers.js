@@ -270,10 +270,12 @@ var formatPartyTable = function(){
 var HP_set = function(obj, value){
 	obj.HP += value;
 	if(obj.HP < 0) { obj.HP = 0; } // No negative HP values
-	if(obj.HP >= 0 && obj.HP <= 2 && obj.hasSkill('tenacity')){
-		obj.HP += Math.round(Math.random());
-		status_line = '<span class="red">' + obj.name + ' tries to hang on just a little longer!</span>';
-		Status.update(status_line);
+	if(obj.hasSkill('tenacity')){
+		if (obj.HP >= 0 && obj.HP <= 2) {
+			obj.HP += Math.round(Math.random());
+			status_line = '<span class="red">' + obj.name + ' tries to hang on just a little longer!</span>';
+			Statuss.update(status_line);
+		}
 	}
 	if(obj.HP > obj.maxHP) { obj.HP = obj.maxHP; } // No greater than maxHP values
 	$('tr.' + obj.type + ' .HP').text(obj.HP);
