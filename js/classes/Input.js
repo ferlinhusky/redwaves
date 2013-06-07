@@ -157,18 +157,14 @@ var Input = function(){
 				.css({
 				   top: btnSpell.position().top - offH,
 				   left: btnSpell.position().left,
-				   width: SpellSet.width() - 8
-				})
-				.animate({
-					opacity: 1
-				}, 250);
+				   width: SpellSet.width() - 8,
+				   display: 'block'
+				});
 			this.spellMenu = true;
 		};
 		
 		this.hideSpellMenu = function(){
-			menuSelectSpell.animate({
-						opacity: 0
-					}, 250);
+			menuSelectSpell.css({display: 'none'});
 			this.spellMenu = false;
 		};
 		
@@ -247,20 +243,14 @@ var Input = function(){
 				.css({
 				   top: btnItem.position().top - offH,
 				   left: btnItem.position().left,
-				   width: ItemSet.width() - 8
-				})
-				.animate({
-					opacity: 1
-				}, 250);
+				   width: ItemSet.width() - 8,
+				   display: 'block'
+				});
 			this.itemMenu = true;
 		};
 		
 		this.hideItemMenu = function(){
-			menuSelectItem.animate({
-						opacity: 0
-					}, 250, function(){
-						menuSelectItem.css('top', '-10000px');
-					});
+			menuSelectItem.css({display:'none'});
 			this.itemMenu = false;
 		};
 		
