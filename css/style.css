@@ -339,7 +339,7 @@ h3{
     position: absolute;
 	top: -1000px;
     padding: 5px;
-    opacity: 0;
+    display: none;
 }
 
 /* Dialogs */

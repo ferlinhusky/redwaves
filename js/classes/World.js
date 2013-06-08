@@ -1,6 +1,5 @@
 // THE WORLD IS AN ENGINE
 var World = function(){
-
 	this.resetvars = function(){
 		this.orderOfPlay = [];
 		this.currentPlay = 0;

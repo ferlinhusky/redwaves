@@ -164,7 +164,10 @@ var Input = function(){
 		};
 		
 		this.hideSpellMenu = function(){
-			menuSelectSpell.css({display: 'none'});
+			menuSelectSpell.css({
+                            top: '-1000px',
+                            display: 'none'
+                        });
 			this.spellMenu = false;
 		};
 		
@@ -212,7 +215,7 @@ var Input = function(){
 		// If found, cast spell
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
-            World.activePlayer.readySpell.cast(sobj);
+                        World.activePlayer.readySpell.cast(sobj);
 		};
 		
 		// Square click
@@ -250,7 +253,10 @@ var Input = function(){
 		};
 		
 		this.hideItemMenu = function(){
-			menuSelectItem.css({display:'none'});
+			menuSelectItem.css({
+                            top: '-1000px',
+                            display:'none'
+                        });
 			this.itemMenu = false;
 		};
 		
@@ -702,7 +708,7 @@ var Input = function(){
 				}
 				
 				// Make sure the Spell select dropdown (up?) doesn't unattach itself
-				if(menuSelectSpell.css('opacity') > 0){
+				if(Input.spellMenu == true){
 					var offH = menuSelectSpell.outerHeight();
 					 menuSelectSpell.css({
 					   top: btnSpell.position().top - offH,
@@ -712,7 +718,7 @@ var Input = function(){
 				}
 				
 				// Make sure the Spell select dropdown (up?) doesn't unattach itself
-				if(menuSelectItem.css('opacity') > 0){
+				if(Input.itemMenu == true){
 					var offH = menuSelectItem.outerHeight();
 					 menuSelectItem.css({
 					   top: btnItem.position().top - offH,
