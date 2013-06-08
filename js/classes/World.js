@@ -35,12 +35,17 @@ var World = function(){
 	};
 	
 	this.playnext = function(){
-		// Clear out object arrays
-		Players = [];
-		Monsters = [];
+		// Clear out map squares
 		Squares = [];
+                
+                // Delete remaining monsters
+                for (var i=0; i<Monsters.length; i++){
+                    delete Monsters[i];
+                }
+                Monsters = [];
 		
-		// Reset Players
+		// Reset Players...or just load from passcode?
+                Players = [];
 		for (var i=0; i<Party.members.length; i++) {
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;

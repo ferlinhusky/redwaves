@@ -117,6 +117,7 @@ var Character = Class.extend({
 				break; // end loop
 			}
 		}
-		delete this; // remove object
+		
+		//delete this; // remove object
 	}
 });
