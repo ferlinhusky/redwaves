@@ -4,5 +4,6 @@ var Party = Class.extend({
 	    this.levelcomplete = 0;
 	    this.store = [0,0,0,0,0,0];
 	    this.members = [];
+	    this.passcode = "";
 	}
 });

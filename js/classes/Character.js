@@ -27,6 +27,7 @@ var Character = Class.extend({
 		this.maxMove	=	movement;
 		
 		this.readyItem = null;
+		this.readySpell = null;
 		this.spells = [];
 		this.medication = []; // any herbs or pills taken
 

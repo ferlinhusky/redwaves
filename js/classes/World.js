@@ -44,16 +44,20 @@ var World = function(){
                 }
                 Monsters = [];
 		
-		// Reset Players...or just load from passcode?
+		// Reset Players & party table
                 Players = [];
+                $('#party tr.player_row').remove();
+                $('#party').css('display', 'table');
 		for (var i=0; i<Party.members.length; i++) {
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;
 			Party.members[i].readyItem = null;
+                        Party.members[i].readySpell = null;
 			Party.members[i].dead = false;
 			Party.members[i].paralyzed = 0;
 			Party.members[i].slow = false;
 			Players[i] = Party.members[i];
+                        Players[i].updatetable(); // update ui
 		}
 		
 		// Clear out the UI

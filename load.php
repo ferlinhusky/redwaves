@@ -112,7 +112,7 @@
                 switch ($ptypes[$i-1]) {
                     case "0000": $player->type = "knight";
                         break;
-                    case "0001": $player->type = "wizard";
+                    case "1111": $player->type = "wizard"; // 0001 causes confusion w/thief???
                         break;
                     case "0010": $player->type = "fighter";
                         break;

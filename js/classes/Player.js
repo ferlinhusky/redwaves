@@ -9,19 +9,21 @@ var Player = Character.extend({
 		Party.members.push(this);
 		
 		this.map="";
-		
+		this.updatetable();
+	},
+	updatetable: function(){
 		// Update UI
 		var wielding = [];
-		for(var i=0; i<wields.length; i++){
-			if(wields[i] != ""){
-				wielding.push(wields[i].name);
+		for(var i=0; i<this.wields.length; i++){
+			if(this.wields[i] != ""){
+				wielding.push(this.wields[i].name);
 			}
 		}
 		
 		var wearing = [];
-		for(var i=0; i<wears.length; i++){
-			if(wears[i] != ""){
-				wearing.push(wears[i].name);
+		for(var i=0; i<this.wears.length; i++){
+			if(this.wears[i] != ""){
+				wearing.push(this.wears[i].name);
 			}
 		}
 		$('#party').append('<tr class="'+this.type+' player_row">');
@@ -32,8 +34,6 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+this.wields[1].dmg+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat stWEARS"><span class="WEARS">'+wearing.toString()+'</span></td>');
-		
-		formatPartyTable();
 	},
 	locIt: function(curr, prev, first){
 		this._super(curr, prev);
@@ -235,7 +235,6 @@ var Wizard = Player.extend({
 			new lightning,
 			new earthquake
 		];
-		this.readySpell = null;
 		
 		for(var i=0; i<this.spells.length; i++){
 			menuSelectSpell.append('<li><a href="javascript:void(0);" onclick="Input.setSpell('+i+');">'+this.spells[i].name);

@@ -414,6 +414,7 @@ var Input = function(){
                         data: postArray,
                         type: 'POST',
                         success: function(data){
+                            Party.passcode = data;
                             $('.ui-dialog #passcode').text(data);
                         },
                         error: function(xhr, a, b){
@@ -436,7 +437,7 @@ var Input = function(){
                     
                     // Create Players
                     for(var j=0; j<data.players.length; j++){
-						var pdata = data.players[j];
+			var pdata = data.players[j];
                         var player = ( new Function('var p = new ' + capitalise(pdata.type) + '(); return p;') )();
 
                         // Update player attributes/wpsn/items/etc.
@@ -539,26 +540,26 @@ var Input = function(){
 		    Verify passcode
 		*/
                 this.passcodeverified = false;
-				this.verifypasscode = function(){
+                this.verifypasscode = function(){
                     var pcode = $('.ui-dialog .enter_passcode').val();
                     if (pcode.length > 0) {
                         $.ajax({
-                                url:'load.php?passcode='+pcode,
-                                dataType: 'json',
-                                success: function(data){
-                                    $('.ui-dialog .enter_passcode').css('color', 'white');
-                                    if (data.error) {
-                                        alert(data.error);
-                                        $('.ui-dialog .enter_passcode').css('background-color', 'red');
-                                    } else {
-                                        Input.passcodeverified = true;
-                                        $('.ui-dialog .enter_passcode').css('background-color', 'green');
-                                        Input.loadgame(data);
-                                    }
-                                },
-                                error: function(){
-                                        alert("Error loading data. Sorry :(");
+                            url:'load.php?passcode='+pcode,
+                            dataType: 'json',
+                            success: function(data){
+                                $('.ui-dialog .enter_passcode').css('color', 'white');
+                                if (data.error) {
+                                    alert(data.error);
+                                    $('.ui-dialog .enter_passcode').css('background-color', 'red');
+                                } else {
+                                    Input.passcodeverified = true;
+                                    $('.ui-dialog .enter_passcode').css('background-color', 'green');
+                                    Input.loadgame(data);
                                 }
+                            },
+                            error: function(){
+                                    alert("Error loading data. Sorry :(");
+                            }
                         });
                     }
 		};
@@ -579,11 +580,11 @@ var Input = function(){
 			text: true
 		});
 		
-		/*btnSave.button({ 
+		btnSave.button({ 
 			icons: {primary:'ui-icon-disk',secondary:''},
 			disabled: false,
 			text: true
-		});*/
+		});
 		
 		btnSpell.button({ 
 			icons: {primary:'ui-icon-script',secondary:''},
@@ -624,7 +625,7 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		//btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
