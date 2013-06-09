@@ -52,8 +52,6 @@
         $pcodebinarystr.=substr("000000", 0, 6 - strlen($pcharbinval)).$pcharbinval;
     }
     
-    echo $pcodebinarystr;
-    
     // If block isn't exactly 576 chars, return error
     if(strlen($pcodebinarystr) != 630){
         echo json_encode(array("error"=>"Passcode not valid"));
