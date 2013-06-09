@@ -206,12 +206,12 @@ var World = function(){
 				$('.' + this.activePlayer.ID).tooltip('destroy');
 			}
 			if (this.activePlayer.dead == true) {
-				World.endturn();
+				this.endturn();
 				return false;
 			} else if (this.activePlayer.paralyzed > 0){
 				Statuss.update('<span>' + this.activePlayer.name + ' is paralyzed</span>');
 				this.activePlayer.paralyzed--;
-				World.endTurn();
+				this.endturn();
 				return false;
 			}
 			
