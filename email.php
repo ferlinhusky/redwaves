@@ -3,7 +3,7 @@
     
     // Validate email address
     $email = $_GET["email"];
-    $passcode = trim(urldecode($_GET["passcode"]));
+    $passcode = urldecode($_GET["passcode"]);
     $adventure = urldecode($_GET["adventure"]);
     
     if(!filter_var($email, FILTER_VALIDATE_EMAIL))

@@ -40,7 +40,7 @@
         // Type - 12 bits
         switch($p->type){
             case "knight": $type.="0000"; break;
-            case "wizard": $type.="1111"; break; // 0001 causes confusion w/thief???
+            case "wizard": $type.="0001"; break;
             case "fighter": $type.="0010"; break;
             case "wolfman": $type.="0011"; break;
             case "lamia": $type.="0100"; break;
@@ -49,6 +49,7 @@
             case "automoton": $type.="0111"; break;
             default: break;
         }
+
         // Gender - 4 bits
         switch($p->gender){
             case "male": $gender.="1"; break;
