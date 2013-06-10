@@ -159,7 +159,7 @@
         $passcode.=$pcl[bindec($r)];
     }
     
-    // Convert repeating "A"s (blocks of 000000) into blanks followed by the count of consecutive "A"s
+    // Convert repeating "A"s (blocks of 000000) into dash followed by the count of consecutive "A"s
     $passcodefmt='';
     $passcodechars = str_split($passcode);
     $acount = 0;
@@ -168,11 +168,11 @@
             $acount++;
             if($i == count($passcodechars)-1){
                 // If last char is "A", do final concat
-                $passcodefmt.=" ".$pcl[$acount];
+                $passcodefmt.="-".$pcl[$acount];
             }
         } else {
             if($acount>0){
-                $passcodefmt.=" ".$pcl[$acount]; // append a blank to indicate series of "A" + "A" count for that block
+                $passcodefmt.="-".$pcl[$acount]; // append a dash to indicate series of "A" + "A" count for that block
                 $acount=0; // reset "A" count
             }
             $passcodefmt.=$passcodechars[$i];

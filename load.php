@@ -28,15 +28,15 @@
     // Get passcode param
     $passcode = urldecode($_GET["passcode"]);
     
-    // Convert blanks to "A"s
+    // Convert dash to "A"s
     $passcodechars = str_split($passcode);
     for($i=0; $i<count($passcodechars); $i++){
-        // If a blank is found...
-        if($passcodechars[$i]==" "){
+        // If a dash is found...
+        if($passcodechars[$i]=="-"){
             // Look at the next character to see how many "A"s to add
             $acount = array_search($passcodechars[$i+1], $pcl);
             $aarray = array();
-            // Replace the blank, and the character after, with the "A"s
+            // Replace the dash, and the character after, with the "A"s
             for($j=0; $j<$acount; $j++){
                 array_push($aarray, "A");
             }
