@@ -407,7 +407,6 @@ var Input = function(){
                     jsonObj.store = Party.store;
                     
                     var postData = JSON.stringify(jsonObj);
-                    alert(postData);
                     var postArray = {playerdata:postData};
                     
                     $.ajax({
