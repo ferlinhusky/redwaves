@@ -37,6 +37,17 @@ var D_Welcome = {
 	height:375
 }
 
+var D_Store = {
+	title: 'A blue wooden house',
+	content: $('#dialog_store').html(),
+	buttons: {
+		"OK": function() {
+			oDialog.dialog('close');
+		}
+	},
+	height:375
+}
+
 var D_Select_Team = {
 	title: 'Pick your team!',
 	content: $('#dialog_select_team').html(),

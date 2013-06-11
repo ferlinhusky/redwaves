@@ -330,14 +330,15 @@ var Input = function(){
 				case "options" 		: M_D = D_Options; break;
 				case "help" 		: M_D = D_Help; break;
 				case "welcome" 		: M_D = D_Welcome; break;
-                                case "select_team" 	: M_D = D_Select_Team; break;
+                case "select_team" 	: M_D = D_Select_Team; break;
 				case "standard"		: M_D = D_Standard; break;
+				case "store"		: M_D = D_Store; break;
 				default: break;
 			}
 			if(type=="standard"){
 				oDialog.html(content);
 				M_D_title = title;
-                                M_D_height = height;
+                M_D_height = height;
 				if(buttons != false) {
 					M_D_buttons = buttons;
 				} else {
@@ -356,9 +357,8 @@ var Input = function(){
 				} else { M_D_height = "auto"; }
 			}
 			oDialog.dialog({
-                                closeOnEscape: false,
-                                open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog).hide(); },
-				//open: M_D.open,
+                closeOnEscape: false,
+                open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog).hide(); },
 				close: function(){
 					Input.bindToMap();
 				},
@@ -366,7 +366,8 @@ var Input = function(){
 				title: M_D_title,
 				modal: true,
 				height: M_D_height,
-				zIndex: 5000
+				zIndex: 5000,
+				position: { my: "top+25%", at: "top", of: "body" } // new, test
 			});
 		}
 		
@@ -625,7 +626,7 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('store'); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});

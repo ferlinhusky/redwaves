@@ -64,6 +64,47 @@
 		</tr>
 	</table>
     </div>
+    
+    <!-- Equip/buy/sell -->
+    <div class="dialog_content" id="dialog_store">
+	<div class="store_template">
+		<div class="player">Hero</div>
+		<div class="nav"><a href="#items">Items</a> | <a href="#weapons">Weapons</a> | <a href="#armor">Armor</a></div>
+		<div class="itemgroups">
+			<a name="items"></a>
+			<div class="group">Items</div>
+				<ul class="items">
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+				</ul>
+			</div>
+		
+			<a name="weapons"></a>
+			<div class="group">Weapons</div>
+				<ul class="items">
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+				</ul>
+			</div>
+	
+			<a name="armor"></a>
+			<div class="group">Armor</div>
+				<ul class="items">
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+    </div>
 
     <!-- Help dialog -->
     <div class="dialog_content" id="dialog_help">
