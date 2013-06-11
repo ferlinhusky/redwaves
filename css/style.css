@@ -240,15 +240,29 @@ h3{
     font-weight: bold;
     text-align: center;
 }
-#party tr.hero { background-color: rgb(91, 194, 228); }
-#party tr.fighter { background-color: lightcoral; }
-#party tr.knight { background-color: darkseagreen; }
-#party tr.wizard { background-color: darkorchid; }
-#party tr.wolfman { background-color: lightgray; }
-#party tr.lamia { background-color: hotpink; }
-#party tr.thief { background-color: olive; color: #fff; }
-#party .stat { text-align: center; }
 
+.store_template .player .icon.hero,
+#party tr.hero { background-color: rgb(91, 194, 228); }
+
+.store_template .player .icon.fighter,
+#party tr.fighter { background-color: lightcoral; }
+
+.store_template .player .icon.knight,
+#party tr.knight { background-color: darkseagreen; }
+
+.store_template .player .icon.wizard,
+#party tr.wizard { background-color: darkorchid; }
+
+.store_template .player .icon.wolfman,
+#party tr.wolfman { background-color: lightgray; }
+
+.store_template .player .icon.lamia,
+#party tr.lamia { background-color: hotpink; }
+
+.store_template .player .icon.thief,
+#party tr.thief { background-color: olive; color: #fff; }
+
+#party .stat { text-align: center; }
 #party .label.WEARS,
 #party .label.WPN,
 #party .stWEARS,
@@ -394,6 +408,16 @@ h3{
     text-align: center;
     margin-top: -10px;
 }
+
+/* Store dialog */
+.store_template .player { font-weight: bold; font-size: 1.2em; margin-bottom: -5px; }
+.store_template .player .icon { width: 22px; height: 22px; font-size: 1.2em; text-align: center; float: left; margin-right: 5px; }
+.store_template .player .name { position:relative; top: 3px; }
+.store_template .nav { background-color: #ccc; padding: 3px; text-align: center; margin: 5px 0px 5px 0px;}
+.store_template .itemgroups .group { float: left; width: 92px; margin-bottom: 5px; }
+.store_template .itemgroups .title { font-weight: bold; font-size: 1.1em; }
+.store_template .items { list-style-type: none; padding: 0 !important; margin-top: 3px; }
+.store_template .items li { margin: 3px; background-color: lightgreen; color: #333; padding: 3px; }
 
 /* Map container */
 #map_container_cell {

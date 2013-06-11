@@ -68,11 +68,14 @@
     <!-- Equip/buy/sell -->
     <div class="dialog_content" id="dialog_store">
 	<div class="store_template">
-		<div class="player">Hero</div>
-		<div class="nav"><a href="#items">Items</a> | <a href="#weapons">Weapons</a> | <a href="#armor">Armor</a></div>
+		<div class="player">
+			<div class="icon hero">@</div>
+			<div class="name">Hero</div>
+		</div>
+		<p>Drag to and from the Shared items to equip from your party's pool. Click "Buy" to buy new, rich guy.</p>
 		<div class="itemgroups">
 			<a name="items"></a>
-			<div class="group">Items</div>
+			<div class="group"><span class="title">Items</span>
 				<ul class="items">
 					<li><i>Empty</i></li>
 					<li><i>Empty</i></li>
@@ -82,7 +85,7 @@
 			</div>
 		
 			<a name="weapons"></a>
-			<div class="group">Weapons</div>
+			<div class="group"><span class="title">Weapons</span>
 				<ul class="items">
 					<li><i>Empty</i></li>
 					<li><i>Empty</i></li>
@@ -92,7 +95,17 @@
 			</div>
 	
 			<a name="armor"></a>
-			<div class="group">Armor</div>
+			<div class="group"><span class="title">Armor</span>
+				<ul class="items">
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+					<li><i>Empty</i></li>
+				</ul>
+			</div>
+			
+			<!--<a name="shared"></a>
+			<div class="group shared"><span class="title">Shared</span>
 				<ul class="items">
 					<li><i>Empty</i></li>
 					<li><i>Empty</i></li>
@@ -101,7 +114,7 @@
 					<li><i>Empty</i></li>
 					<li><i>Empty</i></li>
 				</ul>
-			</div>
+			</div>-->
 		</div>
 	</div>
     </div>
