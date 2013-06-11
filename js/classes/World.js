@@ -30,7 +30,7 @@ var World = function(){
 				this.orderOfPlay.push(Monsters[i]);
 			}
 		}
-                this.activePlayer = this.orderOfPlay[0];
+        this.activePlayer = this.orderOfPlay[0];
 		this.endturn(); // Start
 	};
 	
@@ -38,24 +38,25 @@ var World = function(){
 		// Clear out map squares
 		Squares = [];
                 
-                // Delete remaining monsters
-                for (var i=0; i<Monsters.length; i++){
-                    delete Monsters[i];
-                }
-                Monsters = [];
+		// Delete remaining monsters
+		for (var i=0; i<Monsters.length; i++){
+			delete Monsters[i];
+		}
+		Monsters = [];
 		
 		// Reset Players & party table
-                Players = [];
-                $('#party tr.player_row').remove();
-                $('#party').css('display', 'table');
+		Players = [];
+		$('#party tr.player_row').remove();
+		$('#party').css('display', 'table');
 		for (var i=0; i<Party.members.length; i++) {
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;
 			Party.members[i].readyItem = null;
-                        Party.members[i].readySpell = null;
+            Party.members[i].readySpell = null;
 			Party.members[i].dead = false;
 			Party.members[i].paralyzed = 0;
 			Party.members[i].slow = false;
+			Party.members[i].medication = [];
 			Players[i] = Party.members[i];
                         Players[i].updatetable(); // update ui
 		}
@@ -73,6 +74,7 @@ var World = function(){
 	
 	this.endgame = function(wl, state){
         this.gameover = true;
+		this.resetUI();
 	    if (state == "win") {
                 // Update current adventure
                 Party.levelcomplete += 1;
@@ -129,24 +131,29 @@ var World = function(){
             }
 	};
 	
-	this.endturn = function(){
+	this.resetUI = function(){
 		// Reset UI bits
 		btnEndTurn.removeClass('blink')
 		    .button('disable');                
 		btnOpenClose.button('disable');
-                btnPickup.button('disable');
+        btnPickup.button('disable');
 		btnSpell.removeClass('blink');
 		SpellSet.find('.button').button('disable');
-                Input.spellOn = false;
+        Input.spellOn = false;
 		Input.hideSpellMenu();
-                $('.m_grid').removeClass('zoom');
-                $('.m_grid').removeClass('dogvision');
+        $('.m_grid').removeClass('zoom');
+        $('.m_grid').removeClass('dogvision');
 
-                unbuildItemMenu();
+        unbuildItemMenu();
 		
-                $('.p').removeClass('blink'); // remove any character blinks
+        $('.p').removeClass('blink'); // remove any character blinks
 		$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
 		monstersMoving.hide('fast');
+	};
+	
+	this.endturn = function(){
+		// Reset UI bits
+		this.resetUI();
                 
 		// Save map lit/unlit for players
 		if( World.activePlayer.ofType == "player" && World.activePlayer.dead == false ){

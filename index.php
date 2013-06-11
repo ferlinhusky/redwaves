@@ -90,7 +90,7 @@
     <!-- End of game passcode -->
     <div id="passcode_addon">
 	<p><b>Passcode</b><br/>
-	<span id='passcode'></span></p>
+	<span id='passcode'><img src="images/ajax-loader.gif"/> Loading...</span></p>
 	
 	<p><b>Email</b> <span id='emailpasscoderesponse'></span><br/>
 	<input type='text' name='emailpasscode' id='emailpasscode'/></p>
