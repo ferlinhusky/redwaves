@@ -68,11 +68,12 @@
     <!-- Equip/buy/sell -->
     <div class="dialog_content" id="dialog_store">
 	<div class="store_template">
+		<p>Drag to and from the Shared items to equip from your party's pool. Click "Buy" to buy new, rich guy.</p>
+		
 		<div class="player">
 			<div class="icon hero">@</div>
 			<div class="name">Hero</div>
 		</div>
-		<p>Drag to and from the Shared items to equip from your party's pool. Click "Buy" to buy new, rich guy.</p>
 		<table class="itemgroups">
 			<tr>
                 <td><div class="group pack"><span class="title">Pack</span>
