@@ -45,7 +45,8 @@ var D_Store = {
 			oDialog.dialog('close');
 		}
 	},
-	height:375
+	height:375,
+	width: 525
 }
 
 var D_Select_Team = {

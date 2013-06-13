@@ -319,11 +319,11 @@ var Input = function(){
 	/*
 		Dialogs (type, [content, title, buttons])
 	*/
-		this.M_Dialog = function(type, content, title, buttons, height) {
+		this.M_Dialog = function(type, content, title, buttons, height, width) {
 			var M_D;
 			var M_D_title;
 			var M_D_buttons;
-            var M_D_height;
+            var M_D_height, M_D_width;
 			Input.unbindFromMap();
 			switch(type){
 				case "inventory" 	: M_D = D_Inventory; break;
@@ -339,6 +339,7 @@ var Input = function(){
 				oDialog.html(content);
 				M_D_title = title;
                 M_D_height = height;
+				M_D_width = width;
 				if(buttons != false) {
 					M_D_buttons = buttons;
 				} else {
@@ -352,9 +353,14 @@ var Input = function(){
 				oDialog.html(M_D.content);
 				M_D_title = M_D.title;
 				M_D_buttons = M_D.buttons;
+				
 				if(M_D.height != undefined){
 					M_D_height = M_D.height;
 				} else { M_D_height = "auto"; }
+				
+				if(M_D.width != undefined){
+					M_D_width = M_D.width;
+				} else { M_D_width = 300; }
 			}
 			oDialog.dialog({
                 closeOnEscape: false,
@@ -366,8 +372,9 @@ var Input = function(){
 				title: M_D_title,
 				modal: true,
 				height: M_D_height,
+				width: M_D_width,
 				zIndex: 5000,
-				position: { my: "top+25%", at: "top", of: "body" } // new, test
+				resizable: false
 			});
 		}
 		

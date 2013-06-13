@@ -73,49 +73,47 @@
 			<div class="name">Hero</div>
 		</div>
 		<p>Drag to and from the Shared items to equip from your party's pool. Click "Buy" to buy new, rich guy.</p>
-		<div class="itemgroups">
-			<a name="items"></a>
-			<div class="group"><span class="title">Items</span>
-				<ul class="items">
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-				</ul>
-			</div>
-		
-			<a name="weapons"></a>
-			<div class="group"><span class="title">Weapons</span>
-				<ul class="items">
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-				</ul>
-			</div>
-	
-			<a name="armor"></a>
-			<div class="group"><span class="title">Armor</span>
-				<ul class="items">
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-				</ul>
-			</div>
-			
-			<!--<a name="shared"></a>
-			<div class="group shared"><span class="title">Shared</span>
-				<ul class="items">
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-					<li><i>Empty</i></li>
-				</ul>
-			</div>-->
-		</div>
+		<table class="itemgroups">
+			<tr>
+                <td><div class="group pack"><span class="title">Pack</span>
+                    <ul class="items">
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                    </ul>
+                </div></td>
+            
+                <td><div class="group weapons"><span class="title">Weapons</span>
+                    <ul class="items">
+                        <li><i>Head</i></li>
+                        <li><i>Right hand</i></li>
+                        <li><i>Left hand</i></li>
+                        <li><i>Feet</i></li>
+                    </ul>
+                </div></td>
+                        
+                <td><div class="group armor"><span class="title">Armor</span>
+                    <ul class="items">
+                        <li><i>Helmet</i></li>
+                        <li><i>Body armor</i></li>
+                        <li><i>Gloves</i></li>
+                        <li><i>Boots</i></li>
+                    </ul>
+                </div></td>
+                
+                <td><div class="group shared"><span class="title">Shared</span>
+                    <ul class="items">
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                        <li><i>Empty</i></li>
+                    </ul>
+                </div></td>
+            </tr>
+		</table>
 	</div>
     </div>
 
