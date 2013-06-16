@@ -323,23 +323,25 @@ var Input = function(){
 			var M_D;
 			var M_D_title;
 			var M_D_buttons;
-            var M_D_height, M_D_width;
+                        var M_D_height, M_D_width;
+                        var M_D_create;
 			Input.unbindFromMap();
 			switch(type){
 				case "inventory" 	: M_D = D_Inventory; break;
 				case "options" 		: M_D = D_Options; break;
 				case "help" 		: M_D = D_Help; break;
 				case "welcome" 		: M_D = D_Welcome; break;
-                case "select_team" 	: M_D = D_Select_Team; break;
+                                case "select_team" 	: M_D = D_Select_Team; break;
 				case "standard"		: M_D = D_Standard; break;
-				case "store"		: M_D = D_Store; break;
+				case "equip"		: M_D = D_Equip; break;
 				default: break;
 			}
 			if(type=="standard"){
 				oDialog.html(content);
 				M_D_title = title;
-                M_D_height = height;
+                                M_D_height = height;
 				M_D_width = width;
+                                M_D_create = new Function('return false');
 				if(buttons != false) {
 					M_D_buttons = buttons;
 				} else {
@@ -361,20 +363,28 @@ var Input = function(){
 				if(M_D.width != undefined){
 					M_D_width = M_D.width;
 				} else { M_D_width = 300; }
+                                
+                                if(M_D.create != undefined){
+                                    M_D_create = M_D.create;
+                                } else { M_D_create = new Function('return false'); }
 			}
 			oDialog.dialog({
-                closeOnEscape: false,
-                open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog).hide(); },
-				close: function(){
-					Input.bindToMap();
-				},
-				buttons: M_D_buttons,
-				title: M_D_title,
-				modal: true,
-				height: M_D_height,
-				width: M_D_width,
-				zIndex: 5000,
-				resizable: false
+                            closeOnEscape: false,
+                            create: M_D_create(),
+                            open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog).hide(); },
+                            close: function(){
+                                    Input.bindToMap();
+                                    if($('.dialog_content').dialog()){
+                                        $('.dialog_content').dialog('destroy');
+                                    }
+                            },
+                            buttons: M_D_buttons,
+                            title: M_D_title,
+                            modal: true,
+                            height: M_D_height,
+                            width: M_D_width,
+                            zIndex: 5000,
+                            resizable: false
 			});
 		}
 		
@@ -633,7 +643,7 @@ var Input = function(){
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
-		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('store'); });
+		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
