@@ -419,7 +419,7 @@ h3{
 .equip .title { font-weight: bold; font-size: 1.1em; }
 .equip .items { list-style-type: none; padding: 0 !important; margin-bottom: 0; }
 .equip .itemgroups .group { margin-bottom: 5px; }
-.equip .group .items li { margin: 3px; color: #333; padding: 3px; }
+.equip .group .items li { margin: 3px; color: #333; padding: 3px; cursor: pointer; }
 .equip .group.pack .items li { background-color: lightgreen; }
 .equip .group.weapons .items li { background-color: thistle; }
 .equip .group.armor .items li { background-color: lightsalmon; }
