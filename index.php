@@ -70,50 +70,38 @@
 	<div class="equip">
 		<p>Drag to and from the Shared items to equip from your party's pool. Click "Buy" to buy new, rich guy.</p>
 		
-		<ul class="players">
-			<li class="player hero">Hero</li>
-			<!--<li class="player wizard">Wizard</li>-->
-		</ul>
+		<ul class="players"></ul>
 		
-		<table class="itemgroups hero">
+		<table class="itemgroupstmp">
 			<tr>
 			<td><div class="group pack"><span class="title">Pack</span>
 			    <ul class="items">
-				<li><i>Empty</i></li>
-				<li><i>Empty</i></li>
-				<li><i>Empty</i></li>
-				<li><i>Empty</i></li>
+				<li data-hold="pack"><i>Empty</i></li>
+				<li data-hold="pack"><i>Empty</i></li>
+				<li data-hold="pack"><i>Empty</i></li>
+				<li data-hold="pack"><i>Empty</i></li>
 			    </ul>
 			</div></td>
 		    
 			<td><div class="group weapons"><span class="title">Weapons</span>
 			    <ul class="items">
-				<li><i>Head</i></li>
-				<li><i>Right hand</i></li>
-				<li><i>Left hand</i></li>
-				<li><i>Feet</i></li>
+				<li data-hold="wpn_head"><i>Head</i></li>
+				<li data-hold="wpn_rhand"><i>Right hand</i></li>
+				<li data-hold="wpn_lhand"><i>Left hand</i></li>
+				<li data-hold="wpn_feet"><i>Feet</i></li>
 			    </ul>
 			</div></td>
 				
 			<td><div class="group armor"><span class="title">Armor</span>
 			    <ul class="items">
-				<li><i>Helmet</i></li>
-				<li><i>Body armor</i></li>
-				<li><i>Gloves</i></li>
-				<li><i>Boots</i></li>
+				<li data-hold="helmet"><i>Helmet</i></li>
+				<li data-hold="body_armor"><i>Body armor</i></li>
+				<li data-hold="gloves"><i>Gloves</i></li>
+				<li data-hold="boots"><i>Boots</i></li>
 			    </ul>
 			</div></td>
 		    </tr>
 		</table>
-		<div class="group shared"><span class="title">Shared</span>
-		<ul class="items">
-		    <li><i>Empty</i></li>
-		    <li><i>Empty</i></li>
-		    <li><i>Empty</i></li>
-		    <li><i>Empty</i></li>
-		    <li><i>Empty</i></li>
-		    <li><i>Empty</i></li>
-		</ul>
 	    </div>
 	</div>
     </div>

@@ -251,7 +251,7 @@ h3{
 #party tr.knight { background-color: darkseagreen; }
 
 .equip .wizard,
-#party tr.wizard { background-color: darkorchid; }
+#party tr.wizard { background-color: darkorchid; color: #fff; }
 
 .equip .wolfman,
 #party tr.wolfman { background-color: lightgray; }
@@ -412,25 +412,35 @@ h3{
 /* Equip dialog */
 .equip { width: 500px; }
 .equip .players { margin-bottom: 5px; }
-.equip .player { font-weight: bold; font-size: 1.2em; margin-bottom: -5px; display: inline; padding: 5px; }
+.equip .player { font-weight: bold; font-size: 1.2em; margin-bottom: -5px; margin-right: 5px; display: inline; padding: 5px; cursor: pointer; }
 .equip .nav { background-color: #ccc; padding: 3px; text-align: center; margin: 5px 0px 5px 0px; }
-.equip .itemgroups { width: 75%; float: left; }
+.equip .itemgroupstmp { display: none; }
+.equip .itemgroups { display: none; width: 75%; float: left; }
 .equip .itemgroups td { vertical-align: top; }
-.equip .title { font-weight: bold; font-size: 1.1em; }
+.equip .title {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-left: 3px;
+    padding: 5px;
+    background-color: #fff;
+    color: #000;
+}
 .equip .items { list-style-type: none; padding: 0 !important; margin-bottom: 0; }
-.equip .itemgroups .group { margin-bottom: 5px; }
-.equip .group .items li { margin: 3px; color: #333; padding: 3px; cursor: pointer; }
+.equip .itemgroups .group { margin-bottom: 5px; margin-top: 10px; }
+.equip .group .items li { margin: 3px; color: #333; padding: 5px; cursor: pointer; }
 .equip .group.pack .items li { background-color: lightgreen; }
 .equip .group.weapons .items li { background-color: thistle; }
 .equip .group.armor .items li { background-color: lightsalmon; }
 .equip .group.shared {
-    background-color: #ccc;
+    background-color: #fff;
     float: left;
     margin-left: 5px;
+    margin-top: -27px;
     padding: 5px;
-    width: 110px;
+    width: 108px;
+    border: 1px solid #ccc;
 }
-.equip .group.shared .items li { background-color: steelblue; }
+.equip .group.shared .items li { background-color: steelblue; color: #fff; }
 
 /* Map container */
 #map_container_cell {
