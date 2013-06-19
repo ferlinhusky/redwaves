@@ -76,28 +76,28 @@
 			<tr>
 			<td width="33%"><div class="group pack"><div class="title">Pack</div>
 			    <ul class="items">
-				<li data-hold="pack"><i>Empty</i></li>
-				<li data-hold="pack"><i>Empty</i></li>
-				<li data-hold="pack"><i>Empty</i></li>
-				<li data-hold="pack"><i>Empty</i></li>
+				<li><i>Empty</i></li>
+				<li><i>Empty</i></li>
+				<li><i>Empty</i></li>
+				<li><i>Empty</i></li>
 			    </ul>
 			</div></td>
 		    
 			<td width="33%"><div class="group weapons"><div class="title">Weapons</div>
 			    <ul class="items">
-				<li data-hold="wpn_head"><i>Head</i></li>
-				<li data-hold="wpn_rhand"><i>Right hand</i></li>
-				<li data-hold="wpn_lhand"><i>Left hand</i></li>
-				<li data-hold="wpn_feet"><i>Feet</i></li>
+				<li><i>Head</i></li>
+				<li><i>Right hand</i></li>
+				<li><i>Left hand</i></li>
+				<li><i>Feet</i></li>
 			    </ul>
 			</div></td>
 				
 			<td><div class="group armor"><div class="title">Armor</div>
 			    <ul class="items">
-				<li data-hold="helmet"><i>Helmet</i></li>
-				<li data-hold="body_armor"><i>Body armor</i></li>
-				<li data-hold="gloves"><i>Gloves</i></li>
-				<li data-hold="boots"><i>Boots</i></li>
+				<li><i>Helmet</i></li>
+				<li><i>Body armor</i></li>
+				<li><i>Gloves</i></li>
+				<li><i>Boots</i></li>
 			    </ul>
 			</div></td>
 		    </tr>
