@@ -83,7 +83,11 @@ var Equip = Class.extend({
 				$(this).addClass('filled')
 					.removeClass('empty')
 					.addClass(dropped.attr('data-type'))
-					.text(dropped.text());
+					.text(dropped.text())
+					.droppable('destroy')
+					.draggable({
+						revert: 'invalid'
+					});
 				
 				// Reset list item
 				dropped.clone()
@@ -95,7 +99,8 @@ var Equip = Class.extend({
 				dropped.remove();
 				
 				// update droppable after each drop
-			}
+			},
+			accept: '.itemgroups li.filled' 
 		});
 		
 		// Do drop tests
