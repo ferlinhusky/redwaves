@@ -27,24 +27,40 @@ var Equip = Class.extend({
 			// Populate UI w/ Player data
 			$('.itemgroups.' + p.type).find('.items li').each(function(k, v){
 				$(this).attr('data-type', 'pack');
+				$(this).attr('data-ofType', 'pack');
 				$(this).attr('data-default', $(this).text());
+				
 				if (p.inven[k] != undefined) {
 					$(this).text(p.inven[k].name);
 					$(this).addClass('filled');
-				}
+				} else { $(this).addClass('empty'); }
 			});
 			
 			$('.itemgroups.' + p.type).find('.weapons li').each(function(k, v){
-				$(this).attr('data-type', 'weapons');
+				$(this).attr('data-ofType', 'weapons');
+				switch (k) {
+					case 0: $(this).attr('data-type', 'head'); break;
+					case 1: $(this).attr('data-type', 'hand'); break;
+					case 2: $(this).attr('data-type', 'hand'); break;
+					case 3: $(this).attr('data-type', 'feet'); break;
+					default: break;
+				}
 				$(this).attr('data-default', $(this).text());
 				if (p.wields[k] != "") {
 					$(this).text(p.wields[k].name);
 					$(this).addClass('filled');
-				}
+				} else { $(this).addClass('empty'); }
 			});
 			
 			$('.itemgroups.' + p.type).find('.armor li').each(function(k, v){
-				$(this).attr('data-type', 'armor');
+				$(this).attr('data-ofType', 'armor');
+				switch (k) {
+					case 0: $(this).attr('data-type', 'helmet'); break;
+					case 1: $(this).attr('data-type', 'bodyarmor'); break;
+					case 2: $(this).attr('data-type', 'gloves'); break;
+					case 3: $(this).attr('data-type', 'boots'); break;
+					default: break;
+				}
 				$(this).attr('data-default', $(this).text());
 				if (p.wears[k] != "") {
 					$(this).text(p.wears[k].name);
@@ -62,27 +78,23 @@ var Equip = Class.extend({
 		
 		ui.append('<div class="group shared"><span class="title">Shared</span>\
 			<ul class="items">\
-			    <li class="empty"><i>Empty</i></li>\
-			    <li class="empty"><i>Empty</i></li>\
-			    <li class="empty"><i>Empty</i></li>\
-			    <li class="empty"><i>Empty</i></li>\
-			    <li class="empty"><i>Empty</i></li>\
-			    <li class="empty"><i>Empty</i></li>\
+			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
 			</ul>');
-		
-		// Init draggable items
-		ui.find('.items li.filled').draggable({
-			revert: 'invalid'
-		});
-		
-		// Init droppoable areas
-		ui.find('.shared .items li.empty').droppable({
+			
+		// Drag/drop opts
+		var emptyItemOpts = {
 			drop: function(e, u) {
 				var dropped = $(u.draggable);
 				
 				$(this).addClass('filled')
 					.removeClass('empty')
-					.addClass(dropped.attr('data-type'))
+					.addClass(dropped.attr('data-ofType'))
+					.attr('data-type', dropped.attr('data-type'))
 					.text(dropped.text())
 					.droppable('destroy')
 					.draggable({
@@ -95,15 +107,56 @@ var Equip = Class.extend({
 					.removeClass()
 					.addClass('empty')
 					.attr('style', '')
-					.text(dropped.attr('data-default'));
+					.text(dropped.attr('data-default'))
+					.droppable(emptySharedOpts);
+				dropped.remove();
+				
+				// update droppable after each drop
+			},
+			accept: function(u){
+				if(u.data('type') === $(this).data('type')){
+					return true;
+				}
+			}
+		};
+		
+		var emptySharedOpts = {
+			drop: function(e, u) {
+				var dropped = $(u.draggable);
+				
+				$(this).addClass('filled')
+					.removeClass('empty')
+					.addClass(dropped.attr('data-ofType'))
+					.attr('data-type', dropped.attr('data-type'))
+					.text(dropped.text())
+					.droppable('destroy')
+					.draggable({
+						revert: 'invalid'
+					});
+				
+				// Reset list item
+				dropped.clone()
+					.insertBefore(dropped)
+					.removeClass()
+					.addClass('empty')
+					.attr('style', '')
+					.text(dropped.attr('data-default'))
+					.droppable(emptyItemOpts);
 				dropped.remove();
 				
 				// update droppable after each drop
 			},
 			accept: '.itemgroups li.filled' 
-		});
+		};
 		
-		// Do drop tests
+		// Init draggable items
+		ui.find('.items li.filled').draggable({ revert: 'invalid' });
+		
+		// Init droppoable areas - Shared
+		ui.find('.shared .items li.empty').droppable(emptySharedOpts);
+		
+		// Init droppoable areas - Held items
+		ui.find('.itemgroups li.empty').droppable(emptyItemOpts);
 	},
 	save: function(){
 		// Save items to player, shared, etc.
