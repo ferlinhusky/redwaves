@@ -76,28 +76,28 @@
 			<tr>
 			<td width="33%"><div class="group pack"><div class="title">Pack</div>
 			    <ul class="items">
-				<li><i>Empty</i></li>
-				<li><i>Empty</i></li>
-				<li><i>Empty</i></li>
-				<li><i>Empty</i></li>
+				<li data-default="Empty"><i>Empty</i></li>
+				<li data-default="Empty"><i>Empty</i></li>
+				<li data-default="Empty"><i>Empty</i></li>
+				<li data-default="Empty"><i>Empty</i></li>
 			    </ul>
 			</div></td>
 		    
 			<td width="33%"><div class="group weapons"><div class="title">Weapons</div>
 			    <ul class="items">
-				<li><i>Head</i></li>
-				<li><i>Right hand</i></li>
-				<li><i>Left hand</i></li>
-				<li><i>Feet</i></li>
+				<li data-default="Head"><i>Head</i></li>
+				<li data-default="Right hand"><i>Right hand</i></li>
+				<li data-default="Left hand"><i>Left hand</i></li>
+				<li data-default="Feet"><i>Feet</i></li>
 			    </ul>
 			</div></td>
 				
 			<td><div class="group armor"><div class="title">Armor</div>
 			    <ul class="items">
-				<li><i>Helmet</i></li>
-				<li><i>Body armor</i></li>
-				<li><i>Gloves</i></li>
-				<li><i>Boots</i></li>
+				<li data-default="Helmet"><i>Helmet</i></li>
+				<li data-default="Body armor"><i>Body armor</i></li>
+				<li data-default="Gloves"><i>Gloves</i></li>
+				<li data-default="Boots"><i>Boots</i></li>
 			    </ul>
 			</div></td>
 		    </tr>

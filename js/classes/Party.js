@@ -26,45 +26,47 @@ var Equip = Class.extend({
 			
 			// Populate UI w/ Player data
 			$('.itemgroups.' + p.type).find('.items li').each(function(k, v){
-				$(this).attr('data-type', 'pack');
-				$(this).attr('data-ofType', 'pack');
-				$(this).attr('data-default', $(this).text());
-				
+				$(this).data('type', 'pack');
+				$(this).data('ofType', 'pack');
+				$(this).data('default', $(this).text());
 				if (p.inven[k] != undefined) {
 					$(this).text(p.inven[k].name);
-					$(this).addClass('filled');
+					$(this).addClass('filled').removeClass('empty');
+					$(this).data('refID', p.inven[k].refID);
 				} else { $(this).addClass('empty'); }
 			});
 			
 			$('.itemgroups.' + p.type).find('.weapons li').each(function(k, v){
-				$(this).attr('data-ofType', 'weapons');
+				$(this).data('ofType', 'weapons');
+				$(this).data('default', $(this).text());
 				switch (k) {
-					case 0: $(this).attr('data-type', 'head'); break;
-					case 1: $(this).attr('data-type', 'hand'); break;
-					case 2: $(this).attr('data-type', 'hand'); break;
-					case 3: $(this).attr('data-type', 'feet'); break;
+					case 0: $(this).data('type', 'head'); break;
+					case 1: $(this).data('type', 'hand'); break;
+					case 2: $(this).data('type', 'hand'); break;
+					case 3: $(this).data('type', 'feet'); break;
 					default: break;
 				}
-				$(this).attr('data-default', $(this).text());
 				if (p.wields[k] != "") {
 					$(this).text(p.wields[k].name);
-					$(this).addClass('filled');
+					$(this).addClass('filled').removeClass('empty');
+					$(this).data('refID', p.wields[k].refID);
 				} else { $(this).addClass('empty'); }
 			});
 			
 			$('.itemgroups.' + p.type).find('.armor li').each(function(k, v){
-				$(this).attr('data-ofType', 'armor');
+				$(this).data('ofType', 'armor');
+				$(this).data('default', $(this).text());
 				switch (k) {
-					case 0: $(this).attr('data-type', 'helmet'); break;
-					case 1: $(this).attr('data-type', 'bodyarmor'); break;
-					case 2: $(this).attr('data-type', 'gloves'); break;
-					case 3: $(this).attr('data-type', 'boots'); break;
+					case 0: $(this).data('type', 'helmet'); break;
+					case 1: $(this).data('type', 'bodyarmor'); break;
+					case 2: $(this).data('type', 'gloves'); break;
+					case 3: $(this).data('type', 'boots'); break;
 					default: break;
 				}
-				$(this).attr('data-default', $(this).text());
 				if (p.wears[k] != "") {
 					$(this).text(p.wears[k].name);
-					$(this).addClass('filled');
+					$(this).addClass('filled').removeClass('empty');
+					$(this).data('refID', p.wears[k].refID);
 				} else { $(this).addClass('empty'); }
 			});
 		}
@@ -78,12 +80,12 @@ var Equip = Class.extend({
 		
 		ui.append('<div class="group shared"><span class="title">Shared</span>\
 			<ul class="items">\
-			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
-			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
-			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
-			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
-			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
-			    <li class="empty" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
+			    <li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
+				<li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
+				<li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
+				<li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
 			</ul>');
 			
 		// Drag/drop opts
@@ -93,9 +95,11 @@ var Equip = Class.extend({
 				
 				$(this).addClass('filled')
 					.removeClass('empty')
-					.addClass(dropped.attr('data-ofType'))
-					.attr('data-type', dropped.attr('data-type'))
+					.addClass(dropped.data('ofType'))
 					.text(dropped.text())
+					.data('type', dropped.data('type'))
+					.data('ofType', dropped.data('ofType'))
+					.data('refID', dropped.data('refID'))
 					.droppable('destroy')
 					.draggable({
 						revert: 'invalid'
@@ -108,55 +112,30 @@ var Equip = Class.extend({
 					.addClass('empty')
 					.attr('style', '')
 					.text(dropped.attr('data-default'))
-					.droppable(emptySharedOpts);
-				dropped.remove();
-				
-				// update droppable after each drop
-			},
-			accept: function(u){
-				if(u.data('type') === $(this).data('type')){
-					return true;
-				}
-			}
-		};
-		
-		var emptySharedOpts = {
-			drop: function(e, u) {
-				var dropped = $(u.draggable);
-				
-				$(this).addClass('filled')
-					.removeClass('empty')
-					.addClass(dropped.attr('data-ofType'))
-					.attr('data-type', dropped.attr('data-type'))
-					.text(dropped.text())
-					.droppable('destroy')
-					.draggable({
-						revert: 'invalid'
-					});
-				
-				// Reset list item
-				dropped.clone()
-					.insertBefore(dropped)
-					.removeClass()
-					.addClass('empty')
-					.attr('style', '')
-					.text(dropped.attr('data-default'))
+					.data('type', dropped.data('type'))
+					.data('ofType', dropped.data('ofType'))
+					.data('refID', dropped.data('refID'))
 					.droppable(emptyItemOpts);
 				dropped.remove();
 				
 				// update droppable after each drop
 			},
-			accept: '.itemgroups li.filled' 
+			accept: function(u){
+				if ($(this).attr('data-group') == "shared") {
+					return true;
+				} else {
+					if(u.data('type') == $(this).data('type')){
+						return true;
+					}
+				}
+			}
 		};
 		
 		// Init draggable items
 		ui.find('.items li.filled').draggable({ revert: 'invalid' });
 		
-		// Init droppoable areas - Shared
-		ui.find('.shared .items li.empty').droppable(emptySharedOpts);
-		
-		// Init droppoable areas - Held items
-		ui.find('.itemgroups li.empty').droppable(emptyItemOpts);
+		// Init droppoable areas
+		ui.find('.items li.empty').droppable(emptyItemOpts);
 	},
 	save: function(){
 		// Save items to player, shared, etc.
