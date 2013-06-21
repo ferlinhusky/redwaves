@@ -5,6 +5,7 @@
 
 // Start up
 var MapWorld;
+var Equip = new Equip();
 var Input = new Input();
 var Statuss = new Statuss();
 
