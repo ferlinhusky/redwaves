@@ -9,7 +9,8 @@ var Party = Class.extend({
 });
 
 var Equip = Class.extend({
-	init: function(){
+	init: function() {},
+	load: function(){
 		// Create UI vars
 		this.ui = $('.ui-dialog .equip');
 		var ui = this.ui;
@@ -25,7 +26,7 @@ var Equip = Class.extend({
 				.appendTo(ui);
 			
 			// Populate UI w/ Player data
-			$('.itemgroups.' + p.type).find('.items li').each(function(k, v){
+			$('.itemgroups.' + p.type).find('.pack li').each(function(k, v){
 				$(this).data('type', 'pack');
 				$(this).data('ofType', 'pack');
 				$(this).data('default', $(this).text());
@@ -78,7 +79,7 @@ var Equip = Class.extend({
 		});
 		ui.find('.itemgroups.hero').css('display', 'table');
 		
-		ui.append('<div class="group shared"><span class="title">Shared</span>\
+		ui.append('<div class="group shared"><span class="title">A little blanket</span>\
 			<ul class="items">\
 			    <li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
 			    <li class="empty" data-group="shared" data-default="Empty"><i>Empty</i></li>\
@@ -138,6 +139,49 @@ var Equip = Class.extend({
 		ui.find('.items li.empty').droppable(emptyItemOpts);
 	},
 	save: function(){
+		var error = false;
+		$('#savealert').remove();
+		
+		// Make sure no shared items hanging out
+		$('.shared .items li').each(function(){
+			if($(this).hasClass('filled')){
+				error = true;
+			}
+		});
+		
+		if(error){ 
+			$('.ui-dialog-buttonpane').prepend('<p id="savealert" style="float:left; color: red; font-weight: bold;">Don\'t leave anything on the blanket!</p>');
+			return false;
+		}
+		
 		// Save items to player, shared, etc.
+		for(var i=0; i<Party.members.length; i++){
+			var p = Party.members[i];
+			p.inven = [];
+			p.wields = [];
+			p.wears = [];
+			
+			$('.itemgroups.' + p.type).find('.pack li').each(function(k, v){
+				if($(this).hasClass('filled')){
+					var pitem = ( new Function('var j = new ' + InventoryItems[$(this).data('refID')] + '(); return j;') )();
+					p.inven.push(pitem);
+				}
+			});
+			
+			$('.itemgroups.' + p.type).find('.weapons li').each(function(k, v){
+				if($(this).hasClass('filled')){
+					var pitem = ( new Function('var j = new ' + Weapons[$(this).data('refID')] + '(); return j;') )();
+					p.wields[k] = pitem;
+				} else { p.wields[k] = ''; }
+			});
+			
+			$('.itemgroups.' + p.type).find('.armor li').each(function(k, v){
+				if($(this).hasClass('filled')){
+					var pitem = ( new Function('var j = new ' + Armors[$(this).data('refID')] + '(); return j;') )();
+					p.wears[k] = pitem;
+				} else { p.wears[k] = ''; }
+			});
+		}
+		oDialog.dialog('close');
 	}
 });
