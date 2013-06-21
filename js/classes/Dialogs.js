@@ -41,11 +41,11 @@ var D_Equip = {
 	title: 'A blue wooden house',
 	content: $('#dialog_equip').html(),
 	create: function(){
-		var equip = new Equip();	
+		Equip.load();	
 	},
 	buttons: {
 		"OK": function() {
-			oDialog.dialog('close');
+			var doclose = Equip.save();
 		}
 	},
 	height:375,
