@@ -372,6 +372,9 @@ h3{
 #dialog ul {
     padding: 0 0 0 10px;
 }
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
 
 .copyright {
 	text-align: center;
@@ -411,11 +414,19 @@ h3{
 
 /* Equip dialog */
 .equip { width: 500px; }
-.equip .players { margin-bottom: 5px; }
+.equip .players {
+    position: absolute;
+    top: 51px;
+}
 .equip .player { font-weight: bold; font-size: 1.2em; margin-bottom: -5px; margin-right: 5px; display: inline; padding: 5px; cursor: pointer; }
 .equip .nav { background-color: #ccc; padding: 3px; text-align: center; margin: 5px 0px 5px 0px; }
 .equip .itemgroupstmp { display: none; }
-.equip .itemgroups { display: none; width: 75%; float: left; }
+.equip .itemgroups {
+    display: none;
+    height: 177px; width: 375px;
+    position: absolute;
+    top: 85px;
+}
 .equip .itemgroups td { vertical-align: top; }
 .equip .title {
     font-weight: bold;
@@ -438,14 +449,31 @@ h3{
 .equip .group.armor .items li.filled { background-color: lightsalmon; }
 .equip .group.shared {
     background-color: #fff;
-    float: left;
     margin-left: 5px;
     margin-top: -27px;
     padding: 5px;
+    position: absolute;
+    top: 85px; right: 10px;
     width: 108px;
     border: 1px solid #ccc;
 }
 .equip .group.shared .items li { border-color: #ccc; }
+.equip .buy {
+    background-color: #ccc;
+    padding: 5px;
+    border: 1px solid #999;
+    position: absolute;
+    top: 270px;
+    height: 105px; width: 492px;
+}
+.equip .trash {
+    text-align: center;
+    border: 1px dotted #333;
+    padding: 10px 30px 10px;
+    position: absolute;
+    left: 295px; top: 40px;
+}
+.equip .trash.hover { background-color: yellow; }
 
 /* Map container */
 #map_container_cell {

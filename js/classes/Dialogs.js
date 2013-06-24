@@ -48,7 +48,7 @@ var D_Equip = {
 			var doclose = Equip.save();
 		}
 	},
-	height:375,
+	height:500,
 	width: 525
 }
 

@@ -4,23 +4,19 @@ var Character = Class.extend({
 		this.name	=	name; // str // screen name
 		this.type	=	type; // str // in-program cat
 
-		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-legs, 3-right hand, 4-left hand, 5-feet]
-		/*this.onhead 	=	wears[0];
-		this.onbody	=	wears[1];
-		this.onlegs 	=	wears[2];
-		this.rhand	=	wears[3];
-		this.lhand	=	wears[4];
-		this.onfeet 	=	wears[5];*/
-		
+		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-hands, 3-feet]
 		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
+		this.checkwielding();
 		
 		this.inven	=	inven; // array // [ item, item, ... ]
-		this.skills	=	skills; // array // [ { name : dmg/rng }, ... ]
+		this.skills	=	skills; // array // [ skill, skill, ... ]
 		this.skillnames = [];
 			// Be sure that if skills are updated at any time during a session, that skillnames[] gets updated as well
 			for (var i=0; i<this.skills.length; i++) {
 				this.skillnames.push(this.skills[i].name);
-			}	
+			}
+		this.spells = []; // array // [ { name : f(x) }, ... ]
+		
 		this.HP		=	HP;
 		this.maxHP	=	HP;
 		this.movement	=	movement;
@@ -28,7 +24,7 @@ var Character = Class.extend({
 		
 		this.readyItem = null;
 		this.readySpell = null;
-		this.spells = [];
+		
 		this.medication = []; // any herbs or pills taken
 
 		this.coords = [];
@@ -49,6 +45,12 @@ var Character = Class.extend({
 			var prob = Math.ceil(Math.random()*10);
 			if(prob > 5){ this.gender = setGender("male");
 			} else { this.gender = setGender("female"); }
+		}
+	},
+	checkwielding: function(){
+		if (this.wields.join("").length == 0) {
+			this.wields[1] = new hand;
+			this.wields[2] = new hand;
 		}
 	},
 	getAC: function(){
@@ -121,7 +123,5 @@ var Character = Class.extend({
 				break; // end loop
 			}
 		}
-		
-		//delete this; // remove object
 	}
 });

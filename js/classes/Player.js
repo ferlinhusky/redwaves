@@ -24,10 +24,6 @@ var Player = Character.extend({
 				wieldingdmg.push(this.wields[i].dmg);
 			}
 		}
-		if(wielding.length == 0) {
-			wielding = ["Hands"];
-			wieldingdmg = ["1d1"];
-		}
 		
 		var wearing = [];
 		for(var i=0; i<this.wears.length; i++){

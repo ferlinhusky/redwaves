@@ -68,7 +68,7 @@
     <!-- Equip/buy/sell -->
     <div class="dialog_content" id="dialog_equip">
 	<div class="equip">
-		<p>Drag to and from the Shared items to equip from your party's pool. Click "Buy" to buy new, rich guy.</p>
+		<p>Drag items to and from the little blanket to equip your players. Drag from the store to buy new things, rich guy.</p>
 		
 		<ul class="players"></ul>
 		
@@ -102,7 +102,9 @@
 			</div></td>
 		    </tr>
 		</table>
-	    </div>
+		
+		<div class="trash">Trash</div>
+		<div class="buy"></div>
 	</div>
     </div>
 

@@ -371,7 +371,7 @@ var Input = function(){
 			oDialog.dialog({
                             closeOnEscape: false,
                             create: M_D_create(),
-                            open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog).hide(); },
+							dialogClass: 'no-close',
                             close: function(){
                                     Input.bindToMap();
                                     if($('.dialog_content').dialog()){

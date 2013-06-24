@@ -19,7 +19,7 @@ var partyTable = '<table id="party" cellpadding="5">\
 				<td class="label">HP</td>\
 				<td class="label">MV</td>\
 				<td class="label WPN">WPN</td>\
-				<td class="label">ATK</td>\
+				<td class="label">DMG</td>\
 				<td class="label">AC</td>\
 				<td class="label WEARS">WEARS</td>\
 			</tr>\

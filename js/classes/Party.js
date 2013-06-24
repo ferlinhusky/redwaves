@@ -47,7 +47,7 @@ var Equip = Class.extend({
 					case 3: $(this).data('type', 'feet'); break;
 					default: break;
 				}
-				if (p.wields[k] != "") {
+				if (p.wields[k] != "" && p.wields[k].name != "Hand") {
 					$(this).text(p.wields[k].name);
 					$(this).addClass('filled').removeClass('empty');
 					$(this).data('refID', p.wields[k].refID);
@@ -133,10 +133,52 @@ var Equip = Class.extend({
 		};
 		
 		// Init draggable items
-		ui.find('.items li.filled').draggable({ revert: 'invalid' });
+		ui.find('.items li.filled').draggable({
+			revert: 'invalid', stack: 'li'
+		});
 		
-		// Init droppoable areas
+		// Init droppable areas
 		ui.find('.items li.empty').droppable(emptyItemOpts);
+		ui.find('.trash').droppable({
+			drop: function(e, u) {
+				var dropped = $(u.draggable);
+				
+				ui.find('.items li.filled').hide('fast');
+				
+				$('<div>Throw away the ' + dropped.text() + '?</div>').dialog({
+					title: 'Trash',
+					modal: true,
+					dialogClass: 'no-close',
+					buttons: {
+						'Yes': function(){
+							// Reset list item
+							dropped.clone()
+								.insertBefore(dropped)
+								.removeClass()
+								.addClass('empty')
+								.attr('style', '')
+								.text(dropped.attr('data-default'))
+								.data('type', dropped.data('type'))
+								.data('ofType', dropped.data('ofType'))
+								.data('refID', dropped.data('refID'))
+								.droppable(emptyItemOpts);
+							dropped.remove();
+							
+							$(this).dialog('close');
+							ui.find('.items li.filled').show('fast');
+						},
+						'No': function(){
+							dropped.animate({
+								'top': 0, 'left': 0
+							}, 500);
+							$(this).dialog('close');
+							ui.find('.items li.filled').show('fast');
+						}
+					}
+				});
+			},
+			hoverClass: 'hover'
+		});
 	},
 	save: function(){
 		var error = false;
@@ -181,6 +223,9 @@ var Equip = Class.extend({
 					p.wears[k] = pitem;
 				} else { p.wears[k] = ''; }
 			});
+			
+			// Check for no weapons
+			p.checkwielding();
 			
 			// Update party table UI
 			$('#party tr.' + p.type).remove();
