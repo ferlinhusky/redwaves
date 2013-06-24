@@ -181,6 +181,10 @@ var Equip = Class.extend({
 					p.wears[k] = pitem;
 				} else { p.wears[k] = ''; }
 			});
+			
+			// Update party table UI
+			$('#party tr.' + p.type).remove();
+			p.updatetable();
 		}
 		oDialog.dialog('close');
 	}

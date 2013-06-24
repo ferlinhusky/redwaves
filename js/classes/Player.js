@@ -12,12 +12,21 @@ var Player = Character.extend({
 		this.updatetable();
 	},
 	updatetable: function(){
+		// Get latest AC
+		this.getAC();
+		
 		// Update UI
 		var wielding = [];
+		var wieldingdmg = [];
 		for(var i=0; i<this.wields.length; i++){
 			if(this.wields[i] != ""){
 				wielding.push(this.wields[i].name);
+				wieldingdmg.push(this.wields[i].dmg);
 			}
+		}
+		if(wielding.length == 0) {
+			wielding = ["Hands"];
+			wieldingdmg = ["1d1"];
 		}
 		
 		var wearing = [];
@@ -26,12 +35,13 @@ var Player = Character.extend({
 				wearing.push(this.wears[i].name);
 			}
 		}
+		
 		$('#party').append('<tr class="'+this.type+' player_row">');
 		$('#party tr.'+this.type).append('<td class="member">'+this.name+'</td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat stWPN"><span class="WPN">'+wielding.toString()+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+this.wields[1].dmg+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+ wieldingdmg +'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat stWEARS"><span class="WEARS">'+wearing.toString()+'</span></td>');
 	},

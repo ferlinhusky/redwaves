@@ -40,13 +40,7 @@ var Character = Class.extend({
 		this.slow = false;
 		this.dead = false;
 		
-		var tempac = 0;
-		for(var i=0; i<this.wears.length; i++){
-			if(this.wears[i] != ""){
-				tempac += this.wears[i].ac;
-			}
-		}
-		this.ac = 10 + tempac;
+		this.getAC();
 		
 		// Get gender
 		if(this.type == "wolfman"){ this.gender = setGender("male");
@@ -56,6 +50,15 @@ var Character = Class.extend({
 			if(prob > 5){ this.gender = setGender("male");
 			} else { this.gender = setGender("female"); }
 		}
+	},
+	getAC: function(){
+		var tempac = 0;
+		for(var i=0; i<this.wears.length; i++){
+			if(this.wears[i] != ""){
+				tempac += this.wears[i].ac;
+			}
+		}
+		this.ac = 10 + tempac;	
 	},
 	hasSkill:  function(s){
 		if($.inArray(s, this.skillnames) > -1){

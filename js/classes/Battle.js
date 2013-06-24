@@ -12,6 +12,13 @@ var Battle = function(att, def){
 		}
 					
 		// Check each part of the body for a weapon
+		var weaponless = false;
+		// if all weapons "", hit with hand
+		for(var i=0; i < a1.wields.length; i++){
+		    // Hit with hands if weaponless...but don't perm add them to weapons
+		    //a1.wields[0] = new hand;
+		    //weaponless = true;
+		}
 		for(var i=0; i < a1.wields.length; i++){
 			if(a1.wields[i] != ""){
 				var weapon = a1.wields[i];
@@ -98,6 +105,9 @@ var Battle = function(att, def){
 					Statuss.update(status_line);
 				}
 			}
+		}
+		if (weaponless == true){
+		    a1.wields[0] = "";
 		}
     };
 	this.doSpellAttack = function(a1, d1){
