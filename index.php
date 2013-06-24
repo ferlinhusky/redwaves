@@ -104,7 +104,10 @@
 		</table>
 		
 		<div class="trash">Trash</div>
-		<div class="buy"></div>
+		<div class="buy">
+			<div class="title">Dave's Strangely Appropriate Emporium <span class="gold">1250GP</span></div>
+			<ul class="items"></ul>
+		</div>
 	</div>
     </div>
 

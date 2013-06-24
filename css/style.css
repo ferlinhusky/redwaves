@@ -441,12 +441,16 @@ h3{
 .equip .itemgroups .group { margin-bottom: 5px; margin-top: 10px; }
 .equip .group .items li { margin: 3px; color: #333; padding: 5px; border: 1px dashed #fff; font-style: italic; }
 .equip .group .items li.filled { border: none; font-style: normal; cursor: pointer; }
-.equip .group.shared .items li.filled.pack,
+
+.equip .items li.filled.pack,
 .equip .group.pack .items li.filled { background-color: lightgreen; }
-.equip .group.shared .items li.filled.weapons,
+
+.equip .items li.filled.weapons,
 .equip .group.weapons .items li.filled { background-color: thistle; }
-.equip .group.shared .items li.filled.armor,
+
+.equip .items li.filled.armor,
 .equip .group.armor .items li.filled { background-color: lightsalmon; }
+
 .equip .group.shared {
     background-color: #fff;
     margin-left: 5px;
@@ -459,13 +463,16 @@ h3{
 }
 .equip .group.shared .items li { border-color: #ccc; }
 .equip .buy {
-    background-color: #ccc;
+    background-color: aliceblue;
     padding: 5px;
     border: 1px solid #999;
     position: absolute;
     top: 270px;
     height: 105px; width: 492px;
 }
+.buy .gold { background-color: gold; padding: 3px; }
+.buy .items { margin: 0; padding: 0; margin-top: 10px; }
+.buy .items li { display:inline; padding: 5px; margin: 0; margin-right: 5px; }
 .equip .trash {
     text-align: center;
     border: 1px dotted #333;

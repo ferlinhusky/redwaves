@@ -132,6 +132,8 @@ var Equip = Class.extend({
 			}
 		};
 		
+		// Populate store
+		
 		// Init draggable items
 		ui.find('.items li.filled').draggable({
 			revert: 'invalid', stack: 'li'
