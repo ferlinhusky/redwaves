@@ -316,7 +316,7 @@ var Equip = Class.extend({
 				}
 			});
 			
-			$('.itemgroups.' + p.type).find('.weapons li').each(function(k, v){
+			$('.itemgroups.' + p.type).find('.weapon li').each(function(k, v){
 				if($(this).hasClass('filled')){
 					var pitem = ( new Function('var j = new ' + Weapons[$(this).data('refID')] + '(); return j;') )();
 					p.wields[k] = pitem;

@@ -19,7 +19,7 @@ var Battle = function(att, def){
 				
 				if(weapon.supclass == "firearm"){
 					tot_attks = 1; // only one attack with a weapon at close range
-					wpn_dmg = weapon.dmg_cl; // get close range damageS
+					wpn_dmg = new Number(weapon.dmg_cl.split('d')[1]);; // get close range damage
 				} else {
 					tot_attks = new Number(weapon.dmg.split('d')[0]);
 					for(var j=0; j<a1.medication.length; j++){
@@ -104,7 +104,8 @@ var Battle = function(att, def){
 	    var spell = a1.readySpell;
 	    
 	    // Get attack damage
-	    var att_dmg = Math.floor(Math.random() * spell.dmg);
+		var spell_dmg = new Number(spell.dmg.split('d')[1]);
+	    var att_dmg = Math.floor(Math.random() * spell_dmg);
 		
 	    if(att_dmg <= 0) {
 		    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' ' + spell.name;

@@ -24,6 +24,7 @@ var Character = Class.extend({
 		
 		this.readyItem = null;
 		this.readySpell = null;
+		this.readyRanged = null;
 		
 		this.medication = []; // any herbs or pills taken
 

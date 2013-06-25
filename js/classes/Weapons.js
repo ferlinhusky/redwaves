@@ -80,13 +80,13 @@ var Firearm = Weapon.extend({
 });
 
 // Crossbow
-var crossbow = Firearm.extend({ init: function(){ this._super("Crossbow", "crossbow", 3, 3, 3, "wood", true, 10); } });
+var crossbow = Firearm.extend({ init: function(){ this._super("Crossbow", "crossbow", "1d4", "1d2", 3, "wood", true, 10); } });
 
 // English Longbow
-var longbow = Firearm.extend({ init: function(){ this._super("Longbow", "longbow", 3, 1, 5, "steel", true, 11); } });
+var longbow = Firearm.extend({ init: function(){ this._super("Longbow", "longbow", "1d3", "1d1", 5, "steel", true, 11); } });
 
 // Shotgun
-var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", 6, 3, 4, "steel", true, 12); } });
+var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", "1d6", "1d2", 4, "steel", true, 12); } });
 
 // Six shooter
-var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "sixshooter", 4, 1, 6, "steel", true, 13); } });
+var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "sixshooter", "1d4", "1d1", 6, "steel", true, 13); } });
