@@ -1,6 +1,6 @@
 var Party = Class.extend({
 	init: function(){
-	    this.gold = 0;
+	    this.gold = 2750;
 	    this.levelcomplete = 0;
 	    this.store = [0,0,0,0,0,0];
 	    this.members = [];
@@ -9,7 +9,16 @@ var Party = Class.extend({
 });
 
 var Equip = Class.extend({
-	init: function() {},
+	init: function() {
+		this.emporium = [
+				// Weapons
+				new battleaxe, new crossbow, new longbow, new shotgun, new sixshooter,
+				// Armor
+				new chainmail, new cowboyhat, new plate,
+				// Items
+				new phyton, new maddog
+		];
+	},
 	load: function(){
 		// Create UI vars
 		this.ui = $('.ui-dialog .equip');
@@ -26,9 +35,9 @@ var Equip = Class.extend({
 				.appendTo(ui);
 			
 			// Populate UI w/ Player data
-			$('.itemgroups.' + p.type).find('.pack li').each(function(k, v){
-				$(this).data('type', 'pack');
-				$(this).data('ofType', 'pack');
+			$('.itemgroups.' + p.type).find('.medicine li').each(function(k, v){
+				$(this).data('type', 'medicine');
+				$(this).data('ofType', 'medicine');
 				$(this).data('default', $(this).text());
 				if (p.inven[k] != undefined) {
 					$(this).text(p.inven[k].name);
@@ -37,8 +46,8 @@ var Equip = Class.extend({
 				} else { $(this).addClass('empty'); }
 			});
 			
-			$('.itemgroups.' + p.type).find('.weapons li').each(function(k, v){
-				$(this).data('ofType', 'weapons');
+			$('.itemgroups.' + p.type).find('.weapon li').each(function(k, v){
+				$(this).data('ofType', 'weapon');
 				$(this).data('default', $(this).text());
 				switch (k) {
 					case 0: $(this).data('type', 'head'); break;
@@ -94,32 +103,90 @@ var Equip = Class.extend({
 			drop: function(e, u) {
 				var dropped = $(u.draggable);
 				
-				$(this).addClass('filled')
-					.removeClass('empty')
-					.addClass(dropped.data('ofType'))
-					.text(dropped.text())
-					.data('type', dropped.data('type'))
-					.data('ofType', dropped.data('ofType'))
-					.data('refID', dropped.data('refID'))
-					.droppable('destroy')
-					.draggable({
-						revert: 'invalid'
+				if (dropped.hasClass('emporium')) {
+					// Confirm purchase
+					ui.find('.items li.filled').hide('fast');
+					var slot = $(this);
+					var ofType = dropped.data('ofType');
+					var price = dropped.data('price');
+					var name = dropped.data('name');
+					var type = dropped.data('type');
+					var refID = dropped.data('refID');
+					
+					$('<div>Buy the ' + name + '?</div>').dialog({
+						title: 'Purchase',
+						modal: true,
+						dialogClass: 'no-close',
+						buttons: {
+							'Yes': function(){
+								// Update gold
+								Party.gold -= price;
+								$('.buy .gold').text(Party.gold + 'GP');
+								
+								// Add to inventory
+								slot.addClass('filled')
+									.removeClass('empty')
+									.addClass(ofType)
+									.text(name)
+									.data('type', type)
+									.data('ofType', ofType)
+									.data('refID', refID)
+									.droppable('destroy')
+									.draggable({
+										revert: 'invalid'
+									});
+								
+								// Remove the purchased item from emporium
+								dropped.remove();
+								
+								$(this).dialog('close');
+								ui.find('.items li.filled').show('fast');
+								
+								// Disable unaffordable items
+								$('.emporium').each(function(){
+									if($(this).data('price') > Party.gold && $(this).draggable()){
+										$(this).draggable('disable');
+									}
+								});
+							},
+							'No': function(){
+								dropped.animate({
+									'top': 0, 'left': 0
+								}, 500);
+								$(this).dialog('close');
+								ui.find('.items li.filled').show('fast');
+							}
+						}
 					});
-				
-				// Reset list item
-				dropped.clone()
-					.insertBefore(dropped)
-					.removeClass()
-					.addClass('empty')
-					.attr('style', '')
-					.text(dropped.attr('data-default'))
-					.data('type', dropped.data('type'))
-					.data('ofType', dropped.data('ofType'))
-					.data('refID', dropped.data('refID'))
-					.droppable(emptyItemOpts);
-				dropped.remove();
-				
-				// update droppable after each drop
+					
+					// Update UI
+					dropped.remove();
+				} else {
+					$(this).addClass('filled')
+						.removeClass('empty')
+						.addClass(dropped.data('ofType'))
+						.text(dropped.text())
+						.data('type', dropped.data('type'))
+						.data('ofType', dropped.data('ofType'))
+						.data('refID', dropped.data('refID'))
+						.droppable('destroy')
+						.draggable({
+							revert: 'invalid'
+						});
+					
+					// Reset list item
+					dropped.clone()
+						.insertBefore(dropped)
+						.removeClass()
+						.addClass('empty')
+						.attr('style', '')
+						.text(dropped.attr('data-default'))
+						.data('type', dropped.data('type'))
+						.data('ofType', dropped.data('ofType'))
+						.data('refID', dropped.data('refID'))
+						.droppable(emptyItemOpts);
+					dropped.remove();	
+				}
 			},
 			accept: function(u){
 				if ($(this).attr('data-group') == "shared") {
@@ -133,10 +200,42 @@ var Equip = Class.extend({
 		};
 		
 		// Populate store
+		$('.buy .gold').text(Party.gold + 'GP');
+		for (var i=0; i<this.emporium.length; i++) {
+			var emp = this.emporium[i];
+			var type;
+			switch (emp.ofType) {
+				case "weapon":
+					type = emp.wieldin;
+					break;
+				case "armor":
+					type = emp.supclass;
+					break;
+				case "medicine":
+					type = emp.ofType;
+					break;
+				default: break;
+			}
+			
+			var item = $('<li class="emporium filled '+emp.ofType+'">'+emp.name+' ('+emp.price+')</li>')
+				.data('type', type)
+				.data('name', emp.name)
+				.data('price', emp.price)
+				.data('ofType', emp.ofType)
+				.data('refID', emp.refID);
+			$('.buy .items').append(item);
+		}
 		
 		// Init draggable items
 		ui.find('.items li.filled').draggable({
 			revert: 'invalid', stack: 'li'
+		});
+		
+		// Disable/make undraggable unaffordable items
+		$('.emporium').each(function(){
+			if($(this).data('price') > Party.gold && $(this).draggable()){
+				$(this).draggable('disable');
+			}
 		});
 		
 		// Init droppable areas
@@ -178,6 +277,11 @@ var Equip = Class.extend({
 						}
 					}
 				});
+			},
+			accept: function(u){
+				if (u.data('price') == undefined) {
+					return true;
+				}
 			},
 			hoverClass: 'hover'
 		});

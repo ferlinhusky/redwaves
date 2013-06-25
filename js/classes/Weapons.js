@@ -3,8 +3,23 @@ var Weapon = Item.extend({
 		this._super(name, type, "weapon", supclass, material, refID); // push up to Item
 		this.dmg = dmg;
 		this.twohand = twohand;
+		this.wieldin = "hand";
+		if (isNaN(this.dmg)) {
+			var wpn_dmg = new Number(this.dmg.split('d')[1]);
+		} else { wpn_dmg = this.dmg; }
+		this.price = Math.floor(wpn_dmg*120);
 	}
 });
+
+// Axe subclass
+var Axe = Weapon.extend({
+	init: function(name, type, dmg, material, twohand, refID){
+		this._super(name, type, "axe", dmg, material, twohand, refID);
+	}
+});
+
+// Battle axe
+var battleaxe = Axe.extend({ init: function(){ this._super("Battle axe", "battleaxe", "1d12", "steel", true, 14); } });
 
 // Sword subclass
 var Sword = Weapon.extend({
@@ -44,7 +59,7 @@ var Appendage = Weapon.extend({
 });
 
 // Fangs
-var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d4", "bone", 6); } });
+var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d4", "bone", 6); this.wieldin = "head"; } });
 
 // Hand
 var hand = Appendage.extend({ init: function(){ this._super("Hand", "hand", "1d1", "flesh", 7); } });
@@ -53,7 +68,7 @@ var hand = Appendage.extend({ init: function(){ this._super("Hand", "hand", "1d1
 var claw = Appendage.extend({ init: function(){ this._super("Claw", "claw", "1d4", "flesh", 8); } });
 
 // Talons
-var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 9); } });
+var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 9); this.wieldin = "feet"; } });
 
 // Firearm subclass
 var Firearm = Weapon.extend({
@@ -68,7 +83,7 @@ var Firearm = Weapon.extend({
 var crossbow = Firearm.extend({ init: function(){ this._super("Crossbow", "crossbow", 3, 3, 3, "wood", true, 10); } });
 
 // English Longbow
-var englishlongbow = Firearm.extend({ init: function(){ this._super("English longbow", "englishlongbow", 3, 1, 5, "steel", true, 11); } });
+var longbow = Firearm.extend({ init: function(){ this._super("Longbow", "longbow", 3, 1, 5, "steel", true, 11); } });
 
 // Shotgun
 var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", 6, 3, 4, "steel", true, 12); } });

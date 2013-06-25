@@ -74,7 +74,7 @@
 		
 		<table class="itemgroupstmp">
 			<tr>
-			<td width="33%"><div class="group pack"><div class="title">Pack</div>
+			<td width="33%"><div class="group medicine"><div class="title">Pack</div>
 			    <ul class="items">
 				<li data-default="Empty"><i>Empty</i></li>
 				<li data-default="Empty"><i>Empty</i></li>
@@ -83,7 +83,7 @@
 			    </ul>
 			</div></td>
 		    
-			<td width="33%"><div class="group weapons"><div class="title">Weapons</div>
+			<td width="33%"><div class="group weapon"><div class="title">Weapons</div>
 			    <ul class="items">
 				<li data-default="Head"><i>Head</i></li>
 				<li data-default="Right hand"><i>Right hand</i></li>

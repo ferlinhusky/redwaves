@@ -2,6 +2,7 @@ var Armor = Item.extend({
 	init: function(name, type, supclass, material, ac, refID){
 		this._super(name, type, "armor", supclass, material, refID); // push up to Item
 		this.ac = ac;
+		this.price = Math.abs(Math.floor(this.ac*200));
 	}
 });
 
