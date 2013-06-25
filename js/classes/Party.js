@@ -309,7 +309,7 @@ var Equip = Class.extend({
 			p.wields = [];
 			p.wears = [];
 			
-			$('.itemgroups.' + p.type).find('.pack li').each(function(k, v){
+			$('.itemgroups.' + p.type).find('.medicine li').each(function(k, v){
 				if($(this).hasClass('filled')){
 					var pitem = ( new Function('var j = new ' + InventoryItems[$(this).data('refID')] + '(); return j;') )();
 					p.inven.push(pitem);
