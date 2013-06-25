@@ -11,9 +11,9 @@ var Weapons = ["",
     "woodenstaff",
     "fangs", "hand",
     "claw", "talons",
-    "crossbow",
-    "englishlongbow",
-    "shotgun", "sixshooter"
+    "crossbow", "longbow",
+    "shotgun", "sixshooter",
+	"battleaxe"
 ];
 
 var Armors = ["",
