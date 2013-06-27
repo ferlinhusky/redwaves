@@ -36,31 +36,91 @@ var Equip = Class.extend({
 			
 			// Populate UI w/ Player data
 			$('.itemgroups.' + p.type).find('.medicine li').each(function(k, v){
-				$(this).data('type', 'medicine');
-				$(this).data('ofType', 'medicine');
-				$(this).data('default', $(this).text());
+				$(this).data('type', 'medicine')
+					.data('ofType', 'medicine')
+					.data('default', $(this).text());
 				if (p.inven[k] != undefined) {
-					$(this).text(p.inven[k].name);
-					$(this).addClass('filled').removeClass('empty');
-					$(this).data('refID', p.inven[k].refID);
+					$(this).text(p.inven[k].name)
+						.addClass('filled').removeClass('empty')
+						.data('refID', p.inven[k].refID);
 				} else { $(this).addClass('empty'); }
 			});
 			
 			$('.itemgroups.' + p.type).find('.weapon li').each(function(k, v){
-				$(this).data('ofType', 'weapon');
-				$(this).data('default', $(this).text());
+				// Need to handle each individually b/c hands are complex
 				switch (k) {
-					case 0: $(this).data('type', 'head'); break;
-					case 1: $(this).data('type', 'hand'); break;
-					case 2: $(this).data('type', 'hand'); break;
-					case 3: $(this).data('type', 'feet'); break;
+					case 0:
+						$(this).data('type', 'head');
+						if (p.wields[0].supclass == "appendage") {
+							$(this).text(p.wields[0].name)
+								.data('default', p.wields[0].name)
+								.data('refID', p.wields[0].refID)
+								.addClass('empty appendage');
+						} else {
+							$(this).data('default', $(this).text());
+							if (p.wields[0] != "") {
+								$(this).text(p.wields[0].name)
+									.addClass('filled').removeClass('empty')
+									.data('refID', p.wields[0].refID);
+							} else { $(this).addClass('empty'); }	
+						}
+						break;
+					case 1:
+						$(this).data('type', 'hand');
+						if (p.wields[1].supclass == "appendage") {
+							$(this).text(p.wields[1].name)
+								.data('default', p.wields[1].name)
+								.data('refID', p.wields[1].refID)
+								.addClass('empty appendage');
+						} else {
+							$(this).data('default', p.wieldsdef[1].name);
+							if (p.wields[1] != "") {
+								$(this).text(p.wields[1].name)
+									.addClass('filled').removeClass('empty')
+									.data('refID', p.wields[1].refID);
+							} else {
+								$(this).text(p.wieldsdef[1].name)
+									.addClass('empty');
+							}	
+						}
+						break;
+					case 2:
+						$(this).data('type', 'hand');
+						if (p.wields[2].supclass == "appendage") {
+							$(this).text(p.wields[2].name)
+								.data('default', p.wields[2].name)
+								.data('refID', p.wields[2].refID)
+								.addClass('empty appendage');
+						} else {
+							$(this).data('default', p.wieldsdef[2].name);
+							if (p.wields[2] != "") {
+								$(this).text(p.wields[2].name)
+									.addClass('filled').removeClass('empty')
+									.data('refID', p.wields[2].refID);
+							} else {
+								$(this).text(p.wieldsdef[2].name)
+									.addClass('empty');
+							}	
+						}
+						break;
+					case 3:
+						$(this).data('type', 'feet');
+						if (p.wields[3].supclass == "appendage") {
+							$(this).text(p.wields[3].name)
+								.data('default', p.wields[3].name)
+								.data('refID', p.wields[3].refID)
+								.addClass('empty appendage');
+						} else {
+							$(this).data('default', $(this).text());
+							if (p.wields[3] != "") {
+								$(this).text(p.wields[3].name)
+									.addClass('filled').removeClass('empty')
+									.data('refID', p.wields[3].refID);
+							} else { $(this).addClass('empty'); }	
+						}
+						break;
 					default: break;
 				}
-				if (p.wields[k] != "" && p.wields[k].name != "Hand") {
-					$(this).text(p.wields[k].name);
-					$(this).addClass('filled').removeClass('empty');
-					$(this).data('refID', p.wields[k].refID);
-				} else { $(this).addClass('empty'); }
 			});
 			
 			$('.itemgroups.' + p.type).find('.armor li').each(function(k, v){
@@ -161,7 +221,7 @@ var Equip = Class.extend({
 					
 					// Update UI
 					dropped.remove();
-				} else {
+				} else {		
 					$(this).addClass('filled')
 						.removeClass('empty')
 						.addClass(dropped.data('ofType'))
@@ -180,10 +240,11 @@ var Equip = Class.extend({
 						.removeClass()
 						.addClass('empty')
 						.attr('style', '')
-						.text(dropped.attr('data-default'))
+						.text(dropped.data('default'))
 						.data('type', dropped.data('type'))
 						.data('ofType', dropped.data('ofType'))
 						.data('refID', dropped.data('refID'))
+						.data('default', dropped.data('default'))
 						.droppable(emptyItemOpts);
 					dropped.remove();	
 				}
@@ -258,7 +319,7 @@ var Equip = Class.extend({
 								.removeClass()
 								.addClass('empty')
 								.attr('style', '')
-								.text(dropped.attr('data-default'))
+								.text(dropped.data('default'))
 								.data('type', dropped.data('type'))
 								.data('ofType', dropped.data('ofType'))
 								.data('refID', dropped.data('refID'))
@@ -317,7 +378,7 @@ var Equip = Class.extend({
 			});
 			
 			$('.itemgroups.' + p.type).find('.weapon li').each(function(k, v){
-				if($(this).hasClass('filled')){
+				if($(this).hasClass('filled') || $(this).hasClass('appendage')){
 					var pitem = ( new Function('var j = new ' + Weapons[$(this).data('refID')] + '(); return j;') )();
 					p.wields[k] = pitem;
 				} else { p.wields[k] = ''; }

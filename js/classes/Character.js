@@ -6,6 +6,14 @@ var Character = Class.extend({
 
 		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-hands, 3-feet]
 		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
+		this.wieldsdef = ["", new hand, new hand, ""]; // default wields; ie, appendages. hands for everyone
+		
+		// If wielding nothing, wield hands
+		if (this.wields.join(",") == "") {
+			this.wields[1] = this.wieldsdef[1];
+			this.wields[2] = this.wieldsdef[2];
+		}
+		
 		this.checkwielding();
 		
 		this.inven	=	inven; // array // [ item, item, ... ]

@@ -242,6 +242,9 @@ var Atomic_Beast = Monster.extend({
 			[new radiation],
 			4, 4
 		);
+		
+		this.wieldsdef[1] = new claw;
+		this.wieldsdef[2] = new claw;
   	}
 });
 
@@ -253,7 +256,7 @@ var Atomic_Freak = Monster.extend({
 			"atomic_freak",
 			"Atomic Freaks",
 			["","","","","",""],
-			["", new hand, new hand,""],
+			["","","",""],
 			[],
 			[new radiation],
 			3, 5
@@ -274,6 +277,8 @@ var Basilisk = Monster.extend({
 			[new paralyze],
 			20, 10
 		);
+		
+		this.wieldsdef = [new fangs, new claw, new claw, new talons];
   	}
 });
 
@@ -290,6 +295,8 @@ var Ghost_Dracula = Monster.extend({
 			[new paralyze, new freakout, new drain],
 			15, 8
 		);
+		
+		this.wieldsdef[0] = new fangs;
   	}
 });
 
@@ -306,6 +313,8 @@ var Hell_Dog = Monster.extend({
 			[new hellfire],
 			4, 7
 		);
+		
+		this.wieldsdef[0] = new fangs;
   	}
 });
 
@@ -333,7 +342,7 @@ var Master_Killer = Monster.extend({
 			"master_killer",
 			"Master Killers",
 			["", new robe,"","","",""],
-			["", new hand, new hand,""],
+			["","","",""],
 			[],
 			[new martialarts],
 			25, 7
@@ -349,7 +358,7 @@ var Shaolin_Beatnik = Monster.extend({
 			"shaolin_beatnik",
 			"Shaolin Beatniks",
 			["", new robe,"","","",""],
-			["", new hand, new hand,""],
+			["","","",""],
 			[],
 			[new martialarts],
 			5, 7
@@ -386,5 +395,7 @@ var Snake_Man = Monster.extend({
 			[],
 			6, 6
 		);
+		
+		this.wieldsdef[0] = new fangs;
   	}
 });

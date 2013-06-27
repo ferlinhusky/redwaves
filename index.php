@@ -85,10 +85,10 @@
 		    
 			<td width="33%"><div class="group weapon"><div class="title">Weapons</div>
 			    <ul class="items">
-				<li data-default="Head"><i>Head</i></li>
-				<li data-default="Right hand"><i>Right hand</i></li>
-				<li data-default="Left hand"><i>Left hand</i></li>
-				<li data-default="Feet"><i>Feet</i></li>
+				<li><i>Head</i></li>
+				<li><i>Right hand</i></li>
+				<li><i>Left hand</i></li>
+				<li><i>Feet</i></li>
 			    </ul>
 			</div></td>
 				
