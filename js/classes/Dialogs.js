@@ -22,7 +22,7 @@ var D_Loading = function(){
 }
 
 var D_Welcome = {
-	title: 'Over red waves of sand',
+	title: 'Over red waves of sand (BETA)',
 	content: $('#dialog_welcome').html(),
 	buttons: {
 		"Play": function() {
