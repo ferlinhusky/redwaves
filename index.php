@@ -86,8 +86,8 @@
 			<td width="33%"><div class="group weapon"><div class="title">Weapons</div>
 			    <ul class="items">
 				<li><i>Head</i></li>
-				<li><i>Right hand</i></li>
-				<li><i>Left hand</i></li>
+				<li><i>Weapon</i></li>
+				<li><i>Alt Weapon</i></li>
 				<li><i>Feet</i></li>
 			    </ul>
 			</div></td>
@@ -96,7 +96,7 @@
 			    <ul class="items">
 				<li data-default="Helmet"><i>Helmet</i></li>
 				<li data-default="Body armor"><i>Body armor</i></li>
-				<li data-default="Gloves"><i>Gloves</i></li>
+				<li data-default="Shield"><i>Shield</i></li>
 				<li data-default="Boots"><i>Boots</i></li>
 			    </ul>
 			</div></td>

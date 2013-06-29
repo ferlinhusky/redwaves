@@ -62,10 +62,10 @@ var Appendage = Weapon.extend({
 var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d4", "bone", 6); this.wieldin = "head"; } });
 
 // Hand
-var hand = Appendage.extend({ init: function(){ this._super("Hand", "hand", "1d1", "flesh", 7); } });
+var hands = Appendage.extend({ init: function(){ this._super("Hands", "hands", "2d1", "flesh", 7); } });
 
 // Claw
-var claw = Appendage.extend({ init: function(){ this._super("Claw", "claw", "1d4", "flesh", 8); } });
+var claws = Appendage.extend({ init: function(){ this._super("Claws", "claws", "2d4", "flesh", 8); } });
 
 // Talons
 var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 9); this.wieldin = "feet"; } });

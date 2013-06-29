@@ -257,14 +257,10 @@ var Wolfman = Player.extend({
 		"Wolfman",
 		"wolfman",
 		["",new hide,"","","",""],
-		[new fangs, new claw, new claw, ""],
+		[new fangs, new claws, "", ""],
 		[new tron],
 		// see hidden characters up to 5 sq away (added)
 		[new keenness], 6, 12);
-		
-		this.wieldsdef[0] = new fangs;
-		this.wieldsdef[1] = new claw;
-		this.wieldsdef[2] = new claw;
   	}
 });
 
@@ -274,14 +270,10 @@ var Lamia = Player.extend({
 		"Lamia",
 		"lamia",
 		["","","","","",""],
-		[new fangs, new claw, new claw, ""],
+		[new fangs, new claws, "", ""],
 		[],
 		// chance of paralyzing enemy for n turns (added)
 		[new paralyze, new aquatic], 8, 5);
-	
-		this.wieldsdef[0] = new fangs;
-		this.wieldsdef[1] = new claw;
-		this.wieldsdef[2] = new claw;
   	}
 });
 

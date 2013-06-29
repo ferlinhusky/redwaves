@@ -34,7 +34,7 @@ var Equip = Class.extend({
 				.addClass('itemgroups '+ p.type)
 				.appendTo(ui);
 			
-			// Populate UI w/ Player data
+			// Medicine
 			$('.itemgroups.' + p.type).find('.medicine li').each(function(k, v){
 				$(this).data('type', 'medicine')
 					.data('ofType', 'medicine')
@@ -46,49 +46,40 @@ var Equip = Class.extend({
 				} else { $(this).addClass('empty'); }
 			});
 			
+			// Weapons
 			$('.itemgroups.' + p.type).find('.weapon li').each(function(k, v){
+				$(this).data('ofType', 'weapon');
+				$(this).data('default', $(this).text());
+				switch (k) {
+					case 0: $(this).data('type', 'head'); break;
+					case 1: $(this).data('type', 'hand'); break;
+					case 2: $(this).data('type', 'hand'); break;
+					case 3: $(this).data('type', 'feet'); break;
+					default: break;
+				}
 				
 				var ishand = k==1||k==2;
 				
-				// If wielding an appendage (claw, talons, etc.) in slot
-				if (p.wields[k].supclass == "appendage") {
-					$(this).text(p.wields[k].name)
-						.data('default', p.wields[k].name)
-						.data('refID', p.wields[k].refID)
-						.addClass('empty appendage');
-				} else {
-					if (ishand) {
-							$(this).data('default', p.wieldsdef[k].name)
-								.text(p.wieldsdef[k].name);
-					} else { $(this).data('default', $(this).text()); }
-					// If wielding a non-appendage weapon in slot
-					if (p.wields[k] != "") {
-						$(this).text(p.wields[k].name)
-							.addClass('filled').removeClass('empty')
-							.data('refID', p.wields[k].refID);
-					} else { $(this).addClass('empty'); }	
-				}
-				
-				switch (k) {
-					case 0:
-						$(this).data('type', 'head'); break;
-					case 1:
-						$(this).data('type', 'hand'); break;
-					case 2:
-						$(this).data('type', 'hand'); break;
-					case 3:
-						$(this).data('type', 'feet'); break;
-					default: break;
-				}
+				if (p.wields[k] != "" && p.wields[k].name != "Hands") {
+					$(this).data('refID', p.wields[k].refID)
+						.text(p.wields[k].name)
+						.addClass('filled').removeClass('empty')
+					if (p.wields[k].supclass == "appendage") {
+						$(this).addClass('appendage');
+					}
+				} else if (ishand){
+					$(this).addClass('empty');
+				} else { $(this).hide('fast'); }
 			});
 			
+			// Armor
 			$('.itemgroups.' + p.type).find('.armor li').each(function(k, v){
 				$(this).data('ofType', 'armor');
 				$(this).data('default', $(this).text());
 				switch (k) {
 					case 0: $(this).data('type', 'helmet'); break;
 					case 1: $(this).data('type', 'bodyarmor'); break;
-					case 2: $(this).data('type', 'gloves'); break;
+					case 2: $(this).data('type', 'shield'); break;
 					case 3: $(this).data('type', 'boots'); break;
 					default: break;
 				}
@@ -257,6 +248,7 @@ var Equip = Class.extend({
 		ui.find('.items li.filled').draggable({
 			revert: 'invalid', stack: 'li'
 		});
+		ui.find('.items li.appendage').draggable({ disabled: true });
 		
 		// Disable/make undraggable unaffordable items
 		$('.emporium').each(function(){
@@ -334,8 +326,8 @@ var Equip = Class.extend({
 		for(var i=0; i<Party.members.length; i++){
 			var p = Party.members[i];
 			p.inven = [];
-			p.wields = [];
-			p.wears = [];
+			p.wields = ["","","",""];
+			p.wears = ["","","",""];
 			
 			$('.itemgroups.' + p.type).find('.medicine li').each(function(k, v){
 				if($(this).hasClass('filled')){

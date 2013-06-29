@@ -237,14 +237,11 @@ var Atomic_Beast = Monster.extend({
 			"atomic_beast",
 			"Atomic Beasts",
 			["","","","","",""],
-			["", new claw, new claw,""],
+			["", new claws, "",""],
 			[],
 			[new radiation],
 			4, 4
 		);
-		
-		this.wieldsdef[1] = new claw;
-		this.wieldsdef[2] = new claw;
   	}
 });
 
@@ -272,13 +269,11 @@ var Basilisk = Monster.extend({
 			"basilisk",
 			"Basilisks",
 			["","","","","",""],
-			[new fangs, new claw, new claw, new talons],
+			[new fangs, new claws, "", new talons],
 			[],
 			[new paralyze],
 			20, 10
 		);
-		
-		this.wieldsdef = [new fangs, new claw, new claw, new talons];
   	}
 });
 
@@ -295,8 +290,6 @@ var Ghost_Dracula = Monster.extend({
 			[new paralyze, new freakout, new drain],
 			15, 8
 		);
-		
-		this.wieldsdef[0] = new fangs;
   	}
 });
 
@@ -313,8 +306,6 @@ var Hell_Dog = Monster.extend({
 			[new hellfire],
 			4, 7
 		);
-		
-		this.wieldsdef[0] = new fangs;
   	}
 });
 
@@ -374,7 +365,7 @@ var Son_of_Billy_the_Kid = Monster.extend({
 			"son_of_billy_the_kid",
 			"Sons of Billy the Kid",
 			[new cowboyhat,"","","","",""],
-			["", new sixshooter, new sixshooter, ""],
+			["", new sixshooter, "", ""],
 			[],
 			[],
 			4, 8
@@ -395,7 +386,5 @@ var Snake_Man = Monster.extend({
 			[],
 			6, 6
 		);
-		
-		this.wieldsdef[0] = new fangs;
   	}
 });

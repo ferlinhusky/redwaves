@@ -9,11 +9,11 @@ var Weapons = ["",
     "shortsword",
     "broadsword",
     "woodenstaff",
-    "fangs", "hand",
-    "claw", "talons",
+    "fangs", "hands",
+    "claws", "talons",
     "crossbow", "longbow",
     "shotgun", "sixshooter",
-	"battleaxe"
+    "battleaxe"
 ];
 
 var Armors = ["",
