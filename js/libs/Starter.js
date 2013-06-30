@@ -72,8 +72,9 @@ var ButtonContainer = $('#button_container');
     ButtonContainer.append('<div id="btn_save" class="button action">(Test)</div>');
     ButtonContainer.append('<div id="btn_open_close" class="button action">Door</div>');
     ButtonContainer.append('<div id="btn_pickup" class="button action">Pick up</div>');
+    ButtonContainer.append('<div id="weaponset" class="button"></div>');
     ButtonContainer.append('<div id="spellset" class="button"></div>');
-	ButtonContainer.append('<div id="itemset" class="button"></div>');
+    ButtonContainer.append('<div id="itemset" class="button"></div>');
     ButtonContainer.append('<div id="btn_end_turn" class="button action">End Turn</div>');
     ButtonContainer.append('<div id="monsters_moving" class="button" style="display:none;"></div>');
     
@@ -82,6 +83,14 @@ var btnHelp = $('#btn_help');
 var btnSave = $('#btn_save');
 var btnOpenClose = $('#btn_open_close');
 var btnPickup = $('#btn_pickup');
+
+var WeaponSet = $('#weaponset')
+    WeaponSet.append('<div id="btn_weapon" class="button action">Weapon</div>');
+    WeaponSet.append('<div id="btn_select_weapon" class="button action">Select Weapon</div>');
+    WeaponSet.append('<ul id="menu_select_weapon"></ul>');
+var btnWeapon = $('#btn_weapon');
+var btnSelectWeapon = $('#btn_select_weapon');
+var menuSelectWeapon = $('#menu_select_weapon');
 
 var SpellSet = $('#spellset')
     SpellSet.append('<div id="btn_spell" class="button action">Spell</div>');

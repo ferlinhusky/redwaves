@@ -603,6 +603,16 @@ var Input = function(){
 			disabled: false,
 			text: true
 		});
+                
+                btnWeapon.button({ 
+			icons: {primary:'ui-icon-flag',secondary:''},
+			disabled: false,
+			text: true
+		}).next().button({
+			text: false,
+			disabled: false,
+			icons: {primary: "ui-icon-triangle-1-s"}
+			}).parent().buttonset();
 		
 		btnSpell.button({ 
 			icons: {primary:'ui-icon-script',secondary:''},
@@ -722,6 +732,7 @@ var Input = function(){
 					$('#button_container').find('.action').button('option', 'text', false);
 				} else if($('#button_container').find('.action').button()) {
 					$('#button_container').find('.action').button('option', 'text', true);
+                                        btnSelectWeapon.button('option', 'text', false);
 					btnSelectSpell.button('option', 'text', false);
 					btnSelectItem.button('option', 'text', false);
 				}

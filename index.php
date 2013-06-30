@@ -14,7 +14,7 @@
 	<!-- iPad -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-	<meta name="viewport" content="user-scalable=no, width=device-width" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
 	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 	<link rel="apple-touch-startup-image" href="startup.png" /> 
 
@@ -42,7 +42,6 @@
 	<br/><a href="javascript:Input.verifypasscode();" class="verify_passcode">Verify passcode</a>
 	<p><b>Next adventure</b></p>
 	<p class="next_adventure"></p>
-        <!-- <select class="pick_a_map"></select> --->
     </div>
     
     <!-- Select team dialog -->
@@ -134,7 +133,7 @@
     </div>
     
     <!-- End of game passcode -->
-    <div id="passcode_addon">
+    <div class="dialog_content" id="passcode_addon">
 	<p><b>Passcode</b><br/>
 	<span id='passcode'><img src="images/ajax-loader.gif"/> Loading...</span></p>
 	

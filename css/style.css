@@ -348,6 +348,7 @@ h3{
 }
 
 /* Menus */
+#menu_select_weapon,
 #menu_select_spell,
 #menu_select_item {
     position: absolute;
