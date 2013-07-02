@@ -279,12 +279,57 @@ var Input = function(){
 			World.activePlayer.readyItem.use();
 		};
                 
-                this.pickupItem = function(){
-                    var square = getSquare(World.activePlayer.coords);
-                    var item = square.containsA;
-                    item.pickup(square.id);
-                    btnPickup.button('disable');
-                }
+		this.pickupItem = function(){
+			var square = getSquare(World.activePlayer.coords);
+			var item = square.containsA;
+			item.pickup(square.id);
+			btnPickup.button('disable');
+		}
+
+	/*
+		Weapon handling
+	*/
+		this.weaponOn = false;
+		this.weaponMenu = false;
+		
+		this.showWeaponMenu = function(){
+			var offH = menuSelectWeapon.outerHeight();
+			menuSelectWeapon
+				.css({
+				   top: btnWeapon.position().top - offH,
+				   left: btnWeapon.position().left,
+				   width: WeaponSet.width() - 8,
+				   display: 'block'
+				});
+			this.weaponMenu = true;
+		};
+		
+		this.hideWeaponMenu = function(){
+			menuSelectWeapon.css({
+                            top: '-1000px',
+                            display:'none'
+                        });
+			this.weaponMenu = false;
+		};
+		
+		this.setWeapon = function(s){
+			var zitem = World.activePlayer.wields[s];
+			btnWeapon.button('option', 'label', zitem.name);
+			World.activePlayer.readyWeapon = zitem;
+			this.hideWeaponMenu();
+		};
+
+		this.selectWeapon = function(){
+			if(!this.weaponMenu) {
+				this.showWeaponMenu();
+			} else {
+				this.hideWeaponMenu();
+			}
+		};
+		
+		this.handleWeapon = function(){
+			// If ranged, show range etc.
+		};
 		
 	/*
 		Key Captures
@@ -656,6 +701,8 @@ var Input = function(){
 		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
+		btnWeapon.bind('click touchend', function(e){e.preventDefault(); Input.handleWeapon();});
+		btnSelectWeapon.bind('click touchend', function(e){e.preventDefault(); Input.selectWeapon();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});

@@ -425,6 +425,16 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 	}
 }
 
+var unbuildAllMenus = function(){
+	unbuildItemMenu();
+	unbuildWeaponMenu();
+}
+
+var buildAllMenus = function(){
+	buildItemMenu();
+	buildWeaponMenu();
+}
+
 // Item menu
 var unbuildItemMenu = function(){
 	Input.hideItemMenu();
@@ -448,6 +458,37 @@ var buildItemMenu = function(){
 	}
 	menuSelectItem.menu();
 };
+
+// Weapon menu
+var unbuildWeaponMenu = function(){
+	Input.hideWeaponMenu();
+	menuSelectWeapon.empty();
+	menuSelectWeapon.menu();
+	menuSelectWeapon.menu('destroy');
+	btnWeapon.button('option', 'label', 'Weapon');
+	WeaponSet.find('.button').button('disable');
+};
+
+var buildWeaponMenu = function(){
+	var isready="";
+	
+	// Rebuild weapon menu
+	for(var i=0; i<World.activePlayer.wields.length; i++){
+		if (World.activePlayer.wields[i] != "") {
+			if (World.activePlayer.wields[i] === World.activePlayer.readyWeapon) {
+				isready = i;
+			}
+			menuSelectWeapon.append('<li><a href="javascript:void(0);" onclick="Input.setWeapon('+i+');">'+World.activePlayer.wields[i].name);
+		}
+	}
+	WeaponSet.find('.button').button('enable');
+	menuSelectWeapon.menu();
+	
+	if (isready != "") {
+		Input.setWeapon(isready);
+	}
+};
+
 
 var endturnUI = function(){
 	btnEndTurn.addClass('blink');

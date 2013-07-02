@@ -28,6 +28,7 @@ var Character = Class.extend({
 		this.movement	=	movement;
 		this.maxMove	=	movement;
 		
+		this.readyWeapon = this.wields[1];
 		this.readyItem = null;
 		this.readySpell = null;
 		this.readyRanged = null;

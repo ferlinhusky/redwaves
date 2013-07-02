@@ -144,7 +144,8 @@ var World = function(){
         $('.m_grid').removeClass('zoom');
         $('.m_grid').removeClass('dogvision');
 
-        unbuildItemMenu();
+        //unbuildItemMenu();
+		unbuildAllMenus();
 		
         $('.p').removeClass('blink'); // remove any character blinks
 		$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
@@ -225,7 +226,8 @@ var World = function(){
 			// Need to skip over lost players or remove them from the queue upon .killed()
 			if(this.activePlayer.ofType == "player"){
 				// (Re)build the item menu
-				buildItemMenu();
+				//buildItemMenu();
+				buildAllMenus();
 									
 				// If canine, add dogvision
 				if(this.activePlayer.type == "wolfman"){
@@ -263,8 +265,8 @@ var World = function(){
 				anyDoors(this.activePlayer.coords);
 				anyItems(this.activePlayer.coords);
                                 
-                                // Check for keenness
-                                this.activePlayer.checkKeenness();
+                // Check for keenness
+                this.activePlayer.checkKeenness();
 				
 				// Check for Wizard
 				if(this.activePlayer.type == "wizard"){
