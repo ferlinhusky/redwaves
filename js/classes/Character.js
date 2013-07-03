@@ -28,7 +28,16 @@ var Character = Class.extend({
 		this.movement	=	movement;
 		this.maxMove	=	movement;
 		
-		this.readyWeapon = this.wields[1];
+		// Set ready weapon, start w/hands then face then feet
+		if(this.wields[1] != ""){
+			this.readyWeapon = this.wields[1];
+		} else if(this.wields[2] != ""){
+			this.readyWeapon = this.wields[2];
+		} else if(this.wields[0] != ""){
+			this.readyWeapon = this.wields[0];
+		} else if(this.wields[3] != ""){
+			this.readyWeapon = this.wields[3];
+		}
 		this.readyItem = null;
 		this.readySpell = null;
 		this.readyRanged = null;

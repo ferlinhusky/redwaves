@@ -12,9 +12,10 @@ var Battle = function(att, def){
 		}
 					
 		// Check each part of the body for a weapon
-		for(var i=0; i < a1.wields.length; i++){
-			if(a1.wields[i] != ""){
-				var weapon = a1.wields[i];
+		//for(var i=0; i < a1.wields.length; i++){
+		//	if(a1.wields[i] != ""){
+				//var weapon = a1.wields[i];
+				var weapon = a1.readyWeapon;
 				var tot_attks, wpn_dmg;
 				
 				if(weapon.supclass == "firearm"){
@@ -97,8 +98,8 @@ var Battle = function(att, def){
 					}
 					Statuss.update(status_line);
 				}
-			}
-		}
+		//	}
+		//}
     };
 	this.doSpellAttack = function(a1, d1){
 	    var spell = a1.readySpell;
