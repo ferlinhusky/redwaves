@@ -470,12 +470,12 @@ var unbuildWeaponMenu = function(){
 };
 
 var buildWeaponMenu = function(){
-	var isready="";
+	var isready=-1;
 	
 	// Rebuild weapon menu
 	for(var i=0; i<World.activePlayer.wields.length; i++){
 		if (World.activePlayer.wields[i] != "") {
-			if (World.activePlayer.wields[i] === World.activePlayer.readyWeapon) {
+			if (World.activePlayer.wields[i].name == World.activePlayer.readyWeapon.name) {
 				isready = i;
 			}
 			menuSelectWeapon.append('<li><a href="javascript:void(0);" onclick="Input.setWeapon('+i+');">'+World.activePlayer.wields[i].name);
@@ -484,7 +484,7 @@ var buildWeaponMenu = function(){
 	WeaponSet.find('.button').button('enable');
 	menuSelectWeapon.menu();
 	
-	if (isready != "") {
+	if (isready >= 0) {
 		Input.setWeapon(isready);
 	}
 };
