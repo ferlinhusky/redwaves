@@ -488,11 +488,3 @@ var buildWeaponMenu = function(){
 		Input.setWeapon(isready);
 	}
 };
-
-
-var endturnUI = function(){
-	btnEndTurn.addClass('blink');
-	btnSpell.removeClass('blink')
-		.button('disable');
-	btnSelectSpell.button('disable');
-};

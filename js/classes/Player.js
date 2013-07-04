@@ -128,17 +128,17 @@ var Player = Character.extend({
 					
 					// If paralyzed
 					if(this.paralyzed > 0){
-						endturnUI();
+						this.endturnUI();
 						// Zero out unused moves for player
 						MO_set(this, this.movement - this.currMove);
 					} else if(!this.dead){ MO_set(this, 1); } // else if not dead, updated movement
 				}
 			}
 			if (this.currMove == this.movement){
-				endturnUI();
+				this.endturnUI();
 			}
 		} else if (this.currMove == this.movement){
-			endturnUI();
+			this.endturnUI();
 		}
 	},
 	killed: function(){
@@ -182,6 +182,12 @@ var Player = Character.extend({
 				}
 			}
 		}
+	},
+	endturnUI: function(){
+		btnEndTurn.addClass('blink');
+		btnSpell.removeClass('blink')
+			.button('disable');
+		btnSelectSpell.button('disable');
 	}
 });
 

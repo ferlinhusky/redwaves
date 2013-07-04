@@ -52,7 +52,8 @@ var World = function(){
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;
 			Party.members[i].readyItem = null;
-            Party.members[i].readySpell = null;
+                        Party.members[i].readySpell = null;
+                        Party.members[i].readyWeapon = null;
 			Party.members[i].dead = false;
 			Party.members[i].paralyzed = 0;
 			Party.members[i].slow = false;
@@ -80,18 +81,18 @@ var World = function(){
                 Party.levelcomplete += 1;
                 Party.gold += this.Level.opts.gold;
 				
-				// Dialog content
-				var dialogcontent = wl + $('#passcode_addon').html();
-				if (Party.levelcomplete >= Adventures.length){
-					dialogcontent += "<p><b>You have completed all available adventures. Come back later for more\
-					or <a href='http://www.twitter.com/HuskyFerlin'>keep up with the feed</a> to see when another has been added. Thanks!</b></p>"
-				}
+                // Dialog content
+                var dialogcontent = wl + $('#passcode_addon').html();
+                if (Party.levelcomplete >= Adventures.length){
+                        dialogcontent += "<p><b>You have completed all available adventures. Come back later for more\
+                        or <a href='http://www.twitter.com/HuskyFerlin'>keep up with the feed</a> to see when another has been added. Thanks!</b></p>"
+                }
                 
                 // Passcode addon should show next adventure, and not return to home screen
                 Input.M_Dialog("standard", dialogcontent, this.Level.title, {
                     "Play on": function(){
-						World.playnext();
-					},
+                            World.playnext();
+                    },
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');
                             $('.ui-dialog #emailpasscoderesponse').text('Attempting to send...');
@@ -125,31 +126,29 @@ var World = function(){
             } else {
                 Input.M_Dialog("standard", wl, this.Level.title, {
                     "Try again": function(){
-						World.playnext();
-					}
-				}, 375);
+                                    World.playnext();
+                            }
+                    }, 375);
             }
 	};
 	
 	this.resetUI = function(){
-		// Reset UI bits
-		btnEndTurn.removeClass('blink')
-		    .button('disable');                
-		btnOpenClose.button('disable');
-        btnPickup.button('disable');
-		btnSpell.removeClass('blink');
-		SpellSet.find('.button').button('disable');
-        Input.spellOn = false;
-		Input.hideSpellMenu();
-        $('.m_grid').removeClass('zoom');
-        $('.m_grid').removeClass('dogvision');
+            // Reset UI bits
+            btnEndTurn.removeClass('blink')
+                .button('disable');                
+            btnOpenClose.button('disable');
+            btnPickup.button('disable');
+            btnSpell.removeClass('blink');
+            SpellSet.find('.button').button('disable');
+            Input.spellOn = false;
+	    Input.hideSpellMenu();
+            $('.m_grid').removeClass('zoom dogvision');
 
-        //unbuildItemMenu();
-		unbuildAllMenus();
+	    unbuildAllMenus();
 		
-        $('.p').removeClass('blink'); // remove any character blinks
-		$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
-		monstersMoving.hide('fast');
+            $('.p').removeClass('blink'); // remove any character blinks
+	    $('.lit, .unlit').removeClass(allranges); // remove all spell ranges
+	    monstersMoving.hide('fast');
 	};
 	
 	this.endturn = function(){
@@ -265,8 +264,8 @@ var World = function(){
 				anyDoors(this.activePlayer.coords);
 				anyItems(this.activePlayer.coords);
                                 
-                // Check for keenness
-                this.activePlayer.checkKeenness();
+                                // Check for keenness
+                                this.activePlayer.checkKeenness();
 				
 				// Check for Wizard
 				if(this.activePlayer.type == "wizard"){
