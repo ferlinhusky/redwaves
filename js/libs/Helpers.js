@@ -333,6 +333,31 @@ var getLineOfSight = function(c){
 	
 	var hilite = "lit";
 	
+	var rng = 10;
+	var c0m = c[0]-rng;
+	var c0p = c[0]+rng;
+	var c1m = c[1]-rng;
+	var c1p = c[1]+rng;
+	
+	// Hit the corner 1 square in
+	Bresenham(c[0], c[1], c0m+1, c1m+1, hilite, true);
+	Bresenham(c[0], c[1], c0m+1, c1p-1, hilite, true);
+	
+	Bresenham(c[0], c[1], c0p-1, c1m+1, hilite, true);
+	Bresenham(c[0], c[1], c0p-1, c1p-1, hilite, true);
+	
+	// Loop borders, skipping corners
+	for(var i=-rng; i<=rng; i++){
+		// Don't hit far corners (where i = range)
+		if(Math.abs(i)!= Math.abs(rng)){
+			Bresenham(c[0], c[1], c[0]-i, c1m, hilite, true);
+			Bresenham(c[0], c[1], c[0]+i, c1p, hilite, true);
+			Bresenham(c[0], c[1], c0m, c[1]-i, hilite, true);
+			Bresenham(c[0], c[1], c0p, c[1]+i, hilite, true);
+		}
+	}
+	
+	/* Range -> map perimeter
 	// Four corners separate, otherwise they're calculated twice each
 	Bresenham(c[0], c[1], 0, 0, hilite, true);
 	Bresenham(c[0], c[1], 0, mw, hilite, true);
@@ -348,7 +373,7 @@ var getLineOfSight = function(c){
 	for(i=1; i<=mh; i++){
 		Bresenham(c[0], c[1], 0, i, hilite, true);
 		Bresenham(c[0], c[1], mw-1, i, hilite, true);
-	}
+	}*/
 	
 	$('.lit').removeClass('unlit visited');
 };

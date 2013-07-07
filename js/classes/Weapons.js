@@ -59,7 +59,7 @@ var Appendage = Weapon.extend({
 });
 
 // Fangs
-var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d4", "bone", 6); this.wieldin = "head"; } });
+var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d6", "bone", 6); this.wieldin = "head"; } });
 
 // Hand
 var hands = Appendage.extend({ init: function(){ this._super("Hands", "hands", "2d1", "flesh", 7); } });
