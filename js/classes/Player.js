@@ -55,9 +55,14 @@ var Player = Character.extend({
 		// Check for doors
 		anyDoors(this.coords);
 		
-		// Wizard check
-		if(this.type == "wizard" && Input.spellOn == true){
-			getSpellRange(this);
+		// Spell check
+		if(Input.spellOn == true){
+			getRange(this, "spell");
+		}
+		
+		// Range check
+		if(Input.weaponOn == true){
+			getRange(this, "weapon");
 		}
 	},
 	move: function(dir){

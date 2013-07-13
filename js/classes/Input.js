@@ -329,6 +329,26 @@ var Input = function(){
 		
 		this.handleWeapon = function(){
 			// If ranged, show range etc.
+                        if(World.activePlayer.readyWeapon.supclass == "firearm"){
+                            Input.hideWeaponMenu();
+                            $('.lit, .unlit').removeClass('range'); // remove all spell ranges
+                            btnWeapon.removeClass('blink');
+                            if(this.weaponOn == false){
+                                if($(window).width() <= 480 ){
+                                    $('.m_grid').addClass('zoom'); // make only for small screen
+                                    centerOn(World.activePlayer);
+                                }
+                                btnWeapon.addClass('blink');
+                                this.weaponOn = true;
+                                getRange(World.activePlayer, "weapon");    
+                            } else {
+                                if($('.m_grid').hasClass('zoom')){
+                                    $('.m_grid').removeClass('zoom');
+                                    centerOn(World.activePlayer);
+                                }
+                                this.weaponOn = false;
+                            }
+                        }
 		};
 		
 	/*

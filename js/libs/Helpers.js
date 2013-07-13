@@ -379,7 +379,44 @@ var getLineOfSight = function(c){
 };
 
 // Get Range
-var allranges = "range fire ice energy earth steel";
+var allranges = "range fire ice energy earth steel wood";
+var getRange = function(character, type){
+	$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
+	
+	var c = character.coords;
+	var item;
+	
+	switch(type){
+		case "spell": item = character.readySpell; break;
+		case "weapon": item = character.readyWeapon; break;
+		default: break;
+	}
+	
+	var rng = item.rng;
+	var hilite = "range " + item.material;
+	var c0m = c[0]-rng;
+	var c0p = c[0]+rng;
+	var c1m = c[1]-rng;
+	var c1p = c[1]+rng;
+	
+	// Hit the corner 1 square in
+	Bresenham(c[0], c[1], c0m+1, c1m+1, hilite, false);
+	Bresenham(c[0], c[1], c0m+1, c1p-1, hilite, false);
+	
+	Bresenham(c[0], c[1], c0p-1, c1m+1, hilite, false);
+	Bresenham(c[0], c[1], c0p-1, c1p-1, hilite, false);
+	
+	// Loop borders, skipping corners
+	for(var i=-rng; i<=rng; i++){
+		// Don't hit far corners (where i = range)
+		if(Math.abs(i)!= Math.abs(rng)){
+			Bresenham(c[0], c[1], c[0]-i, c1m, hilite, false);
+			Bresenham(c[0], c[1], c[0]+i, c1p, hilite, false);
+			Bresenham(c[0], c[1], c0m, c[1]-i, hilite, false);
+			Bresenham(c[0], c[1], c0p, c[1]+i, hilite, false);
+		}
+	}
+}
 var getSpellRange = function(character){
 	$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
 	
@@ -490,7 +527,8 @@ var unbuildWeaponMenu = function(){
 	menuSelectWeapon.empty();
 	menuSelectWeapon.menu();
 	menuSelectWeapon.menu('destroy');
-	btnWeapon.button('option', 'label', 'Weapon');
+	btnWeapon.button('option', 'label', 'Weapon')
+		.removeClass('blink');
 	WeaponSet.find('.button').button('disable');
 };
 

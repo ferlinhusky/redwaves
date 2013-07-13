@@ -138,10 +138,15 @@ var World = function(){
                 .button('disable');                
             btnOpenClose.button('disable');
             btnPickup.button('disable');
+            
             btnSpell.removeClass('blink');
             SpellSet.find('.button').button('disable');
+            Input.hideSpellMenu();
+            
             Input.spellOn = false;
-	    Input.hideSpellMenu();
+            Input.weaponOn = false;
+            Input.itemOn = false;
+            
             $('.m_grid').removeClass('zoom dogvision');
 
 	    unbuildAllMenus();
