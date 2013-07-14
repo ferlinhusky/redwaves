@@ -4,11 +4,11 @@ var Player = Character.extend({
 		this._super(name, type, wears, wields, inven, skills, HP, movement);
 		this.ID = "player_" + Players.length;
 		this.ofType = "player";
-		//this.group = Players;
+		this.map = "";
+
 		Players.push(this);
 		Party.members.push(this);
 		
-		this.map="";
 		this.updatetable();
 	},
 	updatetable: function(){
@@ -193,6 +193,9 @@ var Player = Character.extend({
 		btnSpell.removeClass('blink')
 			.button('disable');
 		btnSelectSpell.button('disable');
+		btnWeapon.removeClass('blink')
+			.button('disable');
+		btnSelectWeapon.button('disable');
 	}
 });
 

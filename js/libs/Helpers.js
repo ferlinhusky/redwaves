@@ -417,36 +417,6 @@ var getRange = function(character, type){
 		}
 	}
 }
-var getSpellRange = function(character){
-	$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
-	
-	var c = character.coords;
-	
-	var rng = character.readySpell.rng;
-	var hilite = "range " + character.readySpell.material;
-	var c0m = c[0]-rng;
-	var c0p = c[0]+rng;
-	var c1m = c[1]-rng;
-	var c1p = c[1]+rng;
-	
-	// Hit the corner 1 square in
-	Bresenham(c[0], c[1], c0m+1, c1m+1, hilite, false);
-	Bresenham(c[0], c[1], c0m+1, c1p-1, hilite, false);
-	
-	Bresenham(c[0], c[1], c0p-1, c1m+1, hilite, false);
-	Bresenham(c[0], c[1], c0p-1, c1p-1, hilite, false);
-	
-	// Loop borders, skipping corners
-	for(var i=-rng; i<=rng; i++){
-		// Don't hit far corners (where i = range)
-		if(Math.abs(i)!= Math.abs(rng)){
-			Bresenham(c[0], c[1], c[0]-i, c1m, hilite, false);
-			Bresenham(c[0], c[1], c[0]+i, c1p, hilite, false);
-			Bresenham(c[0], c[1], c0m, c[1]-i, hilite, false);
-			Bresenham(c[0], c[1], c0p, c[1]+i, hilite, false);
-		}
-	}
-}
 
 // Bresenham's Line Algorithm
 var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){

@@ -96,23 +96,29 @@ var Battle = function(att, def){
 			Statuss.update(status_line);
 		}
     };
-	this.doSpellAttack = function(a1, d1){
-	    var spell = a1.readySpell;
+	this.doRangedAttack = function(a1, d1, type){
+	    var item;
+	    
+	    switch(type){
+		case "weapon": item = a1.readyWeapon; break;
+		case "spell": item = a1.readySpell; break;
+		default: break;
+	    }
 	    
 	    // Get attack damage
-		var spell_dmg = new Number(spell.dmg.split('d')[1]);
-	    var att_dmg = Math.floor(Math.random() * spell_dmg);
+	    var item_dmg = new Number(item.dmg.split('d')[1]);
+	    var att_dmg = Math.floor(Math.random() * item_dmg);
 		
 	    if(att_dmg <= 0) {
-		    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' ' + spell.name;
+		    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' ' + item.name;
 	    } else {
-			// Check for necromancy; half spell damage to defender w/ it
-			if(d1.hasSkill('necromancy')){
-				var temp_att_dmg = att_dmg;
-				att_dmg = Math.floor(temp_att_dmg/2);
-			}
+		    // Check for necromancy; half spell damage to defender w/ it
+		    if(type == "spell" && d1.hasSkill('necromancy')){
+			    var temp_att_dmg = att_dmg;
+			    att_dmg = Math.floor(temp_att_dmg/2);
+		    }
 		    HP_set(d1, -att_dmg);
-		    status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.ppro + ' ' + spell.name + '</span>';
+		    status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.ppro + ' ' + item.name + '</span>';
 	    }
 	    Statuss.update(status_line);
 	};
@@ -128,7 +134,9 @@ var Battle = function(att, def){
 			findAndAdd(Squares[def.currentSquare].onMap, '.p', 'defender');
 			
 			if(Input.spellOn == true){ // spell attack
-				this.doSpellAttack(att, def);
+			    this.doRangedAttack(att, def, "spell");
+			} else if (Input.weaponOn == true){
+			    this.doRangedAttack(att, def, "weapon");
 			} else { this.doBattle(att, def); }
 			
 			// If defender killed

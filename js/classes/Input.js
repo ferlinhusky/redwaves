@@ -122,10 +122,12 @@ var Input = function(){
 							sobj.cthru = true;
 							// Update line of sight
 							getLineOfSight(loc);
-							// Wizard check
-							if(World.activePlayer.type == "wizard" && Input.spellOn == true){
-								getSpellRange(World.activePlayer);
-							}
+							// Range check
+							if(Input.spellOn == true){
+							    getRange(World.activePlayer, "spell");
+							} else if (Input.weaponOn == true){
+                                                            getRange(World.activePlayer, "weapon");
+                                                        }
 						} else if(sobj.t.type == 'open_door') {
 							s.removeClass('open_door');
 							s.addClass('closed_door');
@@ -133,10 +135,12 @@ var Input = function(){
 							sobj.cthru = false;
 							// Update line of sight
 							getLineOfSight(loc);
-							// Wizard check
-							if(World.activePlayer.type == "wizard" && Input.spellOn == true){
-								getSpellRange(World.activePlayer);
-							}
+							// Range check
+							if(Input.spellOn == true){
+							    getRange(World.activePlayer, "spell");
+							} else if (Input.weaponOn == true){
+                                                            getRange(World.activePlayer, "weapon");
+                                                        }
 						}
 					}
 				}
@@ -177,7 +181,7 @@ var Input = function(){
 			World.activePlayer.readySpell = spell;
 			this.hideSpellMenu();
 			if(this.spellOn == true){
-				getSpellRange(World.activePlayer);
+				getRange(World.activePlayer, "spell");
 			}
 		}
 
@@ -190,18 +194,26 @@ var Input = function(){
 		};
 		this.handleSpell = function(){
 			Input.hideSpellMenu();
-			$('.lit, .unlit').removeClass('range'); // remove all spell ranges
-			btnSpell.removeClass('blink');
-			if(this.spellOn == false && World.activePlayer.readySpell != null){
-				if(World.activePlayer.type == "wizard"){ // doesn't hurt to make sure again
-					if($(window).width() <= 480 ){
-                                            $('.m_grid').addClass('zoom'); // make only for small screen
-                                            centerOn(World.activePlayer);
-                                        }
-                                        btnSpell.addClass('blink');
-					this.spellOn = true;
-					getSpellRange(World.activePlayer);
-				} else { btnSpell.button('disable'); return false; }
+
+			if(Input.spellOn == false && World.activePlayer.readySpell != null){
+                            $('.lit, .unlit').removeClass('range'); // remove all spell ranges
+                            btnSpell.removeClass('blink');
+                        
+                            // Deactive weapon
+                            if(Input.weaponOn == true){
+                                Input.handleWeapon();
+                            }
+                                
+                            // Zoom on small screens
+                            if($(window).width() <= 480 ){
+                                $('.m_grid').addClass('zoom'); // make only for small screen
+                                centerOn(World.activePlayer);
+                            }
+                            
+                            // Activate spell
+                            btnSpell.addClass('blink');
+                            this.spellOn = true;
+                            getRange(World.activePlayer, "spell");
 			} else {
                             if($('.m_grid').hasClass('zoom')){
                                 $('.m_grid').removeClass('zoom');
@@ -212,7 +224,7 @@ var Input = function(){
 		};
 		
 		// Check for ranged target > tsq: target square
-		// If found, cast spell
+		// If found, cast spell or attack ranged....
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
                         World.activePlayer.readySpell.cast(sobj);
@@ -331,13 +343,21 @@ var Input = function(){
 			// If ranged, show range etc.
                         if(World.activePlayer.readyWeapon.supclass == "firearm"){
                             Input.hideWeaponMenu();
-                            $('.lit, .unlit').removeClass('range'); // remove all spell ranges
+                            $('.lit, .unlit').removeClass('range'); // remove all ranges
                             btnWeapon.removeClass('blink');
-                            if(this.weaponOn == false){
+                            if(Input.weaponOn == false){
+                                // Deactive spell
+                                if(Input.spellOn == true){
+                                    Input.handleSpell();
+                                }
+                                
+                                // Zoom on small screens
                                 if($(window).width() <= 480 ){
                                     $('.m_grid').addClass('zoom'); // make only for small screen
                                     centerOn(World.activePlayer);
                                 }
+                            
+                                // Activate weapon
                                 btnWeapon.addClass('blink');
                                 this.weaponOn = true;
                                 getRange(World.activePlayer, "weapon");    

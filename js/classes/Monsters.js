@@ -10,23 +10,22 @@ var Monster = Character.extend({
 		
 		this.ID = "monster_" + Monsters.length;
 		this.ofType = "monster";
-		//this.group = Monsters;
-		Monsters.push(this);
-		this.readySpell;
 		
 		this.targets = [];
 		this.target = null;
+		
+		Monsters.push(this);
 	},
 	checkRanged: function(){
 		var range = false;
 		var target = "";
-		this.readySpell = null;
+		//this.readyWeapon = null;
 		// Ranged weapon (non-spell) targeting
 		for(var i=0; i<this.wields.length; i++){
 			// Check if carrying a ranged weapon
-			if(this.wields[i].hasOwnProperty('rng')){
-				this.readySpell = this.wields[i];
-				getSpellRange(this);
+			if(this.wields[i].supclass=="firearm"){
+				this.readyWeapon = this.wields[i];
+				getRange(this, "weapon");
 				var howmanyinrange = $('.range .player').length; // how many .player are within .range
 				if(howmanyinrange == 0){
 					break; // try again next move
