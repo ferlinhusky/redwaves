@@ -148,8 +148,35 @@ var Input = function(){
 		};
 		
 	/*
-		Spells and Ranged Attacks
+		Spells and Ranged Attacks (and using Items)
 	*/
+                // Check for ranged target > tsq: target square
+		// If found, cast spell or attack ranged....
+		this.checkRangedTarget = function(tsq){
+			var sobj = Squares[tsq.attr('data-sid')];
+                        if(Input.spellOn == true){
+                            World.activePlayer.readySpell.cast(sobj);
+                        } else if (Input.weaponOn == true){
+                            var battle = new Battle(World.activePlayer, sobj.occupiedBy);
+                            World.activePlayer.move();
+                        }
+		};
+		
+		// Square click
+		this.squareClick = function(k){
+			// Capture click
+			k.preventDefault();
+			
+			var targetsq = $(k.currentTarget);
+			
+			// Get all attached square classes
+			var sqClasses = targetsq.attr('class').split(' ');
+			
+			// Check if attempting to click a target in range
+			if($.inArray('range', sqClasses) > -1){
+				this.checkRangedTarget(targetsq);
+			}
+		};
 		
 		// Handle spellcasting
 		this.spellOn = false;
@@ -194,10 +221,10 @@ var Input = function(){
 		};
 		this.handleSpell = function(){
 			Input.hideSpellMenu();
+                        btnSpell.removeClass('blink');
 
 			if(Input.spellOn == false && World.activePlayer.readySpell != null){
                             $('.lit, .unlit').removeClass('range'); // remove all spell ranges
-                            btnSpell.removeClass('blink');
                         
                             // Deactive weapon
                             if(Input.weaponOn == true){
@@ -220,29 +247,6 @@ var Input = function(){
                                 centerOn(World.activePlayer);
                             }
 			    this.spellOn = false;
-			}
-		};
-		
-		// Check for ranged target > tsq: target square
-		// If found, cast spell or attack ranged....
-		this.checkRangedTarget = function(tsq){
-			var sobj = Squares[tsq.attr('data-sid')];
-                        World.activePlayer.readySpell.cast(sobj);
-		};
-		
-		// Square click
-		this.squareClick = function(k){
-			// Capture click
-			k.preventDefault();
-			
-			var targetsq = $(k.currentTarget);
-			
-			// Get all attached square classes
-			var sqClasses = targetsq.attr('class').split(' ');
-			
-			// Check if attempting to click a target in range
-			if($.inArray('range', sqClasses) > -1){
-				this.checkRangedTarget(targetsq);
 			}
 		};
 		

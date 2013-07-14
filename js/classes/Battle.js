@@ -146,8 +146,8 @@ var Battle = function(att, def){
 				// ...else if defender paralyzed
 				status_line = '<span class="red">' + def.name + ' is powerless to counterattack!</span>';
 				Statuss.update(status_line);
-			} else if(!Input.spellOn) {
-				// else if not a spell attack, do counterattack
+			} else if(Input.spellOn != true && Input.weaponOn != true) {
+				// else if not a ranged attack, do counterattack
 				this.doBattle(def, att);
 				
 				// If attacker killed
