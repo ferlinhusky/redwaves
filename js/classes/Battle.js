@@ -108,7 +108,13 @@ var Battle = function(att, def){
 	    // Get attack damage
 	    var item_dmg = new Number(item.dmg.split('d')[1]);
 	    var att_dmg = Math.floor(Math.random() * item_dmg);
-		
+	    
+	    // Check for marksmanship; -3 dmg if not marksman
+	    if(type == "weapon" && !a1.hasSkill('marksmanship')){
+		att_dmg -= 3;
+	    }
+	    
+	    // Settle attack
 	    if(att_dmg <= 0) {
 		    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' ' + item.name;
 	    } else {

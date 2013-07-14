@@ -218,10 +218,10 @@ var Fighter = Player.extend({
 		"Fighter",
 		"fighter",
 		[new barbute, new chainmail,"","","",""],
-		["", new longsword,"",""],
+		["", new longsword,new crossbow,""],
 		[new phyton],
 		// if 2HP or less, 50% chance of getting back 1HP (added)
-		[new tenacity], 10, 6); 
+		[new tenacity, new marksmanship], 10, 6); 
 	}
 });
 

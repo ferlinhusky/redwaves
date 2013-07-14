@@ -36,10 +36,13 @@ var hellfire = Skill.extend({ init: function(){ this._super("hellfire", 9); } })
 var martialarts = Skill.extend({ init: function(){ this._super("martialarts", 10); } });
 
 // Freakout
-var freakout = Skill.extend({ init: function(){ this._super("freakout", 10); } });
+var freakout = Skill.extend({ init: function(){ this._super("freakout", 11); } });
 
 // Radiation
-var radiation = Skill.extend({ init: function(){ this._super("radiation", 11); } });
+var radiation = Skill.extend({ init: function(){ this._super("radiation", 12); } });
 
 // Drain
-var drain = Skill.extend({ init: function(){ this._super("drain", 10); } });
+var drain = Skill.extend({ init: function(){ this._super("drain", 13); } });
+
+// Marksmanship
+var marksmanship = Skill.extend({ init: function(){ this._super("marksmanship", 14); } });
