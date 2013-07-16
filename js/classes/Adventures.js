@@ -51,14 +51,14 @@ var Tutorial = function(){
 	<p><i>Hint: Watch out for Snakes!</i></p>",
 	"meet": {
 	    "Basilisk_1":{
-		"Basilisk_1": "Die!"
+			"Basilisk_1": "<p>Die! Die!</p><p>See, truth in advertising.</p><p>Die!</p>s"
 	    }
 	},
 	"win": "<p><b>YOU WIN!</b></p><p>Congratulations! You receive 500 gold for destroying\
-	the Basilisk. Unfortunately when you step into the TIME PORTAL\
-	science turns the gold into lead. Fortunately you can spend lead\
-	just as easily as gold in the game armory. Unfortunately there is\
-	no armory at this time. Better luck next time!</p>",
+	the Basilisk. Why does a Basilisk have 500 gold lying around? Why was there any gold\
+	whatsover in that weird little fortress populated with Snake Men and wild dogs? Why did\
+	you go in there anyway? Because I told you to? You'll need to do better than that in\
+	future. Move it along now.</p>",
 	"lose": "<p><b>YOU LOSE!</b></p><p>They say virtue is its own reward. Even if it wasn't\
 	it wouldn't matter because all of your characters are super dead.</p>"
     };

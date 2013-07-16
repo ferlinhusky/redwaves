@@ -45,7 +45,8 @@ var D_Equip = {
 	},
 	buttons: {
 		"OK": function() {
-			var doclose = Equip.save();
+			Equip.save();
+			World.playnext();
 		}
 	},
 	height:500,

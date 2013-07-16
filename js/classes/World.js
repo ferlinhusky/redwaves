@@ -91,7 +91,8 @@ var World = function(){
                 // Passcode addon should show next adventure, and not return to home screen
                 Input.M_Dialog("standard", dialogcontent, this.Level.title, {
                     "Play on": function(){
-                            World.playnext();
+                            //World.playnext();
+							Input.M_Dialog('equip');
                     },
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');
