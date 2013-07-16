@@ -52,8 +52,8 @@ var World = function(){
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;
 			Party.members[i].readyItem = null;
-                        Party.members[i].readySpell = null;
-                        Party.members[i].readyWeapon = null;
+                        //Party.members[i].readySpell = null;
+                        //Party.members[i].readyWeapon = null;
 			Party.members[i].dead = false;
 			Party.members[i].paralyzed = 0;
 			Party.members[i].slow = false;
@@ -74,8 +74,8 @@ var World = function(){
 	};
 	
 	this.endgame = function(wl, state){
-        this.gameover = true;
-		this.resetUI();
+            this.gameover = true;
+	    this.resetUI();
 	    if (state == "win") {
                 // Update current adventure
                 Party.levelcomplete += 1;
@@ -139,9 +139,9 @@ var World = function(){
             btnOpenClose.button('disable');
             btnPickup.button('disable');
             
-            btnSpell.removeClass('blink');
+            /*btnSpell.removeClass('blink');
             SpellSet.find('.button').button('disable');
-            Input.hideSpellMenu();
+            Input.hideSpellMenu();*/
             
             Input.spellOn = false;
             Input.weaponOn = false;

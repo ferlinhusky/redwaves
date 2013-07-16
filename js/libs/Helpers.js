@@ -460,11 +460,13 @@ var Bresenham = function (x0, y0, x1, y1, hilite, hitpass){
 var unbuildAllMenus = function(){
 	unbuildItemMenu();
 	unbuildWeaponMenu();
+	unbuildSpellMenu();
 }
 
 var buildAllMenus = function(){
 	buildItemMenu();
 	buildWeaponMenu();
+	buildSpellMenu();
 }
 
 // Item menu
@@ -519,5 +521,39 @@ var buildWeaponMenu = function(){
 	
 	if (isready >= 0) {
 		Input.setWeapon(isready);
+	}
+};
+
+// Weapon menu
+var unbuildSpellMenu = function(){
+	Input.hideSpellMenu();
+	menuSelectSpell.empty();
+	menuSelectSpell.menu();
+	menuSelectSpell.menu('destroy');
+	btnSpell.button('option', 'label', 'Spell')
+		.removeClass('blink');
+	SpellSet.find('.button').button('disable');
+};
+
+var buildSpellMenu = function(){
+	var isready=-1;
+	
+	// Rebuild spell menu
+	for(var i=0; i<World.activePlayer.spells.length; i++){
+		if (World.activePlayer.spells[i] != "") {
+			if (World.activePlayer.readySpell != null && World.activePlayer.spells[i].name == World.activePlayer.readySpell.name) {
+				isready = i;
+			}
+			menuSelectSpell.append('<li><a href="javascript:void(0);" onclick="Input.setSpell('+i+');">'+World.activePlayer.spells[i].name);
+		}
+	}
+	
+	if(World.activePlayer.spells.length > 0){
+		SpellSet.find('.button').button('enable');
+		menuSelectSpell.menu();
+	}
+	
+	if (isready >= 0) {
+		Input.setSpell(isready);
 	}
 };
