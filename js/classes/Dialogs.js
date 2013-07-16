@@ -30,7 +30,8 @@ var D_Welcome = {
 			if(Input.passcodeverified)
 			{
 				Input.passcodeverified = false;
-				World.build();
+				Input.M_Dialog('equip');
+				//World.build();
 			} else { Loadselectteam(); }
 		}
 	},
