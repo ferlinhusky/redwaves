@@ -51,7 +51,7 @@ var D_Equip = {
 		}
 	},
 	height:500,
-	width: 525
+	width: 535
 }
 
 var D_Select_Team = {
