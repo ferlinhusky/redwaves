@@ -690,8 +690,8 @@ var Input = function(){
 		});
 		
 		btnSave.button({ 
-			icons: {primary:'ui-icon-disk',secondary:''},
-			disabled: false,
+			//icons: {primary:'ui-icon-disk',secondary:''},
+			disabled: true,
 			text: true
 		});
                 

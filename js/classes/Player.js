@@ -255,13 +255,6 @@ var Wizard = Player.extend({
 			new lightning,
 			new earthquake
 		];
-		
-		for(var i=0; i<this.spells.length; i++){
-			menuSelectSpell.append('<li><a href="javascript:void(0);" onclick="Input.setSpell('+i+');">'+this.spells[i].name);
-		}
-		
-		// Create spell menu
-		menuSelectSpell.menu();
 	}
 });
 
