@@ -615,7 +615,7 @@ var Input = function(){
                             for (var i=0; i<pdata.spells.length; i++) {
                                     var tmp;
                                     if (pdata.spells[i] != 0) {
-                                                    tmp = ( new Function('var p = new ' + Skills[pdata.spells[i]] + '(); return p;') )();
+                                                    tmp = ( new Function('var p = new ' + Spells[pdata.spells[i]] + '(); return p;') )();
                                                     player.spells.push(tmp);
                                     }
                             }
