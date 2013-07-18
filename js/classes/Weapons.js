@@ -86,7 +86,10 @@ var crossbow = Firearm.extend({ init: function(){ this._super("Crossbow", "cross
 var longbow = Firearm.extend({ init: function(){ this._super("Longbow", "longbow", "1d3", "1d1", 5, "steel", true, 11); } });
 
 // Shotgun
-var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", "1d6", "1d2", 4, "steel", true, 12); } });
+var shotgun = Firearm.extend({ init: function(){ this._super("Shotgun", "shotgun", "1d12", "1d2", 6, "steel", true, 12); } });
 
 // Six shooter
-var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "sixshooter", "1d4", "1d1", 6, "steel", true, 13); } });
+var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "sixshooter", "1d7", "1d1", 8, "steel", false, 13); } });
+
+// Shuriken
+var shuriken = Firearm.extend({ init: function(){ this._super("Shuriken", "shuriken", "3d3", "1d1", 4, "steel", false, 15); } });

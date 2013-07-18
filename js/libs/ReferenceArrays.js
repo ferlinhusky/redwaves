@@ -13,7 +13,7 @@ var Weapons = ["",
     "claws", "talons",
     "crossbow", "longbow",
     "shotgun", "sixshooter",
-    "battleaxe"
+    "battleaxe", "shuriken"
 ];
 
 var Armors = ["",

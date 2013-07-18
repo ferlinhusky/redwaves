@@ -19,7 +19,9 @@ var Monster = Character.extend({
 	checkRanged: function(){
 		var range = false;
 		var target = "";
-		//this.readyWeapon = null;
+		
+		// Should eventually add spell-check and return type of attack
+
 		// Ranged weapon (non-spell) targeting
 		for(var i=0; i<this.wields.length; i++){
 			// Check if carrying a ranged weapon
@@ -178,9 +180,9 @@ var Monster = Character.extend({
 			var temp_square = getSquare(temp_coords);
 			
 			if(getRange.range == true){
-				Input.spellOn = true; // For battle to recognize ranged/spell attack
+				Input.weaponOn = true; // For battle to recognize ranged wpn attack
 				var battle = new Battle(this, getRange.target);
-				Input.spellOn = false;
+				Input.weaponOn = false;
 			} else {
 				if(temp_square.occupied) {
 					// attack if enemy
@@ -332,7 +334,7 @@ var Master_Killer = Monster.extend({
 			"master_killer",
 			"Master Killers",
 			["", new robe,"","","",""],
-			["","","",""],
+			["",new shuriken,"",""],
 			[],
 			[new martialarts],
 			25, 7
