@@ -336,7 +336,7 @@ var Master_Killer = Monster.extend({
 			["", new robe,"","","",""],
 			["",new shuriken,"",""],
 			[],
-			[new martialarts],
+			[new martialarts, new marksmanship],
 			25, 7
 		);
   	}
