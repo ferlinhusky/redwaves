@@ -5,15 +5,12 @@ var InventoryItems = ["",
 
 var Weapons = ["",
     "dagger",
-    "longsword",
-    "shortsword",
-    "broadsword",
+    "longsword", "shortsword", "broadsword",
     "woodenstaff",
-    "fangs", "hands",
-    "claws", "talons",
-    "crossbow", "longbow",
-    "shotgun", "sixshooter",
-    "battleaxe", "shuriken"
+    "fangs", "hands", "claws", "talons",
+    "crossbow", "longbow", "shotgun", "sixshooter",
+    "battleaxe", "shuriken",
+    "deathgrip"
 ];
 
 var Armors = ["",

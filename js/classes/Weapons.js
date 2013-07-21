@@ -67,6 +67,9 @@ var hands = Appendage.extend({ init: function(){ this._super("Hands", "hands", "
 // Claw
 var claws = Appendage.extend({ init: function(){ this._super("Claws", "claws", "2d4", "flesh", 8); } });
 
+// Death Grip
+var deathgrip = Appendage.extend({ init: function(){ this._super("Death grip", "deathgrip", "2d5", "flesh", 16); } });
+
 // Talons
 var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 9); this.wieldin = "feet"; } });
 

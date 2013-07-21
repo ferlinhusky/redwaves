@@ -21,23 +21,28 @@ var Monster = Character.extend({
 		var target = "";
 		
 		// Should eventually add spell-check and return type of attack
-
-		// Ranged weapon (non-spell) targeting
-		for(var i=0; i<this.wields.length; i++){
-			// Check if carrying a ranged weapon
-			if(this.wields[i].supclass=="firearm"){
-				this.readyWeapon = this.wields[i];
-				getRange(this, "weapon");
-				var howmanyinrange = $('.range .player').length; // how many .player are within .range
-				if(howmanyinrange == 0){
-					break; // try again next move
-				} else {
-					// Initiate attack against a player in range
-					range = true;
-					target = Squares[$('.range .player').closest('.range').attr('data-sid')].occupiedBy;
+		
+		// If the path to the target is greater than one sq
+		//if(this.path.length > 1){
+			// Ranged weapon (non-spell) targeting
+			for(var i=0; i<this.wields.length; i++){
+				// Check if carrying a ranged weapon
+				if(this.wields[i].supclass=="firearm"){
+					this.readyWeapon = this.wields[i];
+					getRange(this, "weapon");
+					var howmanyinrange = $('.range .player').length; // how many .player are within .range
+					if(howmanyinrange == 0){
+						break; // try again next move
+					} else {
+						// Initiate attack against a player in range
+						range = true;
+						target = Squares[$('.range .player').closest('.range').attr('data-sid')].occupiedBy;
+					}
+				} else if (this.wields[i] != ""){
+					
 				}
 			}
-		}
+		//}
 		return { 
 			'range': range,
 			'target': target
@@ -334,10 +339,10 @@ var Master_Killer = Monster.extend({
 			"master_killer",
 			"Master Killers",
 			["", new robe,"","","",""],
-			["",new shuriken,"",""],
+			["",new deathgrip, new shuriken,""],
 			[],
 			[new martialarts, new marksmanship],
-			25, 7
+			25, 5
 		);
   	}
 });
@@ -350,10 +355,10 @@ var Shaolin_Beatnik = Monster.extend({
 			"shaolin_beatnik",
 			"Shaolin Beatniks",
 			["", new robe,"","","",""],
-			["","","",""],
+			["",new hands, new shuriken,""],
 			[],
 			[new martialarts],
-			5, 7
+			5, 5
 		);
   	}
 });
