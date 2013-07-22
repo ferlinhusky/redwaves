@@ -2,10 +2,15 @@
 
 <h3>Lo-fi adventure gaming in javascript</h3>
 
-<h3>June 2013</h3>
-<p>This is a fighting/adventure game in a semi-ASCII style, written in javascript/jQuery. It's
-still in development but no commit should break basic functionality. If you run it, it'll (mostly) work
+<h3>July 2013</h3>
+<p>This is a fighting/adventure game in a semi-ASCII style, written in JS/jQuery and PHP. It's
+still in beta but no commit should break basic functionality. If you run it, it'll work
 up to what I've written that day.</p>
+
+<p>Additionally, you could pretty easily turn this into a battle simulator, a multiplayer something or other,
+or even some kind of storytelling device; it's all data-driven and at its core is simply moving things
+around a map. Even more at the core it's applying different styles to HTML table cells based on what
+arrow key you press. <b>CUTTING EDGE</b></p>
 
 <h3>Features</h3>
 <p>All the 2D adventure you could ask for! From fighting fantastic monsters, casting a wide range
@@ -24,10 +29,8 @@ fun and I keep working on it like every day so it'll just get better. CONFIDENCE
 <h3>What I'm working on now</h3>
 
 <ol>
-<li>Fixing some save and combat issues.</li>
-<li>Adding an armory/shop you know what I mean: a place where you can buy things for your character. I'm thinking
-of calling it <b>Equipment House</b>. EQUIPMENT HOUUUUUSE!</li>
-<li>Adding more @dventures&trade; because the first one is boring me and the second one isn't finished.
+<li>Creating more @dventures&trade; past the first two</li>
+<li>More items to buy and things to do</li>
 </ol>
 
 <p>I usually come up with an idea in the morning and
