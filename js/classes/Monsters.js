@@ -16,6 +16,16 @@ var Monster = Character.extend({
 		
 		Monsters.push(this);
 	},
+	switchtounranged: function(){
+		// If close range, switch to non-ranged attack
+		for(var i=0; i<this.wields.length; i++){
+			// Check if carrying a ranged weapon
+			if(this.wields[i] != "" && this.wields[i].supclass!="firearm"){
+				this.readyWeapon = this.wields[i];
+				break;
+			}
+		}
+	},
 	checkRanged: function(){
 		var range = false;
 		var target = "";
@@ -23,7 +33,7 @@ var Monster = Character.extend({
 		// Should eventually add spell-check and return type of attack
 		
 		// If the path to the target is greater than one sq
-		//if(this.path.length > 1){
+		if(this.path.length > 1){
 			// Ranged weapon (non-spell) targeting
 			for(var i=0; i<this.wields.length; i++){
 				// Check if carrying a ranged weapon
@@ -42,7 +52,7 @@ var Monster = Character.extend({
 					
 				}
 			}
-		//}
+		} else { this.switchtounranged(); }
 		return { 
 			'range': range,
 			'target': target

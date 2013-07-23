@@ -111,7 +111,7 @@ var Battle = function(att, def){
 	    
 	    // Check for marksmanship; -3 dmg if not marksman
 	    if(type == "weapon" && !a1.hasSkill('marksmanship')){
-		att_dmg -= 3;
+			att_dmg -= 3;
 	    }
 	    
 	    // Settle attack

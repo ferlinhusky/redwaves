@@ -172,13 +172,16 @@ var World = function(){
                                 } else { World.activePlayer.map += "0"; }
 			});
 		} else if ( World.activePlayer.ofType == "monster" && World.activePlayer.dead == false ){
-                    // Attach tooltips
-                    $('.' + World.activePlayer.ID).tooltip({
-                            items: "div[class]",
-                            position: {my: 'center top+10', at: 'center middle'},
-                            content: World.activePlayer.name
-                    });
-                }
+			// Attach tooltips
+			$('.' + World.activePlayer.ID).tooltip({
+					items: "div[class]",
+					position: {my: 'center top+10', at: 'center middle'},
+					content: World.activePlayer.name
+			});
+			
+			// Reset to close range attack
+			World.activePlayer.switchtounranged();
+		}
 		
 		// Check for Players/Monsters defeated & victory condition(s)
 		switch(this.Level.victory.type){
@@ -270,8 +273,8 @@ var World = function(){
 				anyDoors(this.activePlayer.coords);
 				anyItems(this.activePlayer.coords);
                                 
-                                // Check for keenness
-                                this.activePlayer.checkKeenness();
+				// Check for keenness
+				this.activePlayer.checkKeenness();
 				
 				// Check for Wizard
 				if(this.activePlayer.type == "wizard"){
