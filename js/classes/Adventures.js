@@ -76,6 +76,8 @@ var Monastery = function(){
 		"width": 39,
 		"items": {},
 		"monsters": {
+			"Shaolin_Archer_1": [29, 15],
+			"Shaolin_Archer_2": [9, 12],
 			"Shaolin_Beatnik_1": [19, 3],
 			"Shaolin_Beatnik_2": [21, 3],
 			"Master_Killer_1": [20, 3]

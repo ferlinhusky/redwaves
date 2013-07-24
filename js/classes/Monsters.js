@@ -367,7 +367,7 @@ var Shaolin_Archer = Monster.extend({
 			["", new robe,"","","",""],
 			["",new hands, new longbow,""],
 			[],
-			[new martialarts2],
+			[new martialarts2, new marksmanship],
 			4, 4
 		);
   	}
