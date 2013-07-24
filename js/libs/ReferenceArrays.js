@@ -10,7 +10,7 @@ var Weapons = ["",
     "fangs", "hands", "claws", "talons",
     "crossbow", "longbow", "shotgun", "sixshooter",
     "battleaxe", "shuriken",
-    "deathgrip"
+    "deathgrip", "bowstaff"
 ];
 
 var Armors = ["",
@@ -30,7 +30,8 @@ var Skills = ["",
     "swordsmanship", "necromancy",
     "keenness", "paralyze",
     "stealth", "aquatic",
-	"hellfire", "martialarts",
+	"hellfire",
+	"martialarts1", "martialarts2", "martialarts3",
 	"freakout", "radiation",
 	"drain", "marksmanship"
 ];

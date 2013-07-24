@@ -33,16 +33,18 @@ var aquatic = Skill.extend({ init: function(){ this._super("aquatic", 8); } });
 var hellfire = Skill.extend({ init: function(){ this._super("hellfire", 9); } });
 
 // Martial Arts
-var martialarts = Skill.extend({ init: function(){ this._super("martialarts", 10); } });
+var martialarts1 = Skill.extend({ init: function(){ this._super("martialarts1", 10); } });
+var martialarts2 = Skill.extend({ init: function(){ this._super("martialarts2", 11); } });
+var martialarts3 = Skill.extend({ init: function(){ this._super("martialarts3", 12); } });
 
 // Freakout
-var freakout = Skill.extend({ init: function(){ this._super("freakout", 11); } });
+var freakout = Skill.extend({ init: function(){ this._super("freakout", 13); } });
 
 // Radiation
-var radiation = Skill.extend({ init: function(){ this._super("radiation", 12); } });
+var radiation = Skill.extend({ init: function(){ this._super("radiation", 14); } });
 
 // Drain
-var drain = Skill.extend({ init: function(){ this._super("drain", 13); } });
+var drain = Skill.extend({ init: function(){ this._super("drain", 15); } });
 
 // Marksmanship
-var marksmanship = Skill.extend({ init: function(){ this._super("marksmanship", 14); } });
+var marksmanship = Skill.extend({ init: function(){ this._super("marksmanship", 16); } });

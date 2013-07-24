@@ -50,6 +50,9 @@ var Staff = Weapon.extend({
 // Wooden Staff
 var woodenstaff = Staff.extend({ init: function(){ this._super("Wooden staff", "woodenstaff", "1d2", "wood", 5); } });
 
+// Bow Staff
+var bowstaff = Staff.extend({ init: function(){ this._super("Bow staff", "bowstaff", "1d4", "wood", 17); } });
+
 
 // Appendage subclass
 var Appendage = Weapon.extend({

@@ -351,13 +351,69 @@ var Master_Killer = Monster.extend({
 			["", new robe,"","","",""],
 			["",new deathgrip, new shuriken,""],
 			[],
-			[new martialarts, new marksmanship],
+			[new martialarts3, new marksmanship],
 			25, 5
 		);
   	}
 });
 
-// SHAOLIN BEATNIK
+// SHAOLIN MONKS
+var Shaolin_Archer = Monster.extend({
+	init: function(){
+    	this._super(
+			"Shaolin Archer",
+			"shaolin_archer",
+			"Shaolin Archers",
+			["", new robe,"","","",""],
+			["",new hands, new longbow,""],
+			[],
+			[new martialarts2],
+			4, 4
+		);
+  	}
+});
+var Shaolin_Bowfighter = Monster.extend({
+	init: function(){
+    	this._super(
+			"Shaolin Bowfighter",
+			"shaolin_bowfighter",
+			"Shaolin Bowfighters",
+			["", new robe,"","","",""],
+			["",new bowstaff, "",""],
+			[],
+			[new martialarts2],
+			5, 5
+		);
+  	}
+});
+var Shaolin_Initiate = Monster.extend({
+	init: function(){
+    	this._super(
+			"Shaolin Initiate",
+			"shaolin_initiate",
+			"Shaolin Initiates",
+			["", new robe,"","","",""],
+			["",new hands, "",""],
+			[],
+			[new martialarts1],
+			3, 4
+		);
+  	}
+});
+var Shaolin_Adept = Monster.extend({
+	init: function(){
+    	this._super(
+			"Shaolin Adept",
+			"shaolin_adept",
+			"Shaolin Adepts",
+			["", new robe,"","","",""],
+			["",new hands, "",""],
+			[],
+			[new martialarts2],
+			4, 4
+		);
+  	}
+});
 var Shaolin_Beatnik = Monster.extend({
 	init: function(){
     	this._super(
@@ -367,7 +423,7 @@ var Shaolin_Beatnik = Monster.extend({
 			["", new robe,"","","",""],
 			["",new hands, new shuriken,""],
 			[],
-			[new martialarts],
+			[new martialarts3],
 			5, 5
 		);
   	}

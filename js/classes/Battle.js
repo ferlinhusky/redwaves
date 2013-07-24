@@ -29,6 +29,13 @@ var Battle = function(att, def){
 			}
 			wpn_dmg = new Number(weapon.dmg.split('d')[1]);
 		}
+		
+		// Check martial arts
+		if(weapon.type == "hands"){
+		    if(a1.hasSkill('martialarts1')) { wpn_dmg += 1; }
+		    if(a1.hasSkill('martialarts2')) { wpn_dmg += 2; }
+		    if(a1.hasSkill('martialarts3')) { wpn_dmg += 3; }
+		}
 
 		// Attack for each die; e.g. 2d4
 		for(var j=0; j<tot_attks; j++){
@@ -61,7 +68,7 @@ var Battle = function(att, def){
 				
 				// Check for swordsmanship
 				if(a1.hasSkill('swordsmanship') && weapon.supclass == "sword"){
-					att_dmg += 2;
+				    att_dmg += 2;
 				}
 				
 				// Check for paralyze attack
