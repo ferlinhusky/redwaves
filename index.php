@@ -158,6 +158,7 @@
 	<script src="js/classes/Map.js"></script>
 	<script src="js/classes/World.js"></script>
 	<!-- Actors -->
+	<script src="js/classes/Attribute.js"></script>
 	<script src="js/classes/Character.js"></script>
 	<script src="js/classes/Player.js"></script>
 	<script src="js/classes/Monsters.js"></script>

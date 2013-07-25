@@ -1,7 +1,7 @@
 var Players = [];
 var Player = Character.extend({
-	init: function(name, type, wears, wields, inven, skills, HP, movement){
-		this._super(name, type, wears, wields, inven, skills, HP, movement);
+	init: function(name, type, wears, wields, inven, skills, attributes, movement){
+		this._super(name, type, wears, wields, inven, skills, attributes, movement);
 		this.ID = "player_" + Players.length;
 		this.ofType = "player";
 		this.map = "";
@@ -208,7 +208,9 @@ var Hero = Player.extend({
 		["", new shortsword,"",""],
 		[new phyton],
 		// dlb dmg att/half dmg def against big boss (added)
-		[new heroism], 8, 6); 
+		[new heroism],
+		[new STR, new CON, new CHA, new WIS, new DEX, new INT],
+		6); 
 	}
 });
 
@@ -221,7 +223,9 @@ var Fighter = Player.extend({
 		["", new longsword,new crossbow,""],
 		[new phyton],
 		// if 2HP or less, 50% chance of getting back 1HP (added)
-		[new tenacity, new marksmanship], 10, 6); 
+		[new tenacity, new marksmanship],
+		[new CON, new STR, new DEX, new WIS, new INT, new CHA],
+		6); 
 	}
 });
 
@@ -234,7 +238,9 @@ var Knight = Player.extend({
 		["", new broadsword,"",""],
 		[new glory, new maddog],
 		// +n sword damage (added)
-		[new swordsmanship], 12, 5);
+		[new swordsmanship],
+		[new CHA, new STR, new CON, new DEX, new WIS, new INT],
+		5);
 	}
 });
 
@@ -247,7 +253,9 @@ var Wizard = Player.extend({
 		["", new woodenstaff,"",""],
 		[],
 		// half spell dmg (added)
-		[new necromancy], 4, 6);
+		[new necromancy],
+		[new INT, new WIS, new DEX, new CON, new CHA, new STR],
+		6);
 		
 		this.spells = [
 			new fireball,
@@ -267,7 +275,9 @@ var Wolfman = Player.extend({
 		[new fangs, new claws, "", ""],
 		[new tron],
 		// see hidden characters up to 5 sq away (added)
-		[new keenness], 6, 12);
+		[new keenness],
+		[new STR, new DEX, new CON, new WIS, new CHA, new INT],
+		12);
   	}
 });
 
@@ -280,7 +290,9 @@ var Lamia = Player.extend({
 		[new fangs, new claws, "", ""],
 		[],
 		// chance of paralyzing enemy for n turns (added)
-		[new paralyze, new aquatic], 8, 5);
+		[new paralyze, new aquatic],
+		[new WIS, new CHA, new DEX, new STR, new CON, new INT],
+		5);
   	}
 });
 
@@ -293,6 +305,8 @@ var Thief = Player.extend({
 		["", new dagger, new dagger,""],
 		[new maddog],
 		// drops from monster target list when out of sight (added)
-		[new stealth], 8, 5);
+		[new stealth],
+		[new DEX, new INT, new CHA, new WIS, new CON, new STR],
+		5);
 	}
 });

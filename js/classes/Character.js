@@ -1,8 +1,52 @@
 var Dead = [];
 var Character = Class.extend({
-	init: function(name, type, wears, wields, inven, skills, HP, movement){
+	rollattributes: function(){
+		var rolltotals = [];
+		
+		// Generate 6 attribute rolls
+		for (var j=0; j<6; j++) {
+			var rolls = [];
+			var total = 0;
+			
+			// Roll 4 times, keep three best
+			for (var i=0; i<4; i++) {
+				// 1-6
+				rolls.push(Math.floor(Math.random()*6)+1);
+			}
+			// Sort descending
+			rolls.sort(function(a,b){return b-a});
+			// Chop off lowest
+			rolls.splice(3,1);
+			// Add it up
+			for (var i=0; i<3; i++) {
+				total += rolls[i];
+			}
+			// Set as attribute value
+			this.attributes[j].v = total;
+		}
+	},
+	init: function(name, type, wears, wields, inven, skills, attributes, movement){
+		this.level = 1;
+		
 		this.name	=	name; // str // screen name
 		this.type	=	type; // str // in-program cat
+		
+		// Get Attribute values
+		this.attributes = attributes;
+		this.rollattributes();
+		
+		// Set Attribute values to character
+		for (var i=0; i<6; i++) {
+			switch (this.attributes[i].name) {
+				case "STR": this.STR = this.attributes[i].v; break;
+				case "CON": this.CON = this.attributes[i].v; break;
+				case "CHA": this.CHA = this.attributes[i].v; break;
+				case "WIS": this.WIS = this.attributes[i].v; break;
+				case "INT": this.INT = this.attributes[i].v; break;
+				case "DEX": this.DEX = this.attributes[i].v; break;
+					default: break;
+			}
+		}
 
 		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-hands, 3-feet]
 		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
@@ -18,8 +62,9 @@ var Character = Class.extend({
 			}
 		this.spells = []; // array // [ { name : f(x) }, ... ]
 		
-		this.HP		=	HP;
-		this.maxHP	=	HP;
+		this.HP = Math.floor((this.CON + Math.floor(this.STR/2) + this.level)/2);
+		this.maxHP = this.HP;
+		
 		this.movement	=	movement;
 		this.maxMove	=	movement;
 		
@@ -42,7 +87,6 @@ var Character = Class.extend({
 		this.coords = [];
 		this.currMove = 0;
 
-		this.level = 1;
 		this.wait = true;
 		this.paralyzed = 0;
 		this.slow = false;
