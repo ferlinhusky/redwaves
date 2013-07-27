@@ -17,11 +17,17 @@ var partyTable = '<table id="party" cellpadding="5">\
 			<tr id="label_row">\
 				<td class="label">&nbsp;</td>\
 				<td class="label">HP</td>\
-				<td class="label">MV</td>\
+				<td class="label">Act</td>\
 				<td class="label WPN">WPN</td>\
 				<td class="label">DMG</td>\
 				<td class="label">AC</td>\
 				<td class="label WEARS">WEARS</td>\
+                                <td class="label STR">STR</td>\
+                                <td class="label DEX">DEX</td>\
+                                <td class="label CON">CON</td>\
+                                <td class="label INT">INT</td>\
+                                <td class="label WIS">WIS</td>\
+                                <td class="label CHA">CHA</td>\
 			</tr>\
 		</table>';
 		

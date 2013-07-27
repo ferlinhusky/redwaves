@@ -254,7 +254,7 @@ h3{
 #party tr.wizard { background-color: darkorchid; color: #fff; }
 
 .equip .wolfman,
-#party tr.wolfman { background-color: lightgray; }
+#party tr.wolfman { background-color: darkgray; }
 
 .equip .lamia,
 #party tr.lamia { background-color: hotpink; }

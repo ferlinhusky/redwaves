@@ -40,6 +40,12 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+ wieldingdmg +'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat stWEARS"><span class="WEARS">'+wearing.toString()+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="STR">'+this.STR.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="DEX">'+this.DEX.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="CON">'+this.CON.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="INT">'+this.INT.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="WIS">'+this.WIS.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="CHA">'+this.CHA.v+'</span></td>');
 	},
 	locIt: function(curr, prev, first){
 		this._super(curr, prev);

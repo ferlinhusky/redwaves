@@ -3,7 +3,7 @@ var Attribute = Class.extend({
 		this.name = name;
 		this.v = 0;
 	},
-	mod: function(){ return (this.v - 10)/2; }
+	mod: function(){ return Math.floor((this.v - 10)/2); }
 });
 
 var STR = Attribute.extend({ init: function(){this._super("STR");} });

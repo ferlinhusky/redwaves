@@ -21,8 +21,15 @@ var Character = Class.extend({
 			for (var i=0; i<3; i++) {
 				total += rolls[i];
 			}
-			// Set as attribute value
-			this.attributes[j].v = total;
+			rolltotals.push(total);
+		}
+		
+		// Sort rolltotals descending
+		rolltotals.sort(function(a,b){return b-a});
+		
+		for(var j=0; j<6; j++){
+			// Set as attribute values
+			this.attributes[j].v = rolltotals[j];
 		}
 	},
 	init: function(name, type, wears, wields, inven, skills, attributes, movement){
@@ -65,8 +72,8 @@ var Character = Class.extend({
 		this.HP = Math.floor((this.CON.v + Math.floor(this.STR.v/2) + this.level)/2);
 		this.maxHP = this.HP;
 		
-		this.movement	=	movement;
-		this.maxMove	=	movement;
+		this.movement	=	6 + this.DEX.mod();
+		this.maxMove	=	this.movement;
 		
 		// Set ready weapon, start w/hands then face then feet
 		if(this.wields[1] != ""){
@@ -115,7 +122,7 @@ var Character = Class.extend({
 				tempac += this.wears[i].ac;
 			}
 		}
-		this.ac = 10 + tempac;	
+		this.ac = 10 - (-tempac + this.DEX.mod());	
 	},
 	hasSkill:  function(s){
 		if($.inArray(s, this.skillnames) > -1){
