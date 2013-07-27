@@ -2,8 +2,10 @@ var Attribute = Class.extend({
 	init: function(name){
 		this.name = name;
 		this.v = 0;
-	}
+	},
+	mod: function(){ return (this.v - 10)/2; }
 });
+
 var STR = Attribute.extend({ init: function(){this._super("STR");} });
 var CON = Attribute.extend({ init: function(){this._super("CON");} });
 var CHA = Attribute.extend({ init: function(){this._super("CHA");} });

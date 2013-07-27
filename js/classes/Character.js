@@ -38,12 +38,12 @@ var Character = Class.extend({
 		// Set Attribute values to character
 		for (var i=0; i<6; i++) {
 			switch (this.attributes[i].name) {
-				case "STR": this.STR = this.attributes[i].v; break;
-				case "CON": this.CON = this.attributes[i].v; break;
-				case "CHA": this.CHA = this.attributes[i].v; break;
-				case "WIS": this.WIS = this.attributes[i].v; break;
-				case "INT": this.INT = this.attributes[i].v; break;
-				case "DEX": this.DEX = this.attributes[i].v; break;
+				case "STR": this.STR = this.attributes[i]; break;
+				case "CON": this.CON = this.attributes[i]; break;
+				case "CHA": this.CHA = this.attributes[i]; break;
+				case "WIS": this.WIS = this.attributes[i]; break;
+				case "INT": this.INT = this.attributes[i]; break;
+				case "DEX": this.DEX = this.attributes[i]; break;
 					default: break;
 			}
 		}
@@ -62,7 +62,7 @@ var Character = Class.extend({
 			}
 		this.spells = []; // array // [ { name : f(x) }, ... ]
 		
-		this.HP = Math.floor((this.CON + Math.floor(this.STR/2) + this.level)/2);
+		this.HP = Math.floor((this.CON.v + Math.floor(this.STR.v/2) + this.level)/2);
 		this.maxHP = this.HP;
 		
 		this.movement	=	movement;
