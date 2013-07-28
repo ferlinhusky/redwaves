@@ -43,6 +43,7 @@ var Character = Class.extend({
 		this.maxMove	=	this.movement;
 	},
 	init: function(name, type, wears, wields, inven, skills, attributes, movement){
+		this.XP = 0;
 		this.level = 1;
 		
 		this.name	=	name; // str // screen name

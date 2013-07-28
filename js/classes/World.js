@@ -49,6 +49,8 @@ var World = function(){
 		$('#party tr.player_row').remove();
 		$('#party').css('display', 'table');
 		for (var i=0; i<Party.members.length; i++) {
+                        // Update after implementing XP after level
+                        // will need to recalc stats etc.
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;
 			Party.members[i].readyItem = null;
