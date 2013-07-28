@@ -324,7 +324,7 @@ var Hell_Dog = Monster.extend({
 			[new fangs, "", "", ""],
 			[],
 			[new hellfire],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
+			[new DEX, new STR, new CON, new WIS, new INT, new CHA],
 			7
 		);
   	}
@@ -441,7 +441,7 @@ var Shaolin_Beatnik = Monster.extend({
   	}
 });
 
-// HILLBILLY HELLION
+// Son of Billy the Kid
 var Son_of_Billy_the_Kid = Monster.extend({
 	init: function(){
     	this._super(
@@ -469,7 +469,7 @@ var Snake_Man = Monster.extend({
 			[new fangs, "","", ""],
 			[],
 			[],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
+			[new DEX, new STR, new CON, new WIS, new INT, new CHA],
 			6
 		);
   	}

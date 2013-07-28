@@ -10,6 +10,12 @@
         public $type='';
         public $gender='';
         public $level='';
+        public $str='';
+        public $con='';
+        public $dex='';
+        public $int_='';
+        public $wis='';
+        public $cha='';
         public $inventory=array();
         public $skills=array();
         public $armor=array();
@@ -44,7 +50,7 @@
         }
     }
     
-    // Convert passcode array to binary string -> 576 chars
+    // Convert passcode array to binary string -> 750 chars
     $pcodebinarystr='';
     foreach($passcodechars as $pchar){
         $pcharval = array_search($pchar, $pcl);
@@ -52,25 +58,29 @@
         $pcodebinarystr.=substr("000000", 0, 6 - strlen($pcharbinval)).$pcharbinval;
     }
     
-    // If block isn't exactly 576 chars, return error
-    if(strlen($pcodebinarystr) != 630){
+    // If block isn't exactly 750 chars, return error
+    if(strlen($pcodebinarystr) != 750){
         echo json_encode(array("error"=>"Passcode not valid"));
     } else {
         // Split the rest into usable blocks
         /*
-            0-11    Player types
-            12-15   Genders
-            16-47   Player level
-            48-143  Inventory
-            144-223 Skills
-            224-367 Armor
-            368-395 Max HP
-            396-415 Max Movement
-            416-479 Spells
-            480-575 Weapons
-            576-611 Store
-            612-623 Gold
-            624-629 Level Complete
+            0-11    Player types    12
+            12-15   Genders         4
+            16-47   Player level    32
+            48-75   STR             28
+            76-103  CON             28
+            104-131 DEX             28
+            132-159 INT             28
+            160-187 WIS             28
+            188-215 CHA             28
+            216-311 Inventory       96
+            312-391 Skills          80
+            392-535 Armor           144
+            536-599 Spells          64
+            600-695 Weapons         96
+            696-731 Store           36
+            732-743 Gold            12
+            744-749 Level Complete  6
         */
         $pcw = $pcodebinarystr;
         
@@ -79,24 +89,32 @@
         $genders = substr($pcw, 12, 4);
         $playerlevels = substr($pcw, 16, 32);
             $plevels = str_split($playerlevels, 8);
-        $inventory = substr($pcw, 48, 96);
+        $str = substr($pcw, 48, 28);
+            $pstr = str_split($str, 7);
+        $con = substr($pcw, 76, 28);
+            $pcon = str_split($con, 7);
+        $dex = substr($pcw, 104, 28);
+            $pdex = str_split($dex, 7);
+        $int = substr($pcw, 132, 28);
+            $pint = str_split($int, 7);
+        $wis = substr($pcw, 160, 28);
+            $pwis = str_split($wis, 7);
+        $cha = substr($pcw, 188, 28);
+            $pcha = str_split($cha, 7);
+        $inventory = substr($pcw, 216, 96);
             $pinventory = str_split($inventory, 24);
-        $skills = substr($pcw, 144, 80);
+        $skills = substr($pcw, 312, 80);
             $pskills = str_split($skills, 20);
-        $armor = substr($pcw, 224, 144);
+        $armor = substr($pcw, 392, 144);
             $parmor = str_split($armor, 36);
-        $maxhp = substr($pcw, 368, 28);
-            $pmaxhp = str_split($maxhp, 7);
-        $maxmove = substr($pcw, 396, 20);
-            $pmaxmove = str_split($maxmove, 5);
-        $spells = substr($pcw, 416, 64);
+        $spells = substr($pcw, 536, 64);
             $pspells = str_split($spells, 16);
-        $weapons = substr($pcw, 480, 96);
+        $weapons = substr($pcw, 600, 96);
             $pweapons = str_split($weapons, 24);
-        $store = substr($pcw, 576, 36);
+        $store = substr($pcw, 696, 36);
             $pstore = str_split($store, 6);
-        $gold = bindec(substr($pcw, 612, 12));
-        $levelcomplete = bindec(substr($pcw, 624));
+        $gold = bindec(substr($pcw, 732, 12));
+        $levelcomplete = bindec(substr($pcw, 744));
         
         // Create Players array
         $Players = array();
@@ -140,6 +158,14 @@
             // Level
             $player->level = bindec($plevels[$i]);
             
+            // Attributes
+            $player->str = bindec($pstr[$i]);
+            $player->con = bindec($pcon[$i]);
+            $player->dex = bindec($pdex[$i]);
+            $player->wis = bindec($pwis[$i]);
+            $player->int_ = bindec($pint[$i]);
+            $player->cha = bindec($pcha[$i]);
+            
             // Inventory - 4x000000
             $myinventory = str_split($pinventory[$i],6);
             for($j=0; $j<4; $j++){
@@ -157,12 +183,6 @@
             for($j=0; $j<6; $j++){
                 array_push($player->armor, bindec($myarmor[$j]));
             }
-            
-            // MaxHP - 4x0000000
-            $player->maxhp = bindec($pmaxhp[$i]);
-            
-            // MaxMove - 4x0000000
-            $player->maxmove = bindec($pmaxmove[$i]);
             
             // Spells - 4x0000
             $myspells = str_split($pspells[$i],4);

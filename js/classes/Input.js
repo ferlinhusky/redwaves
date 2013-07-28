@@ -499,8 +499,14 @@ var Input = function(){
                                     type: Party.members[j].type,
                                     gender: Party.members[j].gender.demo,
                                     level: Party.members[j].level,
-                                    hp: Party.members[j].maxHP,
-                                    move: Party.members[j].maxMove,
+                                    str: Party.members[j].STR.v,
+                                    con: Party.members[j].CON.v,
+                                    dex: Party.members[j].DEX.v,
+                                    int_: Party.members[j].INT.v,
+                                    wis: Party.members[j].WIS.v,
+                                    cha: Party.members[j].CHA.v,
+                                    //hp: Party.members[j].maxHP,
+                                    //move: Party.members[j].maxMove,
                                     skills: Party.members[j].skills,
                                     weapons: pwields,
                                     wears: pwears,
@@ -551,19 +557,22 @@ var Input = function(){
 
                         // Update player attributes/wpsn/items/etc.
                             
-							//gender
+			    //gender
                             player.gender = setGender(pdata.gender);
                             
-							//level
+			    //level
                             player.level = pdata.level;
                             
-							//hp
-                            player.maxHP = pdata.maxhp;
-                            player.HP = pdata.maxhp;
+			    //attributes
+                            player.STR.v = pdata.str;
+                            player.CON.v = pdata.con;
+                            player.DEX.v = pdata.dex;
+                            player.WIS.v = pdata.wis;
+                            player.INT.v = pdata.int_;
+                            player.CHA.v = pdata.cha;
                             
-							//movement
-                            player.movement = pdata.maxmove;
-                            player.maxMove = pdata.maxmove;
+                            //update hp/move
+                            player.calcstats();
                             
                             //inventory
                             player.inven = [];
@@ -691,7 +700,7 @@ var Input = function(){
 		
 		btnSave.button({ 
 			//icons: {primary:'ui-icon-disk',secondary:''},
-			disabled: true,
+			disabled: false,
 			text: true
 		});
                 
@@ -745,7 +754,7 @@ var Input = function(){
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
-        //btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+                btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnWeapon.bind('click touchend', function(e){e.preventDefault(); Input.handleWeapon();});

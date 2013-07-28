@@ -32,6 +32,16 @@ var Character = Class.extend({
 			this.attributes[j].v = rolltotals[j];
 		}
 	},
+	calcstats: function(){
+		// calc level by XP here
+		// ...
+		
+		this.HP = Math.floor((this.CON.v + Math.floor(this.STR.v/2) + this.level)/2);
+		this.maxHP = this.HP;
+		
+		this.movement	=	6 + this.DEX.mod();
+		this.maxMove	=	this.movement;
+	},
 	init: function(name, type, wears, wields, inven, skills, attributes, movement){
 		this.level = 1;
 		
@@ -69,11 +79,7 @@ var Character = Class.extend({
 			}
 		this.spells = []; // array // [ { name : f(x) }, ... ]
 		
-		this.HP = Math.floor((this.CON.v + Math.floor(this.STR.v/2) + this.level)/2);
-		this.maxHP = this.HP;
-		
-		this.movement	=	6 + this.DEX.mod();
-		this.maxMove	=	this.movement;
+		this.calcstats();
 		
 		// Set ready weapon, start w/hands then face then feet
 		if(this.wields[1] != ""){

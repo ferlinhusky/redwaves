@@ -25,11 +25,12 @@
     $type = '';
     $gender = '';
     $level = '';
+    $str = ''; $con = ''; $dex = ''; $wis = ''; $int = ''; $cha = '';
     $inven = '';
     $skills = '';
     $armor = '';
-    $hp = '';
-    $movement = '';
+    //$hp = '';
+    //$movement = '';
     $spells = '';
     $weapons = '';
     $store = '';
@@ -59,6 +60,26 @@
         // Level - 32 bits (4x8)
         $templevel = decbin($p->level);
         $level.=substr("00000000", 0, 8 - strlen($templevel)).$templevel;
+        
+        // Attributes - 168 bits (4x7x6)
+            // STR
+            $tempstr = decbin($p->str);
+            $str.=substr("0000000", 0, 7 - strlen($tempstr)).$tempstr;
+            // CON
+            $tempcon = decbin($p->con);
+            $con.=substr("0000000", 0, 7 - strlen($tempcon)).$tempcon;
+            // DEX
+            $tempdex = decbin($p->dex);
+            $dex.=substr("0000000", 0, 7 - strlen($tempdex)).$tempdex;
+            // INT
+            $tempint = decbin($p->int_);
+            $int.=substr("0000000", 0, 7 - strlen($tempint)).$tempint;
+            // WIS
+            $tempwis = decbin($p->wis);
+            $wis.=substr("0000000", 0, 7 - strlen($tempwis)).$tempwis;
+            // CHA
+            $tempcha = decbin($p->cha);
+            $cha.=substr("0000000", 0, 7 - strlen($tempcha)).$tempcha;
         
         // Inventory - 96 bits (4x24)
         $invenarray = array($p->inven[0], $p->inven[1], $p->inven[2], $p->inven[3]);
@@ -92,14 +113,6 @@
                 $armor.='000000';
             }
         }
-        
-        // HP - 28 bits (4x7)
-        $temphp = decbin($p->hp);
-        $hp.=substr("0000000", 0, 7 - strlen($temphp)).$temphp;
-        
-        // Movement - 20 bits (4x5)
-        $tempmov = decbin($p->move);
-        $movement.=substr("00000", 0, 5 - strlen($tempmov)).$tempmov;
         
         // Spells - 64 bits (4x16)
         $spellarray = array($p->spells[0], $p->spells[1], $p->spells[2], $p->spells[3]);
@@ -142,7 +155,7 @@
     $tempgold = decbin($playeroutput->gold);
     $gold = substr("000000000000", 0, 12 - strlen($tempgold)).$tempgold;
     
-    // Split full data string into 6 bit strings - 630 bits total
+    // Split full data string into 6 bit strings - 750 bits total
     
         /*  For non-divisible by 6 bits, add a random bit to the end
             $rand = rand(0, 15);
@@ -150,7 +163,7 @@
             $randbinfmt = substr("000", 0, 3 - strlen($randbin)).$randbin;
         */
     
-    $binarydata = $type.$gender.$level.$inven.$skills.$armor.$hp.$movement.$spells.$weapons.$store.$gold.$levelcomplete;
+    $binarydata = $type.$gender.$level.$str.$con.$dex.$int.$wis.$cha.$inven.$skills.$armor.$spells.$weapons.$store.$gold.$levelcomplete;
     $raw = str_split($binarydata, 6);
     $passcode = '';
     
