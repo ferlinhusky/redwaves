@@ -2,7 +2,7 @@
     /*
         Players 00000000
         Gender  0000
-        Level   00000000
+        Level   000000000
         Item    000000
         Skill   00000
         Armor   000000
@@ -29,8 +29,6 @@
     $inven = '';
     $skills = '';
     $armor = '';
-    //$hp = '';
-    //$movement = '';
     $spells = '';
     $weapons = '';
     $store = '';
@@ -44,10 +42,10 @@
             case "wizard": $type.="0001"; break;
             case "fighter": $type.="0010"; break;
             case "wolfman": $type.="0011"; break;
-            case "lamia": $type.="0100"; break;
+            case "harpy": $type.="0100"; break;
             case "thief": $type.="0101"; break;
-            case "emperor": $type.="0110"; break;
-            case "automoton": $type.="0111"; break;
+            case "youngpriest": $type.="0110"; break;
+            case "oldpriest": $type.="0111"; break;
             default: break;
         }
 
@@ -57,9 +55,9 @@
             default: $gender.="0"; break;
         }
         
-        // Level - 32 bits (4x8)
+        // Level - 44 bits (4x11)
         $templevel = decbin($p->level);
-        $level.=substr("00000000", 0, 8 - strlen($templevel)).$templevel;
+        $level.=substr("00000000000", 0, 11 - strlen($templevel)).$templevel;
         
         // Attributes - 168 bits (4x7x6)
             // STR
@@ -155,7 +153,7 @@
     $tempgold = decbin($playeroutput->gold);
     $gold = substr("000000000000", 0, 12 - strlen($tempgold)).$tempgold;
     
-    // Split full data string into 6 bit strings - 750 bits total
+    // Split full data string into 6 bit strings - 762 bits total
     
         /*  For non-divisible by 6 bits, add a random bit to the end
             $rand = rand(0, 15);

@@ -499,14 +499,12 @@ var Input = function(){
                                     type: Party.members[j].type,
                                     gender: Party.members[j].gender.demo,
                                     level: Party.members[j].level,
-                                    str: Party.members[j].STR.v,
-                                    con: Party.members[j].CON.v,
-                                    dex: Party.members[j].DEX.v,
-                                    int_: Party.members[j].INT.v,
-                                    wis: Party.members[j].WIS.v,
-                                    cha: Party.members[j].CHA.v,
-                                    //hp: Party.members[j].maxHP,
-                                    //move: Party.members[j].maxMove,
+                                    str: Party.members[j].STR.base,
+                                    con: Party.members[j].CON.base,
+                                    dex: Party.members[j].DEX.base,
+                                    int_: Party.members[j].INT.base,
+                                    wis: Party.members[j].WIS.base,
+                                    cha: Party.members[j].CHA.base,
                                     skills: Party.members[j].skills,
                                     weapons: pwields,
                                     wears: pwears,
@@ -560,16 +558,16 @@ var Input = function(){
 			    //gender
                             player.gender = setGender(pdata.gender);
                             
-			    //level
-                            player.level = pdata.level;
+						//level
+                            player.XP = pdata.level;
                             
 			    //attributes
-                            player.STR.v = pdata.str;
-                            player.CON.v = pdata.con;
-                            player.DEX.v = pdata.dex;
-                            player.WIS.v = pdata.wis;
-                            player.INT.v = pdata.int_;
-                            player.CHA.v = pdata.cha;
+                            player.STR.base = pdata.str;
+                            player.CON.base = pdata.con;
+                            player.DEX.base = pdata.dex;
+                            player.WIS.base = pdata.wis;
+                            player.INT.base = pdata.int_;
+                            player.CHA.base = pdata.cha;
                             
                             //update hp/move
                             player.calcstats();

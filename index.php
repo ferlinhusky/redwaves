@@ -58,7 +58,7 @@
 			<td>
 				<input type="checkbox" id="st_thief" class="select_team_opt" value="Thief" /><label for="st_thief">Thief</label><br/>
 				<input type="checkbox" id="st_wolfman" class="select_team_opt" value="Wolfman" /><label for="st_wolfman">Wolfman</label><br/>
-				<input type="checkbox" id="st_lamia" class="select_team_opt" value="Lamia" /><label for="st_lamia">Lamia</label>
+				<input type="checkbox" id="st_harpy" class="select_team_opt" value="Harpy" /><label for="st_harpy">Harpy</label>
 			</td>
 		</tr>
 	</table>

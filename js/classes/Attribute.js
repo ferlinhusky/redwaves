@@ -2,6 +2,7 @@ var Attribute = Class.extend({
 	init: function(name){
 		this.name = name;
 		this.v = 0;
+		this.base = 0;
 	},
 	mod: function(){ return Math.floor((this.v - 10)/2); }
 });

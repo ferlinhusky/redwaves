@@ -66,6 +66,11 @@ var Battle = function(att, def){
 				// Get attack damage
 				var att_dmg = (Math.floor(Math.random() * wpn_dmg)) + dmg_red;
 				
+				// Add STR mod
+				if (a1.attributes[0].name == "STR") {
+					att_dmg += a1.STR.mod();
+				}
+				
 				// Check for swordsmanship
 				if(a1.hasSkill('swordsmanship') && weapon.supclass == "sword"){
 				    att_dmg += 2;

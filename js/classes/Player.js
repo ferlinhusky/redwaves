@@ -46,6 +46,7 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="stat"><span class="INT">'+this.INT.v+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="WIS">'+this.WIS.v+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="CHA">'+this.CHA.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="lvl">'+this.level+'</span></td>');
 	},
 	locIt: function(curr, prev, first){
 		this._super(curr, prev);
@@ -287,11 +288,11 @@ var Wolfman = Player.extend({
   	}
 });
 
-// LAMIA
-var Lamia = Player.extend({
+// HARPY
+var Harpy = Player.extend({
 	init: function(){this._super(
-		"Lamia",
-		"lamia",
+		"Harpy",
+		"harpy",
 		["","","","","",""],
 		[new fangs, new claws, "", ""],
 		[],

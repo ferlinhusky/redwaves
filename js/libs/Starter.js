@@ -18,16 +18,17 @@ var partyTable = '<table id="party" cellpadding="5">\
 				<td class="label">&nbsp;</td>\
 				<td class="label">HP</td>\
 				<td class="label">Act</td>\
-				<td class="label WPN">WPN</td>\
-				<td class="label">DMG</td>\
+				<td class="label WPN">Wpn</td>\
+				<td class="label">Dmg</td>\
 				<td class="label">AC</td>\
-				<td class="label WEARS">WEARS</td>\
-                                <td class="label STR">STR</td>\
-                                <td class="label DEX">DEX</td>\
-                                <td class="label CON">CON</td>\
-                                <td class="label INT">INT</td>\
-                                <td class="label WIS">WIS</td>\
-                                <td class="label CHA">CHA</td>\
+				<td class="label WEARS">Wears</td>\
+                <td class="label STR">Str</td>\
+                <td class="label DEX">Dex</td>\
+                <td class="label CON">Con</td>\
+                <td class="label INT">Int</td>\
+                <td class="label WIS">Wis</td>\
+                <td class="label CHA">Cha</td>\
+                <td class="label CHA">Lvl</td>\
 			</tr>\
 		</table>';
 		

@@ -58,63 +58,63 @@
         $pcodebinarystr.=substr("000000", 0, 6 - strlen($pcharbinval)).$pcharbinval;
     }
     
-    // If block isn't exactly 750 chars, return error
-    if(strlen($pcodebinarystr) != 750){
+    // If block isn't exactly 762 chars, return error
+    if(strlen($pcodebinarystr) != 762){
         echo json_encode(array("error"=>"Passcode not valid"));
     } else {
         // Split the rest into usable blocks
         /*
             0-11    Player types    12
             12-15   Genders         4
-            16-47   Player level    32
-            48-75   STR             28
-            76-103  CON             28
-            104-131 DEX             28
-            132-159 INT             28
-            160-187 WIS             28
-            188-215 CHA             28
-            216-311 Inventory       96
-            312-391 Skills          80
-            392-535 Armor           144
-            536-599 Spells          64
-            600-695 Weapons         96
-            696-731 Store           36
-            732-743 Gold            12
-            744-749 Level Complete  6
+            16-59   Player level    44
+            60-87   STR             28
+            88-115  CON             28
+            116-143 DEX             28
+            144-171 INT             28
+            172-199 WIS             28
+            200-227 CHA             28
+            228-323 Inventory       96
+            324-403 Skills          80
+            404-547 Armor           144
+            548-611 Spells          64
+            612-707 Weapons         96
+            708-743 Store           36
+            744-755 Gold            12
+            756-761 Level Complete  6
         */
         $pcw = $pcodebinarystr;
         
         $playertypes = substr($pcw, 0, 12);
             $ptypes = str_split($playertypes, 4);
         $genders = substr($pcw, 12, 4);
-        $playerlevels = substr($pcw, 16, 32);
-            $plevels = str_split($playerlevels, 8);
-        $str = substr($pcw, 48, 28);
+        $playerlevels = substr($pcw, 16, 44);
+            $plevels = str_split($playerlevels, 11);
+        $str = substr($pcw, 60, 28);
             $pstr = str_split($str, 7);
-        $con = substr($pcw, 76, 28);
+        $con = substr($pcw, 88, 28);
             $pcon = str_split($con, 7);
-        $dex = substr($pcw, 104, 28);
+        $dex = substr($pcw, 116, 28);
             $pdex = str_split($dex, 7);
-        $int = substr($pcw, 132, 28);
+        $int = substr($pcw, 144, 28);
             $pint = str_split($int, 7);
-        $wis = substr($pcw, 160, 28);
+        $wis = substr($pcw, 172, 28);
             $pwis = str_split($wis, 7);
-        $cha = substr($pcw, 188, 28);
+        $cha = substr($pcw, 200, 28);
             $pcha = str_split($cha, 7);
-        $inventory = substr($pcw, 216, 96);
+        $inventory = substr($pcw, 228, 96);
             $pinventory = str_split($inventory, 24);
-        $skills = substr($pcw, 312, 80);
+        $skills = substr($pcw, 324, 80);
             $pskills = str_split($skills, 20);
-        $armor = substr($pcw, 392, 144);
+        $armor = substr($pcw, 404, 144);
             $parmor = str_split($armor, 36);
-        $spells = substr($pcw, 536, 64);
+        $spells = substr($pcw, 548, 64);
             $pspells = str_split($spells, 16);
-        $weapons = substr($pcw, 600, 96);
+        $weapons = substr($pcw, 612, 96);
             $pweapons = str_split($weapons, 24);
-        $store = substr($pcw, 696, 36);
+        $store = substr($pcw, 708, 36);
             $pstore = str_split($store, 6);
-        $gold = bindec(substr($pcw, 732, 12));
-        $levelcomplete = bindec(substr($pcw, 744));
+        $gold = bindec(substr($pcw, 744, 12));
+        $levelcomplete = bindec(substr($pcw, 756));
         
         // Create Players array
         $Players = array();
@@ -136,13 +136,13 @@
                         break;
                     case "0011": $player->type = "wolfman";
                         break;
-                    case "0100": $player->type = "lamia";
+                    case "0100": $player->type = "harpy";
                         break;
                     case "0101": $player->type = "thief";
                         break;
-                    case "0110": $player->type = "emperor";
+                    case "0110": $player->type = "youngpriest";
                         break;
-                    case "0111": $player->type = "automoton";
+                    case "0111": $player->type = "oldpriest";
                         break;
                     default: break;
                 }

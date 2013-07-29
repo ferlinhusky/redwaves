@@ -256,8 +256,8 @@ h3{
 .equip .wolfman,
 #party tr.wolfman { background-color: darkgray; }
 
-.equip .lamia,
-#party tr.lamia { background-color: hotpink; }
+.equip .harpy,
+#party tr.harpy { background-color: hotpink; }
 
 .equip .thief,
 #party tr.thief { background-color: olive; color: #fff; }
@@ -598,8 +598,8 @@ h3{
     .m_grid.dogvision td.lit .p.wizard:before { background-color: #b5b5b5; }
 .m_grid td.lit .p.wolfman:before { content: '@' !important; background-color: lightgray; color: #000; }
         .m_grid.dogvision td.lit .p.wolfman:before { background-color: #e2e2e2; }
-.m_grid td.lit .p.lamia:before { content: '@' !important; background-color: hotpink; color: #000; }
-        .m_grid.dogvision td.lit .p.lamia:before { background-color: #c7c7c7; }
+.m_grid td.lit .p.harpy:before { content: '@' !important; background-color: hotpink; color: #000; }
+        .m_grid.dogvision td.lit .p.harpy:before { background-color: #c7c7c7; }
 .m_grid td.lit .p.thief:before { content: '@' !important; background-color: olive; color: #000; }
         .m_grid.dogvision td.lit .p.thief:before { background-color: #b5b5b5; }
 

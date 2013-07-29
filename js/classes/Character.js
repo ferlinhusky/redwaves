@@ -29,23 +29,90 @@ var Character = Class.extend({
 		
 		for(var j=0; j<6; j++){
 			// Set as attribute values
+			this.attributes[j].base = rolltotals[j];
 			this.attributes[j].v = rolltotals[j];
 		}
 	},
-	calcstats: function(){
-		// calc level by XP here
-		// ...
+	levelup: function(lvl){
+		// Update level
+		this.level = lvl;
 		
+		/*
+		 *	Primary skill +2
+		 *	Secondary skills +1
+		 *	Tertiary skills alt +1
+		 */
+		for (var i=0; i<lvl; i++) {
+			this.attributes[0].v += 2;
+			this.attributes[1].v += 1;
+			this.attributes[2].v += 1;
+			if (i%2 == 0) {
+				this.attributes[3].v += 1;
+				this.attributes[4].v += 1;
+				this.attributes[5].v += 1;	
+			}
+		}
+	},
+	calcstats: function(){
+		// Calc level by XP here
+			/*
+			 *	 1: 0
+			 *	 2: 10
+			 *	 3: 20
+			 *	 4: 40
+			 *	 5: 80
+			 *	 6: 150
+			 *	 7: 225
+			 *	 8: 300
+			 *	 9: 375
+			 *	10: 450
+			 *	11: 550
+			 *	12: 650
+			 *	13: 800
+			 *	14: 950
+			 *	15: 1100
+			 *	16: 1250
+			 *	17: 1400
+			 *	18: 1600
+			 *	19: 1800
+			 *	20: 2047
+			 */
+			
+		if (this.XP < 10) { this.levelup(1); }
+		else if (this.XP < 20) { this.levelup(2); }
+		else if (this.XP < 40) { this.levelup(3); }
+		else if (this.XP < 80) { this.levelup(4); }
+		else if (this.XP < 150) { this.levelup(5); }
+		else if (this.XP < 225) { this.levelup(6); }
+		else if (this.XP < 300) { this.levelup(7); }
+		else if (this.XP < 375) { this.levelup(8); }
+		else if (this.XP < 450) { this.levelup(9); }
+		else if (this.XP < 550) { this.levelup(10); }
+		else if (this.XP < 650) { this.levelup(11); }
+		else if (this.XP < 800) { this.levelup(12); }
+		else if (this.XP < 950) { this.levelup(13); }
+		else if (this.XP < 1100) { this.levelup(14); }
+		else if (this.XP < 1250) { this.levelup(15); }
+		else if (this.XP < 1400) { this.levelup(16); }
+		else if (this.XP < 1600) { this.levelup(17); }
+		else if (this.XP < 1800) { this.levelup(18); }
+		else if (this.XP < 2047) { this.levelup(19); }
+		else if (this.XP >= 2047) { this.levelup(20); }
+		
+		// Calc HP
 		this.HP = Math.floor((this.CON.v + Math.floor(this.STR.v/2) + this.level)/2);
 		this.maxHP = this.HP;
 		
+		// Calc movement
 		this.movement	=	6 + this.DEX.mod();
 		this.maxMove	=	this.movement;
+		
+		// Calc armor class
+		this.getAC();
 	},
 	init: function(name, type, wears, wields, inven, skills, attributes, movement){
-		this.XP = 0;
-		this.level = 1;
-		
+		// XP, name and type
+		this.XP 	= 	0;
 		this.name	=	name; // str // screen name
 		this.type	=	type; // str // in-program cat
 		
@@ -66,6 +133,7 @@ var Character = Class.extend({
 			}
 		}
 
+		// Set weapons, armor, inventory, skills, etc.
 		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-hands, 3-feet]
 		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
 		
@@ -80,8 +148,6 @@ var Character = Class.extend({
 			}
 		this.spells = []; // array // [ { name : f(x) }, ... ]
 		
-		this.calcstats();
-		
 		// Set ready weapon, start w/hands then face then feet
 		if(this.wields[1] != ""){
 			this.readyWeapon = this.wields[1];
@@ -92,21 +158,27 @@ var Character = Class.extend({
 		} else if(this.wields[3] != ""){
 			this.readyWeapon = this.wields[3];
 		}
+		
+		// Set ready
 		this.readyItem = null;
 		this.readySpell = null;
 		this.readyRanged = null;
 		
+		// Set medications
 		this.medication = []; // any herbs or pills taken
 
+		// Map placement
 		this.coords = [];
 		this.currMove = 0;
 
+		// Physical effects
 		this.wait = true;
 		this.paralyzed = 0;
 		this.slow = false;
 		this.dead = false;
 		
-		this.getAC();
+		// Calc stats
+		this.calcstats();
 		
 		// Get gender
 		if(this.type == "wolfman"){ this.gender = setGender("male");
