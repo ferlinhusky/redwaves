@@ -74,3 +74,23 @@ var earthquake = Spell.extend({
         }, 4);
     }
 });
+
+// Heal I
+var heal = Spell.extend({
+    init: function(){
+        this._super("Heal", "heal", "healing", 0, "light", 2, function(sobj, ap){
+			Input.handleSpell();
+			ap.move();
+        }, 5);
+    }
+});
+
+// Heal II
+var healall = Spell.extend({
+    init: function(){
+        this._super("Heal All", "healall", "healing", 0, "light", 0, function(sobj, ap){
+			Input.handleSpell();
+			ap.move();
+        }, 6);
+    }
+});

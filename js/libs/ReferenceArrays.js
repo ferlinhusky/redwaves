@@ -38,5 +38,6 @@ var Skills = ["",
 
 var Spells = ["",
     "fireball", "freeze",
-    "lightning", "earthquake"
+    "lightning", "earthquake",
+	"heal", "healall"
 ];

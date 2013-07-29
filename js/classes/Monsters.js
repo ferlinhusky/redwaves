@@ -1,7 +1,7 @@
 var Monsters = [];
 var Monster = Character.extend({
-	init: function(name, type, snamepl, wears, wields, inven, skills, attributes, movement){
-		this._super(name, type, wears, wields, inven, skills, attributes, movement);
+	init: function(name, type, snamepl, wears, wields, inven, skills, attributes){
+		this._super(name, type, wears, wields, inven, skills, attributes);
 		
 		this.snamepl=	snamepl; // str // screen name plural
 		
@@ -256,9 +256,7 @@ var Atomic_Beast = Monster.extend({
 			["", new claws, "",""],
 			[],
 			[new radiation],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			4
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -273,9 +271,7 @@ var Atomic_Freak = Monster.extend({
 			["","","",""],
 			[],
 			[new radiation],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			5
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -290,9 +286,7 @@ var Basilisk = Monster.extend({
 			[new fangs, new claws, "", new talons],
 			[],
 			[new paralyze],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			10
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -307,9 +301,7 @@ var Ghost_Dracula = Monster.extend({
 			[new fangs, "", "", ""],
 			[],
 			[new paralyze, new freakout, new drain],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			8
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -324,9 +316,7 @@ var Hell_Dog = Monster.extend({
 			[new fangs, "", "", ""],
 			[],
 			[new hellfire],
-			[new DEX, new STR, new CON, new WIS, new INT, new CHA],
-			7
-		);
+			[new DEX, new STR, new CON, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -341,9 +331,7 @@ var Hillbilly_Hellion = Monster.extend({
 			["", new shotgun, "", ""],
 			[],
 			[new hellfire],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			7
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -358,9 +346,7 @@ var Master_Killer = Monster.extend({
 			["",new deathgrip, new shuriken,""],
 			[],
 			[new martialarts3, new marksmanship],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			5
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -375,9 +361,7 @@ var Shaolin_Archer = Monster.extend({
 			["",new hands, new longbow,""],
 			[],
 			[new martialarts2, new marksmanship],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			4
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 var Shaolin_Bowfighter = Monster.extend({
@@ -390,9 +374,7 @@ var Shaolin_Bowfighter = Monster.extend({
 			["",new bowstaff, "",""],
 			[],
 			[new martialarts2],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			5
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 var Shaolin_Initiate = Monster.extend({
@@ -405,9 +387,7 @@ var Shaolin_Initiate = Monster.extend({
 			["",new hands, "",""],
 			[],
 			[new martialarts1],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			4
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 var Shaolin_Adept = Monster.extend({
@@ -420,9 +400,7 @@ var Shaolin_Adept = Monster.extend({
 			["",new hands, "",""],
 			[],
 			[new martialarts2],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			4
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 var Shaolin_Beatnik = Monster.extend({
@@ -435,9 +413,7 @@ var Shaolin_Beatnik = Monster.extend({
 			["",new hands, new shuriken,""],
 			[],
 			[new martialarts3],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			5
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -452,9 +428,7 @@ var Son_of_Billy_the_Kid = Monster.extend({
 			["", new sixshooter, "", ""],
 			[],
 			[],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-			8
-		);
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
   	}
 });
 
@@ -469,8 +443,6 @@ var Snake_Man = Monster.extend({
 			[new fangs, "","", ""],
 			[],
 			[],
-			[new DEX, new STR, new CON, new WIS, new INT, new CHA],
-			6
-		);
+			[new DEX, new STR, new CON, new WIS, new INT, new CHA]);
   	}
 });

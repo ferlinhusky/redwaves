@@ -1,7 +1,7 @@
 var Players = [];
 var Player = Character.extend({
-	init: function(name, type, wears, wields, inven, skills, attributes, movement){
-		this._super(name, type, wears, wields, inven, skills, attributes, movement);
+	init: function(name, type, wears, wields, inven, skills, attributes){
+		this._super(name, type, wears, wields, inven, skills, attributes);
 		this.ID = "player_" + Players.length;
 		this.ofType = "player";
 		this.map = "";
@@ -216,8 +216,7 @@ var Hero = Player.extend({
 		[new phyton],
 		// dlb dmg att/half dmg def against big boss (added)
 		[new heroism],
-		[new STR, new CON, new CHA, new WIS, new DEX, new INT],
-		6); 
+		[new STR, new CON, new CHA, new WIS, new DEX, new INT]); 
 	}
 });
 
@@ -231,8 +230,7 @@ var Fighter = Player.extend({
 		[new phyton],
 		// if 2HP or less, 50% chance of getting back 1HP (added)
 		[new tenacity, new marksmanship],
-		[new CON, new STR, new DEX, new WIS, new INT, new CHA],
-		6); 
+		[new CON, new STR, new DEX, new WIS, new INT, new CHA]); 
 	}
 });
 
@@ -246,8 +244,7 @@ var Knight = Player.extend({
 		[new glory, new maddog],
 		// +n sword damage (added)
 		[new swordsmanship],
-		[new CHA, new STR, new CON, new DEX, new WIS, new INT],
-		5);
+		[new CHA, new STR, new CON, new DEX, new WIS, new INT]);
 	}
 });
 
@@ -261,8 +258,7 @@ var Wizard = Player.extend({
 		[],
 		// half spell dmg (added)
 		[new necromancy],
-		[new INT, new WIS, new DEX, new CON, new CHA, new STR],
-		6);
+		[new INT, new WIS, new DEX, new CON, new CHA, new STR]);
 		
 		this.spells = [
 			new fireball,
@@ -283,8 +279,7 @@ var Wolfman = Player.extend({
 		[new tron],
 		// see hidden characters up to 5 sq away (added)
 		[new keenness],
-		[new STR, new DEX, new CON, new WIS, new CHA, new INT],
-		12);
+		[new STR, new DEX, new CON, new WIS, new CHA, new INT]);
   	}
 });
 
@@ -298,8 +293,7 @@ var Harpy = Player.extend({
 		[],
 		// chance of paralyzing enemy for n turns (added)
 		[new paralyze, new aquatic],
-		[new WIS, new CHA, new DEX, new STR, new CON, new INT],
-		5);
+		[new WIS, new CHA, new DEX, new STR, new CON, new INT]);
   	}
 });
 
@@ -313,7 +307,38 @@ var Thief = Player.extend({
 		[new maddog],
 		// drops from monster target list when out of sight (added)
 		[new stealth],
-		[new DEX, new INT, new CHA, new WIS, new CON, new STR],
-		5);
+		[new DEX, new INT, new CHA, new WIS, new CON, new STR]);
+	}
+});
+
+// YOUNG PRIEST
+var YoungPriest = Player.extend({
+	init: function(){ this._super(
+		"Young Priest",
+		"youngpriest",
+		["", new robe,"","","",""],
+		["", new dagger,"",""],
+		[],
+		// half spell dmg (added)
+		[new tenacity],
+		[new CON, new WIS, new STR, new INT, new CHA, new DEX]);
+		
+		this.spells = [ new heal ];
+	}
+});
+
+// OLD PRIEST
+var OldPriest = Player.extend({
+	init: function(){ this._super(
+		"Old Priest",
+		"oldpriest",
+		["", new robe,"","","",""],
+		["", new dagger,"",""],
+		[],
+		// half spell dmg (added)
+		[new necromancy],
+		[new WIS, new CHA, new INT, new CON, new STR, new DEX]);
+		
+		this.spells = [ new healall ];
 	}
 });

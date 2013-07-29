@@ -110,7 +110,7 @@ var Character = Class.extend({
 		// Calc armor class
 		this.getAC();
 	},
-	init: function(name, type, wears, wields, inven, skills, attributes, movement){
+	init: function(name, type, wears, wields, inven, skills, attributes){
 		// XP, name and type
 		this.XP 	= 	0;
 		this.name	=	name; // str // screen name
@@ -133,12 +133,14 @@ var Character = Class.extend({
 			}
 		}
 
-		// Set weapons, armor, inventory, skills, etc.
+		// Set weapons, armor
 		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-hands, 3-feet]
 		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
 		
+		// Make sure something is being wielded
 		this.checkwielding();
 		
+		// Set inventory, skills, spells
 		this.inven	=	inven; // array // [ item, item, ... ]
 		this.skills	=	skills; // array // [ skill, skill, ... ]
 		this.skillnames = [];
@@ -159,7 +161,7 @@ var Character = Class.extend({
 			this.readyWeapon = this.wields[3];
 		}
 		
-		// Set ready
+		// Set ready item, spell, ranged
 		this.readyItem = null;
 		this.readySpell = null;
 		this.readyRanged = null;
