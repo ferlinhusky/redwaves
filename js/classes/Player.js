@@ -47,6 +47,7 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="stat"><span class="WIS">'+this.WIS.v+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="CHA">'+this.CHA.v+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat"><span class="lvl">'+this.level+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat"><span class="xp">'+this.XP+'</span></td>');
 	},
 	locIt: function(curr, prev, first){
 		this._super(curr, prev);

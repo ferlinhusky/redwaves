@@ -42,6 +42,8 @@ var Character = Class.extend({
 		 *	Secondary skills +1
 		 *	Tertiary skills alt +1
 		 */
+		
+		lvl--;
 
 		this.attributes[0].v = this.attributes[0].base + (2*lvl);
 		this.attributes[1].v = this.attributes[1].base + lvl;

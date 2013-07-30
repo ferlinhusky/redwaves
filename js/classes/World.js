@@ -79,12 +79,24 @@ var World = function(){
             this.gameover = true;
 	    this.resetUI();
 	    if (state == "win") {
+				// Dialog content
+                var dialogcontent = wl + $('#passcode_addon').html();
+				
                 // Update current adventure
                 Party.levelcomplete += 1;
                 Party.gold += this.Level.opts.gold;
 				
-                // Dialog content
-                var dialogcontent = wl + $('#passcode_addon').html();
+				// Update XP
+				dialogcontent += "Survival XP (+10): ";
+				for (var i=0; i<Players.length; i++) {
+					Players[i].XP += 10;
+					dialogcontent += Players[i].name;
+					if (i<Players.length-1) {
+						dialogcontent += ", ";
+					}
+					Players[i].calcstats();
+				}
+				
                 if (Party.levelcomplete >= Adventures.length){
                         dialogcontent += "<p><b>You have completed all available adventures. Come back later for more\
                         or <a href='http://www.twitter.com/HuskyFerlin'>keep up with the feed</a> to see when another has been added. Thanks!</b></p>"

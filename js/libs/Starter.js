@@ -28,7 +28,8 @@ var partyTable = '<table id="party" cellpadding="5">\
                 <td class="label INT">Int</td>\
                 <td class="label WIS">Wis</td>\
                 <td class="label CHA">Cha</td>\
-                <td class="label CHA">Lvl</td>\
+                <td class="label lvl">Lvl</td>\
+                <td class="label xp">XP</td>\
 			</tr>\
 		</table>';
 		
