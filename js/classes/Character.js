@@ -42,15 +42,14 @@ var Character = Class.extend({
 		 *	Secondary skills +1
 		 *	Tertiary skills alt +1
 		 */
-		for (var i=1; i<lvl; i++) {
-			this.attributes[0].v += 2;
-			this.attributes[1].v += 1;
-			this.attributes[2].v += 1;
-			if (i%2 == 0) {
-				this.attributes[3].v += 1;
-				this.attributes[4].v += 1;
-				this.attributes[5].v += 1;	
-			}
+
+		this.attributes[0].v = this.attributes[0].base + (2*lvl);
+		this.attributes[1].v = this.attributes[1].base + lvl;
+		this.attributes[2].v = this.attributes[2].base + lvl;
+		if (lvl%2 == 0) {
+			this.attributes[3].v = this.attributes[3].base + (lvl/2);
+			this.attributes[4].v = this.attributes[4].base + (lvl/2);
+			this.attributes[5].v = this.attributes[5].base + (lvl/2);	
 		}
 	},
 	calcstats: function(){
