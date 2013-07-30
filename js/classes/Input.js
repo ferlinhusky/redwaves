@@ -558,7 +558,7 @@ var Input = function(){
 			    //gender
                             player.gender = setGender(pdata.gender);
                             
-						//level
+			    //level
                             player.XP = pdata.level;
                             
 			    //attributes
@@ -568,6 +568,13 @@ var Input = function(){
                             player.WIS.base = pdata.wis;
                             player.INT.base = pdata.int_;
                             player.CHA.base = pdata.cha;
+                            
+                            player.STR.v = pdata.str;
+                            player.CON.v = pdata.con;
+                            player.DEX.v = pdata.dex;
+                            player.WIS.v = pdata.wis;
+                            player.INT.v = pdata.int_;
+                            player.CHA.v = pdata.cha;
                             
                             //update hp/move
                             player.calcstats();
