@@ -241,6 +241,8 @@ h3{
     text-align: center;
 }
 
+#party tr { color: #fff; }
+
 .equip  .hero,
 #party tr.hero { background-color: rgb(91, 194, 228); }
 
@@ -251,7 +253,7 @@ h3{
 #party tr.knight { background-color: darkseagreen; }
 
 .equip .wizard,
-#party tr.wizard { background-color: darkorchid; color: #fff; }
+#party tr.wizard { background-color: darkorchid; }
 
 .equip .wolfman,
 #party tr.wolfman { background-color: darkgray; }
@@ -260,7 +262,13 @@ h3{
 #party tr.harpy { background-color: hotpink; }
 
 .equip .thief,
-#party tr.thief { background-color: olive; color: #fff; }
+#party tr.thief { background-color: olive; }
+
+.equip .oldpriest,
+#party tr.oldpriest { background-color: maroon; }
+
+.equip .youngpriest,
+#party tr.youngpriest { background-color: yellowgreen; }
 
 #party .stat { text-align: center; }
 #party .label.WEARS,
@@ -602,6 +610,10 @@ h3{
         .m_grid.dogvision td.lit .p.harpy:before { background-color: #c7c7c7; }
 .m_grid td.lit .p.thief:before { content: '@' !important; background-color: olive; color: #000; }
         .m_grid.dogvision td.lit .p.thief:before { background-color: #b5b5b5; }
+.m_grid td.lit .p.oldpriest:before { content: '@' !important; background-color: maroon; color: #000; }
+        .m_grid.dogvision td.lit .p.oldpriest:before { background-color: #b5b5b5; }
+.m_grid td.lit .p.youngpriest:before { content: '@' !important; background-color: yellowgreen; color: #000; }
+        .m_grid.dogvision td.lit .p.youngpriest:before { background-color: #b2b2b2; }
 
 /* Monsters */
 .m_grid td.lit .p.basilisk:before { content: 'B' !important; background-color: DarkRed; color: #fff; }
@@ -650,6 +662,7 @@ h3{
 .m_grid td.range.earth { background-color: brown; }
 .m_grid td.range.steel { background-color: steelblue; }
 .m_grid td.range.wood { background-color: burlywood; }
+.m_grid td.range.light { background-color: yellow; }
 
 .m_grid td.trail { background-color: red !important; } /* Show AI pathing */
 .m_grid td.river { background-color: #a0cdca; }

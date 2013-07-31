@@ -21,6 +21,20 @@ var Axe = Weapon.extend({
 // Battle axe
 var battleaxe = Axe.extend({ init: function(){ this._super("Battle axe", "battleaxe", "1d12", "steel", true, 14); } });
 
+// Club subclass
+var Club = Weapon.extend({
+	init: function(name, type, dmg, material, twohand, refID){
+		this._super(name, type, "club", dmg, material, twohand, refID);
+	}
+});
+
+// Mace
+var mace = Club.extend({ init: function(){ this._super("Mace", "mace", "1d5", "iron", false, 18); } });
+
+// Maul
+var maul = Club.extend({ init: function(){ this._super("Maul", "maul", "1d7", "iron", false, 19); } });
+
+
 // Sword subclass
 var Sword = Weapon.extend({
 	init: function(name, type, dmg, material, twohand, refID){

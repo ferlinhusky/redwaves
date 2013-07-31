@@ -54,11 +54,13 @@
 				<input type="checkbox" id="st_fighter" class="select_team_opt" value="Fighter" /><label for="st_fighter">Fighter</label><br/>
 				<input type="checkbox" id="st_knight" class="select_team_opt" value="Knight" /><label for="st_knight">Knight</label><br/>
 				<input type="checkbox" id="st_wizard" class="select_team_opt" value="Wizard" /><label for="st_wizard">Wizard</label><br/>
+				<input type="checkbox" id="st_oldpriest" class="select_team_opt" value="OldPriest" /><label for="st_oldpriest">Old Priest</label>
 			</td>
 			<td>
 				<input type="checkbox" id="st_thief" class="select_team_opt" value="Thief" /><label for="st_thief">Thief</label><br/>
 				<input type="checkbox" id="st_wolfman" class="select_team_opt" value="Wolfman" /><label for="st_wolfman">Wolfman</label><br/>
 				<input type="checkbox" id="st_harpy" class="select_team_opt" value="Harpy" /><label for="st_harpy">Harpy</label>
+				<input type="checkbox" id="st_youngpriest" class="select_team_opt" value="YoungPriest" /><label for="st_youngpriest">Young Priest</label>
 			</td>
 		</tr>
 	</table>

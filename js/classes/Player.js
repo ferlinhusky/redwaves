@@ -318,7 +318,7 @@ var YoungPriest = Player.extend({
 		"Young Priest",
 		"youngpriest",
 		["", new robe,"","","",""],
-		["", new dagger,"",""],
+		["", new maul,"",""],
 		[],
 		// half spell dmg (added)
 		[new tenacity],
@@ -334,7 +334,7 @@ var OldPriest = Player.extend({
 		"Old Priest",
 		"oldpriest",
 		["", new robe,"","","",""],
-		["", new dagger,"",""],
+		["", new mace,"",""],
 		[],
 		// half spell dmg (added)
 		[new necromancy],

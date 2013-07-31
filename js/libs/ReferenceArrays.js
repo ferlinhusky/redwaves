@@ -10,7 +10,8 @@ var Weapons = ["",
     "fangs", "hands", "claws", "talons",
     "crossbow", "longbow", "shotgun", "sixshooter",
     "battleaxe", "shuriken",
-    "deathgrip", "bowstaff"
+    "deathgrip", "bowstaff",
+    "mace", "maul"
 ];
 
 var Armors = ["",

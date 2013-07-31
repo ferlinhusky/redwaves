@@ -79,8 +79,12 @@ var earthquake = Spell.extend({
 var heal = Spell.extend({
     init: function(){
         this._super("Heal", "heal", "healing", 0, "light", 2, function(sobj, ap){
-			Input.handleSpell();
-			ap.move();
+                if(sobj.occupiedBy.ofType == "player"){
+                    // Heals up to 5 + Caster level
+                    HP_set(sobj.occupiedBy, Math.ceil(Math.random() * (5 + World.activePlayer.level)));
+                    Input.handleSpell();
+		    ap.move();
+                }
         }, 5);
     }
 });
@@ -88,9 +92,16 @@ var heal = Spell.extend({
 // Heal II
 var healall = Spell.extend({
     init: function(){
-        this._super("Heal All", "healall", "healing", 0, "light", 0, function(sobj, ap){
-			Input.handleSpell();
-			ap.move();
+        this._super("Heal All", "healall", "healing", 0, "light", 20, function(sobj, ap){
+                for(var i=0; i<Players.length; i++){
+                    var cansee = Bresenham(World.activePlayer.coords[0], World.activePlayer.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
+		    if(cansee == true){
+                        // Heals all visible players up to Caster level
+                        HP_set(Players[i], Math.ceil(Math.random() * World.activePlayer.level));
+                    }
+                }
+                Input.handleSpell();
+		ap.move();
         }, 6);
     }
 });
