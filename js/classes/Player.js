@@ -313,7 +313,7 @@ var Thief = Player.extend({
 });
 
 // YOUNG PRIEST
-var YoungPriest = Player.extend({
+var Youngpriest = Player.extend({
 	init: function(){ this._super(
 		"Young Priest",
 		"youngpriest",
@@ -329,7 +329,7 @@ var YoungPriest = Player.extend({
 });
 
 // OLD PRIEST
-var OldPriest = Player.extend({
+var Oldpriest = Player.extend({
 	init: function(){ this._super(
 		"Old Priest",
 		"oldpriest",
