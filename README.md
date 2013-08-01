@@ -2,7 +2,7 @@
 
 <h3>Lo-fi adventure gaming in javascript</h3>
 
-<h3>July 2013</h3>
+<h3>August 2013</h3>
 <p>This is a fighting/adventure game in a semi-ASCII style, written in JS/jQuery and PHP. It's
 still in beta but no commit should break basic functionality. If you run it, it'll work
 up to what I've written that day.</p>
@@ -14,7 +14,7 @@ arrow key you press. <b>CUTTING EDGE</b></p>
 
 <h3>Features</h3>
 <p>All the 2D adventure you could ask for! From fighting fantastic monsters, casting a wide range
-of spells (four!), all the way to walking and opening (and closing!) doors, ORWoS has it all! All
+of spells (<del>four</del> six!), all the way to walking and opening (and closing!) doors, ORWoS has it all! All
 that I have cared to program!</p>
 
 <p>It's <b>device agnostic</b>, in that I don't know what device it will or won't work on. It's all
@@ -23,7 +23,7 @@ that I have cared to program!</p>
 <p>You like fog of war? You like line-of-sight and the allure of AI pathing? Oh we got that. We
 got that like you wouldn't believe.</p>
 
-<p>What about items? Check. A wolfman? Check. HTML tables? ...DOUBLE CHECK. So come on, play it. It's
+<p>What about items? Check. A wolfman? Check. Old school negative armor class? Sure why not. HTML tables? ...DOUBLE CHECK. So come on, play it. It's
 fun and I keep working on it like every day so it'll just get better. CONFIDENCE.</p>
 
 <h3>What I'm working on now</h3>
@@ -33,18 +33,12 @@ fun and I keep working on it like every day so it'll just get better. CONFIDENCE
 <li>More items to buy and things to do</li>
 </ol>
 
-<p>I usually come up with an idea in the morning and
-try to get it coded by the end of the day, or maybe over a couple of days. It's like agile development
-without all the index cards and standing.</p>
-
 <h3>To run</h3>
 <p>Download the package and copy all the files to a new folder on your local server; home is index.php. Runs smoothly in Chrome, mostly smooth
 in Firefox and slow to sad in older versions of IE.</p>
 
-<p>Works well in iOS Safari; no idea about Android phones. Worked well in iOS Chrome up until their
-last update when their fullscreen deal screwed the page height calculation (or, according to Google,
-it's Apple's fault for not properly recalculating page height when the scrollbar is offset; whatever,
-it doesn't look right in Chrome for iPhone).
+<p>You can play it on your phone but I'm working through some UI issues so you'll probably find it
+easier to play on a tablet or desktop.</p>
 
 <h3>Stuff I didn't write</h3>
 
