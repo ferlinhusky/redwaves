@@ -2,6 +2,8 @@
 
 <h3>Lo-fi adventure gaming in javascript</h3>
 
+<p><a style="background-color:red;color:#fff; display:inline-block padding: 5px 10px 5px 10px;" href="http://www.artsick.com/redwaves">PLAY IT NOW</a></p>
+
 <h3>August 2013</h3>
 <p>This is a fighting/adventure game in a semi-ASCII style, written in JS/jQuery and PHP. It's
 still in beta but no commit should break basic functionality. If you run it, it'll work
