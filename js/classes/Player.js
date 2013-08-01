@@ -322,7 +322,7 @@ var Youngpriest = Player.extend({
 		[],
 		// half spell dmg (added)
 		[new tenacity],
-		[new CON, new WIS, new STR, new INT, new CHA, new DEX]);
+		[new CON, new CHA, new INT, new STR, new DEX, new WIS]);
 		
 		this.spells = [ new heal ];
 	}
