@@ -73,7 +73,9 @@ var Player = Character.extend({
 			getRange(this, "weapon");
 		}
 	},
-	move: function(dir){
+	move: function(dir, cost){
+		var acost = 1;
+		if(cost > 1) { acost = cost; }
 		if(this.wait == false && this.currMove < this.movement){
 			var isPassable = true;
 			var square;
@@ -133,8 +135,8 @@ var Player = Character.extend({
 					}
 				}
 
-				// Track movement
-				MO_set(this, 1);
+				// Track movement & spell casting
+				MO_set(this, acost);
 			} else if (square.occupied && this.movement >= 2){
 				if (square.occupiedBy.ofType == "monster"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
@@ -144,7 +146,7 @@ var Player = Character.extend({
 						this.endturnUI();
 						// Zero out unused moves for player
 						MO_set(this, this.movement - this.currMove);
-					} else if(!this.dead){ MO_set(this, 2); } // else if not dead, updated movement
+					} else if(!this.dead){ MO_set(this, 2); } // else if not dead, update with battle action cost (2)
 				}
 			}
 			if (this.currMove == this.movement){
@@ -204,7 +206,19 @@ var Player = Character.extend({
 		btnWeapon.removeClass('blink')
 			.button('disable');
 		btnSelectWeapon.button('disable');
-	}
+	},
+        handleactioncost: function(type){
+            if(type=="spell"){
+                this.move(false, 2);
+		var remaining_move = this.movement - this.currMove;
+		if(remaining_move < 2){
+			btnSpell.removeClass('blink')
+				.button('disable');
+			btnSelectSpell.button('disable');
+			$('.lit, .unlit').removeClass(allranges); 
+		}
+            }
+        }
 });
 
 // HERO

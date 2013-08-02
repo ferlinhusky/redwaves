@@ -25,7 +25,7 @@ var Attack = Spell.extend({
             this._super(name, type, "attack", dmg, material, rng, function(sobj, ap){
             if(sobj.occupiedBy.ofType == "monster"){
                 var battle = new Battle(ap, sobj.occupiedBy);
-                ap.move();
+                ap.handleactioncost("spell");
             }
         }, refID);
     }
@@ -70,7 +70,7 @@ var earthquake = Spell.extend({
 				}
 			});
 			Input.handleSpell();
-			ap.move();
+			ap.handleactioncost("spell");
         }, 4);
     }
 });
@@ -83,7 +83,7 @@ var heal = Spell.extend({
                     // Heals up to 5 + Caster level
                     HP_set(sobj.occupiedBy, Math.ceil(Math.random() * (5 + World.activePlayer.level)));
                     Input.handleSpell();
-		    ap.move();
+		    ap.handleactioncost("spell");
                 }
         }, 5);
     }
@@ -101,7 +101,7 @@ var healall = Spell.extend({
                     }
                 }
                 Input.handleSpell();
-		ap.move();
+		ap.handleactioncost("spell");
         }, 6);
     }
 });
