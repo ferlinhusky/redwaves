@@ -135,7 +135,7 @@ var Player = Character.extend({
 
 				// Track movement
 				MO_set(this, 1);
-			} else if (square.occupied){
+			} else if (square.occupied && this.movement >= 2){
 				if (square.occupiedBy.ofType == "monster"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
 					
@@ -144,7 +144,7 @@ var Player = Character.extend({
 						this.endturnUI();
 						// Zero out unused moves for player
 						MO_set(this, this.movement - this.currMove);
-					} else if(!this.dead){ MO_set(this, 1); } // else if not dead, updated movement
+					} else if(!this.dead){ MO_set(this, 2); } // else if not dead, updated movement
 				}
 			}
 			if (this.currMove == this.movement){
