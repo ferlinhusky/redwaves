@@ -14,6 +14,8 @@ var Monster = Character.extend({
 		this.targets = [];
 		this.target = null;
 		
+		this.thac0 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+		
 		Monsters.push(this);
 	},
 	switchtounranged: function(){

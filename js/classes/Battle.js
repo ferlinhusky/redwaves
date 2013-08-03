@@ -44,8 +44,10 @@ var Battle = function(att, def){
 			var roll = Math.ceil(Math.random() * (20+j)); // 1-(20+j)
 
 			var ac = def.ac;
-
-			var target = 10 + def.ac;
+			
+			// implement thac0			
+    			var target = 10 + def.ac;
+						
 			if(target <= 0) { target = 1; }
 			if(roll <= target){
 				ishit = true;

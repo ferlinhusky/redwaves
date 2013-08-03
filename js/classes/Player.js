@@ -231,7 +231,9 @@ var Hero = Player.extend({
 		[new phyton],
 		// dlb dmg att/half dmg def against big boss (added)
 		[new heroism],
-		[new STR, new CON, new CHA, new WIS, new DEX, new INT]); 
+		[new STR, new CON, new CHA, new WIS, new DEX, new INT]);
+		
+		this.thac0 = [20, 20, 19, 19, 18, 17, 17, 16, 16, 15, 14, 14, 13, 13, 12, 11, 11, 10, 10, 9];
 	}
 });
 
@@ -245,7 +247,9 @@ var Fighter = Player.extend({
 		[new phyton],
 		// if 2HP or less, 50% chance of getting back 1HP (added)
 		[new tenacity, new marksmanship],
-		[new CON, new STR, new DEX, new WIS, new INT, new CHA]); 
+		[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
+	
+		this.thac0 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 	}
 });
 
@@ -260,6 +264,8 @@ var Knight = Player.extend({
 		// +n sword damage (added)
 		[new swordsmanship],
 		[new CHA, new STR, new CON, new DEX, new WIS, new INT]);
+	
+		this.thac0 = [20, 19, 19, 18, 17, 16, 16, 15, 14, 13, 13, 12, 11, 10, 10, 9, 8, 7, 7, 6];
 	}
 });
 
@@ -281,6 +287,8 @@ var Wizard = Player.extend({
 			new lightning,
 			new earthquake
 		];
+		
+		this.thac0 = [20, 20, 20, 19, 19, 19, 18, 18, 18, 17, 17, 17, 16, 16, 16, 15, 15, 15, 14, 14];
 	}
 });
 
@@ -295,6 +303,8 @@ var Wolfman = Player.extend({
 		// see hidden characters up to 5 sq away (added)
 		[new keenness],
 		[new STR, new DEX, new CON, new WIS, new CHA, new INT]);
+	
+		this.thac0 = [20, 18, 17, 16, 14, 13, 12, 10, 9, 8, 6, 5, 4, 2, 1, 0, -2, -3, -4, -6];
   	}
 });
 
@@ -309,6 +319,8 @@ var Harpy = Player.extend({
 		// chance of paralyzing enemy for n turns (added)
 		[new paralyze, new aquatic],
 		[new WIS, new CHA, new DEX, new STR, new CON, new INT]);
+	
+		this.thac0 = [20, 19, 19, 18, 17, 17, 16, 15, 15, 14, 13, 13, 12, 11, 11, 10, 9, 9, 8, 7];
   	}
 });
 
@@ -323,6 +335,8 @@ var Thief = Player.extend({
 		// drops from monster target list when out of sight (added)
 		[new stealth],
 		[new DEX, new INT, new CHA, new WIS, new CON, new STR]);
+	
+		this.thac0 = [20, 20, 19, 19, 18, 18, 17, 17, 16, 16, 15, 15, 14, 14, 13, 13, 12, 12, 11, 11];
 	}
 });
 
@@ -339,6 +353,8 @@ var Youngpriest = Player.extend({
 		[new CON, new CHA, new INT, new STR, new DEX, new WIS]);
 		
 		this.spells = [ new heal ];
+		
+		this.thac0 = [20, 20, 18, 18, 16, 16, 14, 14, 12, 12, 10, 10, 8, 8, 6, 6, 4, 4, 2, 2];
 	}
 });
 
@@ -355,5 +371,7 @@ var Oldpriest = Player.extend({
 		[new WIS, new CHA, new INT, new CON, new STR, new DEX]);
 		
 		this.spells = [ new healall ];
+		
+		this.thac0 = [20, 20, 20, 18, 18, 18, 16, 16, 16, 14, 14, 14, 12, 12, 12, 10, 10, 10, 8, 8];
 	}
 });
