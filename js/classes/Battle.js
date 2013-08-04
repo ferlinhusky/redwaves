@@ -41,17 +41,32 @@ var Battle = function(att, def){
 		for(var j=0; j<tot_attks; j++){
 			// Is it a hit?
 			var ishit;
-			var roll = Math.ceil(Math.random() * (20+j)); // 1-(20+j)
+			var roll = Math.floor(Math.random()*20) + 1; // 1-20
 
 			var ac = def.ac;
 			
+			var tohit = a1.thac0[a1.level];
+			
+			// STR mod
+			if (a1.attributes[0].name == "STR") {
+				tohit -= a1.STR.mod()/2;
+			}
+			
+			// Check for swordsmanship
+			if(a1.hasSkill('swordsmanship') && weapon.supclass == "sword"){
+			    tohit -= 2;
+			}
+			
 			// implement thac0			
-    			var target = 10 + def.ac;
+    			var target = tohit - def.ac;
 						
-			if(target <= 0) { target = 1; }
-			if(roll <= target){
-				ishit = true;
+			if(roll >= target){
+			    ishit = true;
 			} else { ishit = false; }
+			
+			// 1 always misses, 20 always hits
+			if(roll == 1) { ishit = false; }
+			if(roll == 20) { ishit = true; }
 
 			// If 0, attacker misses; otherwise update defender HP and status line
 			if(!ishit) {
@@ -70,7 +85,7 @@ var Battle = function(att, def){
 				
 				// Add STR mod
 				if (a1.attributes[0].name == "STR") {
-					att_dmg += a1.STR.mod();
+					att_dmg += a1.STR.mod()/2;
 				}
 				
 				// Check for swordsmanship

@@ -135,9 +135,9 @@ var Player = Character.extend({
 					}
 				}
 
-				// Track movement & spell casting
+				// Track all action costs here
 				MO_set(this, acost);
-			} else if (square.occupied && this.movement >= 2){
+			} else if (square.occupied && this.movement - this.currMove >= 2){
 				if (square.occupiedBy.ofType == "monster"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
 					
@@ -146,7 +146,7 @@ var Player = Character.extend({
 						this.endturnUI();
 						// Zero out unused moves for player
 						MO_set(this, this.movement - this.currMove);
-					} else if(!this.dead){ MO_set(this, 2); } // else if not dead, update with battle action cost (2)
+					} else if(!this.dead){ this.handleactioncost("weapon"); } // else if not dead, update with battle action cost (2)
 				}
 			}
 			if (this.currMove == this.movement){
@@ -208,16 +208,39 @@ var Player = Character.extend({
 		btnSelectWeapon.button('disable');
 	},
         handleactioncost: function(type){
-            if(type=="spell"){
-                this.move(false, 2);
-		var remaining_move = this.movement - this.currMove;
-		if(remaining_move < 2){
-			btnSpell.removeClass('blink')
-				.button('disable');
-			btnSelectSpell.button('disable');
-			$('.lit, .unlit').removeClass(allranges); 
+		switch(type){
+			case "spell": 	this.move(false, 2);
+					var remaining_move = this.movement - this.currMove;
+					if(remaining_move < 2){
+						Input.spellOn = false;
+						btnSpell.removeClass('blink')
+							.button('disable');
+						btnSelectSpell.button('disable');
+						$('.lit, .unlit').removeClass(allranges); 
+					}
+					break;
+			case "ranged": 	this.move(false, 2);
+					var remaining_move = this.movement - this.currMove;
+					if(remaining_move < 2){
+						Input.weaponOn = false;
+						btnWeapon.removeClass('blink')
+							.button('disable');
+						btnSelectWeapon.button('disable');
+						$('.lit, .unlit').removeClass(allranges); 
+					}
+					break;
+			case "weapon":	this.move(false, 2);
+					var remaining_move = this.movement - this.currMove;
+					if(remaining_move < 2){
+						Input.weaponOn = false;
+						btnWeapon.removeClass('blink')
+							.button('disable');
+						btnSelectWeapon.button('disable');
+						$('.lit, .unlit').removeClass(allranges); 
+					}
+					break;
+			default:	break;
 		}
-            }
         }
 });
 

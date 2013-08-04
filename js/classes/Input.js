@@ -158,7 +158,7 @@ var Input = function(){
                             World.activePlayer.readySpell.cast(sobj);
                         } else if (Input.weaponOn == true){
                             var battle = new Battle(World.activePlayer, sobj.occupiedBy);
-                            World.activePlayer.move();
+                            World.activePlayer.handleactioncost("ranged");
                         }
 		};
 		
