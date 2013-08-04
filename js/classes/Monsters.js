@@ -169,6 +169,7 @@ var Monster = Character.extend({
 	move: function(){
 		if(this.currMove < this.movement && this.paralyzed == 0){
 			var i = this.currMove; // readability
+			var acost = 1;
 			
 			// Check ranged attack from this location
 			var getRange = this.checkRanged();
@@ -196,16 +197,26 @@ var Monster = Character.extend({
 			temp_coords[1] = this.path[i].y;
 			var temp_square = getSquare(temp_coords);
 			
+			// If not enough moves to attack, end
+			if((getRange.range == true || temp_square.occupiedBy.ofType == "player")
+				&& this.movement - this.currMove < 2) {
+				clearInterval(this.moveInterval);
+				World.endturn();
+				return;
+			}
+			
 			if(getRange.range == true){
 				Input.weaponOn = true; // For battle to recognize ranged wpn attack
 				var battle = new Battle(this, getRange.target);
 				Input.weaponOn = false;
+				acost = 2;
 			} else {
 				if(temp_square.occupied) {
 					// attack if enemy
 					if(temp_square.occupiedBy.ofType == "player"){
 						this.wait = true;
 						var battle = new Battle(this, temp_square.occupiedBy);
+						acost = 2;
 					}
 				} else {
 					// Do movement
@@ -225,7 +236,7 @@ var Monster = Character.extend({
 					centerOn(this);
 				}
 			}
-			MO_set(this, 1); // update movement
+			MO_set(this, acost); // update movement
 			this.recalibrate(); // recalibrate targets
 		} else {
 			clearInterval(this.moveInterval);
