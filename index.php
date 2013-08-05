@@ -25,7 +25,70 @@
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
+	<!-- Help content -->
+	<div id="help">
+		<h1>How to play <i>Over red waves of sand</i></h1>
+		<h2>Overview</h2>
+			<p><b>Over red waves of sand</b> is a single-player adventure game in a semi-ASCII style. If
+			you've every played D&D or any adventure game of any sort you're probably familiar with
+			the player types and stats being used here. If that's the case, you're probably just like,
+			"Why come I can't cast spells?" or "What's up with the blinking buttons?" For that stuff,
+			<a href="#interface">skip to the section on the interface</a>.</p>
+		<h2>Player characters (PCs)</h2>
+			<p>There are 8 available player types: Fighter, Knight, Wizard, Thief, Wolfman, Harpy, Young
+			Priest, and Old Priest. In the descriptions I'll be mixing him/her/he/she/etc. but for all
+			characters (except for the Wolfman and Harpy) genders are randomly assigned in the game.</p>
+			<h3>Fighter</h3>
+			<p>The Fighter, as you may have guessed, likes to fight. He comes equipped with a long sword
+			and a crossbow. He's is both a <b>marksman</b> and <b>tenacious</b>. Marksmanship gives the
+			fighter a better chance of hitting his target with any ranged weapon; tenacity allows the
+			Fighter to overcome certain death (50% of the time) and regain hit points after what would have
+			been a fatal blow.</p>
+			<h3>Knight</h3>
+			<p>The Knight is a walking, talking (always talking) medieval tank. She wears the heaviest armor
+			and carries the biggest swords. She's a swordsman by nature, giving her a better chance to hit
+			as well as more damage with sword attacks than any other. Her strong starting armor class is more
+			than enough to recommend her.</p>
+			<h3>Wizard</h3>
+			<p>The Wizard is, as always, a total weakling physically but devastating with his spells. He
+			begins with four spells (fireball, freeze, lighning, earthquake) and a badass wooden staff. So
+			badass. He's super-smart and pretty dextrous, which makes him somewhat hard to hit. He also takes
+			half spell damage, which must be nice.</p>
+			<h3>Thief</h3>
+			<p>The Thief, you know, she's pretty quick. She's likely going to be the fastest and hardest
+			to hit of any character at the start. Her dual daggers offer a nice amount of finishing power and
+			her stealthy ways mean monsters can't find her once she's out of sight.</p>
+			<h3>Wolfman</h3>
+			<p>For being a Wolfman, he's almost never a man. He's more like a really smart wolf who looks
+			kind of mannish. Smart compared to an actual wolf, that is. He's still pretty dumb, but totally
+			ripped. He deals extra damage in melee and his keenness allows him to sniff out enemies behind
+			closed doors.</p>
+			<h3>Harpy</h3>
+			<p>The Harpy is much more dangerous than her stats may show. While both very wise and deeply
+			charismatic, her ability to paralyze the enemy with her song is literally deadly. Every
+			successful attack brings the chance of stopping any monster in its tracks for up to two turns,
+			giving her and her companions the chance to strike it down.</p>
+			<h3>Young Priest</h3>
+			<p>The Young Priest is a rollicking sort, able to deal serious damage with his maul as well as
+			act as an on-field medic. His Heal spell is relative short-ranged, but can mean the difference between
+			life and death. Like the Fighter, the Young Priest is tenacious and in fact could be considered
+			a dual-class character, if you care about that sort of thing.
+			<h3>Old Priest</h3>
+			<p>The Old Priest, while he still carries a formidable weapon, is more interested in the healing
+			arts than straight up beating people to death. His healing spell works on every player character
+			within his sight, meaning he doesn't need to be on the frontlines to provide support, and can
+			play clean-up for weakened monsters left behind; just don't let him get overwhelmed.</p>
+		<h2>Selecting and using weapons<a name="interface"></a></h2>
+		<h2>Casting spells</h2>
+		<h2>Doing battle</h2>
+		<h2>Map features</h2>
+		<h3>Walls and doors</h3>
+		<h3>Interiors</h3>
+		<h3>Exteriors</h3>
+		<div id="btn_close_help">Close</div>
+	</div>
 	
+	<!-- Main content -->
 	<div id="container">
 		<div id="main" role="main"></div>
 	</div>

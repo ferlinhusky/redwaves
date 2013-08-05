@@ -85,7 +85,7 @@ var Battle = function(att, def){
 				
 				// Add STR mod
 				if (a1.attributes[0].name == "STR") {
-					att_dmg += a1.STR.mod()/2;
+					att_dmg += Math.floor(a1.STR.mod()/2);
 				}
 				
 				// Check for swordsmanship

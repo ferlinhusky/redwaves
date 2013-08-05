@@ -299,8 +299,21 @@ h3{
 }
 #bottom_cell {}
 
-/* Welcome */
+/* Welcome *
 #welcome_screen {}
+
+/* Help */
+#help {
+    display: none;
+    color: red;
+    overflow: auto;
+    height: 100%;
+}
+#btn_close_help {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+}
 
 /* Status */
 #whereami, #clock {

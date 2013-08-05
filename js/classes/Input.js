@@ -702,6 +702,11 @@ var Input = function(){
 			disabled: false,
 			text: true
 		});
+		btnCloseHelp.button({ 
+			icons: {primary:'ui-icon-lightbulb',secondary:''},
+			disabled: false,
+			text: true
+		});
 		
 		btnSave.button({ 
 			//icons: {primary:'ui-icon-disk',secondary:''},
@@ -757,9 +762,21 @@ var Input = function(){
 		
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
-		btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
+		//btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
+		btnHelp.bind('click touchend', function(e){
+				e.preventDefault();
+				$('#container').css('display', 'none');
+				$('#help').css('display', 'block');
+				Input.unbindFromMap();
+		});
+		btnCloseHelp.bind('click touchend', function(e){
+				e.preventDefault();
+				$('#container').css('display', 'block');
+				$('#help').css('display', 'none');
+				Input.bindToMap();
+		});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
-                btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+        btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnWeapon.bind('click touchend', function(e){e.preventDefault(); Input.handleWeapon();});

@@ -92,6 +92,8 @@ var btnSave = $('#btn_save');
 var btnOpenClose = $('#btn_open_close');
 var btnPickup = $('#btn_pickup');
 
+var btnCloseHelp = $('#btn_close_help');
+
 var WeaponSet = $('#weaponset')
     WeaponSet.append('<div id="btn_weapon" class="button action">Weapon</div>');
     WeaponSet.append('<div id="btn_select_weapon" class="button action">Select Weapon</div>');
