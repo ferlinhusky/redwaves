@@ -308,6 +308,8 @@ h3{
     color: red;
     overflow: auto;
     height: 100%;
+    max-width: 600px;
+    margin: 0px auto;
 }
 #btn_close_help {
     position: fixed;

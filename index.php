@@ -26,15 +26,33 @@
 </head>
 <body>
 	<!-- Help content -->
-	<div id="help">
+	<table id="help"><tr><td>
 		<h1>How to play <i>Over red waves of sand</i></h1>
 		<h2>Overview</h2>
 			<p><b>Over red waves of sand</b> is a single-player adventure game in a semi-ASCII style. If
 			you've every played D&D or any adventure game of any sort you're probably familiar with
-			the player types and stats being used here. If that's the case, you're probably just like,
-			"Why come I can't cast spells?" or "What's up with the blinking buttons?" For that stuff,
-			<a href="#interface">skip to the section on the interface</a>.</p>
-		<h2>Player characters (PCs)</h2>
+			the player types and stats being used here. If not, isn't learning all about discovery?</p>
+			
+			<p>The long and short of it is that you and your companions are going on a series of
+			@dventures&trade; wherein you kill all manner of monster. Why? Does the caged bird know
+			why it sings? Exactly. Nobody does. Except you, and that is why you must fight.</p>
+		<h2>Player stats and skills</h2>
+			<p>All characters have the following attributes: Strength, Dexterity, Constitution, Intelligence,
+			Wisdom, and Charisma. In addition, all characters have hit points (HP), action points (AP),
+			experience points (XP), an armor class (AC), and a character level (Lvl).</p>
+			
+			<h3>In summation</h3>
+			<p>You lose HP when you get hit; zero hit points means your character is dead. But don't fret,
+			they'll be back for the next @dventure&trade;, they just won't gain any XP at the end of the
+			level. Action points determine how much you can do during your turn (moving, fighting, spellcasting).
+			Experience points are gained at the end of each @dventure&trade; for a variety of reasons. Gain
+			enough XP and your character will gain levels.</p>
+			
+			<p>Gaining levels means raising your attribute scores, which in turn raises your HP, AP, along
+			with all kinds of other nice advantages. Armor class is lowered (lower is better) by
+			wearing stronger armor and having high Dexterity. It's basically a measure of how hard it is
+			(or isn't) to hit you. It is so hard to not hit you right now.</p>
+		<h2>Player character (PC) types</h2>
 			<p>There are 8 available player types: Fighter, Knight, Wizard, Thief, Wolfman, Harpy, Young
 			Priest, and Old Priest. In the descriptions I'll be mixing him/her/he/she/etc. but for all
 			characters (except for the Wolfman and Harpy) genders are randomly assigned in the game.</p>
@@ -78,15 +96,74 @@
 			arts than straight up beating people to death. His healing spell works on every player character
 			within his sight, meaning he doesn't need to be on the frontlines to provide support, and can
 			play clean-up for weakened monsters left behind; just don't let him get overwhelmed.</p>
-		<h2>Selecting and using weapons<a name="interface"></a></h2>
-		<h2>Casting spells</h2>
+		<h2>A word about Action Points</h2>
+			<p>Every character in the game receives a number of action points per turn which they may use to
+			perform certain actions. This number is reflected in the character table which sits above the map,
+			under the "Act" column.</p>
+			
+			<p>The cost breakdown is as follows:</p>
+			
+			<ul>
+				<li>0 points: opening/closing a door, picking up an item, switching weapons, selecting
+				a spell</li>
+				<li>1 point: moving</li>
+				<li>2 points: casting a spell, doing battle, attacking with a ranged weapon</li>
+			</ul>
+		<h2>The toolbar</h2>
+			<p>Down in the toolbar, below the map, sits all the action buttons. Here you'll find buttons for
+			Help (obvs), opening and closing doors, picking up items, selecting weapons to wield, spells to
+			cast, and items to use, along with the button to end your turn (hint: it says "End turn" and will
+			blink when your turn is over).</p>
+		<h2>Movement</h2>
+			<p>Movement is available in four (yes four!) directions. Use the up/down/left/right arrow keys
+			to move your active character around the map. If you're on a mobile device, tap the screen in the
+			general direction you want to go and I think you'll be pleasantly surprised. You cannot move
+			through other players or monsters.</p>
 		<h2>Doing battle</h2>
+			<p>Initiate close combat with a monster by attempting to move into the monster's square from an
+			adjacent square (not diagonal). As long as you have 2 Action Points to spare, you will attack the
+			monster with your active weapon. You can keep attacking until you're down to less than 2 Action
+			Points. If things aren't going well, feel free to run away.</p>
+		<h2>Selecting and using weapons</h2>
+			<p>Your active weapon shows as the text of the weapon button. Click the small arrow to the right
+			of the button to see a list of all available weapons. Most characters begin with only one weapon
+			so there isn't much to do. The Knight, for example, begins with a broad sword and that's it.</p>
+			
+			<p>The Fighter, on the other hand, begins with a long sword and a crossbow. In the Fighter's
+			weapon list, for this example, you woud click "Crossbow" to set that as your active weapon. To
+			use a close combat weapon (e.g. a sword) you don't need to do anything special to attack with it.
+			It will be used automatically to attack and defend during battle.</p>
+			
+			<p>The crossbow (and all ranged weapons for that matter) must be activated in order to use them.
+			To activate a ranged weapon, click the weapon button (not the little arrow) and you will see a
+			range appear around your character on the map. Any monsters which sit within this range may be
+			fired upon. To fire upon a monster, simply click on it.</p>
+			
+			<p>Feel free to move about with the range activated, that's my gift to you. Also, there is no
+			counterattacking a ranged weapon, so fire away!</p>
+		<h2>Casting spells</h2>
+			<p>Casting spells works the same as firing a ranged weapon. That is, choose a spell by clicking
+			the small arrow to the right of the spell button, select the spell you would like to cast, and then
+			click the spell button itself to bring up the range on the map.</p>
+			
+			<p>There are three types of spells: attacking, healing, and physical. Attack spells are used in
+			the same manner as a ranged weapon; that is, by clicking on a monster within range to cast the
+			spell at them.</p>
+			
+			<p>Healing spells work much the same except you must click on a player character, at which point a
+			certain amount of HP will be regained by some or all of your characters, depending on
+			the spell.</p>
+			
+			<p>Physical spells do all kinds of things and may be activated by clicking on any square within
+			range. Who knows what might happen?! (I do. I know.)</p>
+		<h2>Purchasing items</h2>
+			<p>After completing an @dventure&trade;
 		<h2>Map features</h2>
 		<h3>Walls and doors</h3>
 		<h3>Interiors</h3>
 		<h3>Exteriors</h3>
 		<div id="btn_close_help">Close</div>
-	</div>
+	</td></tr></table>
 	
 	<!-- Main content -->
 	<div id="container">
