@@ -308,9 +308,15 @@ h3{
     color: red;
     overflow: auto;
     height: 100%;
-    max-width: 600px;
+    width: 100%;
     margin: 0px auto;
+    position: absolute;
+    z-index: 10000;
+    background-color: #000;
 }
+#help .content { max-width: 600px; }
+#help .margin { width: 0px; }
+#help .skill { color: #fff; }
 #btn_close_help {
     position: fixed;
     top: 5px;
@@ -746,11 +752,12 @@ h3{
 	    padding-left: 20px;
 	    margin-left: 10px;
     }
+    #help .margin { width: 15%; }
 }
 
 @media only screen and (min-width: 768px) {
-  /* Style adjustments for viewports 768px and over go here */
-
+    /* Style adjustments for viewports 768px and over go here */
+    #help .margin { width: 25%; }
 }
 
 

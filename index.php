@@ -26,8 +26,8 @@
 </head>
 <body>
 	<!-- Help content -->
-	<table id="help"><tr><td>
-		<h1>How to play <i>Over red waves of sand</i></h1>
+	<table id="help"><tr><td class="margin">&nbsp;</td><td class="content">
+		<h1>How to play</h1>
 		<h2>Overview</h2>
 			<p><b>Over red waves of sand</b> is a single-player adventure game in a semi-ASCII style. If
 			you've every played D&D or any adventure game of any sort you're probably familiar with
@@ -56,46 +56,51 @@
 			<p>There are 8 available player types: Fighter, Knight, Wizard, Thief, Wolfman, Harpy, Young
 			Priest, and Old Priest. In the descriptions I'll be mixing him/her/he/she/etc. but for all
 			characters (except for the Wolfman and Harpy) genders are randomly assigned in the game.</p>
+			
+			<p>Individual skills are highlighted in white. You probably don't know what they do, but I
+			bet you can guess in an educated way.</p>
 			<h3>Fighter</h3>
 			<p>The Fighter, as you may have guessed, likes to fight. He comes equipped with a long sword
-			and a crossbow. He's is both a <b>marksman</b> and <b>tenacious</b>. Marksmanship gives the
+			and a crossbow. He is both a <span class="skill">marksman</span> and <span class="skill">tenacious</span>.
+			Marksmanship gives the
 			fighter a better chance of hitting his target with any ranged weapon; tenacity allows the
 			Fighter to overcome certain death (50% of the time) and regain hit points after what would have
 			been a fatal blow.</p>
 			<h3>Knight</h3>
 			<p>The Knight is a walking, talking (always talking) medieval tank. She wears the heaviest armor
-			and carries the biggest swords. She's a swordsman by nature, giving her a better chance to hit
+			and carries the biggest swords. She's a <span class="skill">swordsman</span> by nature, giving her a better chance to hit
 			as well as more damage with sword attacks than any other. Her strong starting armor class is more
 			than enough to recommend her.</p>
 			<h3>Wizard</h3>
 			<p>The Wizard is, as always, a total weakling physically but devastating with his spells. He
 			begins with four spells (fireball, freeze, lighning, earthquake) and a badass wooden staff. So
 			badass. He's super-smart and pretty dextrous, which makes him somewhat hard to hit. He also takes
-			half spell damage, which must be nice.</p>
+			half spell damage due to his knowledge of <span class="skill">necromancy</span>, which must be nice.</p>
 			<h3>Thief</h3>
 			<p>The Thief, you know, she's pretty quick. She's likely going to be the fastest and hardest
 			to hit of any character at the start. Her dual daggers offer a nice amount of finishing power and
-			her stealthy ways mean monsters can't find her once she's out of sight.</p>
+			her <span class="skill">stealthy</span> ways mean monsters can't find her once she's out of sight.</p>
 			<h3>Wolfman</h3>
 			<p>For being a Wolfman, he's almost never a man. He's more like a really smart wolf who looks
 			kind of mannish. Smart compared to an actual wolf, that is. He's still pretty dumb, but totally
-			ripped. He deals extra damage in melee and his keenness allows him to sniff out enemies behind
+			ripped. He deals extra damage in melee and his <span class="skill">keenness</span> allows him to sniff out enemies behind
 			closed doors.</p>
 			<h3>Harpy</h3>
 			<p>The Harpy is much more dangerous than her stats may show. While both very wise and deeply
-			charismatic, her ability to paralyze the enemy with her song is literally deadly. Every
+			charismatic, her ability to <span class="skill">paralyze</span> the enemy with her song is literally deadly. Every
 			successful attack brings the chance of stopping any monster in its tracks for up to two turns,
 			giving her and her companions the chance to strike it down.</p>
 			<h3>Young Priest</h3>
 			<p>The Young Priest is a rollicking sort, able to deal serious damage with his maul as well as
 			act as an on-field medic. His Heal spell is relative short-ranged, but can mean the difference between
-			life and death. Like the Fighter, the Young Priest is tenacious and in fact could be considered
+			life and death. Like the Fighter, the Young Priest is <span class="skill">tenacious</span> and in fact could be considered
 			a dual-class character, if you care about that sort of thing.
 			<h3>Old Priest</h3>
 			<p>The Old Priest, while he still carries a formidable weapon, is more interested in the healing
-			arts than straight up beating people to death. His healing spell works on every player character
+			and magical arts than straight up beating people to death. His healing spell works on every player character
 			within his sight, meaning he doesn't need to be on the frontlines to provide support, and can
-			play clean-up for weakened monsters left behind; just don't let him get overwhelmed.</p>
+			play clean-up for weakened monsters left behind; just don't let him get overwhelmed. Like the Wizard,
+			the Old Priest only takes half spell damage due to his knowledge of <span class="skill">necromancy</span>.</p>
 		<h2>A word about Action Points</h2>
 			<p>Every character in the game receives a number of action points per turn which they may use to
 			perform certain actions. This number is reflected in the character table which sits above the map,
@@ -163,7 +168,7 @@
 		<h3>Interiors</h3>
 		<h3>Exteriors</h3>
 		<div id="btn_close_help">Close</div>
-	</td></tr></table>
+	</td><td class="margin">&nbsp;</td></tr></table>
 	
 	<!-- Main content -->
 	<div id="container">

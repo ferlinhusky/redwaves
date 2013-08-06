@@ -25,13 +25,17 @@ var D_Welcome = {
 	title: 'Over red waves of sand (BETA)',
 	content: $('#dialog_welcome').html(),
 	buttons: {
+		"How to play": function(){
+			$('#container').css('display', 'none');
+			$('#help').css('display', 'block');
+			Input.unbindFromMap();
+		},
 		"Play": function() {
 			// If passcode used, jump straight into the game
 			if(Input.passcodeverified)
 			{
 				Input.passcodeverified = false;
 				Input.M_Dialog('equip');
-				//World.build();
 			} else { Loadselectteam(); }
 		}
 	},

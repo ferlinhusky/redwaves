@@ -749,7 +749,7 @@ var Input = function(){
 			disabled: true,
 			text: true
 		});
-                btnPickup.button({ 
+        btnPickup.button({ 
 			icons: {primary:'ui-icon-arrowreturnthick-1-n',secondary:''},
 			disabled: true,
 			text: true
@@ -784,7 +784,7 @@ var Input = function(){
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
-                btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
+        btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
