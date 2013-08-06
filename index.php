@@ -133,6 +133,9 @@
 			adjacent square (not diagonal). As long as you have 2 Action Points to spare, you will attack the
 			monster with your active weapon. You can keep attacking until you're down to less than 2 Action
 			Points. If things aren't going well, feel free to run away.</p>
+			
+			<p>If, for some strange reason, you would like to the types of monsters you're dealing with, hover
+			your mouse over the monster tile and its name will appear in a tooltip.</p>
 		<h2>Selecting and using weapons</h2>
 			<p>Your active weapon shows as the text of the weapon button. Click the small arrow to the right
 			of the button to see a list of all available weapons. Most characters begin with only one weapon
@@ -165,6 +168,16 @@
 			
 			<p>Physical spells do all kinds of things and may be activated by clicking on any square within
 			range. Who knows what might happen?! (I do. I know.)</p>
+		<h2>Items</h2>
+			<p>Using items works pretty much like selecting a spell or weapon. Click the little arrow beside
+			the item button, select the item you would like to queue up and then click the item button itself
+			to use the item. Most items help regain hit points or give you extra attacks in battle. Nothing
+			nasty (yet).</p>
+			
+			<p>To pick up an item, move your character over top of the item on the map and then click the
+			"Pick up" button. The "Pick up" button only lights up when you're over top of an item, so you'll
+			know what's up. You might wonder how to tell the difference between an item and a monster; it's
+			quite simple: if you hover your mouse over a monster, its name will pop up in a little tooltip.</p>
 		<h2>Completing an @dventure&trade;</h2>
 			<p>After successfully completing an @dventure&trade;, you will be presented with a win screen
 			which details how great you are and how much treasure you've taken as a reward. It also lists
