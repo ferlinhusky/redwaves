@@ -314,6 +314,10 @@ h3{
     z-index: 10000;
     background-color: #000;
 }
+#help h1 { color: white; }
+#help h2 { color: yellow; }
+#help h3 { color: lightblue; }
+#help a { color: yellow; text-decoration: underline; }
 #help .content { max-width: 600px; }
 #help .margin { width: 0px; }
 #help .skill { color: #fff; }

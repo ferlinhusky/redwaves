@@ -36,6 +36,10 @@
 			<p>The long and short of it is that you and your companions are going on a series of
 			@dventures&trade; wherein you kill all manner of monster. Why? Does the caged bird know
 			why it sings? Exactly. Nobody does. Except you, and that is why you must fight.</p>
+		<h3>Attention mobile users</h3>
+			<p>So I'm working to make this whole thing cool for phones and tablets and it <i>mostly is</i>
+			for tablets and minis, but not so much on phones. It'll look fine on iOS Safari in portrait mode,
+			but not on mobile Chrome so much and not in landscape mode. Fixes for that are upcoming.</p>
 		<h2>Player stats and skills</h2>
 			<p>All characters have the following attributes: Strength, Dexterity, Constitution, Intelligence,
 			Wisdom, and Charisma. In addition, all characters have hit points (HP), action points (AP),
@@ -161,12 +165,56 @@
 			
 			<p>Physical spells do all kinds of things and may be activated by clicking on any square within
 			range. Who knows what might happen?! (I do. I know.)</p>
+		<h2>Completing an @dventure&trade;</h2>
+			<p>After successfully completing an @dventure&trade;, you will be presented with a win screen
+			which details how great you are and how much treasure you've taken as a reward. It also lists
+			out the XP each character has gained from completing the @dventure&trade;. Any characters who
+			died during the outing receive no XP.</p>
+		<h2>Saving your game</h2>	
+			<p>On the win screen you will see a passcode below the text which you can use to save your
+			characters and their advancement in the game. You can have this code sent to you by entering
+			your email address (which I don't save in any way, shape, or form) or just by cutting/pasting
+			it yourself into someplace safe. That's it; no user names, no passwords, no accounts. Just a
+			passcode.</p>
+		<h2>Loading your game</h2>
+			<p>You can load a saved game by either pasting your passcode into the passcode box on the home
+			screen or by clicking the link in the passcode email you sent yourself from the win screen. In
+			both cases you must click the "Verify passcode" button below the input box in order to load up
+			your game. After that, just click "Play" to get on with your next @dventure&trade;</p>
 		<h2>Purchasing items</h2>
-			<p>After completing an @dventure&trade;
+			<p>After completing an @dventure&trade; or loading a saved game, before you begin your next
+			outing you will be presented with an option to purchase items for characters and equip them as
+			necessary.</p>
+			
+			<p>Each player's inventory sits on a different tab, so have a look at each player before you
+			just buy a bunch of dumb crap like in real life. All sales are final! The shop doesn't even
+			buy back for half price, that's how serious they are.</p>
+			
+			<p>To purchase, drag an item from the shop to an appropriate empty slot in your character's
+			equipment. That is, weapon slots hold weapons, helmet slots hold helmets, etc. You have to confirm
+			the purchase before it goes through so don't worry about accidentally buying something unless
+			you're really bad at things.</p>
+			
+			<p>To transfer an item from character to character, move the item first to the holding area on the right, switch tabs to
+			the receving character and then move the item from the holding area to receiving player's slot.</p>
+			
+			<p>To throw an item away, drag it to the trash box. Easy enough!</p>
 		<h2>Map features</h2>
+			<p>For the most part the maps feature items you'll be readily familiar with from real life: walls,
+			doors, water, etc. If you happen to live in a landlocked region and are perplexed upon seeing a large area
+			of blue tile, that is a lake. Or a river perhaps. Water is a fickle mistress.</p>
 		<h3>Walls and doors</h3>
-		<h3>Interiors</h3>
-		<h3>Exteriors</h3>
+			<p>You cannot move through a wall unless there is door built into it. Closed doors are indicated by little
+			"plus" (+) signs, while open doors use little "minus" (-) signs. To open and close doors, click the
+			"Door" button in the toolbar. Because I'm so cool, it's only clickable when there's a door
+			to open or close. Now that's service!</p>
+			
+			<p>NB: if a monster sees you through
+			an open door, closing the door won't stop the monster opening it and chasing you down. Can you lock
+			a door? Why would you have a key? You aren't even friends with the owner!</p>
+		<h2>What else is there to say?</h2>
+			<p>I don't think I forgot anything, but I quite likely did. Feel free to contact me through Twitter
+			<a href="https://twitter.com/HuskyFerlin">@HuskyFerlin</a> with any questions or comments.</p>
 		<div id="btn_close_help">Close</div>
 	</td><td class="margin">&nbsp;</td></tr></table>
 	
