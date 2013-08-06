@@ -77,7 +77,7 @@
 			than enough to recommend her.</p>
 			<h3>Wizard</h3>
 			<p>The Wizard is, as always, a total weakling physically but devastating with his spells. He
-			begins with four spells (fireball, freeze, lighning, earthquake) and a badass wooden staff. So
+			begins with four spells (fireball, freeze, lightning, earthquake) and a badass wooden staff. So
 			badass. He's super-smart and pretty dextrous, which makes him somewhat hard to hit. He also takes
 			half spell damage due to his knowledge of <span class="skill">necromancy</span>, which must be nice.</p>
 			<h3>Thief</h3>
