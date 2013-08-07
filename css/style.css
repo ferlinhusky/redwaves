@@ -306,12 +306,10 @@ h3{
 #help {
     display: none;
     color: red;
-    overflow: auto;
-    height: 100%;
     width: 100%;
     margin: 0px auto;
     position: absolute;
-    z-index: 10000;
+    z-index: 10000 !important;
     background-color: #000;
 }
 #help h1 { color: white; }

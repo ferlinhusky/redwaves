@@ -27,7 +27,8 @@ var D_Welcome = {
 	buttons: {
 		"How to play": function(){
 			$('#container').css('display', 'none');
-			$('#help').css('display', 'block');
+			$('#help').css('display', 'table');
+			$('html, body').css('overflow', 'auto');
 			Input.unbindFromMap();
 		},
 		"Play": function() {

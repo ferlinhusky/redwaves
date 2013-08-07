@@ -474,7 +474,6 @@ var Input = function(){
                             modal: true,
                             height: M_D_height,
                             width: M_D_width,
-                            zIndex: 5000,
                             resizable: false
 			});
 		}
@@ -766,13 +765,15 @@ var Input = function(){
 		btnHelp.bind('click touchend', function(e){
 				e.preventDefault();
 				$('#container').css('display', 'none');
-				$('#help').css('display', 'block');
+				$('#help').css('display', 'table');
+                                $('html body').css('overflow', 'auto');
 				Input.unbindFromMap();
 		});
 		btnCloseHelp.bind('click touchend', function(e){
 				e.preventDefault();
 				$('#container').css('display', 'block');
 				$('#help').css('display', 'none');
+                                $('html body').css('overflow', 'hidden');
 				Input.bindToMap();
 		});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
