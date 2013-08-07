@@ -207,6 +207,7 @@ html, body {
 	background-color: #000;
 	font-family: arial;
 	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
 }
 h1{ font-size: 18px; color: red; }
 h2{ font-size: 16px; }
@@ -306,8 +307,6 @@ h3{
 #help {
     display: none;
     color: red;
-    width: 100%;
-    margin: 0px auto;
     position: absolute;
     z-index: 10000 !important;
     background-color: #000;
