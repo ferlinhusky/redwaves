@@ -324,7 +324,7 @@ h3{
 #btn_close_help {
     position: fixed;
     top: 5px;
-    right: 5px;
+    right: 20px;
 }
 
 /* Status */
@@ -757,6 +757,7 @@ h3{
 	    margin-left: 10px;
     }
     #help .margin { width: 15%; }
+    #btn_close_help { right: 25%; }
 }
 
 @media only screen and (min-width: 768px) {

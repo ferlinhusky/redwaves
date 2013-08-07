@@ -137,6 +137,22 @@ var Player = Character.extend({
 
 				// Track all action costs here
 				MO_set(this, acost);
+				
+				// Check AP
+				var remaining_move = this.movement - this.currMove;
+				if(remaining_move < 2){
+					Input.spellOn = false;
+					btnSpell.removeClass('blink')
+						.button('disable');
+					btnSelectSpell.button('disable');
+					$('.lit, .unlit').removeClass(allranges);
+					
+					Input.weaponOn = false;
+					btnWeapon.removeClass('blink')
+						.button('disable');
+					btnSelectWeapon.button('disable');
+					$('.lit, .unlit').removeClass(allranges);
+				}
 			} else if (square.occupied && this.movement - this.currMove >= 2){
 				if (square.occupiedBy.ofType == "monster"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
