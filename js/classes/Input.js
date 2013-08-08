@@ -764,16 +764,27 @@ var Input = function(){
 		//btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
 		btnHelp.bind('click touchend', function(e){
 				e.preventDefault();
+				$('.ui-widget-overlay, .ui-dialog').addClass('hideforhelp');
 				$('#container').css('display', 'none');
 				$('#help').css('display', 'table');
-                                $('html body').css('overflow', 'auto');
+				$('html, body').css({
+					overflow: 'auto',
+				});
+				$(window).unbind('touchmove');
 				Input.unbindFromMap();
-		});
+			});
 		btnCloseHelp.bind('click touchend', function(e){
 				e.preventDefault();
+				$('.ui-widget-overlay, .ui-dialog').removeClass('hideforhelp');
 				$('#container').css('display', 'block');
 				$('#help').css('display', 'none');
-                                $('html body').css('overflow', 'hidden');
+                $('html, body').css({
+					overflow: 'hidden',
+				});
+				$(window).bind('touchmove', function(e) { 
+						// Tell Safari not to move the window. 
+						e.preventDefault(); 
+					});
 				Input.bindToMap();
 		});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });

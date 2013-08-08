@@ -26,9 +26,13 @@ var D_Welcome = {
 	content: $('#dialog_welcome').html(),
 	buttons: {
 		"How to play": function(){
+			$('.ui-widget-overlay, .ui-dialog').addClass('hideforhelp');
 			$('#container').css('display', 'none');
 			$('#help').css('display', 'table');
-			$('html, body').css('overflow', 'auto');
+			$('html, body').css({
+				overflow: 'auto',
+			});
+			$(window).unbind('touchmove');
 			Input.unbindFromMap();
 		},
 		"Play": function() {

@@ -274,10 +274,7 @@ h3{
 #party tr.youngpriest { background-color: yellowgreen; }
 
 #party .stat { text-align: center; }
-#party .label.WEARS,
-#party .label.WPN,
-#party .stWEARS,
-#party .stWPN { display: none; } /* Responsive! */
+#party .roff { display: none; } /* Responsive! */
 
 /* Loading */
 #loading_anim {
@@ -309,10 +306,7 @@ h3{
 #help {
     display: none;
     color: red;
-    position: absolute;
-    z-index: 10000 !important;
     background-color: #000;
-    height: 100%;
 }
 #help h1 { color: white; }
 #help h2 { color: yellow; }
@@ -326,6 +320,7 @@ h3{
     top: 5px;
     right: 20px;
 }
+.hideforhelp { display: none !important; }
 
 /* Status */
 #whereami, #clock {
@@ -740,6 +735,11 @@ h3{
    Modify as content requires.
    ========================================================================== */
 
+@media screen and (min-width: 321px) {
+    #party .roff { display: table-cell; }
+    #party .landoff { display: none; }
+}
+
 @media only screen and (min-width: 480px) {
   /* Style adjustments for viewports 480px and over go here */
     #status {
@@ -747,11 +747,8 @@ h3{
 		font-size: .9em;
 	}
     #party { width: auto; }
-	#party td { font-size: .9em; }
-    #party .label.WEARS,
-    #party .label.WPN,
-    #party .stWEARS,
-    #party .stWPN { display: table-cell; }
+    #party td { font-size: .9em; }
+    #party .roff, #party .landoff { display: table-cell; }
     #monsters_moving {
 	    padding-left: 20px;
 	    margin-left: 10px;
