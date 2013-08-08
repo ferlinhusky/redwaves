@@ -15,21 +15,21 @@ var main = $('#main');
 var partyTable = '<table id="party" cellpadding="5">\
 			<colgroup></colgroup>\
 			<tr id="label_row">\
-				<td class="label">&nbsp;</td>\
-				<td class="label">HP</td>\
-				<td class="label">Act</td>\
-				<td class="label WPN">Wpn</td>\
-				<td class="label">Dmg</td>\
-				<td class="label">AC</td>\
-				<td class="label WEARS">Wears</td>\
-                <td class="label STR">Str</td>\
-                <td class="label DEX">Dex</td>\
-                <td class="label CON">Con</td>\
-                <td class="label INT">Int</td>\
-                <td class="label WIS">Wis</td>\
-                <td class="label CHA">Cha</td>\
-                <td class="label lvl">Lvl</td>\
-                <td class="label xp">XP</td>\
+				<td class="label landoff">&nbsp;</td>\
+				<td class="label landoff">HP</td>\
+				<td class="label landoff">Act</td>\
+				<td class="label WPN roff">Wpn</td>\
+				<td class="label landoff">Dmg</td>\
+				<td class="label landoff">AC</td>\
+				<td class="label WEARS roff">Wears</td>\
+                <td class="label STR roff">Str</td>\
+                <td class="label DEX roff">Dex</td>\
+                <td class="label CON roff">Con</td>\
+                <td class="label INT roff">Int</td>\
+                <td class="label WIS roff">Wis</td>\
+                <td class="label CHA roff">Cha</td>\
+                <td class="label lvl landoff">Lvl</td>\
+                <td class="label xp roff">XP</td>\
 			</tr>\
 		</table>';
 		

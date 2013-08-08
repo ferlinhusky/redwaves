@@ -33,21 +33,21 @@ var Player = Character.extend({
 		}
 		
 		$('#party').append('<tr class="'+this.type+' player_row">');
-		$('#party tr.'+this.type).append('<td class="member">'+this.name+'</td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat stWPN"><span class="WPN">'+wielding.toString()+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="ATK">'+ wieldingdmg +'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="AC">'+this.ac+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat stWEARS"><span class="WEARS">'+wearing.toString()+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="STR">'+this.STR.v+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="DEX">'+this.DEX.v+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="CON">'+this.CON.v+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="INT">'+this.INT.v+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="WIS">'+this.WIS.v+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="CHA">'+this.CHA.v+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="lvl">'+this.level+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat"><span class="xp">'+this.XP+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="member landoff">'+this.name+'</td>');
+		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WPN">'+wielding.toString()+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="ATK">'+ wieldingdmg +'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="AC">'+this.ac+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WEARS">'+wearing.toString()+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="STR">'+this.STR.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="DEX">'+this.DEX.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="CON">'+this.CON.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="INT">'+this.INT.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WIS">'+this.WIS.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="CHA">'+this.CHA.v+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="lvl">'+this.level+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="xp">'+this.XP+'</span></td>');
 	},
 	locIt: function(curr, prev, first){
 		this._super(curr, prev);

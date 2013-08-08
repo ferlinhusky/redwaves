@@ -16,7 +16,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
 	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
-	<link rel="apple-touch-startup-image" href="startup.png" /> 
+	<link rel="apple-touch-startup-image" href="startup.png" />
 
 	<!-- Styles -->
 	<link rel="stylesheet" href="css/ui-lightness/jquery-ui.css">
