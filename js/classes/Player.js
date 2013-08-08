@@ -113,6 +113,46 @@ var Player = Character.extend({
 						isPassable = false;
 					}
 					break;
+				case "right_up" :
+					this.coords[0]++;
+					this.coords[1]--;
+					square = getSquare(this.coords);
+					if(!square || !square.t.passable || square.occupied){
+						this.coords[0]--;
+						this.coords[1]++;
+						isPassable = false;
+					}
+					break;
+				case "right_down" :
+					this.coords[0]++;
+					this.coords[1]++;
+					square = getSquare(this.coords);
+					if(!square || !square.t.passable || square.occupied){
+						this.coords[0]--;
+						this.coords[1]--;
+						isPassable = false;
+					}
+					break;
+				case "left_up" :
+					this.coords[0]--;
+					this.coords[1]--;
+					square = getSquare(this.coords);
+					if(!square || !square.t.passable || square.occupied){
+						this.coords[0]++;
+						this.coords[1]++;
+						isPassable = false;
+					}
+					break;
+				case "left_down" :
+					this.coords[0]--;
+					this.coords[1]++;
+					square = getSquare(this.coords);
+					if(!square || !square.t.passable || square.occupied){
+						this.coords[0]++;
+						this.coords[1]--;
+						isPassable = false;
+					}
+					break;
 				default: break;
 			}
 			this.currentSquare = getSquare(this.coords).id;

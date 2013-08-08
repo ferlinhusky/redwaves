@@ -44,10 +44,12 @@ var Input = function(){
 		// Bind actions to map
 		this.unbindFromMap = function(){
 			doc.unbind('keyup');
+			doc.unbind('keydown');
 			mapContainerCell.unbind('touchend');
 		};
 		
 		this.bindToMap = function(){
+				doc.bind('keydown', this.doKeyDown);
 			doc.bind('keyup', this.doKeyUp);
 			mapContainerCell.bind('touchend', this.doMapClick);
 		};
@@ -386,6 +388,33 @@ var Input = function(){
 		var moveDown = function(){ World.activePlayer.move('down'); };
 		var moveLeft = function(){ World.activePlayer.move('left'); };
 		
+		var moveRightUp = function(){ World.activePlayer.move('right_up'); };
+		var moveRightDown = function(){ World.activePlayer.move('right_down'); };
+		var moveLeftUp = function(){ World.activePlayer.move('left_up'); };
+		var moveLeftDown = function(){ World.activePlayer.move('left_down'); };
+		
+		this.downkey = "";
+		this.diaglast = false;
+		// Capture key down for diagonals
+		this.doKeyDown = function(k) {
+				// Capture key
+				k.preventDefault();
+				k.stopPropagation();
+				if (Input.downkey == "") {
+						switch (k.which) {
+							// left
+							case 37: Input.downkey = "left"; break;
+							// up
+							case 38: Input.downkey = "up"; break;
+							// right
+							case 39: Input.downkey = "right"; break;
+							// down
+							case 40: Input.downkey = "down"; break;
+							default: break;
+						}	
+				}
+		}
+		
 		// Key press functions
 		this.doKeyUp = function(k) {
 			// Capture key
@@ -397,13 +426,57 @@ var Input = function(){
 				// spacebar (enter bldg)
 				case 32: Input.enterLoc(); break;
 				// left
-				case 37: moveLeft(); break;
+				case 37:
+						if (Input.downkey == "up") {
+								moveLeftUp();
+								Input.diaglast = true;
+						} else if (Input.downkey == "down") {
+								moveLeftDown();
+								Input.diaglast = true;
+						} else if (Input.diaglast == false) {
+								moveLeft();
+								Input.downkey = "";
+						} else { Input.diaglast = false; Input.downkey = ""; }
+						break;
 				// up
-				case 38: moveUp(); break;
+				case 38:
+						if (Input.downkey == "right") {
+								moveRightUp();
+								Input.diaglast = true;
+						} else if (Input.downkey == "left") {
+								moveLeftUp();
+								Input.diaglast = true;
+						} else if (Input.diaglast == false) {
+								moveUp();
+								Input.downkey = "";
+						} else { Input.diaglast = false; Input.downkey = ""; }
+						break;
 				// right
-				case 39: moveRight(); break;
+				case 39:
+						if (Input.downkey == "up") {
+								moveRightUp();
+								Input.diaglast = true;
+						} else if (Input.downkey == "down") {
+								moveRightDown();
+								Input.diaglast = true;
+						} else if (Input.diaglast == false) {
+								moveRight();
+								Input.downkey = "";
+						} else { Input.diaglast = false; Input.downkey = ""; }
+						break;
 				// down
-				case 40: moveDown(); break;
+				case 40:
+						if (Input.downkey == "right") {
+								moveRightDown();
+								Input.diaglast = true;
+						} else if (Input.downkey == "left") {
+								moveLeftDown();
+								Input.diaglast = true;
+						} else if (Input.diaglast == false) {
+								moveDown();
+								Input.downkey = "";
+						} else { Input.diaglast = false; Input.downkey = ""; }
+						break;
 				default: break;
 			}
 		};
@@ -422,7 +495,7 @@ var Input = function(){
 				case "options" 		: M_D = D_Options; break;
 				case "help" 		: M_D = D_Help; break;
 				case "welcome" 		: M_D = D_Welcome; break;
-                                case "select_team" 	: M_D = D_Select_Team; break;
+                case "select_team" 	: M_D = D_Select_Team; break;
 				case "standard"		: M_D = D_Standard; break;
 				case "equip"		: M_D = D_Equip; break;
 				default: break;
