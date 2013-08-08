@@ -200,14 +200,16 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
    Primary styles
    Author: Graham Cranfield
    ========================================================================== */
-html, body, #container, #main { height: 100%; }
+html, body, #container, #main {
+    height: 100%;
+}
 html, body {
     margin: 0px;
     padding: 0px;
-	background-color: #000;
-	font-family: arial;
-	overflow: hidden;
-	-webkit-overflow-scrolling: touch;
+    background-color: #000;
+    font-family: arial;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 h1{ font-size: 18px; color: red; }
 h2{ font-size: 16px; }
@@ -310,6 +312,7 @@ h3{
     position: absolute;
     z-index: 10000 !important;
     background-color: #000;
+    height: 100%;
 }
 #help h1 { color: white; }
 #help h2 { color: yellow; }

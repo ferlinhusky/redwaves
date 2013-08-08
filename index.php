@@ -312,32 +312,10 @@
 		
 		<div class="trash">Trash</div>
 		<div class="buy">
-			<div class="title">Dave's Strangely Appropriate Emporium <span class="gold">1250GP</span></div>
+			<div class="title">Dave's Strangely Appropriate Emporium <span class="gold"></span></div>
 			<ul class="items"></ul>
 		</div>
 	</div>
-    </div>
-
-    <!-- Help dialog -->
-    <div class="dialog_content" id="dialog_help">
-        <p>If using a mobile device, "Click" -> "Touch</p>
-        <ul>
-            <li>HP = Hit points, MV = Moves (per turn), WPN = Duh, ATK = Max damage
-            per attack, AC = Armor class (lower the better), WEARS = Come on!
-            <li>Use up/down/left/right arrow keys to move/attack - sorry diagonal :( -
-            on a mobile device, touch in the the desired direction</li>
-            <li>Click and drag map to move it</li>
-            <li>Click "End Turn" (rotation icon)...to end your turn.</li>
-            <li>Click "Door" (key icon) to open/close doors (+/-)</li>
-            <li>To cast a spell (as the Wizard), click the arrow beside "Spell" (scroll
-            icon) to select a spell, then click the spell name to show the spell range.
-            Click enemeies within range to cast the spell at them.</li>
-        </ul>
-        <hr/>
-        <p class="copyright">Over red waves of sand &copy; 2013 Cranfield<br/>
-            <a href="https://twitter.com/HuskyFerlin" target="_blank">@HuskyFerlin |
-            <a href="mailto:kingmountain@gmail.com">kingmountain@gmail.com</a>
-        </p>
     </div>
     
     <!-- End of game passcode -->
