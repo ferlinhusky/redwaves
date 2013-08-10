@@ -29,6 +29,17 @@ var Input = function(){
 				myPos = Squares[World.activePlayer.currentSquare].onMap.offset();
 				offX = Math.abs(oe.pageX-myPos.left);
 				offY = Math.abs(oe.pageY-myPos.top);
+                                
+                                var v1 = {x: myPos.left+7.5, y: myPos.top+7.5}; // center to square
+                                var v2 = {x: oe.pageX, y: oe.pageY};
+                                var v3 = {x: v2.x-v1.x, y: v2.y-v1.y};
+                                var angleRad = Math.atan2(-v3.y, v3.x);
+                                //var angleRad = Math.acos( (v1.x * v2.x + v1.y * v2.y) / ( Math.sqrt(v1.x*v1.x + v1.y*v1.y) * Math.sqrt(v2.x*v2.x + v2.y*v2.y) ) );
+                                var angleDeg = angleRad * 180 / Math.PI;
+                                
+                                console.log("me X: %f, click X: %f", v1.x, v2.x);
+                                console.log("radians: %f, degrees: %f", angleRad, angleDeg);
+                                
 				if(offX > offY){
 					if(oe.pageX > myPos.left) {
 						World.activePlayer.move('right');
