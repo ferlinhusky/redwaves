@@ -121,7 +121,7 @@ var Player = Character.extend({
 						this.coords[0]--;
 						this.coords[1]++;
 						isPassable = false;
-					}
+					} else { acost = 1.5; }
 					break;
 				case "right_down" :
 					this.coords[0]++;
@@ -131,7 +131,7 @@ var Player = Character.extend({
 						this.coords[0]--;
 						this.coords[1]--;
 						isPassable = false;
-					}
+					} else { acost = 1.5; }
 					break;
 				case "left_up" :
 					this.coords[0]--;
@@ -141,7 +141,7 @@ var Player = Character.extend({
 						this.coords[0]++;
 						this.coords[1]++;
 						isPassable = false;
-					}
+					} else { acost = 1.5; }
 					break;
 				case "left_down" :
 					this.coords[0]--;
@@ -151,7 +151,7 @@ var Player = Character.extend({
 						this.coords[0]++;
 						this.coords[1]--;
 						isPassable = false;
-					}
+					} else { acost = 1.5; }
 					break;
 				default: break;
 			}
@@ -160,7 +160,10 @@ var Player = Character.extend({
 			//Successful Move
 			$('.'+this.ofType).removeClass('blink'); // stop blinking when a player moves
 			
-			if(isPassable == true){
+			// How many remaining
+			var remaining_move = this.movement - this.currMove;
+			
+			if(isPassable == true && remaining_move >=1){
 				if(this.currentSquare != this.previousSquare){
 					this.lastDir = dir;
 					this.locIt(this.currentSquare, this.previousSquare);
@@ -179,7 +182,6 @@ var Player = Character.extend({
 				MO_set(this, acost);
 				
 				// Check AP
-				var remaining_move = this.movement - this.currMove;
 				if(remaining_move < 2){
 					Input.spellOn = false;
 					btnSpell.removeClass('blink')
@@ -205,10 +207,10 @@ var Player = Character.extend({
 					} else if(!this.dead){ this.handleactioncost("weapon"); } // else if not dead, update with battle action cost (2)
 				}
 			}
-			if (this.currMove == this.movement){
+			if (this.movement - this.currMove < 1){
 				this.endturnUI();
 			}
-		} else if (this.currMove == this.movement){
+		} else if (this.movement - this.currMove < 1){
 			this.endturnUI();
 		}
 	},
