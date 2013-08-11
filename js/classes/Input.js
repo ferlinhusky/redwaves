@@ -23,24 +23,40 @@ var Input = function(){
 				this.checkRangedTarget(targetsq);
 			} else {
 				var oe = e.originalEvent;
-				if(oe.targetTouches){
+				
+                                if(oe.targetTouches){
 					oe = oe.changedTouches[0]; // changedTouches to capture touchend
 				}
-				myPos = Squares[World.activePlayer.currentSquare].onMap.offset();
+				
+                                myPos = Squares[World.activePlayer.currentSquare].onMap.offset();
 				offX = Math.abs(oe.pageX-myPos.left);
 				offY = Math.abs(oe.pageY-myPos.top);
                                 
                                 var v1 = {x: myPos.left+7.5, y: myPos.top+7.5}; // center to square
                                 var v2 = {x: oe.pageX, y: oe.pageY};
                                 var v3 = {x: v2.x-v1.x, y: v2.y-v1.y};
-                                var angleRad = Math.atan2(-v3.y, v3.x);
-                                //var angleRad = Math.acos( (v1.x * v2.x + v1.y * v2.y) / ( Math.sqrt(v1.x*v1.x + v1.y*v1.y) * Math.sqrt(v2.x*v2.x + v2.y*v2.y) ) );
-                                var angleDeg = angleRad * 180 / Math.PI;
                                 
-                                console.log("me X: %f, click X: %f", v1.x, v2.x);
-                                console.log("radians: %f, degrees: %f", angleRad, angleDeg);
+                                var angleRad = Math.atan2(v3.y, v3.x);
+                                var angleDeg = (angleRad * 180 / Math.PI);
                                 
-				if(offX > offY){
+                                if (angleDeg < 0) {
+                                    angleDeg += 360; // 0-359deg
+                                }
+                                
+                                //console.log("me X: %f, click X: %f", v1.x, v2.x);
+                                //console.log("radians: %f, degrees: %f", angleRad, angleDeg);
+                                
+                                // Need 8 divisions of 45deg, 0/180 on horiz
+                                if (angleDeg > 337.5 || angleDeg <= 22.5) { World.activePlayer.move('right'); }
+                                else if (angleDeg > 22.5 && angleDeg <= 67.5) { World.activePlayer.move('right_down'); }
+                                else if (angleDeg > 67.5 && angleDeg <= 112.5) { World.activePlayer.move('down'); }
+                                else if (angleDeg > 112.5 && angleDeg <= 157.5) { World.activePlayer.move('left_down'); }
+                                else if (angleDeg > 157.5 && angleDeg <= 202.5) { World.activePlayer.move('left'); }
+                                else if (angleDeg > 202.5 && angleDeg <= 247.5) { World.activePlayer.move('left_up'); }
+                                else if (angleDeg > 247.5 && angleDeg <= 292.5) { World.activePlayer.move('up'); }
+                                else if (angleDeg > 292.5 && angleDeg <= 337.5) { World.activePlayer.move('right_up'); }
+                                
+				/*if(offX > offY){
 					if(oe.pageX > myPos.left) {
 						World.activePlayer.move('right');
 					} else { World.activePlayer.move('left'); }
@@ -48,7 +64,7 @@ var Input = function(){
 					if(oe.pageY > myPos.top) {
 						World.activePlayer.move('down');
 					} else { World.activePlayer.move('up'); }
-				}
+				}*/
 			}
 		};
 		
