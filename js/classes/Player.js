@@ -80,6 +80,10 @@ var Player = Character.extend({
 			var isPassable = true;
 			var square;
 			this.previousSquare = getSquare(this.coords).id;
+			
+			// How many remaining
+			var remaining_move = this.movement - this.currMove;
+			
 			switch(dir){
 				case "right": 
 					this.coords[0]++;
@@ -117,7 +121,7 @@ var Player = Character.extend({
 					this.coords[0]++;
 					this.coords[1]--;
 					square = getSquare(this.coords);
-					if(!square || !square.t.passable || square.occupied){
+					if(!square || !square.t.passable || square.occupied || remaining_move < 1.5){
 						this.coords[0]--;
 						this.coords[1]++;
 						isPassable = false;
@@ -127,7 +131,7 @@ var Player = Character.extend({
 					this.coords[0]++;
 					this.coords[1]++;
 					square = getSquare(this.coords);
-					if(!square || !square.t.passable || square.occupied){
+					if(!square || !square.t.passable || square.occupied || remaining_move < 1.5){
 						this.coords[0]--;
 						this.coords[1]--;
 						isPassable = false;
@@ -137,7 +141,7 @@ var Player = Character.extend({
 					this.coords[0]--;
 					this.coords[1]--;
 					square = getSquare(this.coords);
-					if(!square || !square.t.passable || square.occupied){
+					if(!square || !square.t.passable || square.occupied || remaining_move < 1.5){
 						this.coords[0]++;
 						this.coords[1]++;
 						isPassable = false;
@@ -147,7 +151,7 @@ var Player = Character.extend({
 					this.coords[0]--;
 					this.coords[1]++;
 					square = getSquare(this.coords);
-					if(!square || !square.t.passable || square.occupied){
+					if(!square || !square.t.passable || square.occupied || remaining_move < 1.5){
 						this.coords[0]++;
 						this.coords[1]--;
 						isPassable = false;
@@ -159,9 +163,6 @@ var Player = Character.extend({
 
 			//Successful Move
 			$('.'+this.ofType).removeClass('blink'); // stop blinking when a player moves
-			
-			// How many remaining
-			var remaining_move = this.movement - this.currMove;
 			
 			if(isPassable == true && remaining_move >=1){
 				if(this.currentSquare != this.previousSquare){

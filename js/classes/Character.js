@@ -105,7 +105,13 @@ var Character = Class.extend({
 		this.maxHP = this.HP;
 		
 		// Calc movement
-		this.movement	=	6 + this.DEX.mod();
+		var minMove;
+		switch (this.ofType) {
+			case "monster"	: minMove = 3; break;
+			case "player"	: minMove = 6; break;
+			default			: break;
+		}
+		this.movement	=	minMove + this.DEX.mod();
 		this.maxMove	=	this.movement;
 		
 		// Calc armor class

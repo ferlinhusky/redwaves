@@ -115,7 +115,8 @@
 			<ul>
 				<li>0 points: opening/closing a door, picking up an item, switching weapons, selecting
 				a spell</li>
-				<li>1 point: moving</li>
+				<li>1 point: moving cardinally</li>
+				<li>1.5 points: moving diagonally</li>
 				<li>2 points: casting a spell, doing battle, attacking with a ranged weapon</li>
 			</ul>
 		<h2>The toolbar</h2>
@@ -129,8 +130,8 @@
 			general direction you want to go and I think you'll be pleasantly surprised. You cannot move
 			through other players or monsters.</p>
 		<h2>Doing battle</h2>
-			<p>Initiate close combat with a monster by attempting to move into the monster's square from an
-			adjacent square (not diagonal). As long as you have 2 Action Points to spare, you will attack the
+			<p>Initiate close combat with a monster by attempting to move into the monster's square from any
+			surrounding square. As long as you have 2 Action Points to spare, you will attack the
 			monster with your active weapon. You can keep attacking until you're down to less than 2 Action
 			Points. If things aren't going well, feel free to run away.</p>
 			
