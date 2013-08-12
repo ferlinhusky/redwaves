@@ -91,7 +91,7 @@ var Monster = Character.extend({
 		for(var i=0; i<Players.length; i++){
 			var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
 			if(cansee == true){
-				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false, true);
+				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), true, true);
 				// Change course if a visible target is closer
 				if (temp_path.length < this.path.length && temp_path.length > 0){
 					this.path = [];
@@ -121,7 +121,7 @@ var Monster = Character.extend({
 			// If there's a target coord(s)
 			if(this.targets.length > 0){
 				for(var i=0; i<this.targets.length; i++){
-					temp_path = astar.search(Squares, getSquare(this.coords), getSquare(this.targets[i].coords), false);
+					temp_path = astar.search(Squares, getSquare(this.coords), getSquare(this.targets[i].coords), true);
 					if(path.length == 0){
 						path = temp_path;
 					} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
@@ -134,7 +134,7 @@ var Monster = Character.extend({
 					// Only target players you can see
 					var cansee = Bresenham(this.coords[0], this.coords[1], Players[i].coords[0], Players[i].coords[1], "monster_target", true);
 					if(cansee == true){
-						temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), false);
+						temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Players[i].coords), true);
 						if(path.length == 0){
 							path = temp_path;
 						} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
