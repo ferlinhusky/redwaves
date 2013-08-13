@@ -1,9 +1,9 @@
 var Players = [];
 var Player = Character.extend({
 	init: function(name, type, wears, wields, inven, skills, attributes){
-		this._super(name, type, wears, wields, inven, skills, attributes);
+		var ofType = "player";
+		this._super(name, type, ofType, wears, wields, inven, skills, attributes);
 		this.ID = "player_" + Players.length;
-		this.ofType = "player";
 		this.map = "";
 
 		Players.push(this);

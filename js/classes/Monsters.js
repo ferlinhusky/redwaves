@@ -1,7 +1,8 @@
 var Monsters = [];
 var Monster = Character.extend({
 	init: function(name, type, snamepl, wears, wields, inven, skills, attributes){
-		this._super(name, type, wears, wields, inven, skills, attributes);
+		var ofType = "monster";
+		this._super(name, type, ofType, wears, wields, inven, skills, attributes);
 		
 		this.snamepl=	snamepl; // str // screen name plural
 		
@@ -9,7 +10,6 @@ var Monster = Character.extend({
 		this.path;
 		
 		this.ID = "monster_" + Monsters.length;
-		this.ofType = "monster";
 		
 		this.targets = [];
 		this.target = null;

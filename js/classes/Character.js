@@ -117,11 +117,12 @@ var Character = Class.extend({
 		// Calc armor class
 		this.getAC();
 	},
-	init: function(name, type, wears, wields, inven, skills, attributes){
+	init: function(name, type, ofType, wears, wields, inven, skills, attributes){
 		// XP, name and type
 		this.XP 	= 	0;
 		this.name	=	name; // str // screen name
 		this.type	=	type; // str // in-program cat
+		this.ofType	=	ofType // str // player, monster
 		
 		// Get Attribute values
 		this.attributes = attributes;
