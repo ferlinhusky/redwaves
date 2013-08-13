@@ -24,47 +24,37 @@ var Input = function(){
 			} else {
 				var oe = e.originalEvent;
 				
-                                if(oe.targetTouches){
+				if(oe.targetTouches){
 					oe = oe.changedTouches[0]; // changedTouches to capture touchend
 				}
 				
-                                myPos = Squares[World.activePlayer.currentSquare].onMap.offset();
+				myPos = Squares[World.activePlayer.currentSquare].onMap.offset();
 				offX = Math.abs(oe.pageX-myPos.left);
 				offY = Math.abs(oe.pageY-myPos.top);
-                                
-                                var v1 = {x: myPos.left+7.5, y: myPos.top+7.5}; // center to square
-                                var v2 = {x: oe.pageX, y: oe.pageY};
-                                var v3 = {x: v2.x-v1.x, y: v2.y-v1.y};
-                                
-                                var angleRad = Math.atan2(v3.y, v3.x);
-                                var angleDeg = (angleRad * 180 / Math.PI);
-                                
-                                if (angleDeg < 0) {
-                                    angleDeg += 360; // 0-359deg
-                                }
-                                
-                                //console.log("me X: %f, click X: %f", v1.x, v2.x);
-                                //console.log("radians: %f, degrees: %f", angleRad, angleDeg);
-                                
-                                // Need 8 divisions of 45deg, 0/180 on horiz
-                                if (angleDeg > 337.5 || angleDeg <= 22.5) { World.activePlayer.move('right'); }
-                                else if (angleDeg > 22.5 && angleDeg <= 67.5) { World.activePlayer.move('right_down'); }
-                                else if (angleDeg > 67.5 && angleDeg <= 112.5) { World.activePlayer.move('down'); }
-                                else if (angleDeg > 112.5 && angleDeg <= 157.5) { World.activePlayer.move('left_down'); }
-                                else if (angleDeg > 157.5 && angleDeg <= 202.5) { World.activePlayer.move('left'); }
-                                else if (angleDeg > 202.5 && angleDeg <= 247.5) { World.activePlayer.move('left_up'); }
-                                else if (angleDeg > 247.5 && angleDeg <= 292.5) { World.activePlayer.move('up'); }
-                                else if (angleDeg > 292.5 && angleDeg <= 337.5) { World.activePlayer.move('right_up'); }
-                                
-				/*if(offX > offY){
-					if(oe.pageX > myPos.left) {
-						World.activePlayer.move('right');
-					} else { World.activePlayer.move('left'); }
-				} else {
-					if(oe.pageY > myPos.top) {
-						World.activePlayer.move('down');
-					} else { World.activePlayer.move('up'); }
-				}*/
+								
+				var v1 = {x: myPos.left+7.5, y: myPos.top+7.5}; // center to square
+				var v2 = {x: oe.pageX, y: oe.pageY};
+				var v3 = {x: v2.x-v1.x, y: v2.y-v1.y};
+				
+				var angleRad = Math.atan2(v3.y, v3.x);
+				var angleDeg = (angleRad * 180 / Math.PI);
+				
+				if (angleDeg < 0) {
+					angleDeg += 360; // 0-359deg
+				}
+				
+				//console.log("me X: %f, click X: %f", v1.x, v2.x);
+				//console.log("radians: %f, degrees: %f", angleRad, angleDeg);
+				
+				// Need 8 divisions of 45deg, 0/180 on horiz
+				if (angleDeg > 337.5 || angleDeg <= 22.5) { World.activePlayer.move('right'); }
+				else if (angleDeg > 22.5 && angleDeg <= 67.5) { World.activePlayer.move('right_down'); }
+				else if (angleDeg > 67.5 && angleDeg <= 112.5) { World.activePlayer.move('down'); }
+				else if (angleDeg > 112.5 && angleDeg <= 157.5) { World.activePlayer.move('left_down'); }
+				else if (angleDeg > 157.5 && angleDeg <= 202.5) { World.activePlayer.move('left'); }
+				else if (angleDeg > 202.5 && angleDeg <= 247.5) { World.activePlayer.move('left_up'); }
+				else if (angleDeg > 247.5 && angleDeg <= 292.5) { World.activePlayer.move('up'); }
+				else if (angleDeg > 292.5 && angleDeg <= 337.5) { World.activePlayer.move('right_up'); }
 			}
 		};
 		
@@ -76,7 +66,7 @@ var Input = function(){
 		};
 		
 		this.bindToMap = function(){
-				doc.bind('keydown', this.doKeyDown);
+			doc.bind('keydown', this.doKeyDown);
 			doc.bind('keyup', this.doKeyUp);
 			mapContainerCell.bind('touchend', this.doMapClick);
 		};
@@ -114,7 +104,7 @@ var Input = function(){
 					},
 					title: capIt(getLocation()),
 					modal: true,
-                    zIndex: 5000
+					zIndex: 5000
 				});
 			}
 		};
@@ -153,10 +143,10 @@ var Input = function(){
 							getLineOfSight(loc);
 							// Range check
 							if(Input.spellOn == true){
-							    getRange(World.activePlayer, "spell");
+								getRange(World.activePlayer, "spell");
 							} else if (Input.weaponOn == true){
-                                                            getRange(World.activePlayer, "weapon");
-                                                        }
+								getRange(World.activePlayer, "weapon");
+							}
 						} else if(sobj.t.type == 'open_door') {
 							s.removeClass('open_door');
 							s.addClass('closed_door');
@@ -166,10 +156,10 @@ var Input = function(){
 							getLineOfSight(loc);
 							// Range check
 							if(Input.spellOn == true){
-							    getRange(World.activePlayer, "spell");
+								getRange(World.activePlayer, "spell");
 							} else if (Input.weaponOn == true){
-                                                            getRange(World.activePlayer, "weapon");
-                                                        }
+								getRange(World.activePlayer, "weapon");
+							}
 						}
 					}
 				}
@@ -179,16 +169,16 @@ var Input = function(){
 	/*
 		Spells and Ranged Attacks (and using Items)
 	*/
-                // Check for ranged target > tsq: target square
+		// Check for ranged target > tsq: target square
 		// If found, cast spell or attack ranged....
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
-                        if(Input.spellOn == true){
-                            World.activePlayer.readySpell.cast(sobj);
-                        } else if (Input.weaponOn == true){
-                            var battle = new Battle(World.activePlayer, sobj.occupiedBy);
-                            World.activePlayer.handleactioncost("ranged");
-                        }
+			if(Input.spellOn == true){
+				World.activePlayer.readySpell.cast(sobj);
+			} else if (Input.weaponOn == true){
+				var battle = new Battle(World.activePlayer, sobj.occupiedBy);
+				World.activePlayer.handleactioncost("ranged");
+			}
 		};
 		
 		// Square click
@@ -225,9 +215,9 @@ var Input = function(){
 		
 		this.hideSpellMenu = function(){
 			menuSelectSpell.css({
-                            top: '-1000px',
-                            display: 'none'
-                        });
+				top: '-1000px',
+				display: 'none'
+			});
 			this.spellMenu = false;
 		};
 		
@@ -250,34 +240,34 @@ var Input = function(){
 		};
 		this.handleSpell = function(){
 			Input.hideSpellMenu();
-                        btnSpell.removeClass('blink');
-                        
-                        if(World.activePlayer.readySpell != null){
-                            $('.lit, .unlit').removeClass('range'); // remove all spell ranges
-                        }
+			btnSpell.removeClass('blink');
+			
+			if(World.activePlayer.readySpell != null){
+				$('.lit, .unlit').removeClass('range'); // remove all spell ranges
+			}
 
 			if(Input.spellOn == false && World.activePlayer.readySpell != null){                    
-                            // Deactive weapon
-                            if(Input.weaponOn == true){
-                                Input.handleWeapon();
-                            }
-                                
-                            // Zoom on small screens
-                            if($(window).width() <= 480 ){
-                                $('.m_grid').addClass('zoom'); // make only for small screen
-                                centerOn(World.activePlayer);
-                            }
-                            
-                            // Activate spell
-                            btnSpell.addClass('blink');
-                            this.spellOn = true;
-                            getRange(World.activePlayer, "spell");
+				// Deactive weapon
+				if(Input.weaponOn == true){
+					Input.handleWeapon();
+				}
+					
+				// Zoom on small screens
+				if($(window).width() <= 480 ){
+					$('.m_grid').addClass('zoom'); // make only for small screen
+					centerOn(World.activePlayer);
+				}
+				
+				// Activate spell
+				btnSpell.addClass('blink');
+				this.spellOn = true;
+				getRange(World.activePlayer, "spell");
 			} else {
-                            if($('.m_grid').hasClass('zoom')){
-                                $('.m_grid').removeClass('zoom');
-                                centerOn(World.activePlayer);
-                            }
-			    this.spellOn = false;
+				if($('.m_grid').hasClass('zoom')){
+					$('.m_grid').removeClass('zoom');
+					centerOn(World.activePlayer);
+				}
+				this.spellOn = false;
 			}
 		};
 		
@@ -301,9 +291,9 @@ var Input = function(){
 		
 		this.hideItemMenu = function(){
 			menuSelectItem.css({
-                            top: '-1000px',
-                            display:'none'
-                        });
+				top: '-1000px',
+				display:'none'
+			});
 			this.itemMenu = false;
 		};
 		
@@ -325,12 +315,28 @@ var Input = function(){
 		this.handleItem = function(){
 			World.activePlayer.readyItem.use();
 		};
-                
+		
+	/*
+		Pickup/Drop handling
+	 */
+		this.pickupOn = false;
+		this.pickupMenu = false;
+		this.dropOn = false;
+		this.dropMenu = false;
+		
 		this.pickupItem = function(){
 			var square = getSquare(World.activePlayer.coords);
-			var item = square.containsA;
+			var item = square.containsA[square.containsA.length-1];
 			item.pickup(square.id);
-			btnPickup.button('disable');
+			if(square.containsA.length > 0){
+				btnPickup.button('enable');
+			} else {
+				btnPickup.button('disable');
+			}
+		}
+		
+		this.dropItem = function(){
+				return true;
 		}
 
 	/*
@@ -353,9 +359,9 @@ var Input = function(){
 		
 		this.hideWeaponMenu = function(){
 			menuSelectWeapon.css({
-                            top: '-1000px',
-                            display:'none'
-                        });
+				top: '-1000px',
+				display:'none'
+			});
 			this.weaponMenu = false;
 		};
 		
@@ -376,34 +382,34 @@ var Input = function(){
 		
 		this.handleWeapon = function(){
 			// If ranged, show range etc.
-                        if(World.activePlayer.readyWeapon.supclass == "firearm"){
-                            Input.hideWeaponMenu();
-                            $('.lit, .unlit').removeClass('range'); // remove all ranges
-                            btnWeapon.removeClass('blink');
-                            if(Input.weaponOn == false){
-                                // Deactive spell
-                                if(Input.spellOn == true){
-                                    Input.handleSpell();
-                                }
-                                
-                                // Zoom on small screens
-                                if($(window).width() <= 480 ){
-                                    $('.m_grid').addClass('zoom'); // make only for small screen
-                                    centerOn(World.activePlayer);
-                                }
-                            
-                                // Activate weapon
-                                btnWeapon.addClass('blink');
-                                this.weaponOn = true;
-                                getRange(World.activePlayer, "weapon");    
-                            } else {
-                                if($('.m_grid').hasClass('zoom')){
-                                    $('.m_grid').removeClass('zoom');
-                                    centerOn(World.activePlayer);
-                                }
-                                this.weaponOn = false;
-                            }
-                        }
+			if(World.activePlayer.readyWeapon.supclass == "firearm"){
+				Input.hideWeaponMenu();
+				$('.lit, .unlit').removeClass('range'); // remove all ranges
+				btnWeapon.removeClass('blink');
+				if(Input.weaponOn == false){
+					// Deactive spell
+					if(Input.spellOn == true){
+						Input.handleSpell();
+					}
+					
+					// Zoom on small screens
+					if($(window).width() <= 480 ){
+						$('.m_grid').addClass('zoom'); // make only for small screen
+						centerOn(World.activePlayer);
+					}
+				
+					// Activate weapon
+					btnWeapon.addClass('blink');
+					this.weaponOn = true;
+					getRange(World.activePlayer, "weapon");    
+				} else {
+					if($('.m_grid').hasClass('zoom')){
+						$('.m_grid').removeClass('zoom');
+						centerOn(World.activePlayer);
+					}
+					this.weaponOn = false;
+				}
+			}
 		};
 		
 	/*
@@ -428,17 +434,17 @@ var Input = function(){
 				k.preventDefault();
 				k.stopPropagation();
 				if (Input.downkey == "") {
-						switch (k.which) {
-							// left
-							case 37: Input.downkey = "left"; break;
-							// up
-							case 38: Input.downkey = "up"; break;
-							// right
-							case 39: Input.downkey = "right"; break;
-							// down
-							case 40: Input.downkey = "down"; break;
-							default: break;
-						}	
+					switch (k.which) {
+						// left
+						case 37: Input.downkey = "left"; break;
+						// up
+						case 38: Input.downkey = "up"; break;
+						// right
+						case 39: Input.downkey = "right"; break;
+						// down
+						case 40: Input.downkey = "down"; break;
+						default: break;
+					}	
 				}
 		}
 		
@@ -514,15 +520,15 @@ var Input = function(){
 			var M_D;
 			var M_D_title;
 			var M_D_buttons;
-                        var M_D_height, M_D_width;
-                        var M_D_create;
+			var M_D_height, M_D_width;
+			var M_D_create;
 			Input.unbindFromMap();
 			switch(type){
 				case "inventory" 	: M_D = D_Inventory; break;
 				case "options" 		: M_D = D_Options; break;
 				case "help" 		: M_D = D_Help; break;
 				case "welcome" 		: M_D = D_Welcome; break;
-                case "select_team" 	: M_D = D_Select_Team; break;
+				case "select_team" 	: M_D = D_Select_Team; break;
 				case "standard"		: M_D = D_Standard; break;
 				case "equip"		: M_D = D_Equip; break;
 				default: break;
@@ -530,9 +536,9 @@ var Input = function(){
 			if(type=="standard"){
 				oDialog.html(content);
 				M_D_title = title;
-                                M_D_height = height;
+								M_D_height = height;
 				M_D_width = width;
-                                M_D_create = new Function('return false');
+								M_D_create = new Function('return false');
 				if(buttons != false) {
 					M_D_buttons = buttons;
 				} else {
@@ -554,236 +560,236 @@ var Input = function(){
 				if(M_D.width != undefined){
 					M_D_width = M_D.width;
 				} else { M_D_width = 300; }
-                                
-                                if(M_D.create != undefined){
-                                    M_D_create = M_D.create;
-                                } else { M_D_create = new Function('return false'); }
+								
+				if(M_D.create != undefined){
+					M_D_create = M_D.create;
+				} else { M_D_create = new Function('return false'); }
 			}
 			oDialog.dialog({
-                            closeOnEscape: false,
-                            create: M_D_create(),
-							dialogClass: 'no-close',
-                            close: function(){
-                                    Input.bindToMap();
-                                    if($('.dialog_content').dialog()){
-                                        $('.dialog_content').dialog('destroy');
-                                    }
-                            },
-                            buttons: M_D_buttons,
-                            title: M_D_title,
-                            modal: true,
-                            height: M_D_height,
-                            width: M_D_width,
-                            resizable: false
+				closeOnEscape: false,
+				create: M_D_create(),
+				dialogClass: 'no-close',
+				close: function(){
+						Input.bindToMap();
+						if($('.dialog_content').dialog()){
+							$('.dialog_content').dialog('destroy');
+						}
+				},
+				buttons: M_D_buttons,
+				title: M_D_title,
+				modal: true,
+				height: M_D_height,
+				width: M_D_width,
+				resizable: false
 			});
 		}
 		
 		/*
-		    Save Game
+			Save Game
 		*/
 		this.saveGame = function(){
-                    var jsonObj = {};
-                    var jsonPlayers = [];
-                    
-                    for(var j=0; j<Party.members.length; j++){
-                    
-                        var pwields=[]; var pwears=[]; var pinven=[]; var pspells=[];
-                        
-                        for(var i=0; i < Party.members[j].wields.length; i++){ pwields.push(Party.members[j].wields[i]); }
-                        for(var i=0; i < Party.members[j].wears.length; i++){ pwears.push(Party.members[j].wears[i]); }
-                        for(var i=0; i < Party.members[j].inven.length; i++){ pinven.push(Party.members[j].inven[i]); }
-                        for(var i=0; i < Party.members[j].spells.length; i++){ pspells.push(Party.members[j].spells[i]); }
-                        
-                        jsonPlayers.push({
-                                    type: Party.members[j].type,
-                                    gender: Party.members[j].gender.demo,
-                                    level: Party.members[j].level,
-                                    str: Party.members[j].STR.base,
-                                    con: Party.members[j].CON.base,
-                                    dex: Party.members[j].DEX.base,
-                                    int_: Party.members[j].INT.base,
-                                    wis: Party.members[j].WIS.base,
-                                    cha: Party.members[j].CHA.base,
-                                    skills: Party.members[j].skills,
-                                    weapons: pwields,
-                                    wears: pwears,
-                                    inven: pinven,
-                                    spells: pspells
-                                }
-                        );
-                    }
-                    
-                    jsonObj.players = jsonPlayers;
-                    jsonObj.levelcomplete = Party.levelcomplete;
-                    jsonObj.gold = Party.gold;
-                    jsonObj.store = Party.store;
-                    
-                    var postData = JSON.stringify(jsonObj);
-                    var postArray = {playerdata:postData};
-                    
-                    $.ajax({
-                        url: 'save.php',
-                        data: postArray,
-                        type: 'POST',
-                        success: function(data){
-                            Party.passcode = data;
-                            $('.ui-dialog #passcode').text(data);
-                        },
-                        error: function(xhr, a, b){
-                            alert(a + ": " + b);
-                        }
-                    })
+			var jsonObj = {};
+			var jsonPlayers = [];
+			
+			for(var j=0; j<Party.members.length; j++){
+			
+				var pwields=[]; var pwears=[]; var pinven=[]; var pspells=[];
+				
+				for(var i=0; i < Party.members[j].wields.length; i++){ pwields.push(Party.members[j].wields[i]); }
+				for(var i=0; i < Party.members[j].wears.length; i++){ pwears.push(Party.members[j].wears[i]); }
+				for(var i=0; i < Party.members[j].inven.length; i++){ pinven.push(Party.members[j].inven[i]); }
+				for(var i=0; i < Party.members[j].spells.length; i++){ pspells.push(Party.members[j].spells[i]); }
+				
+				jsonPlayers.push({
+					type: Party.members[j].type,
+					gender: Party.members[j].gender.demo,
+					level: Party.members[j].level,
+					str: Party.members[j].STR.base,
+					con: Party.members[j].CON.base,
+					dex: Party.members[j].DEX.base,
+					int_: Party.members[j].INT.base,
+					wis: Party.members[j].WIS.base,
+					cha: Party.members[j].CHA.base,
+					skills: Party.members[j].skills,
+					weapons: pwields,
+					wears: pwears,
+					inven: pinven,
+					spells: pspells
+				});
+			}
+			
+			jsonObj.players = jsonPlayers;
+			jsonObj.levelcomplete = Party.levelcomplete;
+			jsonObj.gold = Party.gold;
+			jsonObj.store = Party.store;
+			
+			var postData = JSON.stringify(jsonObj);
+			var postArray = {playerdata:postData};
+			
+			$.ajax({
+				url: 'save.php',
+				data: postArray,
+				type: 'POST',
+				success: function(data){
+					Party.passcode = data;
+					$('.ui-dialog #passcode').text(data);
+				},
+				error: function(xhr, a, b){
+					alert(a + ": " + b);
+				}
+			})
 		}
 		
 		/*
-		    Load Game
+			Load Game
 		*/
 		this.loadgame = function(data){
-                    // Reset player/party stuff
-                    $('#party tr.player_row').remove();
-                    $('#party').css('display', 'table');
-                    Players = [];
-                    Party.levelcomplete = 0;
-                    Party.gold = 0;
-                    Party.store = [0,0,0,0,0,0];
-                    
-                    // Create Players
-                    for(var j=0; j<data.players.length; j++){
-			var pdata = data.players[j];
-                        var player = ( new Function('var p = new ' + capitalise(pdata.type) + '(); return p;') )();
+			// Reset player/party stuff
+			$('#party tr.player_row').remove();
+			$('#party').css('display', 'table');
+			Players = [];
+			Party.levelcomplete = 0;
+			Party.gold = 0;
+			Party.store = [0,0,0,0,0,0];
+			
+			// Create Players
+			for(var j=0; j<data.players.length; j++){
+				var pdata = data.players[j];
+				var player = ( new Function('var p = new ' + capitalise(pdata.type) + '(); return p;') )();
 
-                        // Update player attributes/wpsn/items/etc.
-                            
-			    //gender
-                            player.gender = setGender(pdata.gender);
-                            
-			    //level
-                            player.XP = pdata.level;
-                            
-			    //attributes
-                            player.STR.base = pdata.str;
-                            player.CON.base = pdata.con;
-                            player.DEX.base = pdata.dex;
-                            player.WIS.base = pdata.wis;
-                            player.INT.base = pdata.int_;
-                            player.CHA.base = pdata.cha;
-                            
-                            player.STR.v = pdata.str;
-                            player.CON.v = pdata.con;
-                            player.DEX.v = pdata.dex;
-                            player.WIS.v = pdata.wis;
-                            player.INT.v = pdata.int_;
-                            player.CHA.v = pdata.cha;
-                            
-                            //update hp/move
-                            player.calcstats();
-                            
-                            //inventory
-                            player.inven = [];
-                            for (var i=0; i<pdata.inventory.length; i++) {
-                                    var tmp;
-                                    if (pdata.inventory[i] != 0) {
-                                                    tmp = ( new Function('var p = new ' + InventoryItems[pdata.inventory[i]] + '(); return p;') )();
-                                                    player.inven.push(tmp);
-                                    }
-                            }
+				// Update player attributes/wpsn/items/etc.
+							
+				//gender
+				player.gender = setGender(pdata.gender);
+							
+				//level
+				player.XP = pdata.level;
+							
+				//attributes
+				player.STR.base = pdata.str;
+				player.CON.base = pdata.con;
+				player.DEX.base = pdata.dex;
+				player.WIS.base = pdata.wis;
+				player.INT.base = pdata.int_;
+				player.CHA.base = pdata.cha;
+				
+				player.STR.v = pdata.str;
+				player.CON.v = pdata.con;
+				player.DEX.v = pdata.dex;
+				player.WIS.v = pdata.wis;
+				player.INT.v = pdata.int_;
+				player.CHA.v = pdata.cha;
+				
+				//update hp/move
+				player.calcstats();
+				
+				//inventory
+				player.inven = [];
+				for (var i=0; i<pdata.inventory.length; i++) {
+						var tmp;
+						if (pdata.inventory[i] != 0) {
+										tmp = ( new Function('var p = new ' + InventoryItems[pdata.inventory[i]] + '(); return p;') )();
+										player.inven.push(tmp);
+						}
+				}
 
-                            //weapons
-                            player.wields = [];
-                            for (var i=0; i<pdata.weapons.length; i++) {
-                                    var tmp;
-                                    if (pdata.weapons[i] != 0) {
-                                                    tmp = ( new Function('var p = new ' + Weapons[pdata.weapons[i]] + '(); return p;') )();
-                                                    player.wields.push(tmp);
-                                    } else { player.wields.push(""); }
-                            }
+				//weapons
+				player.wields = [];
+				for (var i=0; i<pdata.weapons.length; i++) {
+						var tmp;
+						if (pdata.weapons[i] != 0) {
+										tmp = ( new Function('var p = new ' + Weapons[pdata.weapons[i]] + '(); return p;') )();
+										player.wields.push(tmp);
+						} else { player.wields.push(""); }
+				}
 
-                            //armor
-                            player.wears = [];
-                            for (var i=0; i<pdata.armor.length; i++) {
-                                    var tmp;
-                                    if (pdata.armor[i] != 0) {
-                                                    tmp = ( new Function('var p = new ' + Armors[pdata.armor[i]] + '(); return p;') )();
-                                                    player.wears.push(tmp);
-                                    } else { player.wears.push(""); }
-                            }
+				//armor
+				player.wears = [];
+				for (var i=0; i<pdata.armor.length; i++) {
+						var tmp;
+						if (pdata.armor[i] != 0) {
+										tmp = ( new Function('var p = new ' + Armors[pdata.armor[i]] + '(); return p;') )();
+										player.wears.push(tmp);
+						} else { player.wears.push(""); }
+				}
 
-                            //skills
-                            player.skills = [];
-                            for (var i=0; i<pdata.skills.length; i++) {
-                                    var tmp;
-                                    if (pdata.skills[i] != 0) {
-                                                    tmp = ( new Function('var p = new ' + Skills[pdata.skills[i]] + '(); return p;') )();
-                                                    player.skills.push(tmp);
-                                    }
-                            }
-                                    // skillnames
-                                    player.skillnames = [];
-                                    for (var i=0; i<player.skills.length; i++) {
-                                            player.skillnames.push(player.skills[i].name);
-                                    }
-                                    
-                            //spells
-                            player.spells = [];
-                            for (var i=0; i<pdata.spells.length; i++) {
-                                    var tmp;
-                                    if (pdata.spells[i] != 0) {
-                                                    tmp = ( new Function('var p = new ' + Spells[pdata.spells[i]] + '(); return p;') )();
-                                                    player.spells.push(tmp);
-                                    }
-                            }
-                    }
-                    
-                    // Update Party
-                    Party.levelcomplete = data.levelcomplete;
-                    Party.gold = data.gold;
-                    Party.store = data.store;
-                    
-                    // Load up next adventure
-                    if (Party.levelcomplete >= Adventures.length) {
-                            $('.ui-dialog .next_adventure').html("You've done 'em all. <a href='http://www.twitter.com/HuskyFerlin'>When more?</a>");
-                            $('.ui-dialog .next_adventure').css({
-                                            "color": "#333",
-                                            "background-color": "#fff"
-                            });
-                            $(".ui-dialog-buttonpane button:contains('Play')").button("disable");
-                    } else {
-                            var curradv = Adventures[Party.levelcomplete];
-                            MapWorld = curradv.type;
-                            $('.ui-dialog .next_adventure').text(curradv.title);
-                            $('.ui-dialog .next_adventure').css({
-                                            "color": curradv.titlecolors[0],
-                                            "background-color": curradv.titlecolors[1]
-                            });
-                    }
+				//skills
+				player.skills = [];
+				for (var i=0; i<pdata.skills.length; i++) {
+						var tmp;
+						if (pdata.skills[i] != 0) {
+										tmp = ( new Function('var p = new ' + Skills[pdata.skills[i]] + '(); return p;') )();
+										player.skills.push(tmp);
+						}
+				}
+				
+				// skillnames
+				player.skillnames = [];
+				for (var i=0; i<player.skills.length; i++) {
+						player.skillnames.push(player.skills[i].name);
+				}
+						
+				//spells
+				player.spells = [];
+				for (var i=0; i<pdata.spells.length; i++) {
+						var tmp;
+						if (pdata.spells[i] != 0) {
+										tmp = ( new Function('var p = new ' + Spells[pdata.spells[i]] + '(); return p;') )();
+										player.spells.push(tmp);
+						}
+				}
+			}
+					
+			// Update Party
+			Party.levelcomplete = data.levelcomplete;
+			Party.gold = data.gold;
+			Party.store = data.store;
+			
+			// Load up next adventure
+			if (Party.levelcomplete >= Adventures.length) {
+				$('.ui-dialog .next_adventure').html("You've done 'em all. <a href='http://www.twitter.com/HuskyFerlin'>When more?</a>");
+				$('.ui-dialog .next_adventure').css({
+								"color": "#333",
+								"background-color": "#fff"
+				});
+				$(".ui-dialog-buttonpane button:contains('Play')").button("disable");
+			} else {
+				var curradv = Adventures[Party.levelcomplete];
+				MapWorld = curradv.type;
+				$('.ui-dialog .next_adventure').text(curradv.title);
+				$('.ui-dialog .next_adventure').css({
+								"color": curradv.titlecolors[0],
+								"background-color": curradv.titlecolors[1]
+				});
+			}
 		}
 		
 		/*
-		    Verify passcode
+			Verify passcode
 		*/
-                this.passcodeverified = false;
-                this.verifypasscode = function(){
-                    var pcode = $('.ui-dialog .enter_passcode').val();
-                    if (pcode.length > 0) {
-                        $.ajax({
-                            url:'load.php?passcode='+pcode,
-                            dataType: 'json',
-                            success: function(data){
-                                $('.ui-dialog .enter_passcode').css('color', 'white');
-                                if (data.error) {
-                                    alert(data.error);
-                                    $('.ui-dialog .enter_passcode').css('background-color', 'red');
-                                } else {
-                                    Input.passcodeverified = true;
-                                    $('.ui-dialog .enter_passcode').css('background-color', 'green');
-                                    Input.loadgame(data);
-                                }
-                            },
-                            error: function(){
-                                    alert("Error loading data. Sorry :(");
-                            }
-                        });
-                    }
+		this.passcodeverified = false;
+		this.verifypasscode = function(){
+			var pcode = $('.ui-dialog .enter_passcode').val();
+			if (pcode.length > 0) {
+				$.ajax({
+					url:'load.php?passcode='+pcode,
+					dataType: 'json',
+					success: function(data){
+						$('.ui-dialog .enter_passcode').css('color', 'white');
+						if (data.error) {
+							alert(data.error);
+							$('.ui-dialog .enter_passcode').css('background-color', 'red');
+						} else {
+							Input.passcodeverified = true;
+							$('.ui-dialog .enter_passcode').css('background-color', 'green');
+							Input.loadgame(data);
+						}
+					},
+					error: function(){
+							alert("Error loading data. Sorry :(");
+					}
+				});
+			}
 		};
 		
 	/*
@@ -799,8 +805,9 @@ var Input = function(){
 		btnHelp.button({ 
 			icons: {primary:'ui-icon-lightbulb',secondary:''},
 			disabled: false,
-			text: true
+			text: false
 		});
+		
 		btnCloseHelp.button({ 
 			icons: {primary:'ui-icon-lightbulb',secondary:''},
 			disabled: false,
@@ -812,8 +819,8 @@ var Input = function(){
 			disabled: false,
 			text: true
 		});
-                
-                btnWeapon.button({ 
+				
+		btnWeapon.button({ 
 			icons: {primary:'ui-icon-flag',secondary:''},
 			disabled: false,
 			text: true
@@ -846,58 +853,64 @@ var Input = function(){
 		btnOpenClose.button({ 
 			icons: {primary:'ui-icon-key',secondary:''},
 			disabled: true,
-			text: true
+			text: false
 		});
-        btnPickup.button({ 
+		btnPickup.button({ 
 			icons: {primary:'ui-icon-arrowreturnthick-1-n',secondary:''},
 			disabled: true,
-			text: true
+			text: false
+		});
+		btnDrop.button({ 
+			icons: {primary:'ui-icon-arrowreturnthick-1-s',secondary:''},
+			disabled: false,
+			text: false
 		});
 		btnEndTurn.button({ 
 			icons: {primary:'ui-icon-refresh',secondary:''},
 			disabled: true,
-			text: true
+			text: false
 		});
 		
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		//btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
 		btnHelp.bind('click touchend', function(e){
-				e.preventDefault();
-				$('.ui-widget-overlay, .ui-dialog').addClass('hideforhelp');
-				$('#container').css('display', 'none');
-				$('#help').css('display', 'table');
-				$('html, body').css({
-					overflow: 'auto',
-				});
-				$(window).unbind('touchmove');
-				Input.unbindFromMap();
+			e.preventDefault();
+			$('.ui-widget-overlay, .ui-dialog').addClass('hideforhelp');
+			$('#container').css('display', 'none');
+			$('#help').css('display', 'table');
+			$('html, body').css({
+				overflow: 'auto',
 			});
+			$(window).unbind('touchmove');
+			Input.unbindFromMap();
+		}).tooltip();
 		btnCloseHelp.bind('click touchend', function(e){
-				e.preventDefault();
-				$('.ui-widget-overlay, .ui-dialog').removeClass('hideforhelp');
-				$('#container').css('display', 'block');
-				$('#help').css('display', 'none');
-                $('html, body').css({
-					overflow: 'hidden',
+			e.preventDefault();
+			$('.ui-widget-overlay, .ui-dialog').removeClass('hideforhelp');
+			$('#container').css('display', 'block');
+			$('#help').css('display', 'none');
+			$('html, body').css({
+				overflow: 'hidden',
+			});
+			$(window).bind('touchmove', function(e) { 
+					// Tell Safari not to move the window. 
+					e.preventDefault(); 
 				});
-				$(window).bind('touchmove', function(e) { 
-						// Tell Safari not to move the window. 
-						e.preventDefault(); 
-					});
-				Input.bindToMap();
+			Input.bindToMap();
 		});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
-        btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
-		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
+		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();}).tooltip;
 		btnWeapon.bind('click touchend', function(e){e.preventDefault(); Input.handleWeapon();});
-		btnSelectWeapon.bind('click touchend', function(e){e.preventDefault(); Input.selectWeapon();});
+		btnSelectWeapon.bind('click touchend', function(e){e.preventDefault(); Input.selectWeapon();}).tooltip();
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
-		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
-		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
-        btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();});
-		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
+		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();}).tooltip();
+		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();}).tooltip();
+		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();}).tooltip();
+		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.dropItem();}).tooltip();
+		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}).tooltip(); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
 		var updateBtnState = function(b, val){
@@ -906,7 +919,7 @@ var Input = function(){
 	/*
 		Map Drag (touch)
 	*/
-        this.preventSquareClick = false; // tied to Square...keep it from registering click after drag
+		this.preventSquareClick = false; // tied to Square...keep it from registering click after drag
 		this.mapTouchDrag = function(mg){
 			mg.bind('touchstart', function(e){
 				e.preventDefault();
@@ -966,15 +979,36 @@ var Input = function(){
 				
 				// Buttons become icon-only on small screens (small viewports)
 				if($(this).width() <= 480 && $('#button_container').find('.action').button()){
-					$('#button_container').find('.action').button('option', 'text', false);
+					btnWeapon.button('option', 'text', false);
+					btnSpell.button('option', 'text', false);
+					btnItem.button('option', 'text', false);
 				} else if($('#button_container').find('.action').button()) {
-					$('#button_container').find('.action').button('option', 'text', true);
-                                        btnSelectWeapon.button('option', 'text', false);
+					btnWeapon.button('option', 'text', true);
+					btnSpell.button('option', 'text', true);
+					btnItem.button('option', 'text', true);
+					btnSelectWeapon.button('option', 'text', false);
 					btnSelectSpell.button('option', 'text', false);
 					btnSelectItem.button('option', 'text', false);
 				}
 				
-				// Make sure the Spell select dropdown (up?) doesn't unattach itself
+				
+				// Make sure the menu dropdown (up?) doesn't unattach itself
+				if(Input.itemMenu == true){
+					var offH = menuSelectItem.outerHeight();
+					 menuSelectItem.css({
+					   top: btnItem.position().top - offH,
+					   left: btnItem.position().left,
+					   width: ItemSet.width() - 8
+					});
+				}
+				if(Input.weaponMenu == true){
+					var offH = menuSelectWeapon.outerHeight();
+					 menuSelectWeapon.css({
+					   top: btnWeapon.position().top - offH,
+					   left: btnWeapon.position().left,
+					   width: WeaponSet.width() - 8
+					});
+				}
 				if(Input.spellMenu == true){
 					var offH = menuSelectSpell.outerHeight();
 					 menuSelectSpell.css({
@@ -983,14 +1017,18 @@ var Input = function(){
 					   width: SpellSet.width() - 8
 					});
 				}
-				
-				// Make sure the Spell select dropdown (up?) doesn't unattach itself
-				if(Input.itemMenu == true){
-					var offH = menuSelectItem.outerHeight();
-					 menuSelectItem.css({
-					   top: btnItem.position().top - offH,
-					   left: btnItem.position().left,
-					   width: ItemSet.width() - 8
+				if(Input.pickupMenu == true){
+					var offH = menuSelectPickup.outerHeight();
+					 menuSelectPick.css({
+					   top: btnPickup.position().top - offH,
+					   left: btnPickup.position().left
+					});
+				}
+				if(Input.dropMenu == true){
+					var offH = menuSelectDrop.outerHeight();
+					 menuSelectDrop.css({
+					   top: btnDrop.position().top - offH,
+					   left: btnDrop.position().left
 					});
 				}
 		});

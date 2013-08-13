@@ -12,7 +12,7 @@ var LoadingAnim = '<img src="images/ajax-loader.gif" id="loading_anim" />';
 var SquareTemplate = '<div class="sq"><div class="quad p">&nbsp;</div></div>';
 
 var main = $('#main');
-var partyTable = '<table id="party" cellpadding="5">\
+var partyTable = '<table id="party" cellpadding="5" width="100%">\
 			<colgroup></colgroup>\
 			<tr id="label_row">\
 				<td class="label landoff">&nbsp;</td>\
@@ -77,12 +77,13 @@ var ButtonContainer = $('#button_container');
     // Add buttons to container
     ButtonContainer.append('<div id="btn_opts" class="button action">Options</div>');
     ButtonContainer.append('<div id="btn_help" class="button action">Help</div>');
-    ButtonContainer.append('<div id="btn_open_close" class="button action">Door</div>');
+    ButtonContainer.append('<div id="btn_open_close" class="button action">Open/close door</div>');
     ButtonContainer.append('<div id="btn_pickup" class="button action">Pick up</div>');
+    ButtonContainer.append('<div id="btn_drop" class="button action">Drop</div>');
     ButtonContainer.append('<div id="weaponset" class="button"></div>');
     ButtonContainer.append('<div id="spellset" class="button"></div>');
     ButtonContainer.append('<div id="itemset" class="button"></div>');
-    ButtonContainer.append('<div id="btn_end_turn" class="button action">End Turn</div>');
+    ButtonContainer.append('<div id="btn_end_turn" class="button action">End turn</div>');
     ButtonContainer.append('<div id="btn_save" class="button action">&#946;</div>');
     ButtonContainer.append('<div id="monsters_moving" class="button" style="display:none;"></div>');
     
@@ -90,30 +91,37 @@ var btnOpts = $('#btn_opts');
 var btnHelp = $('#btn_help');
 var btnSave = $('#btn_save');
 var btnOpenClose = $('#btn_open_close');
+
 var btnPickup = $('#btn_pickup');
+    btnPickup.append('<ul id="menu_select_pickup" class="menu"></ul>');
+var menuSelectPickup = $('#menu_select_pickup');
+
+var btnDrop = $('#btn_drop');
+    btnDrop.append('<ul id="menu_select_drop" class="menu"></ul>');
+var menuSelectDrop = $('#menu_select_drop');
 
 var btnCloseHelp = $('#btn_close_help');
 
 var WeaponSet = $('#weaponset')
     WeaponSet.append('<div id="btn_weapon" class="button action">Weapon</div>');
-    WeaponSet.append('<div id="btn_select_weapon" class="button action">Select Weapon</div>');
-    WeaponSet.append('<ul id="menu_select_weapon"></ul>');
+    WeaponSet.append('<div id="btn_select_weapon" class="button action">Select weapon</div>');
+    WeaponSet.append('<ul id="menu_select_weapon" class="menu"></ul>');
 var btnWeapon = $('#btn_weapon');
 var btnSelectWeapon = $('#btn_select_weapon');
 var menuSelectWeapon = $('#menu_select_weapon');
 
 var SpellSet = $('#spellset')
     SpellSet.append('<div id="btn_spell" class="button action">Spell</div>');
-    SpellSet.append('<div id="btn_select_spell" class="button action">Select Spell</div>');
-    SpellSet.append('<ul id="menu_select_spell"></ul>');
+    SpellSet.append('<div id="btn_select_spell" class="button action">Select spell</div>');
+    SpellSet.append('<ul id="menu_select_spell" class="menu"></ul>');
 var btnSpell = $('#btn_spell');
 var btnSelectSpell = $('#btn_select_spell');
 var menuSelectSpell = $('#menu_select_spell');
 
 var ItemSet = $('#itemset')
     ItemSet.append('<div id="btn_item" class="button action">Items</div>');
-    ItemSet.append('<div id="btn_select_item" class="button action">Select Item</div>');
-    ItemSet.append('<ul id="menu_select_item"></ul>');
+    ItemSet.append('<div id="btn_select_item" class="button action">Select item</div>');
+    ItemSet.append('<ul id="menu_select_item" class="menu"></ul>');
 var btnItem = $('#btn_item');
 var btnSelectItem = $('#btn_select_item');
 var menuSelectItem = $('#menu_select_item');

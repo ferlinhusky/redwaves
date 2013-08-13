@@ -296,6 +296,7 @@ h3{
 	border: 1px solid #FFF;
 	overflow: hidden;
 	padding: 3px;
+	text-align: center;
 }
 #bottom_cell {}
 
@@ -376,9 +377,7 @@ h3{
 }
 
 /* Menus */
-#menu_select_weapon,
-#menu_select_spell,
-#menu_select_item {
+.menu {
     position: absolute;
 	top: -1000px;
     padding: 5px;
@@ -612,7 +611,18 @@ h3{
 .m_grid td.lit .p:before { background: URL('../images/sq_fade_sm.png') no-repeat; }
 
 /* Items */
-.m_grid td.lit .p.tron:before { content: '*t*' !important; background-color: blue; color: #000; }
+.m_grid td.lit .p.item:before {
+    content: '\00F6' !important; /* &#246; */
+    background-color: #fff;
+    color: blue;
+    
+}
+.m_grid td.lit .p.weapon:before {
+    content: '\2021' !important; /* &#8225; */
+    background-color: #fff;
+    color: brown;
+}
+
     .m_grid.dogvision td.lit .p.item:before { background-color: #707070; color: #000; }
 
 /* Player */
@@ -746,7 +756,7 @@ h3{
 		height: 55px;
 		font-size: .9em;
 	}
-    #party { width: auto; }
+    #party { /* width: auto; */ }
     #party td { font-size: .9em; }
     #party .roff, #party .landoff { display: table-cell; }
     #monsters_moving {

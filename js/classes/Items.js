@@ -8,28 +8,61 @@ var Item = Class.extend({
 		this.material = material;
 		this.refID = refID;
 	},
-	pickup: function(curr){
-		//getMapSq(World.activePlayer.coords).effect("transfer", { to: $('#btn_item') }, 1000);
-		
-		// Remove item from current square
-		Squares[curr].contains = false;
-		Squares[curr].containsA = "";
-		
-		current = Squares[curr].onMap;
-		findAndRemove(current, '.p', 'item ' + this.type);
-		
-		// Add to inventory
-		Statuss.update('<b>' + World.activePlayer.name + ' picks up ' + this.name + '!</b>');
+	pickup: function(curr){		
 		// Unbuild the item menu
-		unbuildItemMenu();
-		// Push to inventory
-		World.activePlayer.inven.push(this);
+		unbuildAllMenus();
+		
+		// Push to inventory, if possible
+		var isplaced = false;
+		switch (this.ofType) {
+			case "weapon"	:
+				for (var i=0; i<World.activePlayer.wields.length; i++) {
+					if (World.activePlayer.wields[i] == "") {
+						World.activePlayer.wields[i] = this;
+						isplaced = true;
+						break;
+					}
+				}
+				break;
+			case "armor"	: World.activePlayer.wears.push(this); isplaced = true; break; /* Need armor menu */
+			default			: World.activePlayer.inven.push(this); isplaced = true; break;
+		}
+
 		// (Re)build the item menu
-		buildItemMenu();
+		buildAllMenus();
+		
+		// If item is placed
+		if (isplaced == true) {
+			// Remove item from current square
+			Squares[curr].containsA.pop();
+			
+			current = Squares[curr].onMap;
+			findAndRemove(current, '.p', 'item ' + this.ofType);
+			for (var i=0; i<Squares[curr].containsA.length; i++) {
+				findAndAdd(current, '.p', 'item ' + Squares[curr].containsA[i].ofType);
+			}
+			
+			// Add to inventory
+			Statuss.update('<b>' + World.activePlayer.name + ' picks up ' + this.name + '!</b>');
+			
+			if (Squares[curr].containsA.length == 0) {
+				Squares[curr].contains = false;
+				btnPickup.button('disable');
+			}	
+		} else {
+			Input.M_Dialog(
+				"standard",
+				"<p>You can't carry any more "+this.ofType+"s.</p>",
+				"All full up",
+				false,
+				200,
+				300);
+		}
 	},
 	drop: function(curr){
 		Squares[curr].contains = true;
-		Squares[curr].containsA = this;
+		this.droporder = Squares[curr].containsA.length;
+		Squares[curr].containsA.push(this);
 		
 		// Set item position
 		var current = Squares[curr].onMap;
@@ -38,7 +71,7 @@ var Item = Class.extend({
 		this.currentSquare = getSquare(this.coords).id;
 		
 		// Add item to current square
-		findAndAdd(current, '.p', 'item ' + this.type + ' ' + this.ID);
+		findAndAdd(current, '.p', 'item ' + this.ofType);
 	}
 });
 

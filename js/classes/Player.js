@@ -172,7 +172,7 @@ var Player = Character.extend({
 					centerOn(this);
 					
 					// Check for items
-					if(square.containsA.is == "item"){
+					if(square.containsA.length > 0){
 						btnPickup.button('enable');
 					} else {
 						btnPickup.button('disable');
