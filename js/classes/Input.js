@@ -321,10 +321,51 @@ var Input = function(){
 	 */
 		this.pickupOn = false;
 		this.pickupMenu = false;
+		
+		this.showPickupMenu = function(){
+			var square = getSquare(World.activePlayer.coords);
+			var items = square.containsA;
+			
+			menuSelectPickup.empty();
+			
+			for(var i=0; i<items.length; i++){
+				menuSelectPickup.append('<li><a href="javascript:void(0);" onclick="Input.setItem('+i+');">'+items[i].name);
+			}
+			
+			menuSelectPickup.menu();
+			
+			var offH = menuSelectPickup.outerHeight();
+			console.log(offH);
+			menuSelectPickup
+				.css({
+				   top: btnPickup.position().top - offH,
+				   left: btnPickup.position().left,
+				   display: 'block',
+				   width: '100px'
+				});
+			this.pickupMenu = true;
+		};
+		
+		this.hidePickupMenu = function(){
+			menuSelectPickup.css({
+				top: '-1000px',
+				display:'none'
+			});
+			this.pickupMenu = false;
+		};
+		
+		this.selectPickup = function(){
+			if(!this.pickupMenu) {
+				this.showPickupMenu();
+			} else {
+				this.hidePickupMenu();
+			}
+		};
+		
 		this.dropOn = false;
 		this.dropMenu = false;
 		
-		this.pickupItem = function(){
+		/*this.pickupItem = function(){
 			var square = getSquare(World.activePlayer.coords);
 			var item = square.containsA[square.containsA.length-1];
 			item.pickup(square.id);
@@ -337,7 +378,7 @@ var Input = function(){
 		
 		this.dropItem = function(){
 				return true;
-		}
+		}*/
 
 	/*
 		Weapon handling
@@ -908,7 +949,7 @@ var Input = function(){
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();}).tooltip();
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();}).tooltip();
-		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.pickupItem();}).tooltip();
+		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.selectPickup();}).tooltip();
 		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.dropItem();}).tooltip();
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}).tooltip(); // disable the button immediately or it takes too long
 	
