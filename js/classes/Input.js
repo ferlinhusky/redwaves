@@ -329,15 +329,13 @@ var Input = function(){
 			menuSelectPickup.empty();
 			
 			for(var i=0; i<items.length; i++){
-				menuSelectPickup.append('<li><a href="javascript:void(0);" onclick="Input.setItem('+i+');">'+items[i].name);
+				menuSelectPickup.append('<li><a href="javascript:void(0);" onclick="Input.pickupItem('+i+');">'+items[i].name);
 			}
 			
 			menuSelectPickup.menu();
 			
 			var offH = menuSelectPickup.outerHeight();
-			console.log(offH);
-			menuSelectPickup
-				.css({
+			menuSelectPickup.css({
 				   top: btnPickup.position().top - offH,
 				   left: btnPickup.position().left,
 				   display: 'block',
@@ -362,10 +360,7 @@ var Input = function(){
 			}
 		};
 		
-		this.dropOn = false;
-		this.dropMenu = false;
-		
-		/*this.pickupItem = function(){
+		this.pickupItem = function(){
 			var square = getSquare(World.activePlayer.coords);
 			var item = square.containsA[square.containsA.length-1];
 			item.pickup(square.id);
@@ -376,9 +371,12 @@ var Input = function(){
 			}
 		}
 		
+		this.dropOn = false;
+		this.dropMenu = false;
+		
 		this.dropItem = function(){
 				return true;
-		}*/
+		}
 
 	/*
 		Weapon handling
