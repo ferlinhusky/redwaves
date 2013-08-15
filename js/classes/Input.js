@@ -174,9 +174,10 @@ var Input = function(){
 		// Check here for action points available!!!
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
-			if(Input.spellOn == true){
+			var remaining_moves = this.movement - this.currMove;
+			if(Input.spellOn == true && remaining_moves >= 2){
 				World.activePlayer.readySpell.cast(sobj);
-			} else if (Input.weaponOn == true){
+			} else if (Input.weaponOn == true && remaining_moves >= 2){
 				var battle = new Battle(World.activePlayer, sobj.occupiedBy);
 				World.activePlayer.handleactioncost("ranged");
 			}
@@ -469,6 +470,11 @@ var Input = function(){
 			var zitem = World.activePlayer.wields[s];
 			btnWeapon.button('option', 'label', zitem.name);
 			World.activePlayer.readyWeapon = zitem;
+			if(World.activePlayer.readyWeapon.supclass != "firearm") {
+				$('.lit, .unlit').removeClass('range'); // remove all ranges
+				btnWeapon.removeClass('blink');
+				Input.weaponOn = false;
+			}
 			this.hideWeaponMenu();
 		};
 

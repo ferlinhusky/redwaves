@@ -181,21 +181,6 @@ var Player = Character.extend({
 
 				// Track all action costs here
 				MO_set(this, acost);
-				
-				// Check AP
-				if(remaining_move < 2){
-					Input.spellOn = false;
-					btnSpell.removeClass('blink')
-						.button('disable');
-					btnSelectSpell.button('disable');
-					$('.lit, .unlit').removeClass(allranges);
-					
-					Input.weaponOn = false;
-					btnWeapon.removeClass('blink')
-						.button('disable');
-					btnSelectWeapon.button('disable');
-					$('.lit, .unlit').removeClass(allranges);
-				}
 			} else if (square.occupied && this.movement - this.currMove >= 2){
 				if (square.occupiedBy.ofType == "monster"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
@@ -259,46 +244,19 @@ var Player = Character.extend({
 	},
 	endturnUI: function(){
 		btnEndTurn.addClass('blink');
-		btnSpell.removeClass('blink')
+		/*btnSpell.removeClass('blink')
 			.button('disable');
 		btnSelectSpell.button('disable');
 		btnWeapon.removeClass('blink')
 			.button('disable');
-		btnSelectWeapon.button('disable');
+		btnSelectWeapon.button('disable');*/
 	},
         handleactioncost: function(type){
 		switch(type){
-			case "spell": 	this.move(false, 2);
-					var remaining_move = this.movement - this.currMove;
-					if(remaining_move < 2){
-						Input.spellOn = false;
-						btnSpell.removeClass('blink')
-							.button('disable');
-						btnSelectSpell.button('disable');
-						$('.lit, .unlit').removeClass(allranges); 
-					}
-					break;
-			case "ranged": 	this.move(false, 2);
-					var remaining_move = this.movement - this.currMove;
-					if(remaining_move < 2){
-						Input.weaponOn = false;
-						btnWeapon.removeClass('blink')
-							.button('disable');
-						btnSelectWeapon.button('disable');
-						$('.lit, .unlit').removeClass(allranges); 
-					}
-					break;
-			case "weapon":	this.move(false, 2);
-					var remaining_move = this.movement - this.currMove;
-					if(remaining_move < 2){
-						Input.weaponOn = false;
-						btnWeapon.removeClass('blink')
-							.button('disable');
-						btnSelectWeapon.button('disable');
-						$('.lit, .unlit').removeClass(allranges); 
-					}
-					break;
-			default:	break;
+			case "spell": 	this.move(false, 2); break;
+			case "ranged": 	this.move(false, 2); break;
+			case "weapon":	this.move(false, 2); break;
+			default: break;
 		}
         }
 });
