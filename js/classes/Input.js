@@ -326,12 +326,17 @@ var Input = function(){
 			var square = getSquare(World.activePlayer.coords);
 			var items = square.containsA;
 			
+			// Reset pickup menu
 			menuSelectPickup.empty();
+			menuSelectPickup.menu();
+			menuSelectPickup.menu('destroy');
 			
+			// Populate pickup menu
 			for(var i=0; i<items.length; i++){
 				menuSelectPickup.append('<li><a href="javascript:void(0);" onclick="Input.pickupItem('+i+');">'+items[i].name);
 			}
 			
+			// Create pickup menu
 			menuSelectPickup.menu();
 			
 			var offH = menuSelectPickup.outerHeight();
@@ -360,10 +365,10 @@ var Input = function(){
 			}
 		};
 		
-		this.pickupItem = function(){
+		this.pickupItem = function(id){
 			var square = getSquare(World.activePlayer.coords);
-			var item = square.containsA[square.containsA.length-1];
-			item.pickup(square.id);
+			var item = square.containsA[id];
+			item.pickup(square.id, id);
 			if(square.containsA.length > 0){
 				btnPickup.button('enable');
 			} else {
@@ -373,10 +378,65 @@ var Input = function(){
 		
 		this.dropOn = false;
 		this.dropMenu = false;
+		this.dropList = [];
 		
-		this.dropItem = function(){
-				return true;
-		}
+		this.showDropMenu = function(){
+			for(var i=0; i<World.activePlayer.wields.length; i++){
+				if(World.activePlayer.wields[i] != "" && World.activePlayer.wields[i] != World.activePlayer.readyWeapon){
+					Input.dropList.push(World.activePlayer.wields[i]);
+				}
+			}
+			
+			for(var i=0; i<World.activePlayer.inven.length; i++){
+				Input.dropList.push(World.activePlayer.inven[i]);
+			}
+			
+			// Reset drop menu
+			menuSelectDrop.empty();
+			menuSelectDrop.menu();
+			menuSelectDrop.menu('destroy');
+			
+			// Populate drop menu
+			for(var i=0; i<Input.dropList.length; i++){
+				menuSelectDrop.append('<li><a href="javascript:void(0);" onclick="Input.dropItem('+i+');">'+Input.dropList[i].name);
+			}
+			
+			// Create drop menu
+			if(Input.dropList.length > 0){
+				menuSelectDrop.menu();
+				
+				var offH = menuSelectDrop.outerHeight();
+				menuSelectDrop.css({
+					   top: btnDrop.position().top - offH,
+					   left: btnDrop.position().left,
+					   display: 'block',
+					   width: '100px'
+					});
+				this.dropMenu = true;
+			}
+		};
+		
+		this.hideDropMenu = function(){
+			menuSelectDrop.css({
+				top: '-1000px',
+				display:'none'
+			});
+			this.dropMenu = false;
+			this.dropList = [];
+		};
+		
+		this.selectDrop = function(){
+			if(!this.dropMenu) {
+				this.showDropMenu();
+			} else {
+				this.hideDropMenu();
+			}
+		};
+		
+		this.dropItem = function(id){
+			var square = getSquare(World.activePlayer.coords);
+			Input.dropList[id].drop(square.id);
+		};
 
 	/*
 		Weapon handling
@@ -941,14 +1001,14 @@ var Input = function(){
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
 		btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
-		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();}).tooltip;
+		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnWeapon.bind('click touchend', function(e){e.preventDefault(); Input.handleWeapon();});
-		btnSelectWeapon.bind('click touchend', function(e){e.preventDefault(); Input.selectWeapon();}).tooltip();
+		btnSelectWeapon.bind('click touchend', function(e){e.preventDefault(); Input.selectWeapon();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
-		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();}).tooltip();
+		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();}).tooltip();
-		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.selectPickup();}).tooltip();
-		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.dropItem();}).tooltip();
+		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.selectPickup();});
+		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.selectDrop();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}).tooltip(); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
@@ -997,6 +1057,16 @@ var Input = function(){
 	/*
 		Window
 	*/
+		// Hide menus if user clicks outside of them
+		$('#map_container_cell').click(function(){
+			// Hide all menus
+			if (Input.itemMenu) Input.selectItem();
+			if (Input.weaponMenu) Input.selectWeapon();
+			if (Input.spellMenu) Input.selectSpell();
+			if (Input.pickupMenu) Input.selectPickup();
+			if (Input.dropMenu) Input.selectDrop();
+		});
+		
 		// Do window bindings
 		$(window).bind('touchmove', function(e) { 
 			// Tell Safari not to move the window. 
@@ -1058,7 +1128,7 @@ var Input = function(){
 				}
 				if(Input.pickupMenu == true){
 					var offH = menuSelectPickup.outerHeight();
-					 menuSelectPick.css({
+					 menuSelectPickup.css({
 					   top: btnPickup.position().top - offH,
 					   left: btnPickup.position().left
 					});

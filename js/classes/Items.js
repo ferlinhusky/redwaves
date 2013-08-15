@@ -8,8 +8,8 @@ var Item = Class.extend({
 		this.material = material;
 		this.refID = refID;
 	},
-	pickup: function(curr){		
-		// Unbuild the item menu
+	pickup: function(curr, itemid){		
+		// Unbuild menus
 		unbuildAllMenus();
 		
 		// Push to inventory, if possible
@@ -28,27 +28,33 @@ var Item = Class.extend({
 			default			: World.activePlayer.inven.push(this); isplaced = true; break;
 		}
 
-		// (Re)build the item menu
+		// (Re)build menus
 		buildAllMenus();
 		
 		// If item is placed
 		if (isplaced == true) {
-			// Remove item from current square
-			Squares[curr].containsA.pop();
+			var current = Squares[curr].onMap;
 			
-			current = Squares[curr].onMap;
+			// Remove item from current square, Obj and UI
+			Squares[curr].containsA.splice(itemid, 1);
 			findAndRemove(current, '.p', 'item ' + this.ofType);
+			
+			// Reset square css in case duplicate item types
 			for (var i=0; i<Squares[curr].containsA.length; i++) {
 				findAndAdd(current, '.p', 'item ' + Squares[curr].containsA[i].ofType);
 			}
 			
-			// Add to inventory
+			// Update status
 			Statuss.update('<b>' + World.activePlayer.name + ' picks up ' + this.name + '!</b>');
 			
+			// Check if all picked up from square
 			if (Squares[curr].containsA.length == 0) {
 				Squares[curr].contains = false;
 				btnPickup.button('disable');
-			}	
+			}
+			
+			// Reset pickup menu
+			Input.selectPickup();
 		} else {
 			Input.M_Dialog(
 				"standard",
@@ -60,8 +66,11 @@ var Item = Class.extend({
 		}
 	},
 	drop: function(curr){
+		// Unbuild menus
+		unbuildAllMenus();
+		
+		// Update square
 		Squares[curr].contains = true;
-		this.droporder = Squares[curr].containsA.length;
 		Squares[curr].containsA.push(this);
 		
 		// Set item position
@@ -72,6 +81,39 @@ var Item = Class.extend({
 		
 		// Add item to current square
 		findAndAdd(current, '.p', 'item ' + this.ofType);
+		
+		// Remove from player inventory
+		switch(this.ofType){
+			case "weapon"	:
+				for (var i=0; i<World.activePlayer.wields.length; i++) {
+					if (World.activePlayer.wields[i] == this) {
+						World.activePlayer.wields[i] = "";
+						break;
+					}
+				}
+				break;
+			case "armor"	: break;
+			default			:
+				for (var i=0; i<World.activePlayer.inven.length; i++) {
+					if (World.activePlayer.inven[i] == this) {
+						World.activePlayer.inven.splice(i, 1);
+						break;
+					}
+				}
+				break;
+		}
+		
+		// Update status // Check why drop is firing automatically
+		Statuss.update('<b>' + World.activePlayer.name + ' drops ' + this.name + '!</b>');
+		
+		// Reset drop menu
+		Input.dropList = [];
+		Input.selectDrop();
+		
+		// Check here if anything left to drop; enable disable button...and re-enable on pickup
+		
+		// Rebuild all menus
+		buildAllMenus();
 	}
 });
 

@@ -280,7 +280,7 @@ var World = function(){
 				MO_reset(this.activePlayer);
 				this.activePlayer.wait = false;
 				
-				// Activate "end turn" button
+				// Activate buttons
 				btnEndTurn.button('enable');
 				
 				// Check for doors, items

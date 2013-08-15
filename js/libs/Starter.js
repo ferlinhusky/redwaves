@@ -93,11 +93,11 @@ var btnSave = $('#btn_save');
 var btnOpenClose = $('#btn_open_close');
 
 var btnPickup = $('#btn_pickup');
-    btnPickup.append('<ul id="menu_select_pickup" class="menu"></ul>');
+    $('body').append('<ul id="menu_select_pickup" class="menu"></ul>');
 var menuSelectPickup = $('#menu_select_pickup');
 
 var btnDrop = $('#btn_drop');
-    btnDrop.append('<ul id="menu_select_drop" class="menu"></ul>');
+    $('body').append('<ul id="menu_select_drop" class="menu"></ul>');
 var menuSelectDrop = $('#menu_select_drop');
 
 var btnCloseHelp = $('#btn_close_help');

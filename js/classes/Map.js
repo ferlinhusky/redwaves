@@ -60,7 +60,17 @@ var Map = function(){
 					var spliton = key.lastIndexOf("_");
 					key_fmt = key.substr(0, spliton);
 					item = ( new Function('var i = new ' + key_fmt + '(); return i;') )();
-					item.drop(getSquare(value).id);
+					
+					// Update square
+					var curr = getSquare(value).id;
+					Squares[curr].contains = true;
+					Squares[curr].containsA.push(item);
+					
+					// Get item position
+					var current = Squares[curr].onMap;
+					
+					// Add item to current square
+					findAndAdd(current, '.p', 'item ' + item.ofType);
 				});
 				
 				// Center map

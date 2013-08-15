@@ -516,7 +516,11 @@ var buildWeaponMenu = function(){
 			menuSelectWeapon.append('<li><a href="javascript:void(0);" onclick="Input.setWeapon('+i+');">'+World.activePlayer.wields[i].name);
 		}
 	}
-	WeaponSet.find('.button').button('enable');
+	
+	var remaining_move = World.activePlayer.movement - World.activePlayer.currMove;
+	if(remaining_move < 2){
+		WeaponSet.find('.button').button('disable');
+	} else { WeaponSet.find('.button').button('enable');
 	menuSelectWeapon.menu();
 	
 	if (isready >= 0) {
