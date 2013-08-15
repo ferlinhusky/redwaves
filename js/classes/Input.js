@@ -171,6 +171,7 @@ var Input = function(){
 	*/
 		// Check for ranged target > tsq: target square
 		// If found, cast spell or attack ranged....
+		// Check here for action points available!!!
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
 			if(Input.spellOn == true){

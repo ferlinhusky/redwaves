@@ -517,10 +517,8 @@ var buildWeaponMenu = function(){
 		}
 	}
 	
-	var remaining_move = World.activePlayer.movement - World.activePlayer.currMove;
-	if(remaining_move < 2){
-		WeaponSet.find('.button').button('disable');
-	} else { WeaponSet.find('.button').button('enable');
+	WeaponSet.find('.button').button('enable');
+	
 	menuSelectWeapon.menu();
 	
 	if (isready >= 0) {
