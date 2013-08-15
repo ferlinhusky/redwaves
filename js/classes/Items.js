@@ -53,8 +53,9 @@ var Item = Class.extend({
 				btnPickup.button('disable');
 			}
 			
-			// Reset pickup menu
+			// Reset pickup menu, enable pickup
 			Input.selectPickup();
+			btnDrop.button('enable');
 		} else {
 			Input.M_Dialog(
 				"standard",
@@ -85,11 +86,25 @@ var Item = Class.extend({
 		// Remove from player inventory
 		switch(this.ofType){
 			case "weapon"	:
+				// Remove dropped weapon from wields[]
 				for (var i=0; i<World.activePlayer.wields.length; i++) {
 					if (World.activePlayer.wields[i] == this) {
 						World.activePlayer.wields[i] = "";
 						break;
 					}
+				}
+				// If readyWeapon was dropped and there are any other weapons in wields[], set next as readyWeapon
+				if(this == World.activePlayer.readyWeapon){
+					for (var i=0; i<World.activePlayer.wields.length; i++) {
+						if (World.activePlayer.wields[i] != "") {
+							World.activePlayer.readyWeapon = World.activePlayer.wields[i];
+						}
+					}
+				}
+				// If there are no weapons whatsoever, wield hands
+				if (World.activePlayer.wields.join('')=="") {
+					World.activePlayer.readyWeapon = new hands;
+					World.activePlayer.updateWpn();
 				}
 				break;
 			case "armor"	: break;
@@ -106,11 +121,15 @@ var Item = Class.extend({
 		// Update status // Check why drop is firing automatically
 		Statuss.update('<b>' + World.activePlayer.name + ' drops ' + this.name + '!</b>');
 		
-		// Reset drop menu
+		// Reset drop menu, enable pickup
 		Input.dropList = [];
 		Input.selectDrop();
+		btnPickup.button('enable');
 		
 		// Check here if anything left to drop; enable disable button...and re-enable on pickup
+		if (World.activePlayer.wields.join('') == "" && /*World.activePlayer.wears.join() == "" &&*/ World.activePlayer.inven.length == 0) {
+			btnDrop.button('disable');
+		}
 		
 		// Rebuild all menus
 		buildAllMenus();

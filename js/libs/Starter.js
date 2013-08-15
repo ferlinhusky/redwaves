@@ -18,10 +18,10 @@ var partyTable = '<table id="party" cellpadding="5" width="100%">\
 				<td class="label landoff">&nbsp;</td>\
 				<td class="label landoff">HP</td>\
 				<td class="label landoff">Act</td>\
-				<td class="label WPN roff">Wpn</td>\
+				<td class="label WPN roff">Wielding</td>\
 				<td class="label landoff">Dmg</td>\
 				<td class="label landoff">AC</td>\
-				<td class="label WEARS roff">Wears</td>\
+				<td class="label WEARS roff">Wearing</td>\
                 <td class="label STR roff">Str</td>\
                 <td class="label DEX roff">Dex</td>\
                 <td class="label CON roff">Con</td>\

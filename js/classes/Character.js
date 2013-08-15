@@ -159,12 +159,12 @@ var Character = Class.extend({
 		this.spells = []; // array // [ { name : f(x) }, ... ]
 		
 		// Set ready weapon, start w/hands then face then feet
-		if(this.wields[1] != ""){
+		if(this.wields[0] != ""){
+			this.readyWeapon = this.wields[0];
+		} else if(this.wields[1] != ""){
 			this.readyWeapon = this.wields[1];
 		} else if(this.wields[2] != ""){
 			this.readyWeapon = this.wields[2];
-		} else if(this.wields[0] != ""){
-			this.readyWeapon = this.wields[0];
 		} else if(this.wields[3] != ""){
 			this.readyWeapon = this.wields[3];
 		}
@@ -201,7 +201,7 @@ var Character = Class.extend({
 	},
 	checkwielding: function(){
 		if (this.wields.join("").length == 0) {
-			this.wields[1] = new hands;
+			this.wields[0] = new hands;
 		}
 	},
 	getAC: function(){

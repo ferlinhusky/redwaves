@@ -49,19 +49,19 @@ var World = function(){
 		$('#party tr.player_row').remove();
 		$('#party').css('display', 'table');
 		for (var i=0; i<Party.members.length; i++) {
-                        // Update after implementing XP after level
-                        // will need to recalc stats etc.
+			// Update after implementing XP after level
+			// will need to recalc stats etc.
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;
 			Party.members[i].readyItem = null;
-                        //Party.members[i].readySpell = null;
-                        //Party.members[i].readyWeapon = null;
+			//Party.members[i].readySpell = null;
+			//Party.members[i].readyWeapon = null;
 			Party.members[i].dead = false;
 			Party.members[i].paralyzed = 0;
 			Party.members[i].slow = false;
 			Party.members[i].medication = [];
 			Players[i] = Party.members[i];
-                        Players[i].updatetable(); // update ui
+            Players[i].updatetable(); // update ui
 		}
 		
 		// Clear out the UI
@@ -105,8 +105,8 @@ var World = function(){
                 // Passcode addon should show next adventure, and not return to home screen
                 Input.M_Dialog("standard", dialogcontent, this.Level.title, {
                     "Play on": function(){
-                            //World.playnext();
-							Input.M_Dialog('equip');
+                            World.playnext();
+							//Input.M_Dialog('equip');
                     },
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');

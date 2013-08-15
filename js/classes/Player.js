@@ -11,6 +11,10 @@ var Player = Character.extend({
 		
 		this.updatetable();
 	},
+	updateWpn: function(){
+		$('#party tr.'+this.type+' .WPN').text(this.readyWeapon.name);
+		$('#party tr.'+this.type+' .ATK').text(this.readyWeapon.dmg);	
+	},
 	updatetable: function(){
 		// Get latest AC
 		this.getAC();
@@ -36,8 +40,9 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="member landoff">'+this.name+'</td>');
 		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="MO">'+this.movement+'</span> <span class="total">('+this.movement+')</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WPN">'+wielding.toString()+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="ATK">'+ wieldingdmg +'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WPN"></span></td>');
+		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="ATK"></span></td>');	
+			this.updateWpn();
 		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="AC">'+this.ac+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WEARS">'+wearing.toString()+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat roff"><span class="STR">'+this.STR.v+'</span></td>');
@@ -267,7 +272,7 @@ var Hero = Player.extend({
 		"Hero",
 		"hero",
 		[new coifandkettle, new scale,"","","",""],
-		["", new shortsword,"",""],
+		[new shortsword,"","",""],
 		[new phyton],
 		// dlb dmg att/half dmg def against big boss (added)
 		[new heroism],
@@ -283,7 +288,7 @@ var Fighter = Player.extend({
 		"Fighter",
 		"fighter",
 		[new barbute, new chainmail,"","","",""],
-		["", new longsword,new crossbow,""],
+		[new longsword,new crossbow,"",""],
 		[new phyton],
 		// if 2HP or less, 50% chance of getting back 1HP (added)
 		[new tenacity, new marksmanship],
@@ -299,7 +304,7 @@ var Knight = Player.extend({
 		"Knight",
 		"knight",
 		[new closehelmet, new plate,"","","",""],
-		["", new broadsword,"",""],
+		[new broadsword,"","",""],
 		[new glory, new maddog],
 		// +n sword damage (added)
 		[new swordsmanship],
@@ -315,7 +320,7 @@ var Wizard = Player.extend({
 		"Wizard",
 		"wizard",
 		[new leatherhelm, new robe,"","","",""],
-		["", new woodenstaff,"",""],
+		[new woodenstaff,"","",""],
 		[],
 		// half spell dmg (added)
 		[new necromancy],
@@ -338,7 +343,7 @@ var Wolfman = Player.extend({
 		"Wolfman",
 		"wolfman",
 		["",new hide,"","","",""],
-		[new fangs, new claws, "", ""],
+		[new claws, new fangs, "", ""],
 		[new tron],
 		// see hidden characters up to 5 sq away (added)
 		[new keenness],
@@ -354,7 +359,7 @@ var Harpy = Player.extend({
 		"Harpy",
 		"harpy",
 		["","","","","",""],
-		[new fangs, new claws, "", ""],
+		[new claws, new fangs, "", ""],
 		[],
 		// chance of paralyzing enemy for n turns (added)
 		[new paralyze, new aquatic],
@@ -370,7 +375,7 @@ var Thief = Player.extend({
 		"Thief",
 		"thief",
 		[new leatherhelm, new leathertunic,"","","",""],
-		["", new dagger, new dagger,""],
+		[new dagger, new dagger,"",""],
 		[new maddog],
 		// drops from monster target list when out of sight (added)
 		[new stealth],
@@ -386,7 +391,7 @@ var Youngpriest = Player.extend({
 		"Young Priest",
 		"youngpriest",
 		["", new robe,"","","",""],
-		["", new maul,"",""],
+		[new maul,"","",""],
 		[],
 		// half spell dmg (added)
 		[new tenacity],
@@ -404,7 +409,7 @@ var Oldpriest = Player.extend({
 		"Old Priest",
 		"oldpriest",
 		["", new robe,"","","",""],
-		["", new mace,"",""],
+		[new mace,"","",""],
 		[],
 		// half spell dmg (added)
 		[new necromancy],

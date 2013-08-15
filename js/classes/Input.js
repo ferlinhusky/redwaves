@@ -384,7 +384,7 @@ var Input = function(){
 		
 		this.showDropMenu = function(){
 			for(var i=0; i<World.activePlayer.wields.length; i++){
-				if(World.activePlayer.wields[i] != "" && World.activePlayer.wields[i] != World.activePlayer.readyWeapon){
+				if(World.activePlayer.wields[i] != ""){// && World.activePlayer.wields[i] != World.activePlayer.readyWeapon){
 					Input.dropList.push(World.activePlayer.wields[i]);
 				}
 			}
@@ -475,11 +475,13 @@ var Input = function(){
 				btnWeapon.removeClass('blink');
 				Input.weaponOn = false;
 			}
+			World.activePlayer.updateWpn();
 			this.hideWeaponMenu();
 		};
 
 		this.selectWeapon = function(){
-			if(!this.weaponMenu) {
+			// If the menu is closed and there are weapons to show, show menu
+			if(!this.weaponMenu && World.activePlayer.wields.join('')!="") {
 				this.showWeaponMenu();
 			} else {
 				this.hideWeaponMenu();
@@ -792,57 +794,57 @@ var Input = function(){
 				//inventory
 				player.inven = [];
 				for (var i=0; i<pdata.inventory.length; i++) {
-						var tmp;
-						if (pdata.inventory[i] != 0) {
-										tmp = ( new Function('var p = new ' + InventoryItems[pdata.inventory[i]] + '(); return p;') )();
-										player.inven.push(tmp);
-						}
+					var tmp;
+					if (pdata.inventory[i] != 0) {
+						tmp = ( new Function('var p = new ' + InventoryItems[pdata.inventory[i]] + '(); return p;') )();
+						player.inven.push(tmp);
+					}
 				}
 
 				//weapons
 				player.wields = [];
 				for (var i=0; i<pdata.weapons.length; i++) {
-						var tmp;
-						if (pdata.weapons[i] != 0) {
-										tmp = ( new Function('var p = new ' + Weapons[pdata.weapons[i]] + '(); return p;') )();
-										player.wields.push(tmp);
-						} else { player.wields.push(""); }
+					var tmp;
+					if (pdata.weapons[i] != 0) {
+						tmp = ( new Function('var p = new ' + Weapons[pdata.weapons[i]] + '(); return p;') )();
+						player.wields.push(tmp);
+					} else { player.wields.push(""); }
 				}
 
 				//armor
 				player.wears = [];
 				for (var i=0; i<pdata.armor.length; i++) {
-						var tmp;
-						if (pdata.armor[i] != 0) {
-										tmp = ( new Function('var p = new ' + Armors[pdata.armor[i]] + '(); return p;') )();
-										player.wears.push(tmp);
-						} else { player.wears.push(""); }
+					var tmp;
+					if (pdata.armor[i] != 0) {
+						tmp = ( new Function('var p = new ' + Armors[pdata.armor[i]] + '(); return p;') )();
+						player.wears.push(tmp);
+					} else { player.wears.push(""); }
 				}
 
 				//skills
 				player.skills = [];
 				for (var i=0; i<pdata.skills.length; i++) {
-						var tmp;
-						if (pdata.skills[i] != 0) {
-										tmp = ( new Function('var p = new ' + Skills[pdata.skills[i]] + '(); return p;') )();
-										player.skills.push(tmp);
-						}
+					var tmp;
+					if (pdata.skills[i] != 0) {
+						tmp = ( new Function('var p = new ' + Skills[pdata.skills[i]] + '(); return p;') )();
+						player.skills.push(tmp);
+					}
 				}
 				
 				// skillnames
 				player.skillnames = [];
 				for (var i=0; i<player.skills.length; i++) {
-						player.skillnames.push(player.skills[i].name);
+					player.skillnames.push(player.skills[i].name);
 				}
 						
 				//spells
 				player.spells = [];
 				for (var i=0; i<pdata.spells.length; i++) {
-						var tmp;
-						if (pdata.spells[i] != 0) {
-										tmp = ( new Function('var p = new ' + Spells[pdata.spells[i]] + '(); return p;') )();
-										player.spells.push(tmp);
-						}
+					var tmp;
+					if (pdata.spells[i] != 0) {
+						tmp = ( new Function('var p = new ' + Spells[pdata.spells[i]] + '(); return p;') )();
+						player.spells.push(tmp);
+					}
 				}
 			}
 					

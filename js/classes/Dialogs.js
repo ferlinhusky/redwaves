@@ -40,7 +40,8 @@ var D_Welcome = {
 			if(Input.passcodeverified)
 			{
 				Input.passcodeverified = false;
-				Input.M_Dialog('equip');
+				//Input.M_Dialog('equip');
+				World.playnext();
 			} else { Loadselectteam(); }
 		}
 	},
