@@ -929,7 +929,7 @@ var Input = function(){
 		});
 				
 		btnWeapon.button({ 
-			icons: {primary:'ui-icon-flag',secondary:''},
+			icons: {primary:'ui-icon-star',secondary:''},
 			disabled: false,
 			text: true
 		}).next().button({
