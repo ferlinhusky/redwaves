@@ -174,12 +174,13 @@ var Input = function(){
 		// Check here for action points available!!!
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
-			var remaining_moves = this.movement - this.currMove;
+                        var p = World.activePlayer;
+			var remaining_moves = p.movement - p.currMove;
 			if(Input.spellOn == true && remaining_moves >= 2){
-				World.activePlayer.readySpell.cast(sobj);
+				p.readySpell.cast(sobj);
 			} else if (Input.weaponOn == true && remaining_moves >= 2){
-				var battle = new Battle(World.activePlayer, sobj.occupiedBy);
-				World.activePlayer.handleactioncost("ranged");
+				var battle = new Battle(p, sobj.occupiedBy);
+				p.handleactioncost("ranged");
 			}
 		};
 		
