@@ -622,6 +622,11 @@ h3{
     background-color: #fff;
     color: brown;
 }
+.m_grid td.lit .p.armor:before {
+    content: '\2207' !important; /* &#8225; */
+    background-color: #fff;
+    color: green;
+}
 
     .m_grid.dogvision td.lit .p.item:before { background-color: #707070; color: #000; }
 

@@ -12,12 +12,11 @@ var Tutorial = function(){
 		"height": 30,
 		"width": 40,
 		"items": {
-		    "tron_1": [30, 7],
-			"maddog_1": [30, 7],
-			"crossbow_1": [30, 7],
-			"crossbow_2": [30, 7],
-			"crossbow_3": [30, 7],
-			"crossbow_4": [30, 7]
+		    "tron_1": [29, 7],
+			"maddog_1": [29, 7],
+			"shortsword_1": [30, 7],
+			"coifandkettle_1": [31, 7],
+			"scale_1": [31, 7]
 		},
 		"monsters": {
 			"Basilisk_1": [15, 9],

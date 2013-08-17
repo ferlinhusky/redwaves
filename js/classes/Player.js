@@ -15,27 +15,27 @@ var Player = Character.extend({
 		$('#party tr.'+this.type+' .WPN').text(this.readyWeapon.name);
 		$('#party tr.'+this.type+' .ATK').text(this.readyWeapon.dmg);	
 	},
-	updatetable: function(){
-		// Get latest AC
-		this.getAC();
-		
-		// Update UI
-		var wielding = [];
-		var wieldingdmg = [];
-		for(var i=0; i<this.wields.length; i++){
-			if(this.wields[i] != ""){
-				wielding.push(this.wields[i].name);
-				wieldingdmg.push(this.wields[i].dmg);
-			}
-		}
-		
+	updateArmor: function(){
 		var wearing = [];
 		for(var i=0; i<this.wears.length; i++){
 			if(this.wears[i] != ""){
 				wearing.push(this.wears[i].name);
 			}
 		}
+		$('#party tr.'+this.type+' .WEARS').text(wearing.join(', '));
 		
+		// Update armor class accordingly
+		this.updateAC();
+	},
+	updateAC: function(){
+		this.getAC();
+		$('#party tr.'+this.type+' .AC').text(this.ac);
+	},
+	updatetable: function(){
+		// Get latest AC
+		this.getAC();
+		
+		// Update UI
 		$('#party').append('<tr class="'+this.type+' player_row">');
 		$('#party tr.'+this.type).append('<td class="member landoff">'+this.name+'</td>');
 		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="HP">'+this.HP+'</span> <span class="total">('+this.HP+')</span></td>');
@@ -44,7 +44,8 @@ var Player = Character.extend({
 		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="ATK"></span></td>');	
 			this.updateWpn();
 		$('#party tr.'+this.type).append('<td class="stat landoff"><span class="AC">'+this.ac+'</span></td>');
-		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WEARS">'+wearing.toString()+'</span></td>');
+		$('#party tr.'+this.type).append('<td class="stat roff"><span class="WEARS"></span></td>');
+			this.updateArmor();
 		$('#party tr.'+this.type).append('<td class="stat roff"><span class="STR">'+this.STR.v+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat roff"><span class="DEX">'+this.DEX.v+'</span></td>');
 		$('#party tr.'+this.type).append('<td class="stat roff"><span class="CON">'+this.CON.v+'</span></td>');
@@ -271,9 +272,9 @@ var Hero = Player.extend({
 	init: function(){ this._super(
 		"Hero",
 		"hero",
-		[new coifandkettle, new scale,"","","",""],
-		[new shortsword,"","",""],
-		[new phyton],
+		["","","","","",""],
+		["","","",""],
+		[],
 		// dlb dmg att/half dmg def against big boss (added)
 		[new heroism],
 		[new STR, new CON, new CHA, new WIS, new DEX, new INT]);

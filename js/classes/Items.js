@@ -8,7 +8,9 @@ var Item = Class.extend({
 		this.material = material;
 		this.refID = refID;
 	},
-	pickup: function(curr, itemid){		
+	pickup: function(curr, itemid){	
+		var action = "picks up";
+			
 		// Unbuild menus
 		unbuildAllMenus();
 		
@@ -24,7 +26,29 @@ var Item = Class.extend({
 					}
 				}
 				break;
-			case "armor"	: World.activePlayer.wears.push(this); isplaced = true; break; /* Need armor menu */
+			case "armor"	: 
+				var drop_armor;
+				switch(this.supclass) {
+					case "helmet":
+						drop_armor = 0;
+						break;
+					case "bodyarmor":
+						drop_armor = 1;
+						break;
+					case "shield":	
+						drop_armor = 2;
+						break;
+					default:	break;
+				}
+				isplaced = true;
+				action = "puts on the";
+				// If wearing armor here, drop it
+				if(World.activePlayer.wears[drop_armor] != ""){
+					World.activePlayer.wears[drop_armor].drop(curr);
+				}
+				World.activePlayer.wears[drop_armor] = this;
+				World.activePlayer.updateArmor();
+				break;
 			default			: World.activePlayer.inven.push(this); isplaced = true; break;
 		}
 
@@ -45,7 +69,7 @@ var Item = Class.extend({
 			}
 			
 			// Update status
-			Statuss.update('<b>' + World.activePlayer.name + ' picks up ' + this.name + '!</b>');
+			Statuss.update('<b>' + World.activePlayer.name + ' ' + action + ' ' + this.name + '!</b>');
 			
 			// Check if all picked up from square
 			if (Squares[curr].containsA.length == 0) {
@@ -107,7 +131,23 @@ var Item = Class.extend({
 					World.activePlayer.updateWpn();
 				}
 				break;
-			case "armor"	: break;
+			case "armor"	:
+				var drop_armor;
+				switch(this.supclass) {
+					case "helmet":
+						drop_armor = 0;
+						break;
+					case "bodyarmor":
+						drop_armor = 1;
+						break;
+					case "shield":	
+						drop_armor = 2;
+						break;
+					default:	break;
+				}
+				World.activePlayer.wears[drop_armor] = "";
+				World.activePlayer.updateArmor();
+				break;
 			default			:
 				for (var i=0; i<World.activePlayer.inven.length; i++) {
 					if (World.activePlayer.inven[i] == this) {

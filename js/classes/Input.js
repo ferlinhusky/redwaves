@@ -209,7 +209,7 @@ var Input = function(){
 				.css({
 				   top: btnSpell.position().top - offH,
 				   left: btnSpell.position().left,
-				   width: SpellSet.width() - 8,
+				   width: '150px',
 				   display: 'block'
 				});
 			this.spellMenu = true;
@@ -346,7 +346,7 @@ var Input = function(){
 				   top: btnPickup.position().top - offH,
 				   left: btnPickup.position().left,
 				   display: 'block',
-				   width: '100px'
+				   width: '150px'
 				});
 			this.pickupMenu = true;
 		};
@@ -384,8 +384,14 @@ var Input = function(){
 		
 		this.showDropMenu = function(){
 			for(var i=0; i<World.activePlayer.wields.length; i++){
-				if(World.activePlayer.wields[i] != ""){// && World.activePlayer.wields[i] != World.activePlayer.readyWeapon){
+				if(World.activePlayer.wields[i] != ""){
 					Input.dropList.push(World.activePlayer.wields[i]);
+				}
+			}
+			
+			for(var i=0; i<World.activePlayer.wears.length; i++){
+				if(World.activePlayer.wears[i] != ""){
+					Input.dropList.push(World.activePlayer.wears[i]);
 				}
 			}
 			
@@ -412,7 +418,7 @@ var Input = function(){
 					   top: btnDrop.position().top - offH,
 					   left: btnDrop.position().left,
 					   display: 'block',
-					   width: '100px'
+					   width: '150px'
 					});
 				this.dropMenu = true;
 			}
@@ -452,7 +458,7 @@ var Input = function(){
 				.css({
 				   top: btnWeapon.position().top - offH,
 				   left: btnWeapon.position().left,
-				   width: WeaponSet.width() - 8,
+				   width: '150px',
 				   display: 'block'
 				});
 			this.weaponMenu = true;
