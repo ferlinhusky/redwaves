@@ -379,9 +379,10 @@ h3{
 /* Menus */
 .menu {
     position: absolute;
-	top: -1000px;
+    top: -1000px;
     padding: 5px;
     display: none;
+    text-align: left;
 }
 
 /* Dialogs */

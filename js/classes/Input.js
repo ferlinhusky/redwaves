@@ -209,8 +209,7 @@ var Input = function(){
 			menuSelectSpell
 				.css({
 				   top: btnSpell.position().top - offH,
-				   left: (btnSelectSpell.position().left + btnSelectSpell.outerWidth()) - 162,
-				   width: '150px',
+				   left: (btnSelectSpell.position().left + btnSelectSpell.outerWidth()) - menuSelectSpell.outerWidth(),
 				   display: 'block'
 				});
 			this.spellMenu = true;
@@ -285,8 +284,7 @@ var Input = function(){
 			menuSelectItem
 				.css({
 				   top: btnItem.position().top - offH,
-                                   left: (btnSelectItem.position().left + btnSelectItem.outerWidth()) - 162,
-				   width: '150px',
+                                   left: (btnSelectItem.position().left + btnSelectItem.outerWidth()) - menuSelectItem.outerWidth(),
 				   display: 'block'
 				});
 			this.itemMenu = true;
@@ -346,8 +344,7 @@ var Input = function(){
 			menuSelectPickup.css({
 				   top: btnPickup.position().top - offH,
                                    left: btnPickup.position().left,
-				   display: 'block',
-				   width: '150px'
+				   display: 'block'
 				});
 			this.pickupMenu = true;
 		};
@@ -418,8 +415,7 @@ var Input = function(){
 				menuSelectDrop.css({
 					   top: btnDrop.position().top - offH,
                                            left: btnDrop.position().left,
-					   display: 'block',
-					   width: '150px'
+					   display: 'block'
 					});
 				this.dropMenu = true;
 			}
@@ -458,8 +454,7 @@ var Input = function(){
 			menuSelectWeapon
 				.css({
 				   top: btnWeapon.position().top - offH,
-				   left: (btnSelectWeapon.position().left + btnSelectWeapon.outerWidth()) - 162,
-				   width: '150px',
+				   left: (btnSelectWeapon.position().left + btnSelectWeapon.outerWidth()) - menuSelectWeapon.outerWidth(),
 				   display: 'block'
 				});
 			this.weaponMenu = true;
@@ -1122,40 +1117,35 @@ var Input = function(){
 					var offH = menuSelectItem.outerHeight();
 					 menuSelectItem.css({
 					   top: btnItem.position().top - offH,
-					   left: (btnSelectItem.position().left + btnSelectItem.outerWidth()) - 162,
-					   width: '150px'
+					   left: (btnSelectItem.position().left + btnSelectItem.outerWidth()) - menuSelectItem.outerWidth()
 					});
 				}
 				if(Input.weaponMenu == true){
 					var offH = menuSelectWeapon.outerHeight();
 					 menuSelectWeapon.css({
 					   top: btnWeapon.position().top - offH,
-					   left: (btnSelectWeapon.position().left + btnSelectWeapon.outerWidth()) - 162,
-					   width: '150px'
+					   left: (btnSelectWeapon.position().left + btnSelectWeapon.outerWidth()) - menuSelectWeapon.outerWidth()
 					});
 				}
 				if(Input.spellMenu == true){
 					var offH = menuSelectSpell.outerHeight();
 					 menuSelectSpell.css({
 					   top: btnSpell.position().top - offH,
-					   left: (btnSelectSpell.position().left + btnSelectSpell.outerWidth()) - 162,
-					   width: '150px'
+					   left: (btnSelectSpell.position().left + btnSelectSpell.outerWidth()) - menuSelectSpell.outerWidth()
 					});
 				}
 				if(Input.pickupMenu == true){
 					var offH = menuSelectPickup.outerHeight();
 					 menuSelectPickup.css({
 					   top: btnPickup.position().top - offH,
-					   left: btnPickup.position().left,
-					   width: '150px'
+					   left: btnPickup.position().left
 					});
 				}
 				if(Input.dropMenu == true){
 					var offH = menuSelectDrop.outerHeight();
 					 menuSelectDrop.css({
 					   top: btnDrop.position().top - offH,
-					   left: btnDrop.position().left,
-					   width: '150px'
+					   left: btnDrop.position().left
 					});
 				}
 		});
