@@ -10,6 +10,7 @@ var Item = Class.extend({
 	},
 	pickup: function(curr, itemid){	
 		var action = "picks up";
+		var p = World.activePlayer;
 			
 		// Unbuild menus
 		unbuildAllMenus();
@@ -18,9 +19,9 @@ var Item = Class.extend({
 		var isplaced = false;
 		switch (this.ofType) {
 			case "weapon"	:
-				for (var i=0; i<World.activePlayer.wields.length; i++) {
-					if (World.activePlayer.wields[i] == "") {
-						World.activePlayer.wields[i] = this;
+				for (var i=0; i<p.wields.length; i++) {
+					if (p.wields[i] == "" || p.wields[i].type == "hands") {
+						p.wields[i] = this;
 						isplaced = true;
 						break;
 					}
@@ -43,13 +44,13 @@ var Item = Class.extend({
 				isplaced = true;
 				action = "puts on the";
 				// If wearing armor here, drop it
-				if(World.activePlayer.wears[drop_armor] != ""){
-					World.activePlayer.wears[drop_armor].drop(curr);
+				if(p.wears[drop_armor] != ""){
+					p.wears[drop_armor].drop(curr);
 				}
-				World.activePlayer.wears[drop_armor] = this;
-				World.activePlayer.updateArmor();
+				p.wears[drop_armor] = this;
+				p.updateArmor();
 				break;
-			default			: World.activePlayer.inven.push(this); isplaced = true; break;
+			default			: p.inven.push(this); isplaced = true; break;
 		}
 
 		// (Re)build menus
@@ -91,6 +92,8 @@ var Item = Class.extend({
 		}
 	},
 	drop: function(curr){
+		var p = World.activePlayer;
+		
 		// Unbuild menus
 		unbuildAllMenus();
 		
@@ -111,24 +114,24 @@ var Item = Class.extend({
 		switch(this.ofType){
 			case "weapon"	:
 				// Remove dropped weapon from wields[]
-				for (var i=0; i<World.activePlayer.wields.length; i++) {
-					if (World.activePlayer.wields[i] == this) {
-						World.activePlayer.wields[i] = "";
+				for (var i=0; i<p.wields.length; i++) {
+					if (p.wields[i] == this) {
+						p.wields[i] = "";
 						break;
 					}
 				}
 				// If readyWeapon was dropped and there are any other weapons in wields[], set next as readyWeapon
-				if(this == World.activePlayer.readyWeapon){
-					for (var i=0; i<World.activePlayer.wields.length; i++) {
-						if (World.activePlayer.wields[i] != "") {
-							World.activePlayer.readyWeapon = World.activePlayer.wields[i];
+				if(this == p.readyWeapon){
+					for (var i=0; i<p.wields.length; i++) {
+						if (p.wields[i] != "") {
+							p.readyWeapon = p.wields[i];
 						}
 					}
 				}
 				// If there are no weapons whatsoever, wield hands
-				if (World.activePlayer.wields.join('')=="") {
-					World.activePlayer.readyWeapon = new hands;
-					World.activePlayer.updateWpn();
+				if (p.wields.join('')=="") {
+					p.readyWeapon = new hands;
+					p.updateWpn();
 				}
 				break;
 			case "armor"	:
@@ -145,13 +148,13 @@ var Item = Class.extend({
 						break;
 					default:	break;
 				}
-				World.activePlayer.wears[drop_armor] = "";
-				World.activePlayer.updateArmor();
+				p.wears[drop_armor] = "";
+				p.updateArmor();
 				break;
-			default			:
-				for (var i=0; i<World.activePlayer.inven.length; i++) {
-					if (World.activePlayer.inven[i] == this) {
-						World.activePlayer.inven.splice(i, 1);
+			default	:
+				for (var i=0; i<p.inven.length; i++) {
+					if (p.inven[i] == this) {
+						p.inven.splice(i, 1);
 						break;
 					}
 				}
@@ -159,7 +162,7 @@ var Item = Class.extend({
 		}
 		
 		// Update status // Check why drop is firing automatically
-		Statuss.update('<b>' + World.activePlayer.name + ' drops ' + this.name + '!</b>');
+		Statuss.update('<b>' + p.name + ' drops ' + this.name + '!</b>');
 		
 		// Reset drop menu, enable pickup
 		Input.dropList = [];
@@ -167,9 +170,7 @@ var Item = Class.extend({
 		btnPickup.button('enable');
 		
 		// Check here if anything left to drop; enable disable button...and re-enable on pickup
-		if (World.activePlayer.wields.join('') == "" && /*World.activePlayer.wears.join() == "" &&*/ World.activePlayer.inven.length == 0) {
-			btnDrop.button('disable');
-		}
+		checkDropBtn();
 		
 		// Rebuild all menus
 		buildAllMenus();

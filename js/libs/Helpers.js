@@ -526,7 +526,7 @@ var buildWeaponMenu = function(){
 	}
 };
 
-// Weapon menu
+// Spell menu
 var unbuildSpellMenu = function(){
 	Input.hideSpellMenu();
 	menuSelectSpell.empty();
@@ -559,3 +559,24 @@ var buildSpellMenu = function(){
 		Input.setSpell(isready);
 	}
 };
+
+// Check drop button enable/disable
+var checkDropBtn = function(){
+	var p = World.activePlayer;
+	
+	if (p.wields.join('') == "" && p.wears.join() == "" && p.inven.length == 0) {
+		btnDrop.button('disable');
+	} else { btnDrop.button('enable'); }
+}
+
+// Check pickup button enable/disable
+var checkPickupBtn = function(){
+	var p = World.activePlayer;
+	var square = getSquare(p.coords);
+	
+	if(square.containsA.length > 0){
+		btnPickup.button('enable');
+	} else {
+		btnPickup.button('disable');
+	}
+}

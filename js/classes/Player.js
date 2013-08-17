@@ -178,11 +178,7 @@ var Player = Character.extend({
 					centerOn(this);
 					
 					// Check for items
-					if(square.containsA.length > 0){
-						btnPickup.button('enable');
-					} else {
-						btnPickup.button('disable');
-					}
+					checkPickupBtn();
 				}
 
 				// Track all action costs here
@@ -248,15 +244,7 @@ var Player = Character.extend({
 			}
 		}
 	},
-	endturnUI: function(){
-		btnEndTurn.addClass('blink');
-		/*btnSpell.removeClass('blink')
-			.button('disable');
-		btnSelectSpell.button('disable');
-		btnWeapon.removeClass('blink')
-			.button('disable');
-		btnSelectWeapon.button('disable');*/
-	},
+	endturnUI: function(){ btnEndTurn.addClass('blink'); },
         handleactioncost: function(type){
 		switch(type){
 			case "spell": 	this.move(false, 2); break;
@@ -273,7 +261,7 @@ var Hero = Player.extend({
 		"Hero",
 		"hero",
 		["","","","","",""],
-		["","","",""],
+		[new shortsword,"","",""],
 		[],
 		// dlb dmg att/half dmg def against big boss (added)
 		[new heroism],
@@ -343,7 +331,7 @@ var Wolfman = Player.extend({
 	init: function(){ this._super(
 		"Wolfman",
 		"wolfman",
-		["",new hide,"","","",""],
+		["","","","","",""],
 		[new claws, new fangs, "", ""],
 		[new tron],
 		// see hidden characters up to 5 sq away (added)

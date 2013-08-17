@@ -142,7 +142,7 @@ var Character = Class.extend({
 		}
 
 		// Set weapons, armor
-		this.wears	=	wears; // array // [ 0-head, 1-torso, 2-hands, 3-feet]
+		this.wears	=	wears; // array // [ 0-helmet, 1-body armor, 2-shield, 3-gloves, 4-boots, 5-charm]
 		this.wields	=	wields; // array // [ 0-face, 1-right hand, 2-left hand, 3-feet ]
 		
 		// Make sure something is being wielded

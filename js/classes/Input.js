@@ -384,7 +384,7 @@ var Input = function(){
 		
 		this.showDropMenu = function(){
 			for(var i=0; i<World.activePlayer.wields.length; i++){
-				if(World.activePlayer.wields[i] != ""){
+				if(World.activePlayer.wields[i] != "" && World.activePlayer.wields[i].supclass != "appendage"){
 					Input.dropList.push(World.activePlayer.wields[i]);
 				}
 			}
@@ -574,56 +574,56 @@ var Input = function(){
 				case 32: Input.enterLoc(); break;
 				// left
 				case 37:
-						if (Input.downkey == "up") {
-								moveLeftUp();
-								Input.diaglast = true;
-						} else if (Input.downkey == "down") {
-								moveLeftDown();
-								Input.diaglast = true;
-						} else if (Input.diaglast == false) {
-								moveLeft();
-								Input.downkey = "";
-						} else { Input.diaglast = false; Input.downkey = ""; }
-						break;
+                                    if (Input.downkey == "up") {
+                                                    moveLeftUp();
+                                                    Input.diaglast = true;
+                                    } else if (Input.downkey == "down") {
+                                                    moveLeftDown();
+                                                    Input.diaglast = true;
+                                    } else if (Input.diaglast == false) {
+                                                    moveLeft();
+                                                    Input.downkey = "";
+                                    } else { Input.diaglast = false; Input.downkey = ""; }
+                                    break;
 				// up
 				case 38:
-						if (Input.downkey == "right") {
-								moveRightUp();
-								Input.diaglast = true;
-						} else if (Input.downkey == "left") {
-								moveLeftUp();
-								Input.diaglast = true;
-						} else if (Input.diaglast == false) {
-								moveUp();
-								Input.downkey = "";
-						} else { Input.diaglast = false; Input.downkey = ""; }
-						break;
+                                    if (Input.downkey == "right") {
+                                                    moveRightUp();
+                                                    Input.diaglast = true;
+                                    } else if (Input.downkey == "left") {
+                                                    moveLeftUp();
+                                                    Input.diaglast = true;
+                                    } else if (Input.diaglast == false) {
+                                                    moveUp();
+                                                    Input.downkey = "";
+                                    } else { Input.diaglast = false; Input.downkey = ""; }
+                                    break;
 				// right
 				case 39:
-						if (Input.downkey == "up") {
-								moveRightUp();
-								Input.diaglast = true;
-						} else if (Input.downkey == "down") {
-								moveRightDown();
-								Input.diaglast = true;
-						} else if (Input.diaglast == false) {
-								moveRight();
-								Input.downkey = "";
-						} else { Input.diaglast = false; Input.downkey = ""; }
-						break;
+                                    if (Input.downkey == "up") {
+                                                    moveRightUp();
+                                                    Input.diaglast = true;
+                                    } else if (Input.downkey == "down") {
+                                                    moveRightDown();
+                                                    Input.diaglast = true;
+                                    } else if (Input.diaglast == false) {
+                                                    moveRight();
+                                                    Input.downkey = "";
+                                    } else { Input.diaglast = false; Input.downkey = ""; }
+                                    break;
 				// down
 				case 40:
-						if (Input.downkey == "right") {
-								moveRightDown();
-								Input.diaglast = true;
-						} else if (Input.downkey == "left") {
-								moveLeftDown();
-								Input.diaglast = true;
-						} else if (Input.diaglast == false) {
-								moveDown();
-								Input.downkey = "";
-						} else { Input.diaglast = false; Input.downkey = ""; }
-						break;
+                                    if (Input.downkey == "right") {
+                                                    moveRightDown();
+                                                    Input.diaglast = true;
+                                    } else if (Input.downkey == "left") {
+                                                    moveLeftDown();
+                                                    Input.diaglast = true;
+                                    } else if (Input.diaglast == false) {
+                                                    moveDown();
+                                                    Input.downkey = "";
+                                    } else { Input.diaglast = false; Input.downkey = ""; }
+                                    break;
 				default: break;
 			}
 		};
@@ -976,7 +976,7 @@ var Input = function(){
 		});
 		btnDrop.button({ 
 			icons: {primary:'ui-icon-arrowreturnthick-1-s',secondary:''},
-			disabled: false,
+			disabled: true,
 			text: false
 		});
 		btnEndTurn.button({ 

@@ -14,7 +14,6 @@ var Tutorial = function(){
 		"items": {
 		    "tron_1": [29, 7],
 			"maddog_1": [29, 7],
-			"shortsword_1": [30, 7],
 			"coifandkettle_1": [31, 7],
 			"scale_1": [31, 7]
 		},

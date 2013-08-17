@@ -266,7 +266,7 @@ var Atomic_Beast = Monster.extend({
 			"atomic_beast",
 			"Atomic Beasts",
 			["","","","","",""],
-			["", new claws, "",""],
+			[new claws, "","",""],
 			[],
 			[new radiation],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -296,7 +296,7 @@ var Basilisk = Monster.extend({
 			"basilisk",
 			"Basilisks",
 			["","","","","",""],
-			[new fangs, new claws, "", new talons],
+			[new fangs, new claws, new talons, ""],
 			[],
 			[new paralyze],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -341,7 +341,7 @@ var Hillbilly_Hellion = Monster.extend({
 			"hillbilly_hellion",
 			"Hillbilly Hellions",
 			["","","","","",""],
-			["", new shotgun, "", ""],
+			[new shotgun, "", "", ""],
 			[],
 			[new hellfire],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -356,7 +356,7 @@ var Master_Killer = Monster.extend({
 			"master_killer",
 			"Master Killers",
 			["", new robe,"","","",""],
-			["",new deathgrip, new shuriken,""],
+			[new deathgrip, new shuriken, "",""],
 			[],
 			[new martialarts3, new marksmanship],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -371,7 +371,7 @@ var Shaolin_Archer = Monster.extend({
 			"shaolin_archer",
 			"Shaolin Archers",
 			["", new robe,"","","",""],
-			["",new hands, new longbow,""],
+			[new hands, new longbow, "",""],
 			[],
 			[new martialarts2, new marksmanship],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -384,7 +384,7 @@ var Shaolin_Bowfighter = Monster.extend({
 			"shaolin_bowfighter",
 			"Shaolin Bowfighters",
 			["", new robe,"","","",""],
-			["",new bowstaff, "",""],
+			[new bowstaff, "", "",""],
 			[],
 			[new martialarts2],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -397,7 +397,7 @@ var Shaolin_Initiate = Monster.extend({
 			"shaolin_initiate",
 			"Shaolin Initiates",
 			["", new robe,"","","",""],
-			["",new hands, "",""],
+			[new hands, "", "",""],
 			[],
 			[new martialarts1],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -410,7 +410,7 @@ var Shaolin_Adept = Monster.extend({
 			"shaolin_adept",
 			"Shaolin Adepts",
 			["", new robe,"","","",""],
-			["",new hands, "",""],
+			[new hands, "", "",""],
 			[],
 			[new martialarts2],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -423,7 +423,7 @@ var Shaolin_Beatnik = Monster.extend({
 			"shaolin_beatnik",
 			"Shaolin Beatniks",
 			["", new robe,"","","",""],
-			["",new hands, new shuriken,""],
+			[new hands, new shuriken, "",""],
 			[],
 			[new martialarts3],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
@@ -438,7 +438,7 @@ var Son_of_Billy_the_Kid = Monster.extend({
 			"son_of_billy_the_kid",
 			"Sons of Billy the Kid",
 			[new cowboyhat,"","","","",""],
-			["", new sixshooter, "", ""],
+			[new sixshooter, "", "", ""],
 			[],
 			[],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);

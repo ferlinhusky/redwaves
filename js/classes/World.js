@@ -153,10 +153,7 @@ var World = function(){
                 .button('disable');                
             btnOpenClose.button('disable');
             btnPickup.button('disable');
-            
-            /*btnSpell.removeClass('blink');
-            SpellSet.find('.button').button('disable');
-            Input.hideSpellMenu();*/
+            btnDrop.button('disable');
             
             Input.spellOn = false;
             Input.weaponOn = false;
@@ -247,8 +244,7 @@ var World = function(){
 			
 			// Need to skip over lost players or remove them from the queue upon .killed()
 			if(this.activePlayer.ofType == "player"){
-				// (Re)build the item menu
-				//buildItemMenu();
+				// Build all menus
 				buildAllMenus();
 									
 				// If canine, add dogvision
@@ -282,6 +278,9 @@ var World = function(){
 				
 				// Activate buttons
 				btnEndTurn.button('enable');
+                                
+                                checkPickupBtn();
+                                checkDropBtn();
 				
 				// Check for doors, items
 				anyDoors(this.activePlayer.coords);
