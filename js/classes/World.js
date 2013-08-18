@@ -54,6 +54,7 @@ var World = function(){
 			Party.members[i].HP = Party.members[i].maxHP;
 			Party.members[i].movement = Party.members[i].maxMove;
 			Party.members[i].readyItem = null;
+                        Party.members[i].map = "";
 			//Party.members[i].readySpell = null;
 			//Party.members[i].readyWeapon = null;
 			Party.members[i].dead = false;

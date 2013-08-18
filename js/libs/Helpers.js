@@ -565,8 +565,14 @@ var checkDropBtn = function(){
 	var p = World.activePlayer;
 	
 	// Don't count appendages in wields...
-	
-	if (p.wields.join('') == "" && p.wears.join() == "" && p.inven.length == 0) {
+	var wielding = [];
+	for(var i=0; i<p.wields.length; i++){
+		if(p.wields[i].supclass != "appendage" && p.wields[i] != ""){
+			wielding.push(p.wields[i]);
+		}
+	}
+
+	if (wielding.length == 0 && p.wears.join("") == "" && p.inven.length == 0) {
 		btnDrop.button('disable');
 	} else { btnDrop.button('enable'); }
 }
