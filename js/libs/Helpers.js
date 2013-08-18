@@ -564,6 +564,8 @@ var buildSpellMenu = function(){
 var checkDropBtn = function(){
 	var p = World.activePlayer;
 	
+	// Don't count appendages in wields...
+	
 	if (p.wields.join('') == "" && p.wears.join() == "" && p.inven.length == 0) {
 		btnDrop.button('disable');
 	} else { btnDrop.button('enable'); }

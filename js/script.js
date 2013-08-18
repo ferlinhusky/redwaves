@@ -19,3 +19,5 @@ var Party = new Party();
     Loading.closeMe();
     
 Loadwelcome();
+
+Input.verifypasscode();
