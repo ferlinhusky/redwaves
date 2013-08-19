@@ -751,16 +751,6 @@ h3{
    Modify as content requires.
    ========================================================================== */
 
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 568px) 
-and (orientation : landscape) {
-    #party .roff { display: table-cell; }
-    #party .landoff,
-    #map_container_cell,
-    #left_column{ display: none; }
-}
-
 @media only screen and (min-width: 480px) {
   /* Style adjustments for viewports 480px and over go here */
     #status {
@@ -775,6 +765,15 @@ and (orientation : landscape) {
     }
     #help .margin { width: 15%; }
     #btn_close_help { right: 25%; }
+}
+
+/* Landscape */
+/*@media screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape),*/
+@media only screen and (min-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) {
+    #party .roff { display: table-cell; }
+    #party .landoff,
+    #map_container_cell,
+    #left_column{ display: none; }
 }
 
 @media only screen and (min-width: 768px) {
