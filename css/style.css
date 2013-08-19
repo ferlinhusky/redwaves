@@ -768,8 +768,8 @@ h3{
 }
 
 /* Landscape */
-/*@media screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape),*/
-@media only screen and (min-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) {
+@media screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape),
+only screen and (min-width: 560px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) {
     #party .roff { display: table-cell; }
     #party .landoff,
     #map_container_cell,
