@@ -751,18 +751,22 @@ h3{
    Modify as content requires.
    ========================================================================== */
 
-@media screen and (min-width: 321px) {
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : landscape) {
     #party .roff { display: table-cell; }
-    #party .landoff { display: none; }
+    #party .landoff,
+    #map_container_cell,
+    #left_column{ display: none; }
 }
 
 @media only screen and (min-width: 480px) {
   /* Style adjustments for viewports 480px and over go here */
     #status {
-		height: 55px;
-		font-size: .9em;
-	}
-    #party { /* width: auto; */ }
+	    height: 55px;
+	    font-size: .9em;
+    }
     #party td { font-size: .9em; }
     #party .roff, #party .landoff { display: table-cell; }
     #monsters_moving {
