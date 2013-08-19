@@ -263,7 +263,6 @@ var Hero = Player.extend({
 		["","","","","",""],
 		[new shortsword,"","",""],
 		[],
-		// dlb dmg att/half dmg def against big boss (added)
 		[new heroism],
 		[new STR, new CON, new CHA, new WIS, new DEX, new INT]);
 		
@@ -278,8 +277,7 @@ var Fighter = Player.extend({
 		"fighter",
 		[new barbute, new chainmail,"","","",""],
 		[new longsword,new crossbow,"",""],
-		[new phyton],
-		// if 2HP or less, 50% chance of getting back 1HP (added)
+		[],
 		[new tenacity, new marksmanship],
 		[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
 	
@@ -294,8 +292,7 @@ var Knight = Player.extend({
 		"knight",
 		[new closehelmet, new plate,"","","",""],
 		[new broadsword,"","",""],
-		[new glory, new maddog],
-		// +n sword damage (added)
+		[],
 		[new swordsmanship],
 		[new CHA, new STR, new CON, new DEX, new WIS, new INT]);
 	
@@ -334,7 +331,6 @@ var Wolfman = Player.extend({
 		["","","","","",""],
 		[new claws, new fangs, "", ""],
 		[new tron],
-		// see hidden characters up to 5 sq away (added)
 		[new keenness],
 		[new STR, new DEX, new CON, new WIS, new CHA, new INT]);
 	
@@ -350,7 +346,6 @@ var Harpy = Player.extend({
 		["","","","","",""],
 		[new claws, new fangs, "", ""],
 		[],
-		// chance of paralyzing enemy for n turns (added)
 		[new paralyze, new aquatic],
 		[new WIS, new CHA, new DEX, new STR, new CON, new INT]);
 	
@@ -365,8 +360,7 @@ var Thief = Player.extend({
 		"thief",
 		[new leatherhelm, new leathertunic,"","","",""],
 		[new dagger, new dagger,"",""],
-		[new maddog],
-		// drops from monster target list when out of sight (added)
+		[],
 		[new stealth],
 		[new DEX, new INT, new CHA, new WIS, new CON, new STR]);
 	
@@ -382,7 +376,6 @@ var Youngpriest = Player.extend({
 		["", new robe,"","","",""],
 		[new maul,"","",""],
 		[],
-		// half spell dmg (added)
 		[new tenacity],
 		[new CON, new CHA, new INT, new STR, new DEX, new WIS]);
 		
@@ -400,7 +393,6 @@ var Oldpriest = Player.extend({
 		["", new robe,"","","",""],
 		[new mace,"","",""],
 		[],
-		// half spell dmg (added)
 		[new necromancy],
 		[new WIS, new CHA, new INT, new CON, new STR, new DEX]);
 		

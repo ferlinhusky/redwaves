@@ -13,7 +13,14 @@ var Tutorial = function(){
 		"width": 40,
 		"items": {
 		    "tron_1": [29, 7],
-			"maddog_1": [29, 7],
+			"tron_2": [11, 5],
+			"maddog_1": [14, 21],
+			"maddog_2": [18, 21],
+			"maddog_3": [22, 21],
+			"phyton_1": [7, 16],
+			"phyton_2": [8, 16],
+			"glory_1": [15, 12],
+			"glory_2": [12, 9],
 			"coifandkettle_1": [31, 7],
 			"scale_1": [31, 7]
 		},
@@ -77,10 +84,25 @@ var Monastery = function(){
     this.opts = {
 		"height": 30,
 		"width": 39,
-		"items": {},
+		"items": {
+			"bowstaff_1": [6, 11],
+			"bowstaff_2": [6, 11],
+			"phyton_1": [6, 10],
+			"glory_1": [19, 11],
+			"maddog_1": [17, 4],
+			"shuriken_1": [17, 4]
+		},
 		"monsters": {
 			"Shaolin_Archer_1": [29, 15],
 			"Shaolin_Archer_2": [9, 12],
+			"Shaolin_Bowfighter_1": [5, 13],
+			"Shaolin_Bowfighter_2": [7, 13],
+			"Shaolin_Initiate_1": [19, 25],
+			"Shaolin_Initiate_2": [18, 17],
+			"Shaolin_Initiate_3": [20, 17],
+			"Shaolin_Initiate_4": [19, 16],
+			"Shaolin_Adept_1": [18, 12],
+			"Shaolin_Adept_1": [20, 12],
 			"Shaolin_Beatnik_1": [19, 3],
 			"Shaolin_Beatnik_2": [21, 3],
 			"Master_Killer_1": [20, 3]
