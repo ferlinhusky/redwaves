@@ -300,6 +300,17 @@ var Basilisk = Monster.extend({
 			[],
 			[new paralyze],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
+		
+			this.HP = 15;
+			this.maxHP = 15;
+			
+			this.STR = 16;
+			this.DEX = 18;
+			
+			this.movement	=	10;
+			this.maxMove	=	10;
+			
+			this.ac = 0;
   	}
 });
 
@@ -360,6 +371,17 @@ var Master_Killer = Monster.extend({
 			[],
 			[new martialarts3, new marksmanship],
 			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
+		
+		this.HP = 20;
+		this.maxHP = 20;
+		
+		this.STR = 18;
+		this.DEX = 20;
+		
+		this.movement	=	8;
+		this.maxMove	=	8;
+		
+		this.ac = -5;
   	}
 });
 

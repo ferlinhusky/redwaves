@@ -192,7 +192,7 @@
 			that square. Click the item in the list to pick it up.</p>
 			
 			<h3>Picking up armor</h3>
-			Picking up armor will cause your player to put it on and drop whatever armor
+			<p>Picking up armor will cause your player to put it on and drop whatever armor
 			s/he is wearing of the same type. So if you pick up a helmet, whatever helmet you happen to be
 			wearing will be swapped for the new one and dropped on the ground.</p>
 			
