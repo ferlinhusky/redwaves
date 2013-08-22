@@ -136,4 +136,39 @@ var Monastery = function(){
     this.status = "enabled";
 };
 
-var Adventures = [new Tutorial, new Monastery];
+var CaveDwellers = function(){
+	this.refID = 3;
+    this.title = "Cave Dwellers";
+	this.titlecolors = ["white", "brown"];
+    this.type = "CaveDwellers";
+    this.map = "cave_dwellers_map.txt";
+    this.opts = {
+		"height": 30,
+		"width": 40,
+		"items": {},
+		"monsters": {
+			"Atomic_Beast_1": [18, 13],
+		},
+		"gold": 1000
+    };
+    this.victory = {
+		"type": "kill",
+		"value": ["Master Killer", 1] // type and # to kill
+	};
+    this.events = {
+	"preamble": "<p>How much cavern is down here? Miles o' cavern!</p><p><b>Objective:\
+	Defeat Zor!</b></p>\
+	<p><i>Hint: ATOR</i></p>",
+	"meet": {
+	    "Zor_1":{
+		"Zor_1": "..."
+	    }
+	},
+	"win": "<p><b>YOU WIN!</b></p><p>Congratulations! You receive 1000 gold for defeating\
+	Zor.</p>",
+	"lose": "<p><b>YOU LOSE!</b></p><p>Ugh!</p>"
+    };
+    this.status = "enabled";
+}
+
+var Adventures = [new Tutorial, new Monastery, new CaveDwellers];

@@ -235,7 +235,8 @@ var Character = Class.extend({
 			Squares[prev].occupiedBy = "";
 			
 			previous = Squares[prev].onMap;
-			findAndRemove(previous, '.p', this.ofType + ' ' + this.type + ' ' + this.ID);
+			//findAndRemove(previous, '.p', this.ofType + ' ' + this.type + ' ' + this.ID);
+			$('.' + this.type + '.' + this.ID).removeClass(this.ofType + ' ' + this.type + ' ' + this.ID);
 		}
 		// Add character to current square
 		findAndAdd(current, '.p', this.ofType + ' ' + this.type + ' ' + this.ID);

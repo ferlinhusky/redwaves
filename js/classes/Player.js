@@ -80,15 +80,16 @@ var Player = Character.extend({
 		}
 	},
 	move: function(dir, cost){
+		// How many remaining
+		var remaining_move = this.movement - this.currMove;
+			
 		var acost = 1;
 		if(cost > 1) { acost = cost; }
-		if(this.wait == false && this.currMove < this.movement){
+		
+		if(this.wait == false && remaining_move >= 1){
 			var isPassable = true;
 			var square;
 			this.previousSquare = getSquare(this.coords).id;
-			
-			// How many remaining
-			var remaining_move = this.movement - this.currMove;
 			
 			switch(dir){
 				case "right": 
