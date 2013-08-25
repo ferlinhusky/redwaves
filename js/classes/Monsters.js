@@ -292,25 +292,25 @@ var Atomic_Freak = Monster.extend({
 var Basilisk = Monster.extend({
 	init: function(){
     	this._super(
-			"Basilisk",
-			"basilisk",
-			"Basilisks",
-			["","","","","",""],
-			[new fangs, new claws, new talons, ""],
-			[],
-			[new paralyze],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
+		"Basilisk",
+		"basilisk",
+		"Basilisks",
+		["","","","","",""],
+		[new fangs, new claws, new talons, ""],
+		[],
+		[new paralyze],
+		[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
+	
+		this.HP = 15;
+		this.maxHP = 15;
 		
-			this.HP = 15;
-			this.maxHP = 15;
-			
-			this.STR = 16;
-			this.DEX = 18;
-			
-			this.movement	=	10;
-			this.maxMove	=	10;
-			
-			this.ac = 0;
+		this.STR = 16;
+		this.DEX = 18;
+		
+		this.movement	=	10;
+		this.maxMove	=	10;
+		
+		this.ac = 0;
   	}
 });
 
@@ -359,18 +359,33 @@ var Hillbilly_Hellion = Monster.extend({
   	}
 });
 
+// INVISIBLE SWORDSMAN
+var Invisible_Swordsman = Monster.extend({
+	init: function(){
+    	this._super(
+			"Invisible Swordsman",
+			"invisible_swordsman",
+			"Invisible Swordsmen",
+			["", new chainmail,"","","",""],
+			[new longsword, "", "", ""],
+			[],
+			[],
+			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
+  	}
+});
+
 // MASTER KILLER
 var Master_Killer = Monster.extend({
 	init: function(){
     	this._super(
-			"Master Killer",
-			"master_killer",
-			"Master Killers",
-			["", new robe,"","","",""],
-			[new deathgrip, new shuriken, "",""],
-			[],
-			[new martialarts3, new marksmanship],
-			[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
+		"Master Killer",
+		"master_killer",
+		"Master Killers",
+		["", new robe,"","","",""],
+		[new deathgrip, new shuriken, "",""],
+		[],
+		[new martialarts3, new marksmanship],
+		[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
 		
 		this.HP = 20;
 		this.maxHP = 20;
@@ -382,6 +397,34 @@ var Master_Killer = Monster.extend({
 		this.maxMove	=	8;
 		
 		this.ac = -5;
+  	}
+});
+
+//SANDER
+var Sander = Monster.extend({
+	init: function(){
+    	this._super(
+		"Sander",
+		"sander",
+		"Sanders",
+		["", new robe,"","","",""],
+		[new hands, "", "",""],
+		[],
+		[new necromancy],
+		[new INT, new WIS, new DEX, new CON, new CHA, new STR]);
+		
+		this.HP = 12;
+		this.maxHP = 12;
+		
+		this.INT = 18;
+		this.WIS = 18;
+		
+		this.movement	=	6;
+		this.maxMove	=	6;
+		
+		this.ac = 0;
+		
+		this.spells = [ new smoke ];
   	}
 });
 

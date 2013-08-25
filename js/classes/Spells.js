@@ -137,3 +137,4 @@ var smoke = Spell.extend({
 	    var caster = World.activePlayer;
         }, 7);
     }
+});

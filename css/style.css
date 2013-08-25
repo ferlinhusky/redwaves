@@ -654,6 +654,7 @@ h3{
 /* Monsters */
 .m_grid td.lit .p.basilisk:before { content: 'B' !important; background-color: DarkRed; color: #fff; }
 .m_grid td.lit .p.master_killer:before { content: 'M' !important; background-color: Gold; color: #333; }
+.m_grid td.lit .p.sander:before { content: 'S' !important; background-color: brown; color: #fff; }
 
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
 .m_grid td.lit .p.atomic_freak:before { content: 'a' !important; background-color: #3c0; color: #000; }
@@ -666,6 +667,7 @@ h3{
 .m_grid td.lit .p.shaolin_beatnik:before { content: 'S' !important; background-color: Magenta; color: #000; }
 .m_grid td.lit .p.snake_man:before { content: 'S' !important; background-color: #390; color: #000; }
     .m_grid.dogvision td.lit .p.monster:before { background-color: #666; color: #fff; }
+    .m_grid.dogvision td.lit .p.invisible_swordsman:before { background-color: #000; color: #fff; }
 
 /* Battle */
 .m_grid td.lit .p.attacker:before { background-color: yellow !important; color: #000; }

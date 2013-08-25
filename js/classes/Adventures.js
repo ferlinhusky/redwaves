@@ -148,6 +148,7 @@ var CaveDwellers = function(){
 		"items": {},
 		"monsters": {
 			"Atomic_Beast_1": [18, 13],
+			"Invisible_Swordsman_1": [35, 27]
 		},
 		"gold": 1000
     };
