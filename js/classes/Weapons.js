@@ -76,7 +76,7 @@ var Appendage = Weapon.extend({
 });
 
 // Fangs
-var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d6", "bone", 6); this.wieldin = "head"; } });
+var fangs = Appendage.extend({ init: function(){ this._super("Fangs", "fangs", "1d6", "bone", 6); } });
 
 // Hand
 var hands = Appendage.extend({ init: function(){ this._super("Hands", "hands", "2d1", "flesh", 7); } });
@@ -88,7 +88,10 @@ var claws = Appendage.extend({ init: function(){ this._super("Claws", "claws", "
 var deathgrip = Appendage.extend({ init: function(){ this._super("Death grip", "deathgrip", "2d5", "flesh", 16); } });
 
 // Talons
-var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 9); this.wieldin = "feet"; } });
+var talons = Appendage.extend({ init: function(){ this._super("Talons", "talons", "2d4", "bone", 9); } });
+
+// Sucker
+var sucker = Appendage.extend({ init: function(){ this._super("Sucker", "sucker", "1d4", "flesh", 22); } });
 
 // Firearm subclass
 var Firearm = Weapon.extend({
@@ -113,3 +116,9 @@ var sixshooter = Firearm.extend({ init: function(){ this._super("Six shooter", "
 
 // Shuriken
 var shuriken = Firearm.extend({ init: function(){ this._super("Shuriken", "shuriken", "3d3", "1d1", 4, "steel", false, 15); } });
+
+// Geometric Nucleus
+var geometricnucleus = Firearm.extend({ init: function(){ this._super("Geometric Nucleus", "geometricnucleus", "4d3", "1d3", 6, "energy", false, 20); } });
+
+// Rock
+var rock = Firearm.extend({ init: function(){ this._super("Rock", "rock", "1d5", "1d4", 4, "earth", false, 21); } });

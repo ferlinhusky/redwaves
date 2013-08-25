@@ -11,7 +11,8 @@ var Weapons = ["",
     "crossbow", "longbow", "shotgun", "sixshooter",
     "battleaxe", "shuriken",
     "deathgrip", "bowstaff",
-    "mace", "maul"
+    "mace", "maul",
+    "geometricnucleus", "rock", "sucker"
 ];
 
 var Armors = ["",
@@ -40,5 +41,6 @@ var Skills = ["",
 var Spells = ["",
     "fireball", "freeze",
     "lightning", "earthquake",
-	"heal", "healall"
+    "heal", "healall",
+    "smoke"
 ];
