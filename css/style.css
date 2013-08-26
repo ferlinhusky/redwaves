@@ -662,12 +662,12 @@ h3{
 .m_grid td.lit .p.hillbilly_hellion:before { content: 'H' !important; background-color: Maroon; color: #fff; }
 .m_grid td.lit .p.shaolin_archer:before { content: 'A' !important; background-color: darkorange; color: #000; }
 .m_grid td.lit .p.shaolin_bowfighter:before { content: 'B' !important; background-color: #f90; color: #000; }
-.m_grid td.lit .p.shaolin_initiate:before { content: 'I' !important; background-color: Khaki; color: #000; }
+.m_grid td.lit .p.shaolin_initiate:before { content: 's' !important; background-color: Khaki; color: #000; }
 .m_grid td.lit .p.shaolin_adept:before { content: 'S' !important; background-color: #f90; color: #000; }
 .m_grid td.lit .p.shaolin_beatnik:before { content: 'S' !important; background-color: Magenta; color: #000; }
 .m_grid td.lit .p.snake_man:before { content: 'S' !important; background-color: #390; color: #000; }
     .m_grid.dogvision td.lit .p.monster:before { background-color: #666; color: #fff; }
-    .m_grid.dogvision td.lit .p.invisible_swordsman:before { background-color: #000; color: #fff; }
+    .m_grid.dogvision td.lit .p.invisible_swordsman:before { content: "I" !important; background-color: #000; color: #fff; }
 
 /* Battle */
 .m_grid td.lit .p.attacker:before { background-color: yellow !important; color: #000; }
