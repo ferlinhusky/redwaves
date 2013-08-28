@@ -344,6 +344,21 @@ var Giant_Leech = Monster.extend({
   	}
 });
 
+// GUARD OF ZOR
+var Guard_of_Zor = Monster.extend({
+	init: function(){
+    	this._super(
+			"Guard of Zor",
+			"guard_of_zor",
+			"Guards of Zor",
+			[new viking, new leather,"","","",""],
+			[new shortsword, "", "", ""],
+			[],
+			[],
+			[new STR, new CON, new DEX, new INT, new WIS, new CHA]);
+  	}
+});
+
 // HELL DOG
 var Hell_Dog = Monster.extend({
 	init: function(){
