@@ -147,14 +147,59 @@ var CaveDwellers = function(){
 		"width": 40,
 		"items": {},
 		"monsters": {
-			"Atomic_Beast_1": [18, 13],
-			"Invisible_Swordsman_1": [35, 27]
+			"Giant_Leech_1": [1, 5],
+			"Giant_Leech_2": [1, 9],
+			"Giant_Leech_3": [7, 9],
+			"Giant_Leech_4": [13, 24],
+			"Giant_Leech_5": [14, 22],
+			"Giant_Leech_7": [16, 19],
+			"Giant_Leech_6": [17, 22],
+			"Giant_Leech_8": [17, 8],
+			"Giant_Leech_9": [18, 8],
+			"Giant_Leech_10": [20, 19],
+			"Giant_Leech_11": [25, 27],
+			"Giant_Leech_12": [32, 28],
+			"Mole_Person_1": [1, 15],
+			"Mole_Person_2": [1, 17],
+			"Mole_Person_3": [1, 28],
+			"Mole_Person_4": [5, 28],
+			"Mole_Person_5": [22, 1],
+			"Mole_Person_6": [24, 1],
+			"Mole_Person_7": [26, 9],
+			"Mole_Person_8": [29, 4],
+			"Mole_Person_9": [34, 15],
+			"Mole_Person_10": [35, 16],
+			"Rock_Lobber_1": [6, 6],
+			"Rock_Lobber_2": [7, 26],
+			"Rock_Lobber_3": [20, 22],
+			"Rock_Lobber_4": [24, 20],
+			"Rock_Lobber_5": [25, 11],
+			"Rock_Lobber_6": [25, 12],
+			"Rock_Lobber_7": [14, 17],
+			"Rock_Lobber_8": [14, 18],
+			"Rock_Lobber_9": [37, 12],
+			"Rock_Lobber_10": [38, 12],
+			"Rock_Lobber_11": [7, 16],
+			"Zor_1": [16, 10],
+			"Sander_1": [32, 6],
+			"Invisible_Swordsman_1": [15, 13],
+			"Invisible_Swordsman_2": [20, 13],
+			"Invisible_Swordsman_3": [31, 6],
+			"Invisible_Swordsman_4": [31, 7],
+			"Invisible_Swordsman_5": [33, 7],
+			"Invisible_Swordsman_6": [34, 6],
+			"Invisible_Swordsman_7": [34, 7],
+			"Guard_of_Zor_1": [16, 11],
+			"Guard_of_Zor_2": [17, 11],
+			"Guard_of_Zor_3": [18, 11],
+			"Guard_of_Zor_4": [17, 18],
+			"Guard_of_Zor_5": [18, 18]
 		},
 		"gold": 1000
     };
     this.victory = {
 		"type": "kill",
-		"value": ["Master Killer", 1] // type and # to kill
+		"value": ["Zor", 1] // type and # to kill
 	};
     this.events = {
 	"preamble": "<p>How much cavern is down here? Miles o' cavern!</p><p><b>Objective:\
