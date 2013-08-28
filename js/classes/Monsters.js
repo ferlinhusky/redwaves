@@ -329,6 +329,21 @@ var Ghost_Dracula = Monster.extend({
   	}
 });
 
+// GIANT LEECH
+var Giant_Leech = Monster.extend({
+	init: function(){
+    	this._super(
+			"Giant Leech",
+			"giant_leech",
+			"Giant Leeches",
+			["","","","","",""],
+			[new sucker, "", "", ""],
+			[],
+			[],
+			[new CON, new STR, new WIS, new INT, new DEX, new CHA]);
+  	}
+});
+
 // HELL DOG
 var Hell_Dog = Monster.extend({
 	init: function(){
@@ -397,6 +412,24 @@ var Master_Killer = Monster.extend({
 		this.maxMove	=	8;
 		
 		this.ac = -5;
+  	}
+});
+
+
+// MOLE PERSON
+var Mole_Person = Monster.extend({
+	init: function(){
+    	this._super(
+			"Mole Person",
+			"mole_person",
+			"Mole People",
+			["", "","","","",""],
+			[new claws, "", "", ""],
+			[],
+			[],
+			[new STR, new CON, new INT, new DEX, new WIS, new CHA]);
+			
+			this.ac = -4;
   	}
 });
 
@@ -522,5 +555,26 @@ var Snake_Man = Monster.extend({
 			[],
 			[],
 			[new DEX, new STR, new CON, new WIS, new INT, new CHA]);
+  	}
+});
+
+//ZOR
+var Zor = Monster.extend({
+	init: function(){
+    	this._super(
+		"Zor",
+		"zor",
+		"Zors",
+		[new viking, new studdedleather,"","","",""],
+		[new longsword, "", "",""],
+		[],
+		[],
+		[new STR, new CON, new DEX, new CHA, new INT, new WIS]);
+		
+		this.HP = 24;
+		this.maxHP = 24;
+		
+		this.movement	=	8;
+		this.maxMove	=	8;
   	}
 });
