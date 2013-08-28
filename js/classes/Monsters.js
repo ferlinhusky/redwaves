@@ -433,6 +433,23 @@ var Mole_Person = Monster.extend({
   	}
 });
 
+// ROCK LOBBER
+var Rock_Lobber = Monster.extend({
+	init: function(){
+    	this._super(
+			"Rock Lobber",
+			"rock_lobber",
+			"Rock Lobbers",
+			["", "","","","",""],
+			[new claws, new rock, "", ""],
+			[],
+			[],
+			[new STR, new CON, new DEX, new INT, new WIS, new CHA]);
+			
+			this.ac = -2;
+  	}
+});
+
 //SANDER
 var Sander = Monster.extend({
 	init: function(){
