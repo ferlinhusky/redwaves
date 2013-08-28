@@ -28,6 +28,9 @@ var closehelmet = Helmet.extend({ init: function(){ this._super("Close helmet", 
 // Cowboy hat
 var cowboyhat = Helmet.extend({ init: function(){ this._super("Cowboy hat", "cowboyhat", "felt", -1, 5); } });
 
+// Viking helmet
+var viking = Helmet.extend({ init: function(){ this._super("Viking helmet", "vikinghelmet", "iron", -2, 13); } });
+
 // Body armor subclass
 var BodyArmor = Armor.extend({
 	init: function(name, type, material, ac, refID){
