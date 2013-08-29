@@ -29,7 +29,7 @@ var closehelmet = Helmet.extend({ init: function(){ this._super("Close helmet", 
 var cowboyhat = Helmet.extend({ init: function(){ this._super("Cowboy hat", "cowboyhat", "felt", -1, 5); } });
 
 // Viking helmet
-var viking = Helmet.extend({ init: function(){ this._super("Viking helmet", "vikinghelmet", "iron", -2, 13); } });
+var vikinghelmet = Helmet.extend({ init: function(){ this._super("Viking helmet", "vikinghelmet", "iron", -2, 13); } });
 
 // Body armor subclass
 var BodyArmor = Armor.extend({
@@ -39,10 +39,13 @@ var BodyArmor = Armor.extend({
 });
 
 // Hide
-var hide = BodyArmor.extend({ init: function(){ this._super("Hide", "hide", "hide", -2, 6); } });
+var hide = BodyArmor.extend({ init: function(){ this._super("Hide", "hide", "leather", -2, 6); } });
 
 // Leather tunic
-var leathertunic = BodyArmor.extend({ init: function(){ this._super("Leather tunic", "leathertunic", "hide", -2, 7); } });
+var leathertunic = BodyArmor.extend({ init: function(){ this._super("Leather tunic", "leathertunic", "leather", -2, 7); } });
+
+// Studded leather
+var studdedleather = BodyArmor.extend({ init: function(){ this._super("Studded leather", "studdedleather", "leather", -4, 14); } });
 
 // Scale
 var robe = BodyArmor.extend({ init: function(){ this._super("Robe", "robe", "cloth", -1, 8); } });

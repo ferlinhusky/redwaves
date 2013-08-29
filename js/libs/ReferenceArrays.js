@@ -25,7 +25,7 @@ var Armors = ["",
     "leathertunic", "robe",
     "scale", "chainmail",
     "brigandine", "plate",
-    "viking"
+    "vikinghelmet", "studdedleather"
 ];
 
 var Skills = ["",
