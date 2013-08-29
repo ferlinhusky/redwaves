@@ -145,7 +145,17 @@ var CaveDwellers = function(){
     this.opts = {
 		"height": 30,
 		"width": 40,
-		"items": {},
+		"items": {
+			"battleaxe_1": [1, 28],
+			"somersetbreastplate_1": [6, 3],
+			"phyton_1": [6, 4],
+			"phyton_2": [25, 1],
+			"maddog_1": [10, 21],
+			"tron_1": [26, 14],
+			"glory_1": [26, 15],
+			"glory_2": [32, 5]
+			
+		},
 		"monsters": {
 			"Giant_Leech_1": [1, 5],
 			"Giant_Leech_2": [1, 9],

@@ -61,3 +61,6 @@ var brigandine = BodyArmor.extend({ init: function(){ this._super("Brigandine", 
 
 // Plate
 var plate = BodyArmor.extend({ init: function(){ this._super("Plate", "plate", "steel", -7, 12); } });
+
+// Hubcap
+var somersetbreastplate = BodyArmor.extend({ init: function(){ this._super("Somerset breastplate", "somersetbreastplate", "steel", -6, 15); } });
