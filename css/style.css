@@ -654,7 +654,7 @@ h3{
 /* Monsters */
 .m_grid td.lit .p.basilisk:before { content: 'B' !important; background-color: DarkRed; color: #fff; }
 .m_grid td.lit .p.master_killer:before { content: 'M' !important; background-color: Gold; color: #333; }
-.m_grid td.lit .p.sander:before { content: 'S' !important; background-color: brown; color: #fff; }
+.m_grid td.lit .p.sander:before { content: 'S' !important; background-color: darkorchid; color: #fff; }
 .m_grid td.lit .p.zor:before { content: 'Z' !important; background-color: #000; color: #fff; }
 
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
