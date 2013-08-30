@@ -190,7 +190,7 @@ var CaveDwellers = function(){
 			"Rock_Lobber_9": [37, 12],
 			"Rock_Lobber_10": [38, 12],
 			"Rock_Lobber_11": [7, 16],
-			"Zor_1": [16, 10],
+			"Zor_1": [17, 10],
 			"Sander_1": [32, 6],
 			"Invisible_Swordsman_1": [15, 13],
 			"Invisible_Swordsman_2": [20, 13],
