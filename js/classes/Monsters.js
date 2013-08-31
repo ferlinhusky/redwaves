@@ -314,6 +314,23 @@ var Basilisk = Monster.extend({
   	}
 });
 
+// Eegah
+var Eegah = Monster.extend({
+	init: function(){
+    	this._super(
+			"Eegah",
+			"eegah",
+			"Eegahs",
+			["", "","","","",""],
+			[new hands, new rock, "", ""],
+			[],
+			[],
+			[new STR, new CON, new DEX, new CHA, new INT, new WIS]);
+			
+			this.ac = -2;
+  	}
+});
+
 // GHOST DRACULA
 var Ghost_Dracula = Monster.extend({
 	init: function(){
@@ -431,37 +448,20 @@ var Master_Killer = Monster.extend({
 });
 
 
-// MOLE PERSON
-var Mole_Person = Monster.extend({
+// Killer Shrew
+var Killer_Shrew = Monster.extend({
 	init: function(){
     	this._super(
-			"Mole Person",
-			"mole_person",
-			"Mole People",
+			"Killer Shrew",
+			"killer_shrew",
+			"Killer Shrews",
 			["", "","","","",""],
-			[new claws, "", "", ""],
+			[new fangs, "", "", ""],
 			[],
 			[],
-			[new STR, new CON, new INT, new DEX, new WIS, new CHA]);
+			[new DEX, new INT, new STR, new CON, new WIS, new CHA]);
 			
-			this.ac = -4;
-  	}
-});
-
-// ROCK LOBBER
-var Rock_Lobber = Monster.extend({
-	init: function(){
-    	this._super(
-			"Rock Lobber",
-			"rock_lobber",
-			"Rock Lobbers",
-			["", "","","","",""],
-			[new claws, new rock, "", ""],
-			[],
-			[],
-			[new STR, new CON, new DEX, new INT, new WIS, new CHA]);
-			
-			this.ac = -2;
+			this.ac = 0;
   	}
 });
 
