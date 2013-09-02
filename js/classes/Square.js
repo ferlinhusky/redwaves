@@ -17,7 +17,7 @@ var Square = function(loc){
 	this.occupiedBy.ofType = "";
 	this.contains;
 	this.containsA = [];
-	//this.containsA.ofType = "";
+	this.action = null;
 	
 	// Methods
 	this.setContents = function(sym){

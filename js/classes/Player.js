@@ -180,6 +180,18 @@ var Player = Character.extend({
 					
 					// Check for items
 					checkPickupBtn();
+					
+					// Check for actions
+					if(square.action != null){
+						var sa = square.action;
+						switch(sa.type){
+							case "alert":
+								Input.M_Dialog("standard", sa.func, "!!!", false);
+								break;
+							default: break;
+						}
+					}
+					square.action = null;
 				}
 
 				// Track all action costs here

@@ -45,7 +45,7 @@ var D_Welcome = {
 			} else { Loadselectteam(); }
 		}
 	},
-	height:375
+	height:stddialogheight
 }
 
 var D_Equip = {
@@ -81,7 +81,7 @@ var D_Select_Team = {
 			World.build();
 		}
 	},
-	height:375
+	height:stddialogheight
 }
 
 var D_Help = {
@@ -92,7 +92,7 @@ var D_Help = {
 			$(this).dialog('close');
 		}
 	},
-	height:375
+	height:stddialogheight
 }
 
 var D_Options = {

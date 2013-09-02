@@ -2,6 +2,8 @@
 // Helper Functions
 //
 
+var stddialogheight = 400;
+
 // Capitalize a string
 function capitalise(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
 

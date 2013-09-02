@@ -73,6 +73,13 @@ var Map = function(){
 					findAndAdd(current, '.p', 'item ' + item.ofType);
 				});
 				
+				// Add actions
+				for(var i=0; i < m.actsq.length; i++){
+					var asq = m.actsq[i];
+					var sq = getSquare(asq.s);
+					sq.action = asq.a;
+				}
+				
 				// Center map
 				centerOn(Players[0]);
 				Input.mapTouchDrag(m.mg);

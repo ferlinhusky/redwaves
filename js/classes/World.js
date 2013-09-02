@@ -7,28 +7,40 @@ var World = function(){
 		this.gameover = false;
 	}
 	
-	this.build = function(){
-        // Zero out vars
-        this.resetvars();
+        this.getadventuretitle = function(lvl){
+            var title_style = "color:" + lvl.titlecolors[0] + "; background-color:" + lvl.titlecolors[1];
+            var title = "<br/><div class='next_adventure' style='"+title_style+"'>"+lvl.title+"</div>";
+            return title;
+        };
         
-        // Build map
-        this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
-        Map.init(this.Level);
-        Input.M_Dialog("standard", this.Level.events.preamble, this.Level.title, false, 375);
+	this.build = function(){
+            // Zero out vars
+            this.resetvars();
+            
+            // Build map
+            this.Level = ( new Function('var mw = new ' + MapWorld + '(); return mw;') )();
+            Map.init(this.Level);
+            var title = this.getadventuretitle(this.Level);
+            var dialog_content = title + this.Level.events.preamble;
+            Input.M_Dialog(
+                "standard",
+                dialog_content,
+                "Chapter " + this.Level.refID,
+                false, stddialogheight);
 	};
 	
 	this.doorderofplay = function(){
 		for(var i=0; i<Players.length; i++){
-			Players[i].wait = true;
+		    Players[i].wait = true;
 		}
 		
 		for(var i=0; i<Players.length + Monsters.length; i++){
-			if(Players[i] != undefined){
-				this.orderOfPlay.push(Players[i]);
-			}
-			if(Monsters[i] != undefined){
-				this.orderOfPlay.push(Monsters[i]);
-			}
+                    if(Players[i] != undefined){
+                            this.orderOfPlay.push(Players[i]);
+                    }
+                    if(Monsters[i] != undefined){
+                            this.orderOfPlay.push(Monsters[i]);
+                    }
 		}
         this.activePlayer = this.orderOfPlay[0];
 		this.endturn(); // Start
@@ -49,20 +61,20 @@ var World = function(){
 		$('#party tr.player_row').remove();
 		$('#party').css('display', 'table');
 		for (var i=0; i<Party.members.length; i++) {
-			// Update after implementing XP after level
-			// will need to recalc stats etc.
-			Party.members[i].HP = Party.members[i].maxHP;
-			Party.members[i].movement = Party.members[i].maxMove;
-			Party.members[i].readyItem = null;
-                        Party.members[i].map = "";
-			//Party.members[i].readySpell = null;
-			//Party.members[i].readyWeapon = null;
-			Party.members[i].dead = false;
-			Party.members[i].paralyzed = 0;
-			Party.members[i].slow = false;
-			Party.members[i].medication = [];
-			Players[i] = Party.members[i];
-            Players[i].updatetable(); // update ui
+                    // Update after implementing XP after level
+                    // will need to recalc stats etc.
+                    Party.members[i].HP = Party.members[i].maxHP;
+                    Party.members[i].movement = Party.members[i].maxMove;
+                    Party.members[i].readyItem = null;
+                    Party.members[i].map = "";
+                    //Party.members[i].readySpell = null;
+                    //Party.members[i].readyWeapon = null;
+                    Party.members[i].dead = false;
+                    Party.members[i].paralyzed = 0;
+                    Party.members[i].slow = false;
+                    Party.members[i].medication = [];
+                    Players[i] = Party.members[i];
+                    Players[i].updatetable(); // update ui
 		}
 		
 		// Clear out the UI
@@ -80,23 +92,24 @@ var World = function(){
             this.gameover = true;
 	    this.resetUI();
 	    if (state == "win") {
-				// Dialog content
-                var dialogcontent = wl + $('#passcode_addon').html();
+		// Dialog content
+                var dialogcontent = this.getadventuretitle(this.Level);
+                dialogcontent += wl + $('#passcode_addon').html();
 				
                 // Update current adventure
                 Party.levelcomplete += 1;
                 Party.gold += this.Level.opts.gold;
 				
-				// Update XP
-				dialogcontent += "Survival XP (+10): ";
-				for (var i=0; i<Players.length; i++) {
-					Players[i].XP += 10;
-					dialogcontent += Players[i].name;
-					if (i<Players.length-1) {
-						dialogcontent += ", ";
-					}
-					Players[i].calcstats();
-				}
+                // Update XP
+                dialogcontent += "Survival XP (+10): ";
+                for (var i=0; i<Players.length; i++) {
+                    Players[i].XP += 10;
+                    dialogcontent += Players[i].name;
+                    if (i<Players.length-1) {
+                            dialogcontent += ", ";
+                    }
+                    Players[i].calcstats();
+                }
 				
                 if (Party.levelcomplete >= Adventures.length){
                         dialogcontent += "<p><b>You have completed all available adventures. Come back later for more\
@@ -104,38 +117,38 @@ var World = function(){
                 }
                 
                 // Passcode addon should show next adventure, and not return to home screen
-                Input.M_Dialog("standard", dialogcontent, this.Level.title, {
+                Input.M_Dialog("standard", dialogcontent, "Chapter " + this.Level.refID, {
                     "Play on": function(){
                             World.playnext();
-							//Input.M_Dialog('equip');
+			    //Input.M_Dialog('equip');
                     },
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');
                             $('.ui-dialog #emailpasscoderesponse').text('Attempting to send...');
                             $.ajax({
-                                    url: 'email.php?passcode='+ $('.ui-dialog #passcode').text() +'&email='+$(".ui-dialog #emailpasscode").val() + '&adventure='+Adventures[Party.levelcomplete-1].title,
-                                    type: 'POST',
-                                    success: function(data){
-                                            if (data != "Success") {
-                                                    $('.ui-dialog #emailpasscoderesponse').css('color', 'red');
-                                            } else {
-                                                    $('.ui-dialog #emailpasscoderesponse').css('color', 'green');
-                                            }
-                                            
-                                            $('.ui-dialog #emailpasscoderesponse').text(data);
-                                    },
-                                    error: function(){
-                                            $('.ui-dialog #emailpasscoderesponse').css('color', 'red');
-                                            $('.ui-dialog #emailpasscoderesponse').text('Unknown error. Sorry :(');
-                                    }
+                                url: 'email.php?passcode='+ $('.ui-dialog #passcode').text() +'&email='+$(".ui-dialog #emailpasscode").val() + '&adventure='+Adventures[Party.levelcomplete-1].title,
+                                type: 'POST',
+                                success: function(data){
+                                        if (data != "Success") {
+                                                $('.ui-dialog #emailpasscoderesponse').css('color', 'red');
+                                        } else {
+                                                $('.ui-dialog #emailpasscoderesponse').css('color', 'green');
+                                        }
+                                        
+                                        $('.ui-dialog #emailpasscoderesponse').text(data);
+                                },
+                                error: function(){
+                                        $('.ui-dialog #emailpasscoderesponse').css('color', 'red');
+                                        $('.ui-dialog #emailpasscoderesponse').text('Unknown error. Sorry :(');
+                                }
                             })
                     }
-                }, 375);
+                }, stddialogheight);
 				
-				// If last adventure, disable Play On
-				if (Party.levelcomplete >= Adventures.length) {
-					$(".ui-dialog-buttonpane button:contains('Play on')").button("disable");
-				}
+                // If last adventure, disable Play On
+                if (Party.levelcomplete >= Adventures.length) {
+                        $(".ui-dialog-buttonpane button:contains('Play on')").button("disable");
+                }
                 
                 // Get passcode
                 Input.saveGame();	
@@ -144,7 +157,7 @@ var World = function(){
                     "Try again": function(){
                                     World.playnext();
                             }
-                    }, 375);
+                    }, stddialogheight);
             }
 	};
 	
@@ -177,18 +190,18 @@ var World = function(){
 		if( World.activePlayer.ofType == "player" && World.activePlayer.dead == false ){
 			World.activePlayer.map = "";
 			$('.m_grid td').each(function(key, value){
-				if($(this).hasClass('lit')){
-				    World.activePlayer.map += "1";
-				} else if ($(this).hasClass('visited')){
-                                    World.activePlayer.map += "2";
-                                } else { World.activePlayer.map += "0"; }
+                            if($(this).hasClass('lit')){
+                                World.activePlayer.map += "1";
+                            } else if ($(this).hasClass('visited')){
+                                World.activePlayer.map += "2";
+                            } else { World.activePlayer.map += "0"; }
 			});
 		} else if ( World.activePlayer.ofType == "monster" && World.activePlayer.dead == false ){
 			// Attach tooltips
 			$('.' + World.activePlayer.ID).tooltip({
-					items: "div[class]",
-					position: {my: 'center top+10', at: 'center middle'},
-					content: World.activePlayer.name
+                            items: "div[class]",
+                            position: {my: 'center top+10', at: 'center middle'},
+                            content: World.activePlayer.name
 			});
 			
 			// Reset to close range attack
@@ -198,14 +211,14 @@ var World = function(){
 		// Check for Players/Monsters defeated & victory condition(s)
 		switch(this.Level.victory.type){
 			case "kill":
-				for(var i=0; i<Dead.length; i++){
-					if(this.Level.victory.value[0] == Dead[i].name)
-					{
-						this.endgame(World.Level.events.win, "win");
-						break;
-					}
-				}
-				break;
+                            for(var i=0; i<Dead.length; i++){
+                                if(this.Level.victory.value[0] == Dead[i].name)
+                                {
+                                    this.endgame(World.Level.events.win, "win");
+                                    break;
+                                }
+                            }
+                            break;
 			default: break;
 		}
 		if(Monsters.length == 0 && this.gameover == false){

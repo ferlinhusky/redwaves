@@ -5,49 +5,58 @@
 var Tutorial = function(){
     this.refID = 1;
     this.title = "Die, said the Basilisk. Die!";
-	this.titlecolors = ["red", "black"];
+    this.titlecolors = ["red", "black"];
     this.type = "Tutorial";
     this.map = "tutorial_map.txt";
+    this.actsq = [
+	{
+	    s: [30, 9],
+	    a: {
+		type: "alert",
+		func: "Hello, door."
+	    }
+	}
+    ];
     this.opts = {
-		"height": 30,
-		"width": 40,
-		"items": {
-		    "tron_1": [29, 7],
-			"tron_2": [11, 5],
-			"maddog_1": [14, 21],
-			"maddog_2": [18, 21],
-			"maddog_3": [22, 21],
-			"phyton_1": [7, 16],
-			"phyton_2": [8, 16],
-			"glory_1": [15, 12],
-			"glory_2": [12, 9],
-			"coifandkettle_1": [31, 7],
-			"scale_1": [31, 7]
-		},
-		"monsters": {
-			"Basilisk_1": [15, 9],
-			"Snake_Man_1": [7, 15],
-			"Snake_Man_2": [7, 16],
-			"Snake_Man_3": [11, 5],
-			"Snake_Man_4": [10, 13],
-			"Snake_Man_5": [11, 13],
-			"Snake_Man_6": [10, 16],
-			"Snake_Man_7": [11, 16],
-			"Snake_Man_8": [12, 10],
-			"Snake_Man_9": [14, 13],
-			"Snake_Man_10": [16, 13],
-			"Snake_Man_11": [18, 5],
-			"Snake_Man_12": [18, 6],
-			"Snake_Man_13": [19, 6],
-			"Snake_Man_14": [23, 12],
-			"Snake_Man_15": [23, 16],
-			"Hell_Dog_1": [14, 21],
-			"Hell_Dog_2": [18, 21],
-			"Hell_Dog_3": [22, 21],
-			"Hell_Dog_4": [28, 11],
-			"Hell_Dog_5": [32, 11]
-		},
-		"gold": 500
+	"height": 30,
+	"width": 40,
+	"items": {
+	    "tron_1": [29, 7],
+		"tron_2": [11, 5],
+		"maddog_1": [14, 21],
+		"maddog_2": [18, 21],
+		"maddog_3": [22, 21],
+		"phyton_1": [7, 16],
+		"phyton_2": [8, 16],
+		"glory_1": [15, 12],
+		"glory_2": [12, 9],
+		"coifandkettle_1": [31, 7],
+		"scale_1": [31, 7]
+	},
+	"monsters": {
+		"Basilisk_1": [15, 9],
+		"Snake_Man_1": [7, 15],
+		"Snake_Man_2": [7, 16],
+		"Snake_Man_3": [11, 5],
+		"Snake_Man_4": [10, 13],
+		"Snake_Man_5": [11, 13],
+		"Snake_Man_6": [10, 16],
+		"Snake_Man_7": [11, 16],
+		"Snake_Man_8": [12, 10],
+		"Snake_Man_9": [14, 13],
+		"Snake_Man_10": [16, 13],
+		"Snake_Man_11": [18, 5],
+		"Snake_Man_12": [18, 6],
+		"Snake_Man_13": [19, 6],
+		"Snake_Man_14": [23, 12],
+		"Snake_Man_15": [23, 16],
+		"Hell_Dog_1": [14, 21],
+		"Hell_Dog_2": [18, 21],
+		"Hell_Dog_3": [22, 21],
+		"Hell_Dog_4": [28, 11],
+		"Hell_Dog_5": [32, 11]
+	},
+	"gold": 500
     };
 	this.victory = {
 		"type": "kill",
@@ -81,6 +90,7 @@ var Monastery = function(){
 	this.titlecolors = ["yellow", "darkorange"];
     this.type = "Monastery";
     this.map = "monastery_map.txt";
+    this.actsq = [];
     this.opts = {
 		"height": 30,
 		"width": 39,
@@ -142,6 +152,7 @@ var CaveDwellers = function(){
 	this.titlecolors = ["white", "brown"];
     this.type = "CaveDwellers";
     this.map = "cave_dwellers_map.txt";
+    this.actsq = [];
     this.opts = {
 		"height": 30,
 		"width": 40,

@@ -644,53 +644,53 @@ var Input = function(){
 				default: break;
 			}
 			if(type=="standard"){
-				oDialog.html(content);
-				M_D_title = title;
-								M_D_height = height;
-				M_D_width = width;
-								M_D_create = new Function('return false');
-				if(buttons != false) {
-					M_D_buttons = buttons;
-				} else {
-					M_D_buttons = {
-						"Ok": function() {
-							$(this).dialog('close');
-						}
-					}
-				}
+                            oDialog.html(content);
+                            M_D_title = title;
+                            M_D_height = "auto";
+                            M_D_width = width;
+                            M_D_create = new Function('return false');
+                            if(buttons != false) {
+                                M_D_buttons = buttons;
+                            } else {
+                                M_D_buttons = {
+                                    "Ok": function() {
+                                        $(this).dialog('close');
+                                    }
+                                }
+                            }
 			} else {
-				oDialog.html(M_D.content);
-				M_D_title = M_D.title;
-				M_D_buttons = M_D.buttons;
-				
-				if(M_D.height != undefined){
-					M_D_height = M_D.height;
-				} else { M_D_height = "auto"; }
-				
-				if(M_D.width != undefined){
-					M_D_width = M_D.width;
-				} else { M_D_width = 300; }
-								
-				if(M_D.create != undefined){
-					M_D_create = M_D.create;
-				} else { M_D_create = new Function('return false'); }
+                            oDialog.html(M_D.content);
+                            M_D_title = M_D.title;
+                            M_D_buttons = M_D.buttons;
+                            
+                            if(M_D.height != undefined){
+                                    M_D_height = M_D.height;
+                            } else { M_D_height = "auto"; }
+                            
+                            if(M_D.width != undefined){
+                                    M_D_width = M_D.width;
+                            } else { M_D_width = 300; }
+                                                            
+                            if(M_D.create != undefined){
+                                    M_D_create = M_D.create;
+                            } else { M_D_create = new Function('return false'); }
 			}
 			oDialog.dialog({
-				closeOnEscape: false,
-				create: M_D_create(),
-				dialogClass: 'no-close',
-				close: function(){
-						Input.bindToMap();
-						if($('.dialog_content').dialog()){
-							$('.dialog_content').dialog('destroy');
-						}
-				},
-				buttons: M_D_buttons,
-				title: M_D_title,
-				modal: true,
-				height: M_D_height,
-				width: M_D_width,
-				resizable: false
+                            closeOnEscape: false,
+                            create: M_D_create(),
+                            dialogClass: 'no-close',
+                            close: function(){
+                                Input.bindToMap();
+                                if($('.dialog_content').dialog()){
+                                        $('.dialog_content').dialog('destroy');
+                                }
+                            },
+                            buttons: M_D_buttons,
+                            title: M_D_title,
+                            modal: true,
+                            height: M_D_height,
+                            width: M_D_width,
+                            resizable: false
 			});
 		}
 		
@@ -859,8 +859,8 @@ var Input = function(){
 			if (Party.levelcomplete >= Adventures.length) {
 				$('.ui-dialog .next_adventure').html("You've done 'em all. <a href='http://www.twitter.com/HuskyFerlin'>When more?</a>");
 				$('.ui-dialog .next_adventure').css({
-								"color": "#333",
-								"background-color": "#fff"
+                                    "color": "#333",
+                                    "background-color": "#fff"
 				});
 				$(".ui-dialog-buttonpane button:contains('Play')").button("disable");
 			} else {
@@ -868,8 +868,8 @@ var Input = function(){
 				MapWorld = curradv.type;
 				$('.ui-dialog .next_adventure').text(curradv.title);
 				$('.ui-dialog .next_adventure').css({
-								"color": curradv.titlecolors[0],
-								"background-color": curradv.titlecolors[1]
+                                    "color": curradv.titlecolors[0],
+                                    "background-color": curradv.titlecolors[1]
 				});
 			}
 		}
