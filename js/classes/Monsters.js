@@ -610,3 +610,14 @@ var Zor = Monster.extend({
 		this.maxMove	=	8;
   	}
 });
+
+// Small Beaumont
+// Huge Beaumont
+// Demi-Hall
+// Arch-Hall
+// Incredibly Strange Creature...when killed becomes...Mixed-Up Zombie
+// Sinful Dwarf
+// Beast of Yucca Flats
+// Torgo
+// Manos
+// Bride of Manos

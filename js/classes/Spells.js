@@ -68,9 +68,9 @@ var earthquake = Spell.extend({
                         Statuss.update(status_line);
                     }
                 }
-        });
-        Input.handleSpell();
-        ap.handleactioncost("spell");
+            });
+            Input.handleSpell();
+            ap.handleactioncost("spell");
         }, 4);
     }
 });
@@ -79,15 +79,14 @@ var earthquake = Spell.extend({
 var heal = Spell.extend({
     init: function(){
         this._super("Heal", "heal", "healing", 0, "light", 2, function(sobj, ap){
-		var caster = World.activePlayer;
                 if(sobj.occupiedBy.ofType == "player"){
                     var p = sobj.occupiedBy;
                     
                     if (p.HP < p.maxHP) {
                         // Heals up to 5 + Caster level
-                        var healsfor = Math.ceil(Math.random() * (5 + caster.level));
+                        var healsfor = Math.ceil(Math.random() * (5 + ap.level));
                         HP_set(p, healsfor);
-                        Statuss.update(caster.name + " heals " + p.name + " for " + healsfor);
+                        Statuss.update(ap.name + " heals " + p.name + " for " + healsfor);
                         Input.handleSpell();
                         ap.handleactioncost("spell");
                     } else {
@@ -102,7 +101,6 @@ var heal = Spell.extend({
 var healall = Spell.extend({
     init: function(){
         this._super("Heal All", "healall", "healing", 0, "light", 20, function(sobj, ap){
-            var caster = World.activePlayer;
             var toheal = [];
             for(var i=0; i<Players.length; i++){
                 var p = Players[i];
@@ -112,12 +110,12 @@ var healall = Spell.extend({
                 for(var i=0; i<toheal.length; i++){
                     var p = toheal[i];
                     if (p.HP < p.maxHP) {
-                        var cansee = Bresenham(caster.coords[0], caster.coords[1], p.coords[0], p.coords[1], "monster_target", true);
+                        var cansee = Bresenham(ap.coords[0], ap.coords[1], p.coords[0], p.coords[1], "monster_target", true);
                         if(cansee == true){
                             // Heals all visible players up to Caster level
-                            var healsfor = Math.ceil(Math.random() * caster.level);
+                            var healsfor = Math.ceil(Math.random() * ap.level);
                             HP_set(p, healsfor);
-                            Statuss.update(caster.name + " heals " + p.name + " for " + healsfor);
+                            Statuss.update(ap.name + " heals " + p.name + " for " + healsfor);
                         }	
                     }
                 }
@@ -134,7 +132,9 @@ var healall = Spell.extend({
 var smoke = Spell.extend({
     init: function(){
         this._super("Smoke", "smoke", "physical", 0, "earth", 5, function(sobj, ap){
-	    var caster = World.activePlayer;
+
+            Input.handleSpell();
+            ap.handleactioncost("spell");
         }, 7);
     }
 });
