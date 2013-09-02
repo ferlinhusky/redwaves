@@ -659,12 +659,12 @@ h3{
 
 .m_grid td.lit .p.atomic_beast:before { content: 'A' !important; background-color: #3c0; color: #000; }
 .m_grid td.lit .p.atomic_freak:before { content: 'a' !important; background-color: #3c0; color: #000; }
-.m_grid td.lit .p.eegah:before { content: 'R' !important; background-color: magenta; color: #000; }
+.m_grid td.lit .p.eegah:before { content: 'E' !important; background-color: magenta; color: #000; }
 .m_grid td.lit .p.giant_leech:before { content: 'L' !important; background-color: darkgreen; color: #fff; }
 .m_grid td.lit .p.guard_of_zor:before { content: 'G' !important; background-color: #000; color: #fff; }
 .m_grid td.lit .p.hell_dog:before { content: 'H' !important; background-color: Brown; color: #fff; }
 .m_grid td.lit .p.hillbilly_hellion:before { content: 'H' !important; background-color: Maroon; color: #fff; }
-.m_grid td.lit .p.killer_shrew:before { content: 'M' !important; background-color: brown; color: #fff; }
+.m_grid td.lit .p.killer_shrew:before { content: 'S' !important; background-color: chocolate; color: #000; }
 .m_grid td.lit .p.shaolin_archer:before { content: 'A' !important; background-color: darkorange; color: #000; }
 .m_grid td.lit .p.shaolin_bowfighter:before { content: 'B' !important; background-color: #f90; color: #000; }
 .m_grid td.lit .p.shaolin_initiate:before { content: 's' !important; background-color: Khaki; color: #000; }
