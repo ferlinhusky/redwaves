@@ -249,7 +249,7 @@
     <!-- Welcome dialog -->
     <div class="dialog_content" id="dialog_welcome">
 	<p><i>In all four directions my fortune it grows,<br/>
-                but over red waves of sand the wind never blows.</i></p>
+                and over red waves of sand the wind ever blows.</i></p>
     	<p><b>Start a new game</b><br/>
 	    Click "Play" to go right into your first adventure!</p>
 	<p><b>Load a game</b><br/>
@@ -262,7 +262,7 @@
     
     <!-- Select team dialog -->
     <div class="dialog_content" id="dialog_select_team">
-    	<p>You need three "friends" to, let's face it, kill for you.</p>
+    	<p>My goodness, look what has become of you and your three little lackeys. What are you all supposed to be?</p>
 	
 	<table width="100%" cellspacing="5" align="center">
 		<tr>

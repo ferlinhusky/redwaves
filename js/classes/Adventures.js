@@ -63,14 +63,16 @@ var Tutorial = function(){
 		"value": ["Basilisk", 1] // type and # to kill
 	};
     this.events = {
-	"preamble": "<p>You and your companions have activated\
-	a TIME PORTAL to another time. The time...of the Basilisk! While you hope the\
-	next leap will be the leap home, it will probably just lead\
-	to more bullshit.</p><p><b>Objective: Kill the Basilisk!</b></p>\
+	"preamble": "<p>The door of the Infinity Box opens with a creak.\
+	&ldquo;That was some roller coaster ride,&rdquo; Vogel says dryly. He, Krieger and R&#246;ssel step\
+	out onto a grassy patch. Before them stands a wide, stone complex.</p>\
+	<p>&ldquo;What do you imagine it is? Some kind of castle?&rdquo;, R&#246;ssel asks. &ldquo;Too small to be\
+	a castle,&rdquo; Krieger quickly responds. &ldquo;It could be a keep.&rdquo;\
+	<p>Vogel looks around, glancing quickly over both shoulders. &ldquo;Where's Schwerheld?&rdquo;</p>\
 	<p><i>Hint: Watch out for Snakes!</i></p>",
 	"meet": {
 	    "Basilisk_1":{
-			"Basilisk_1": "<p>Die! Die!</p><p>See, truth in advertising.</p><p>Die!</p>s"
+			"Basilisk_1": "<p>Die! Die! (I told you so)</p>"
 	    }
 	},
 	"win": "<p><b>YOU WIN!</b></p><p>Congratulations! You receive 500 gold for destroying\
@@ -127,8 +129,7 @@ var Monastery = function(){
 	"preamble": "<p>You and your companions find yourselves at the\
 	entrance of an incredibly blocky temple complex. A convenient\
 	villager tells you of the Shaolin Beatniks who reside within and\
-	of their brutal master...the Master Killer!</p><p><b>Objective:\
-	Defeat the Master Killer!</b></p>\
+	of their brutal master.</p>\
 	<p><i>Hint: He was the best, so he killed the rest!</i></p>",
 	"meet": {
 	    "Master_Killer_1":{

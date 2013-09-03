@@ -65,7 +65,7 @@ var D_Equip = {
 }
 
 var D_Select_Team = {
-	title: 'Pick your team!',
+	title: 'You come right out of a comic book.',
 	content: $('#dialog_select_team').html(),
 	buttons: {
 		"Back": function(){

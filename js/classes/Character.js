@@ -248,6 +248,18 @@ var Character = Class.extend({
 		}
 	},
 	killed: function(){
+		// Drop everything (except limbs)
+		for (var i=0; i<this.wears.length; i++) {
+			if (this.wears[i] != "") { this.wears[i].drop(this, this.currentSquare); }
+		}
+		for (var i=0; i<this.wields.length; i++) {
+			if (this.wields[i] != "" && this.wields[i].supclass != "appendage") { this.wields[i].drop(this, this.currentSquare); }
+		}
+		for (var i=0; i<this.inven.length; i++) {
+			this.inven[i].drop(this, this.currentSquare);
+		}
+		
+		// Set vars
 		this.dead = true;
 		this.movement = 0;
 		Dead.push(this);
@@ -275,5 +287,9 @@ var Character = Class.extend({
 				break; // end loop
 			}
 		}
-	}
+	},
+	updateWpn: function(){ return; },
+	updateAC: function(){ return; },
+	updateArmor: function(){ return; },
+	updatetable: function(){ return; },
 });

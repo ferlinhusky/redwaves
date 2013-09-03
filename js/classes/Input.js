@@ -440,7 +440,7 @@ var Input = function(){
 		
 		this.dropItem = function(id){
 			var square = getSquare(World.activePlayer.coords);
-			Input.dropList[id].drop(square.id);
+			Input.dropList[id].drop(World.activePlayer, square.id);
 		};
 
 	/*
@@ -1017,10 +1017,10 @@ var Input = function(){
 		btnSelectWeapon.bind('click touchend', function(e){e.preventDefault(); Input.selectWeapon();});
 		btnItem.bind('click touchend', function(e){e.preventDefault(); Input.handleItem();});
 		btnSelectItem.bind('click touchend', function(e){e.preventDefault(); Input.selectItem();});
-		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();}).tooltip();
+		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
 		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.selectPickup();});
 		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.selectDrop();});
-		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}).tooltip(); // disable the button immediately or it takes too long
+		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
 		var updateBtnState = function(b, val){

@@ -186,7 +186,7 @@ var Player = Character.extend({
 						var sa = square.action;
 						switch(sa.type){
 							case "alert":
-								Input.M_Dialog("standard", sa.func, "!!!", false);
+								Statuss.update("<div class='sq_alert'>" + sa.func + "</div>");
 								break;
 							default: break;
 						}
@@ -291,7 +291,7 @@ var Fighter = Player.extend({
 		[new barbute, new chainmail,"","","",""],
 		[new longsword,new crossbow,"",""],
 		[],
-		[new tenacity, new marksmanship],
+		[new tenacity, new marksmanship, new swordsmanship],
 		[new CON, new STR, new DEX, new WIS, new INT, new CHA]);
 	
 		this.thac0 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];

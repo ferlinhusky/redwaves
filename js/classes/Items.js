@@ -45,7 +45,7 @@ var Item = Class.extend({
 				action = "puts on the";
 				// If wearing armor here, drop it
 				if(p.wears[drop_armor] != ""){
-					p.wears[drop_armor].drop(curr);
+					p.wears[drop_armor].drop(p, curr);
 				}
 				p.wears[drop_armor] = this;
 				p.updateArmor();
@@ -91,8 +91,8 @@ var Item = Class.extend({
 				300);
 		}
 	},
-	drop: function(curr){
-		var p = World.activePlayer;
+	drop: function(p, curr){
+		//var p = World.activePlayer;
 		
 		// Unbuild menus
 		unbuildAllMenus();
