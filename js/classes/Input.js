@@ -994,7 +994,7 @@ var Input = function(){
 			});
 			$(window).unbind('touchmove');
 			Input.unbindFromMap();
-		}).tooltip();
+		});
 		btnCloseHelp.bind('click touchend', function(e){
 			e.preventDefault();
 			$('.ui-widget-overlay, .ui-dialog').removeClass('hideforhelp');
