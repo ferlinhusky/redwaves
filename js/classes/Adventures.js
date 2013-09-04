@@ -4,7 +4,7 @@
 
 var Tutorial = function(){
     this.refID = 1;
-    this.title = "Die, said the Basilisk. Die!";
+    this.title = "Faster, Basilisk! Kill! Kill!";
     this.titlecolors = ["red", "black"];
     this.type = "Tutorial";
     this.map = "tutorial_map.txt";
@@ -88,7 +88,7 @@ var Tutorial = function(){
 
 var Monastery = function(){
     this.refID = 2;
-    this.title = "Kill, Shaolin Beatniks! Kill!";
+    this.title = "Who's the Master?";
 	this.titlecolors = ["yellow", "darkorange"];
     this.type = "Monastery";
     this.map = "monastery_map.txt";
