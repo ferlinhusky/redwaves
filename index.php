@@ -358,6 +358,7 @@
 	<script src="js/classes/Character.js"></script>
 	<script src="js/classes/Player.js"></script>
 	<script src="js/classes/Monsters.js"></script>
+	<script src="js/classes/NPC.js"></script>
 	<script src="js/classes/Battle.js"></script>
 	<script src="js/classes/Party.js"></script>
 	<!-- Items -->
