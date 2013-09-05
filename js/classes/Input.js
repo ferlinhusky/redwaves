@@ -178,7 +178,7 @@ var Input = function(){
 			var remaining_moves = p.movement - p.currMove;
 			if(Input.spellOn == true && remaining_moves >= 2){
 				p.readySpell.cast(sobj);
-			} else if (Input.weaponOn == true && remaining_moves >= 2 && sobj.ofType != "player"){
+			} else if (Input.weaponOn == true && remaining_moves >= 2 && sobj.occupiedBy.ofType != "player"){
 				var battle = new Battle(p, sobj.occupiedBy);
 				p.handleactioncost("ranged");
 			}
