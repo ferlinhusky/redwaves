@@ -304,14 +304,16 @@ var setGender = function(g){
 			"demo": "male",
 			"type": "man",
 			"pro": "him",
-			"ppro": "his"
+			"ppro": "his",
+			"pros": "he"
 		};
 	} else {
 		gender = {
 			"demo": "female",
 			"type": "woman",
 			"pro": "her",
-			"ppro": "her"
+			"ppro": "her",
+			"pros": "she"
 		};
 	}
 	return gender;

@@ -64,11 +64,11 @@ var Tutorial = function(){
 	};
     this.events = {
 	"preamble": "<p>The door of the Infinity Box opens with a creak.\
-	&ldquo;That was some roller coaster ride,&rdquo; Vogel says dryly. He, Krieger and R&#246;ssel step\
+	&ldquo;That was some roller coaster ride,&rdquo; {p2} says dryly as {p2-gen}, {p3}, and {p4} step\
 	out onto a grassy patch. Before them stands a wide, stone complex.</p>\
-	<p>&ldquo;What do you imagine it is? Some kind of castle?&rdquo;, R&#246;ssel asks. &ldquo;Too small to be\
-	a castle,&rdquo; Krieger quickly responds. &ldquo;It could be a keep.&rdquo;\
-	<p>Vogel looks around, glancing quickly over both shoulders. &ldquo;Where's Schwerheld?&rdquo;</p>\
+	<p>&ldquo;What do you imagine it is? Some kind of castle?&rdquo;, {p3} asks. &ldquo;Too small to be\
+	a castle,&rdquo; {p4} quickly responds. &ldquo;It could be a keep.&rdquo;\
+	<p>{p2} looks around, glancing quickly over both shoulders. &ldquo;Where's {p1}?&rdquo;</p>\
 	<p><i>Hint: Watch out for Snakes!</i></p>",
 	"meet": {
 	    "Basilisk_1":{

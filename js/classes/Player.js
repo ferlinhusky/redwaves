@@ -271,7 +271,7 @@ var Player = Character.extend({
 // HERO
 var Hero = Player.extend({
 	init: function(){ this._super(
-		"Hero",
+		"Mut",
 		"hero",
 		["","","","","",""],
 		[new shortsword,"","",""],
@@ -286,7 +286,7 @@ var Hero = Player.extend({
 // FIGHTER
 var Fighter = Player.extend({
 	init: function(){ this._super(
-		"Fighter",
+		"Krieger",
 		"fighter",
 		[new barbute, new chainmail,"","","",""],
 		[new longsword,new crossbow,"",""],
@@ -301,7 +301,7 @@ var Fighter = Player.extend({
 // KNIGHT
 var Knight = Player.extend({
 	init: function(){ this._super(
-		"Knight",
+		"R&ouml;ssel",
 		"knight",
 		[new closehelmet, new plate,"","","",""],
 		[new broadsword,"","",""],
@@ -316,7 +316,7 @@ var Knight = Player.extend({
 // WIZARD
 var Wizard = Player.extend({
 	init: function(){ this._super(
-		"Wizard",
+		"Zauber",
 		"wizard",
 		[new leatherhelm, new robe,"","","",""],
 		[new woodenstaff,"","",""],
@@ -339,7 +339,7 @@ var Wizard = Player.extend({
 // Wolfman
 var Wolfman = Player.extend({
 	init: function(){ this._super(
-		"Wolfman",
+		"Hundmann",
 		"wolfman",
 		["","","","","",""],
 		[new claws, new fangs, "", ""],
@@ -354,7 +354,7 @@ var Wolfman = Player.extend({
 // HARPY
 var Harpy = Player.extend({
 	init: function(){this._super(
-		"Harpy",
+		"Teufel",
 		"harpy",
 		["","","","","",""],
 		[new claws, new fangs, "", ""],
@@ -369,7 +369,7 @@ var Harpy = Player.extend({
 // THIEF
 var Thief = Player.extend({
 	init: function(){ this._super(
-		"Thief",
+		"Gauner",
 		"thief",
 		[new leatherhelm, new leathertunic,"","","",""],
 		[new dagger, new dagger,"",""],
@@ -384,7 +384,7 @@ var Thief = Player.extend({
 // YOUNG PRIEST
 var Youngpriest = Player.extend({
 	init: function(){ this._super(
-		"Young Priest",
+		"Neuvikar",
 		"youngpriest",
 		["", new robe,"","","",""],
 		[new maul,"","",""],
@@ -401,7 +401,7 @@ var Youngpriest = Player.extend({
 // OLD PRIEST
 var Oldpriest = Player.extend({
 	init: function(){ this._super(
-		"Old Priest",
+		"Alten",
 		"oldpriest",
 		["", new robe,"","","",""],
 		[new mace,"","",""],
