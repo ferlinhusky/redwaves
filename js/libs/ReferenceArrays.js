@@ -12,7 +12,8 @@ var Weapons = ["",
     "battleaxe", "shuriken",
     "deathgrip", "bowstaff",
     "mace", "maul",
-    "geometricnucleus", "rock", "sucker"
+    "geometricnucleus", "rock", "sucker",
+    "pointedstick"
 ];
 
 var Armors = ["",
@@ -25,7 +26,8 @@ var Armors = ["",
     "leathertunic", "robe",
     "scale", "chainmail",
     "brigandine", "plate",
-    "vikinghelmet", "studdedleather", "somersetbreastplate"
+    "vikinghelmet", "studdedleather", "somersetbreastplate",
+    "sackcloth"
 ];
 
 var Skills = ["",

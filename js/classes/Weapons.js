@@ -54,6 +54,9 @@ var shortsword = Sword.extend({ init: function(){ this._super("Short sword", "sh
 // Broad sword
 var broadsword = Sword.extend({ init: function(){ this._super("Broad sword", "broadsword", "1d10", "steel", true, 4); } });
 
+// Pointed stick
+var pointedstick = Sword.extend({ init: function(){ this._super("Pointed stick", "pointedstick", "1d2", "wood", true, 23); } });
+
 // Staff subclass
 var Staff = Weapon.extend({
 	init: function(name, type, dmg, material, refID){

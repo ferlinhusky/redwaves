@@ -64,3 +64,6 @@ var plate = BodyArmor.extend({ init: function(){ this._super("Plate", "plate", "
 
 // Hubcap
 var somersetbreastplate = BodyArmor.extend({ init: function(){ this._super("Somerset breastplate", "somersetbreastplate", "steel", -6, 15); } });
+
+// Sackcloth
+var sackcloth = BodyArmor.extend({ init: function(){ this._super("Sackcloth", "sackcloth", "cloth", 0, 16); } });

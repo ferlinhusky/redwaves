@@ -15,13 +15,16 @@ var NPC = Character.extend({
 		
 		NPCs.push(this);
 	},
-  talk: function(){
-    return;
-  },
+	talk: function(){
+		return;
+	},
+	give: function(){
+		return;	
+	},
 	killed: function(){
 		if($('.' + this.ID).tooltip()){
-        $('.' + this.ID).tooltip('destroy');
-    }
+			$('.' + this.ID).tooltip('destroy');
+		}
 		this._super();
 		// If killed on its own turn
 		if(World.activePlayer === this){
@@ -31,6 +34,27 @@ var NPC = Character.extend({
 });
 
 // [ 0-head, 1-torso, 2-legs, 3-right hand, 4-left hand, 5-feet]
+
+// LŸgner
+var Lugner = NPC.extend({
+	init: function(){
+    	this._super(
+    		"LŸgner",
+    		"lugner",
+    		"LŸgners",
+    		["",new sackcloth,"","","",""],
+    		[new hands, "", "", ""],
+    		[],
+    		[],
+    		[new CON, new STR, new WIS, new DEX, new INT, new CHA]);
+    	
+    		this.HP = 1;
+    		this.maxHP = 1;
+    		
+    		this.movement	=	0;
+    		this.maxMove	=	0;
+  	}
+});
 
 // Villager
 var Villager = NPC.extend({

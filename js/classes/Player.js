@@ -273,10 +273,10 @@ var Hero = Player.extend({
 	init: function(){ this._super(
 		"Mut",
 		"hero",
-		["","","","","",""],
-		[new shortsword,"","",""],
+		["",new sackcloth,"","","",""],
+		["","","",""],
 		[],
-		[new heroism],
+		[new heroism, new swordsmanship],
 		[new STR, new CON, new CHA, new WIS, new DEX, new INT]);
 		
 		this.thac0 = [20, 20, 19, 19, 18, 17, 17, 16, 16, 15, 14, 14, 13, 13, 12, 11, 11, 10, 10, 9];

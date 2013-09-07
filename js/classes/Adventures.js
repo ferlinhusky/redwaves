@@ -21,7 +21,6 @@ var Tutorial = function(){
 	"height": 30,
 	"width": 40,
 	"items": {
-	    "tron_1": [29, 7],
 		"tron_2": [11, 5],
 		"maddog_1": [14, 21],
 		"maddog_2": [18, 21],
@@ -30,8 +29,7 @@ var Tutorial = function(){
 		"phyton_2": [8, 16],
 		"glory_1": [15, 12],
 		"glory_2": [12, 9],
-		"coifandkettle_1": [31, 7],
-		"scale_1": [31, 7]
+		"pointedstick_1": [31, 7]
 	},
 	"monsters": {
 		"Basilisk_1": [15, 9],
