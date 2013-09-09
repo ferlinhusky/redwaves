@@ -13,7 +13,7 @@ var Item = Class.extend({
 		var p = World.activePlayer;
 			
 		// Unbuild menus
-		unbuildAllMenus();
+		if (p.ofType == "player") { unbuildAllMenus(); }
 		
 		// Push to inventory, if possible
 		var isplaced = false;
@@ -50,11 +50,11 @@ var Item = Class.extend({
 				p.wears[drop_armor] = this;
 				p.updateArmor();
 				break;
-			default			: p.inven.push(this); isplaced = true; break;
+			default 		: p.inven.push(this); isplaced = true; break;
 		}
 
 		// (Re)build menus
-		buildAllMenus();
+		if (p.ofType == "player") { buildAllMenus(); }
 		
 		// If item is placed
 		if (isplaced == true) {
@@ -75,27 +75,29 @@ var Item = Class.extend({
 			// Check if all picked up from square
 			if (Squares[curr].containsA.length == 0) {
 				Squares[curr].contains = false;
-				btnPickup.button('disable');
+				if (p.ofType == "player") { btnPickup.button('disable'); }
 			}
 			
-			// Reset pickup menu, enable pickup
-			Input.selectPickup();
-			btnDrop.button('enable');
+			if (p.ofType == "player") { 
+				// Reset pickup menu, enable pickup
+				Input.selectPickup();
+				btnDrop.button('enable');
+			}
 		} else {
-			Input.M_Dialog(
-				"standard",
-				"<p>You can't carry any more "+this.ofType+"s.</p>",
-				"All full up",
-				false,
-				200,
-				300);
+			if (p.ofType == "player") { 
+				Input.M_Dialog(
+					"standard",
+					"<p>You can't carry any more "+this.ofType+"s.</p>",
+					"All full up",
+					false,
+					200,
+					300);
+			}
 		}
 	},
 	drop: function(p, curr){
-		//var p = World.activePlayer;
-		
 		// Unbuild menus
-		unbuildAllMenus();
+		if (p.ofType == "player") { unbuildAllMenus(); }
 		
 		// Update square
 		Squares[curr].contains = true;
@@ -164,16 +166,20 @@ var Item = Class.extend({
 		// Update status // Check why drop is firing automatically
 		Statuss.update('<b>' + p.name + ' drops ' + this.name + '!</b>');
 		
-		// Reset drop menu, enable pickup
-		Input.dropList = [];
-		Input.selectDrop();
-		btnPickup.button('enable');
-		
-		// Check here if anything left to drop; enable disable button...and re-enable on pickup
-		checkDropBtn();
-		
-		// Rebuild all menus
-		buildAllMenus();
+		if (p.ofType == "player") {
+			// Reset drop menu, enable pickup
+			Input.dropList = [];
+			if (Input.dropMenu == true) {
+				Input.selectDrop();	
+			}
+			btnPickup.button('enable');
+			
+			// Check here if anything left to drop; enable disable button...and re-enable on pickup
+			checkDropBtn();
+			
+			// Rebuild all menus
+			buildAllMenus();
+		}
 	}
 });
 

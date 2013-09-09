@@ -175,11 +175,15 @@ var Player = Character.extend({
 				if(this.currentSquare != this.previousSquare){
 					this.lastDir = dir;
 					this.locIt(this.currentSquare, this.previousSquare);
-					// Set map position
+					
+					// Center map
 					centerOn(this);
 					
 					// Check for items
 					checkPickupBtn();
+					
+					// Check for Infinity Box
+					checkInfinityBox();
 					
 					// Check for actions
 					if(square.action != null){
@@ -187,11 +191,11 @@ var Player = Character.extend({
 						switch(sa.type){
 							case "alert":
 								Statuss.update("<div class='sq_alert'>" + sa.func + "</div>");
+								square.action = null;
 								break;
 							default: break;
 						}
 					}
-					square.action = null;
 				}
 
 				// Track all action costs here

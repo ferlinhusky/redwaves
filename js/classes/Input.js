@@ -934,8 +934,7 @@ var Input = function(){
 		});
 		
 		btnSave.button({ 
-			//icons: {primary:'ui-icon-disk',secondary:''},
-			disabled: false,
+			disabled: true,
 			text: true
 		});
 				

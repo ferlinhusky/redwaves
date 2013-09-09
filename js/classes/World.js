@@ -181,6 +181,8 @@ var World = function(){
             btnOpenClose.button('disable');
             btnPickup.button('disable');
             btnDrop.button('disable');
+			btnSave.button('disable')
+				.removeClass('blink');
             
             Input.spellOn = false;
             Input.weaponOn = false;
@@ -309,6 +311,7 @@ var World = function(){
                                 
                 checkPickupBtn();
                 checkDropBtn();
+				checkInfinityBox();
 				
 				// Check for doors, items
 				anyDoors(this.activePlayer.coords);

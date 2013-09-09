@@ -592,3 +592,17 @@ var checkPickupBtn = function(){
 		btnPickup.button('disable');
 	}
 }
+
+// Check if on Infinity Box
+var checkInfinityBox = function(){
+	var p = World.activePlayer;
+	var square = getMapSq(p.coords);
+	
+	if (square.hasClass('infinity_box') && World.infinitybox == true) {
+		btnSave.button('enable')
+			.addClass('blink');
+	} else {
+		btnSave.button('disable')
+			.removeClass('blink');
+	}
+}
