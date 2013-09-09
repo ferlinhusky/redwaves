@@ -5,6 +5,7 @@ var World = function(){
 		this.currentPlay = 0;
 		this.activePlayer = null;
 		this.gameover = false;
+		this.infinitybox = false;
 	}
 	
         this.getadventuretitle = function(lvl){
@@ -202,18 +203,18 @@ var World = function(){
 		if( World.activePlayer.ofType == "player" && World.activePlayer.dead == false ){
 			World.activePlayer.map = "";
 			$('.m_grid td').each(function(key, value){
-                            if($(this).hasClass('lit')){
-                                World.activePlayer.map += "1";
-                            } else if ($(this).hasClass('visited')){
-                                World.activePlayer.map += "2";
-                            } else { World.activePlayer.map += "0"; }
+				if($(this).hasClass('lit')){
+					World.activePlayer.map += "1";
+				} else if ($(this).hasClass('visited')){
+					World.activePlayer.map += "2";
+				} else { World.activePlayer.map += "0"; }
 			});
 		} else if ( World.activePlayer.ofType == "monster" && World.activePlayer.dead == false ){
 			// Attach tooltips
 			$('.' + World.activePlayer.ID).tooltip({
-                            items: "div[class]",
-                            position: {my: 'center top+10', at: 'center middle'},
-                            content: World.activePlayer.name
+				items: "div[class]",
+				position: {my: 'center top+10', at: 'center middle'},
+				content: World.activePlayer.name
 			});
 			
 			// Reset to close range attack
@@ -221,18 +222,19 @@ var World = function(){
 		}
 		
 		// Check for Players/Monsters defeated & victory condition(s)
-		switch(this.Level.victory.type){
+		/*switch(this.Level.victory.type){
 			case "kill":
-                            for(var i=0; i<Dead.length; i++){
-                                if(this.Level.victory.value[0] == Dead[i].name)
-                                {
-                                    this.endgame(World.Level.events.win, "win");
-                                    break;
-                                }
-                            }
-                            break;
+				for(var i=0; i<Dead.length; i++){
+					if(this.Level.victory.value[0] == Dead[i].name)
+					{
+						this.endgame(World.Level.events.win, "win");
+						break;
+					}
+				}
+				break;
 			default: break;
-		}
+		}*/
+		
 		if(Monsters.length == 0 && this.gameover == false){
 			this.endgame(this.Level.events.win, "win");
 			return false;
@@ -305,8 +307,8 @@ var World = function(){
 				// Activate buttons
 				btnEndTurn.button('enable');
                                 
-                                checkPickupBtn();
-                                checkDropBtn();
+                checkPickupBtn();
+                checkDropBtn();
 				
 				// Check for doors, items
 				anyDoors(this.activePlayer.coords);

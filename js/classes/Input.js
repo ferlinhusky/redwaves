@@ -521,6 +521,15 @@ var Input = function(){
 				}
 			}
 		};
+	
+	/*
+		Check Victory
+	*/
+		this.checkVictory = function(){
+			if (World.infinitybox == true && Squares[World.activePlayer.currentSquare].onMap.hasClass('infinity_box')) {
+				World.endgame(World.Level.events.win, "win");
+			}
+		}
 		
 	/*
 		Key Captures
@@ -570,56 +579,56 @@ var Input = function(){
 				case 32: Input.enterLoc(); break;
 				// left
 				case 37:
-                                    if (Input.downkey == "up") {
-                                                    moveLeftUp();
-                                                    Input.diaglast = true;
-                                    } else if (Input.downkey == "down") {
-                                                    moveLeftDown();
-                                                    Input.diaglast = true;
-                                    } else if (Input.diaglast == false) {
-                                                    moveLeft();
-                                                    Input.downkey = "";
-                                    } else { Input.diaglast = false; Input.downkey = ""; }
-                                    break;
+					if (Input.downkey == "up") {
+									moveLeftUp();
+									Input.diaglast = true;
+					} else if (Input.downkey == "down") {
+									moveLeftDown();
+									Input.diaglast = true;
+					} else if (Input.diaglast == false) {
+									moveLeft();
+									Input.downkey = "";
+					} else { Input.diaglast = false; Input.downkey = ""; }
+					break;
 				// up
 				case 38:
-                                    if (Input.downkey == "right") {
-                                                    moveRightUp();
-                                                    Input.diaglast = true;
-                                    } else if (Input.downkey == "left") {
-                                                    moveLeftUp();
-                                                    Input.diaglast = true;
-                                    } else if (Input.diaglast == false) {
-                                                    moveUp();
-                                                    Input.downkey = "";
-                                    } else { Input.diaglast = false; Input.downkey = ""; }
-                                    break;
+					if (Input.downkey == "right") {
+									moveRightUp();
+									Input.diaglast = true;
+					} else if (Input.downkey == "left") {
+									moveLeftUp();
+									Input.diaglast = true;
+					} else if (Input.diaglast == false) {
+									moveUp();
+									Input.downkey = "";
+					} else { Input.diaglast = false; Input.downkey = ""; }
+					break;
 				// right
 				case 39:
-                                    if (Input.downkey == "up") {
-                                                    moveRightUp();
-                                                    Input.diaglast = true;
-                                    } else if (Input.downkey == "down") {
-                                                    moveRightDown();
-                                                    Input.diaglast = true;
-                                    } else if (Input.diaglast == false) {
-                                                    moveRight();
-                                                    Input.downkey = "";
-                                    } else { Input.diaglast = false; Input.downkey = ""; }
-                                    break;
+					if (Input.downkey == "up") {
+									moveRightUp();
+									Input.diaglast = true;
+					} else if (Input.downkey == "down") {
+									moveRightDown();
+									Input.diaglast = true;
+					} else if (Input.diaglast == false) {
+									moveRight();
+									Input.downkey = "";
+					} else { Input.diaglast = false; Input.downkey = ""; }
+					break;
 				// down
 				case 40:
-                                    if (Input.downkey == "right") {
-                                                    moveRightDown();
-                                                    Input.diaglast = true;
-                                    } else if (Input.downkey == "left") {
-                                                    moveLeftDown();
-                                                    Input.diaglast = true;
-                                    } else if (Input.diaglast == false) {
-                                                    moveDown();
-                                                    Input.downkey = "";
-                                    } else { Input.diaglast = false; Input.downkey = ""; }
-                                    break;
+					if (Input.downkey == "right") {
+									moveRightDown();
+									Input.diaglast = true;
+					} else if (Input.downkey == "left") {
+									moveLeftDown();
+									Input.diaglast = true;
+					} else if (Input.diaglast == false) {
+									moveDown();
+									Input.downkey = "";
+					} else { Input.diaglast = false; Input.downkey = ""; }
+					break;
 				default: break;
 			}
 		};
@@ -1009,8 +1018,8 @@ var Input = function(){
 				});
 			Input.bindToMap();
 		});
-		//btnSave.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('equip'); });
-		btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		//btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnWeapon.bind('click touchend', function(e){e.preventDefault(); Input.handleWeapon();});

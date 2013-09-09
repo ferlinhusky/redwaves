@@ -287,6 +287,12 @@ var Character = Class.extend({
 				break; // end loop
 			}
 		}
+		
+		// If victory character, bring on the Infinity Box
+		if(this.name == World.Level.victory.value[0]){
+			Squares[this.currentSquare].onMap.addClass('infinity_box');
+			World.infinitybox = true;
+		}
 	},
 	updateWpn: function(){ return; },
 	updateAC: function(){ return; },

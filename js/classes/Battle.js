@@ -110,10 +110,8 @@ var Battle = function(att, def){
 				// Check for heroism skill; double dmg on attack, half dmg when defending against boss monster
 				if(World.Level.victory.type == "kill"){
 					if(World.Level.victory.value[0] == d1.name && a1.hasSkill('heroism')){
-						//console.log("attacked by hero");
 						att_dmg *= 2;
 					} else if (World.Level.victory.value[0] == a1.name && d1.hasSkill('heroism')){
-						//console.log("defended by hero");
 						var temp_att_dmg = att_dmg;
 						att_dmg = Math.floor(temp_att_dmg/2);
 					}
