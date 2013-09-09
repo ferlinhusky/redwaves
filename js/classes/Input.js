@@ -991,12 +991,11 @@ var Input = function(){
 		
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
-		//btnHelp.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('help');});
 		btnHelp.bind('click touchend', function(e){
 			e.preventDefault();
-			$('.ui-widget-overlay, .ui-dialog').addClass('hideforhelp');
+			$('.ui-widget-overlay, .ui-dialog').addClass('hideforfullscreen');
 			$('#container').css('display', 'none');
-			$('#help').css('display', 'table');
+			$('#fullscreen').css('display', 'table');
 			$('html, body').css({
 				overflow: 'auto',
 			});
@@ -1005,9 +1004,9 @@ var Input = function(){
 		});
 		btnCloseHelp.bind('click touchend', function(e){
 			e.preventDefault();
-			$('.ui-widget-overlay, .ui-dialog').removeClass('hideforhelp');
+			$('.ui-widget-overlay, .ui-dialog').removeClass('hideforfullscreen');
 			$('#container').css('display', 'block');
-			$('#help').css('display', 'none');
+			$('#fullscreen').css('display', 'none');
 			$('html, body').css({
 				overflow: 'hidden',
 			});

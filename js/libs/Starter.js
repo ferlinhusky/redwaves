@@ -100,7 +100,7 @@ var btnDrop = $('#btn_drop');
     $('body').append('<ul id="menu_select_drop" class="menu"></ul>');
 var menuSelectDrop = $('#menu_select_drop');
 
-var btnCloseHelp = $('#btn_close_help');
+var btnCloseHelp = $('#btn_close_fullscreen');
 
 var WeaponSet = $('#weaponset')
     WeaponSet.append('<div id="btn_weapon" class="button action">Weapon</div>');

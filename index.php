@@ -25,8 +25,8 @@
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
-	<!-- Help content -->
-	<table id="help"><tr><td class="margin">&nbsp;</td><td class="content">
+	<!-- Fullscreen content -->
+	<table id="fullscreen"><tr><td class="margin">&nbsp;</td><td class="content">
 		<h1>How to play</h1>
 		
 		<h2>Overview</h2>
@@ -238,7 +238,7 @@
 		<h2>What else is there to say?</h2>
 			<p>I don't think I forgot anything, but I quite likely did. Feel free to contact me through Twitter
 			<a href="https://twitter.com/HuskyFerlin">@HuskyFerlin</a> with any questions or comments.</p>
-		<div id="btn_close_help">Close</div>
+		<div id="btn_close_fullscreen">Close</div>
 	</td><td class="margin">&nbsp;</td></tr></table>
 	
 	<!-- Main content -->

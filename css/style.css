@@ -303,25 +303,25 @@ h3{
 /* Welcome *
 #welcome_screen {}
 
-/* Help */
-#help {
+/* Fullscreen content */
+#fullscreen {
     display: none;
     color: red;
     background-color: #000;
 }
-#help h1 { color: white; }
-#help h2 { color: yellow; }
-#help h3 { color: lightblue; }
-#help a { color: yellow; text-decoration: underline; }
-#help .content { max-width: 600px; }
-#help .margin { width: 0px; }
-#help .skill { color: #fff; }
-#btn_close_help {
+#fullscreen h1 { color: white; }
+#fullscreen h2 { color: yellow; }
+#fullscreen h3 { color: lightblue; }
+#fullscreen a { color: yellow; text-decoration: underline; }
+#fullscreen .content { max-width: 600px; }
+#fullscreen .margin { width: 0px; }
+#fullscreen .skill { color: #fff; }
+#btn_close_fullscreen {
     position: fixed;
     top: 5px;
     right: 20px;
 }
-.hideforhelp { display: none !important; }
+.hideforfullscreen { display: none !important; }
 
 /* Status */
 #whereami, #clock {
@@ -783,8 +783,8 @@ h3{
 	    padding-left: 20px;
 	    margin-left: 10px;
     }
-    #help .margin { width: 15%; }
-    #btn_close_help { right: 25%; }
+    #fullscreen .margin { width: 15%; }
+    #btn_close_fullscreen { right: 25%; }
 }
 
 /* Landscape */
@@ -798,7 +798,7 @@ only screen and (min-width: 560px) and (max-device-width: 1136px) and (-webkit-m
 
 @media only screen and (min-width: 768px) {
     /* Style adjustments for viewports 768px and over go here */
-    #help .margin { width: 25%; }
+    #fullscreen .margin { width: 25%; }
 }
 
 
