@@ -303,20 +303,43 @@ var setGender = function(g){
 		gender = {
 			"demo": "male",
 			"type": "man",
-			"pro": "him",
-			"ppro": "his",
-			"pros": "he"
+			"probj": "him",
+			"poss": "his",
+			"pro": "he",
+			"form": "Sir"
 		};
 	} else {
 		gender = {
 			"demo": "female",
 			"type": "woman",
-			"pro": "her",
-			"ppro": "her",
-			"pros": "she"
+			"probj": "her",
+			"poss": "her",
+			"pro": "she",
+			"form": "Madam"
 		};
 	}
 	return gender;
+}
+
+// Format for gender
+var formatforgender = function(text){
+	for(var i=0; i<Players.length; i++){
+		var re = new RegExp("{p"+i+"}","g");
+		text = text.replace(re, Players[i].name);
+		
+		var re = new RegExp("{p"+i+"-pro}","g");
+		text = text.replace(re, Players[i].gender.pro);
+		
+		var re = new RegExp("{p"+i+"-probj}","g");
+		text = text.replace(re, Players[i].gender.probj);
+		
+		var re = new RegExp("{p"+i+"-poss}","g");
+		text = text.replace(re, Players[i].gender.poss);
+		
+		var re = new RegExp("{p"+i+"-form}","g");
+		text = text.replace(re, Players[i].gender.form);
+	}
+	return text;
 }
 
 // Get Line of Sight

@@ -62,11 +62,11 @@ var Tutorial = function(){
 	};
     this.events = {
 	"preamble": "<p>The door of the Infinity Box opens with a creak.\
-	&ldquo;That was some roller coaster ride,&rdquo; {p2} says dryly as {p2-gen}, {p3}, and {p4} step\
+	&ldquo;That was some roller coaster ride,&rdquo; {p1} says dryly as {p1-pro}, {p2}, and {p3} step\
 	out onto a grassy patch. Before them stands a wide, stone complex.</p>\
-	<p>&ldquo;What do you imagine it is? Some kind of castle?&rdquo;, {p3} asks. &ldquo;Too small to be\
-	a castle,&rdquo; {p4} quickly responds. &ldquo;It could be a keep.&rdquo;\
-	<p>{p2} looks around, glancing quickly over both shoulders. &ldquo;Where's {p1}?&rdquo;</p>\
+	<p>&ldquo;What do you imagine it is? Some kind of castle?&rdquo;, {p2} asks. &ldquo;Too small to be\
+	a castle,&rdquo; {p3} quickly responds. &ldquo;It could be a keep.&rdquo;\
+	<p>{p1} looks around, glancing quickly over both shoulders. &ldquo;Where's {p0}?&rdquo;</p>\
 	<p><i>Hint: Watch out for Snakes!</i></p>",
 	"meet": {
 	    "Basilisk_1":{

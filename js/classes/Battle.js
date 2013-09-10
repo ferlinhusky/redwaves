@@ -70,7 +70,7 @@ var Battle = function(att, def){
 
 			// If 0, attacker misses; otherwise update defender HP and status line
 			if(!ishit) {
-				status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' '  + weapon.name;
+				status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.poss + ' '  + weapon.name;
 			} else {
 				var dmg_red = 0; // damage reduction
 				if(ac < 0){
@@ -118,7 +118,7 @@ var Battle = function(att, def){
 				}
 				if(att_dmg <= 1) { att_dmg = 1; }
 				HP_set(d1, -att_dmg);
-				status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.ppro + ' ' + weapon.name + '</span>';
+				status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.poss + ' ' + weapon.name + '</span>';
 			}
 			Statuss.update(status_line);
 		}
@@ -143,7 +143,7 @@ var Battle = function(att, def){
 	    
 	    // Settle attack
 	    if(att_dmg <= 0) {
-		    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.ppro + ' ' + item.name;
+		    status_line = a1.name + ' misses ' + d1.name + ' with ' + a1.gender.poss + ' ' + item.name;
 	    } else {
 		    // Check for necromancy; half spell damage to defender w/ it
 		    if(type == "spell" && d1.hasSkill('necromancy')){
@@ -151,7 +151,7 @@ var Battle = function(att, def){
 			    att_dmg = Math.floor(temp_att_dmg/2);
 		    }
 		    HP_set(d1, -att_dmg);
-		    status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.ppro + ' ' + item.name + '</span>';
+		    status_line = '<span class="red">' + a1.name + ' hits ' + d1.name + ' for ' + att_dmg + ' with ' + a1.gender.poss + ' ' + item.name + '</span>';
 	    }
 	    Statuss.update(status_line);
 	};

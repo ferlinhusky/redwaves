@@ -23,16 +23,7 @@ var World = function(){
             Map.init(this.Level);
             var title = this.getadventuretitle(this.Level);
             
-            var pre = this.Level.events.preamble;
-            
-            // Move this to Helpers
-            for(var i=0; i<Players.length; i++){
-                var re = new RegExp("{p"+(i+1)+"}","g");
-                pre = pre.replace(re, Players[i].name);
-                
-                var regen = new RegExp("{p"+(i+1)+"-gen}","g");
-                pre = pre.replace(regen, Players[i].gender.pros);
-            }
+            var pre = formatforgender(this.Level.events.preamble);
             
             var dialog_content = title + pre;
             Input.M_Dialog(
