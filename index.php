@@ -4,25 +4,28 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-	<title>Over red waves of sand (BETA)</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-	<!-- iPad -->
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
-	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
-	<link rel="apple-touch-startup-image" href="startup.png" />
-
-	<!-- Styles -->
-	<link rel="stylesheet" href="css/ui-lightness/jquery-ui.css">
-        <link rel="stylesheet" href="css/style.css">
-
-	<script src="js/libs/modernizr-2.0.6.min.js"></script>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<title>Over red waves of sand (BETA)</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<!-- Mobile -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+		<link rel="apple-touch-icon" href="images/ios/icon.png" />
+		<link rel="apple-touch-icon-precomposed" href="images/ios/icon.png"/>
+		<link rel="apple-touch-icon" sizes="72x72" href="images/ios/icon-72.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="images/ios/icon@2x.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="images/ios/icon-72@2x.png" />
+		
+		<!-- Styles -->
+		<link rel="stylesheet" href="css/ui-lightness/jquery-ui.css">
+		<link rel="stylesheet" href="css/style.css">
+		
+		<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
 	<!-- Fullscreen content -->
