@@ -376,7 +376,7 @@ var Thief = Player.extend({
 		"Gauner",
 		"thief",
 		[new leatherhelm, new leathertunic,"","","",""],
-		[new dagger, new dagger,"",""],
+		[new dagger, "","",""],
 		[],
 		[new stealth],
 		[new DEX, new INT, new CHA, new WIS, new CON, new STR]);
