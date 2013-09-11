@@ -15,11 +15,12 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
-		<link rel="apple-touch-icon" href="images/ios/icon.png" />
-		<link rel="apple-touch-icon-precomposed" href="images/ios/icon.png"/>
-		<link rel="apple-touch-icon" sizes="72x72" href="images/ios/icon-72.png" />
-		<link rel="apple-touch-icon" sizes="114x114" href="images/ios/icon@2x.png" />
-		<link rel="apple-touch-icon" sizes="144x144" href="images/ios/icon-72@2x.png" />
+		
+		<!-- <link rel="apple-touch-icon" href="images/apple-touch-icon.png" /> -->
+		<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch-icon@2x.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-72@2x.png" />
 		
 		<!-- Styles -->
 		<link rel="stylesheet" href="css/ui-lightness/jquery-ui.css">
