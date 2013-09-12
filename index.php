@@ -33,22 +33,22 @@
 		
 		<!-- Startup images -->
 				<!-- iPhone (Retina) -->
-				<link href="images/apple-startup-iPhone-RETINA.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+				<link href="images/apple-startup-iPhone-RETINA.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 				
 				<!-- iPhone 5 -->
-				<link href="images/apple-startup-iPhone-Tall-RETINA.jpg"  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+				<link href="images/apple-startup-iPhone-Tall-RETINA.png"  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 				
 				<!-- iPad Portrait -->
-				<link href="images/apple-startup-iPad-Portrait.jpg" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+				<link href="images/apple-startup-iPad-Portrait.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
 				
 				<!-- iPad Landscape -->
-				<link href="images/apple-startup-iPad-Landscape.jpg" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+				<link href="images/apple-startup-iPad-Landscape.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
 				
 				<!-- iPad Portrait (Retina) -->
-				<link href="images/apple-startup-iPad-RETINA-Portrait.jpg" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+				<link href="images/apple-startup-iPad-RETINA-Portrait.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 				
 				<!-- iPad Landscape (Retina) -->
-				<link href="images/apple-startup-iPad-RETINA-Landscape.jpg" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+				<link href="images/apple-startup-iPad-RETINA-Landscape.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 				
 		<!-- Styles -->
 		<link rel="stylesheet" href="css/ui-lightness/jquery-ui.css">
