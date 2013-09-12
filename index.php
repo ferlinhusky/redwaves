@@ -14,7 +14,7 @@
 		<!-- Mobile -->
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=320.1" />
 		
 		<!-- <link rel="apple-touch-icon" href="images/apple-touch-icon.png" /> -->
 		<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png"/>
