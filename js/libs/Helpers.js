@@ -649,5 +649,5 @@ var loadfullscreen = function(file){
 		overflow: 'auto',
 	});
 	$(window).unbind('touchmove');
-	Input.unbindFromMap();
+	//Input.unbindFromMap();
 }

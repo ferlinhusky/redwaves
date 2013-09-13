@@ -999,6 +999,7 @@ var Input = function(){
 			e.preventDefault();
 			$('.ui-widget-overlay, .ui-dialog').removeClass('hideforfullscreen');
 			$('#container').css('display', 'block');
+                        $('#fullscreen .content .body').empty();
 			$('#fullscreen').css('display', 'none');
 			$('html, body').css({
 				overflow: 'hidden',
@@ -1007,7 +1008,7 @@ var Input = function(){
 					// Tell Safari not to move the window. 
 					e.preventDefault(); 
 				});
-			Input.bindToMap();
+			//Input.bindToMap();
 		});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});
