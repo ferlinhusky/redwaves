@@ -722,7 +722,7 @@ var Input = function(){
 				jsonPlayers.push({
 					type: Party.members[j].type,
 					gender: Party.members[j].gender.demo,
-					level: Party.members[j].level,
+					level: Party.members[j].XP,
 					str: Party.members[j].STR.base,
 					con: Party.members[j].CON.base,
 					dex: Party.members[j].DEX.base,
