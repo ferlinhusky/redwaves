@@ -12,7 +12,7 @@
 		<meta name="author" content="">
 		
 		<!-- Mobile -->
-		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=320.1" />
 		
@@ -22,25 +22,6 @@
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch-icon@2x.png" />
 		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-72@2x.png" />
 		
-		<!-- Startup images -->
-				<!-- iPhone (Retina) -->
-				<link href="images/apple-startup-iPhone-RETINA.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-				
-				<!-- iPhone 5 -->
-				<link href="images/apple-startup-iPhone-Tall-RETINA.png"  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-				
-				<!-- iPad Portrait -->
-				<link href="images/apple-startup-iPad-Portrait.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-				
-				<!-- iPad Landscape -->
-				<link href="images/apple-startup-iPad-Landscape.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-				
-				<!-- iPad Portrait (Retina) -->
-				<link href="images/apple-startup-iPad-RETINA-Portrait.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-				
-				<!-- iPad Landscape (Retina) -->
-				<link href="images/apple-startup-iPad-RETINA-Landscape.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-				
 		<!-- Styles -->
 		<link rel="stylesheet" href="css/ui-lightness/jquery-ui.css">
 		<link rel="stylesheet" href="css/style.css">
