@@ -61,7 +61,7 @@ var Tutorial = function(){
 		"value": ["Basilisk", 1] // type and # to kill
 	};
     this.events = {
-	"preamble": "<p>The door of the Infinity Box opens with a creak.\
+	"preamble": "<p><a href='javascript:void(0);' onclick='loadfullscreen(\"prologue\");'>Read the Prologue</a></p><p>The door of the Infinity Box opens with a creak.\
 	&ldquo;That was some roller coaster ride,&rdquo; {p1} says dryly as {p1-pro}, {p2}, and {p3} step\
 	out onto a grassy patch. Before them stands a wide, stone complex.</p>\
 	<p>&ldquo;What do you imagine it is? Some kind of castle?&rdquo;, {p2} asks. &ldquo;Too small to be\

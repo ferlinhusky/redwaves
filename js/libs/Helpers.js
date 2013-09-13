@@ -338,6 +338,13 @@ var formatforgender = function(text){
 		
 		var re = new RegExp("{p"+i+"-form}","g");
 		text = text.replace(re, Players[i].gender.form);
+		
+		text = text.replace(/<p>he/g, '<p>He');
+		text = text.replace(/<p>she/g, '<p>He');
+		text = text.replace(/\. he/g, '. He');
+		text = text.replace(/\. she/g, '. She');
+		text = text.replace(/"he/g, '"He');
+		text = text.replace(/"she/g, '"She');
 	}
 	return text;
 }
@@ -628,4 +635,19 @@ var checkInfinityBox = function(){
 		btnSave.button('disable')
 			.removeClass('blink');
 	}
+}
+
+// Load fullscreen text
+var loadfullscreen = function(file){
+	$('.ui-widget-overlay, .ui-dialog').addClass('hideforfullscreen');
+	$('#container').css('display', 'none');
+	$('#fullscreen').css('display', 'table');
+	$.get('text/'+file+'.html', function(data){
+		$('#fullscreen .content .body').html(formatforgender(data));
+	});
+	$('html, body').css({
+		overflow: 'auto',
+	});
+	$(window).unbind('touchmove');
+	Input.unbindFromMap();
 }

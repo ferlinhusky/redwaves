@@ -993,14 +993,7 @@ var Input = function(){
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
 		btnHelp.bind('click touchend', function(e){
 			e.preventDefault();
-			$('.ui-widget-overlay, .ui-dialog').addClass('hideforfullscreen');
-			$('#container').css('display', 'none');
-			$('#fullscreen').css('display', 'table');
-			$('html, body').css({
-				overflow: 'auto',
-			});
-			$(window).unbind('touchmove');
-			Input.unbindFromMap();
+			loadfullscreen('help');
 		});
 		btnCloseHelp.bind('click touchend', function(e){
 			e.preventDefault();

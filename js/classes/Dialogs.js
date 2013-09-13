@@ -26,14 +26,7 @@ var D_Welcome = {
 	content: $('#dialog_welcome').html(),
 	buttons: {
 		"How to play": function(){
-			$('.ui-widget-overlay, .ui-dialog').addClass('hideforfullscreen');
-			$('#container').css('display', 'none');
-			$('#fullscreen').css('display', 'table');
-			$('html, body').css({
-				overflow: 'auto',
-			});
-			$(window).unbind('touchmove');
-			Input.unbindFromMap();
+			loadfullscreen('help');
 		},
 		"Play": function() {
 			// If passcode used, jump straight into the game
