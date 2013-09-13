@@ -1,12 +1,3 @@
-<?php
-		// Start or resume session
-		session_start(); 
-
-		// Extend cookie life time by an amount of your liking
-		$cookieLifetime = 24 * 60 * 60; // A day in seconds
-		setcookie(session_name(),session_id(),time()+$cookieLifetime);
-?>
-
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
