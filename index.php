@@ -7,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		
-		<title>Over red waves of sand (BETA)</title>
+		<title>ORWoS</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		
