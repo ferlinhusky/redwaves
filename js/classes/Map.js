@@ -55,6 +55,20 @@ var Map = function(){
 					});
 				});
 				
+				// Add NPCs			
+				$.each(m.opts.npcs, function(key, value){
+					var spliton = key.lastIndexOf("_");
+					key_fmt = key.substr(0, spliton);
+					npc = ( new Function('var m = new ' + key_fmt + '(); return m;') )();
+					npc.locIt(getSquare(value).id);
+					// Attach tooltips
+					$('.' + npc.ID).tooltip({
+						items: "div[class]",
+						position: {my: 'center top+10', at: 'center middle'},
+						content: npc.name
+					});
+				});
+				
 				// Add items			
 				$.each(m.opts.items, function(key, value){
 					var spliton = key.lastIndexOf("_");

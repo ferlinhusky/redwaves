@@ -10,13 +10,19 @@ var NPC = Character.extend({
 		
 		this.targets = [];
 		this.target = null;
+		this.scriptnum = 0;
+		this.killconfirm = 0;
 		
 		this.thac0 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 		
 		NPCs.push(this);
 	},
 	talk: function(){
-		return;
+		Statuss.update(this.script[this.scriptnum]);
+		this.scriptnum++;
+		if(this.scriptnum >= this.script.length-1){
+			this.scriptnum = 0;	
+		}
 	},
 	give: function(){
 		return;	
@@ -38,21 +44,29 @@ var NPC = Character.extend({
 // LŸgner
 var Lugner = NPC.extend({
 	init: function(){
-    	this._super(
-    		"LŸgner",
-    		"lugner",
-    		"LŸgners",
-    		["",new sackcloth,"","","",""],
-    		[new hands, "", "", ""],
-    		[],
-    		[],
-    		[new CON, new STR, new WIS, new DEX, new INT, new CHA]);
-    	
-    		this.HP = 1;
-    		this.maxHP = 1;
-    		
-    		this.movement	=	0;
-    		this.maxMove	=	0;
+		this._super(
+			"L&#252;gner",
+			"lugner",
+			"L&#252;gners",
+			["",new sackcloth,"","","",""],
+			[new hands, "", "", ""],
+			[],
+			[],
+			[new CON, new STR, new WIS, new DEX, new INT, new CHA]);
+		
+		this.HP = 1;
+		this.maxHP = 1;
+		
+		this.movement	=	0;
+		this.maxMove	=	0;
+		
+		this.script = [
+			"We're just waiting to die.",
+			"I must have told you my story ten times before.",
+			"You look different. Am I going crazy?",
+			"No, I'm perfectly sane. You're the crazy one.",
+			"Do you want to hear my story or not?"
+		]
   	}
 });
 

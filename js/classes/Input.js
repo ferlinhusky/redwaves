@@ -927,6 +927,12 @@ var Input = function(){
 			disabled: false,
 			text: false
 		});
+                
+                btnTalk.button({ 
+			icons: {primary:'ui-icon-comment',secondary:''},
+			disabled: false,
+			text: false
+		});
 		
 		btnCloseHelp.button({ 
 			icons: {primary:'ui-icon-lightbulb',secondary:''},
@@ -995,6 +1001,10 @@ var Input = function(){
 		btnHelp.bind('click touchend', function(e){
 			e.preventDefault();
 			loadfullscreen('help');
+		});
+                btnTalk.bind('click touchend', function(e){
+			e.preventDefault();
+			//loadfullscreen('help');
 		});
 		btnCloseHelp.bind('click touchend', function(e){
 			e.preventDefault();

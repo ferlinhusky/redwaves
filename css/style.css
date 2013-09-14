@@ -675,6 +675,10 @@ h3{
     .m_grid.dogvision td.lit .p.monster:before { background-color: #666; color: #fff; }
     .m_grid.dogvision td.lit .p.invisible_swordsman:before { content: "I" !important; background-color: #000; color: #fff; }
 
+/* NPCs */
+.m_grid td.lit .p.npc:before { content: '@' !important; background-color: #fff; color: #000; }
+    .m_grid.dogvision td.lit .p.npc:before { background-color: #ccc; color: #000; }
+
 /* Battle */
 .m_grid td.lit .p.attacker:before { background-color: yellow !important; color: #000; }
     .m_grid.dogvision td.lit .p.attacker:before { background-color: lightgray !important; }
