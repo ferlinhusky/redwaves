@@ -292,6 +292,7 @@ var Character = Class.extend({
 		if(this.name == World.Level.victory.value[0]){
 			Squares[this.currentSquare].onMap.addClass('infinity_box');
 			World.infinitybox = true;
+			Statuss.update("<div class='sq_alert'>The Infinity Box appears where your enemy fell!<br/>Enter it and press the flashing &#946;</div>");
 		}
 	},
 	updateWpn: function(){ return; },
