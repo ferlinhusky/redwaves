@@ -714,7 +714,8 @@ var Input = function(){
 			
 				var pwields=[]; var pwears=[]; var pinven=[]; var pspells=[];
 				
-				for(var i=0; i < Party.members[j].wields.length; i++){ pwields.push(Party.members[j].wields[i]); }
+				for(var i=0; i < Party.members[j].wields.length; i++){ pwields.push(Party.members[j].wields[i]);
+                                console.log(Party.members[j].wields[i]);}
 				for(var i=0; i < Party.members[j].wears.length; i++){ pwears.push(Party.members[j].wears[i]); }
 				for(var i=0; i < Party.members[j].inven.length; i++){ pinven.push(Party.members[j].inven[i]); }
 				for(var i=0; i < Party.members[j].spells.length; i++){ pspells.push(Party.members[j].spells[i]); }
@@ -776,7 +777,7 @@ var Input = function(){
 				var pdata = data.players[j];
 				var player = ( new Function('var p = new ' + capitalise(pdata.type) + '(); return p;') )();
 
-				// Update player attributes/wpsn/items/etc.
+				// Update player attributes/wpns/items/etc.
 							
 				//gender
 				player.gender = setGender(pdata.gender);
@@ -1005,10 +1006,9 @@ var Input = function(){
 				overflow: 'hidden',
 			});
 			$(window).bind('touchmove', function(e) { 
-					// Tell Safari not to move the window. 
-					e.preventDefault(); 
-				});
-			//Input.bindToMap();
+                                // Tell Safari not to move the window. 
+                                e.preventDefault(); 
+                        });
 		});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});

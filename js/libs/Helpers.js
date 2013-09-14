@@ -627,7 +627,7 @@ var checkPickupBtn = function(){
 var checkInfinityBox = function(){
 	var p = World.activePlayer;
 	var square = getMapSq(p.coords);
-	
+
 	if (square.hasClass('infinity_box') && World.infinitybox == true) {
 		btnSave.button('enable')
 			.addClass('blink');
@@ -649,5 +649,4 @@ var loadfullscreen = function(file){
 		overflow: 'auto',
 	});
 	$(window).unbind('touchmove');
-	//Input.unbindFromMap();
 }

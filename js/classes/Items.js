@@ -132,7 +132,8 @@ var Item = Class.extend({
 				}
 				// If there are no weapons whatsoever, wield hands
 				if (p.wields.join('')=="") {
-					p.readyWeapon = new hands;
+					p.wields[0] = new hands;
+					p.readyWeapon = p.wields[0];
 					p.updateWpn();
 				}
 				break;

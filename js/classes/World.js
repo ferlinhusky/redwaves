@@ -69,10 +69,10 @@ var World = function(){
                     // will need to recalc stats etc.
                     Party.members[i].HP = Party.members[i].maxHP;
                     Party.members[i].movement = Party.members[i].maxMove;
-                    Party.members[i].readyItem = null;
                     Party.members[i].map = "";
                     //Party.members[i].readySpell = null;
-                    //Party.members[i].readyWeapon = null;
+                    Party.members[i].readyItem = null;
+                    Party.members[i].readyWeapon = Party.members[i].wields[0];
                     Party.members[i].dead = false;
                     Party.members[i].paralyzed = 0;
                     Party.members[i].slow = false;
@@ -172,8 +172,8 @@ var World = function(){
             btnOpenClose.button('disable');
             btnPickup.button('disable');
             btnDrop.button('disable');
-			btnSave.button('disable')
-				.removeClass('blink');
+	    btnSave.button('disable')
+		.removeClass('blink');
             
             Input.spellOn = false;
             Input.weaponOn = false;
@@ -213,20 +213,6 @@ var World = function(){
 			// Reset to close range attack
 			World.activePlayer.switchtounranged();
 		}
-		
-		// Check for Players/Monsters defeated & victory condition(s)
-		/*switch(this.Level.victory.type){
-			case "kill":
-				for(var i=0; i<Dead.length; i++){
-					if(this.Level.victory.value[0] == Dead[i].name)
-					{
-						this.endgame(World.Level.events.win, "win");
-						break;
-					}
-				}
-				break;
-			default: break;
-		}*/
 		
 		if(Monsters.length == 0 && this.gameover == false){
 			this.endgame(this.Level.events.win, "win");
@@ -300,8 +286,8 @@ var World = function(){
 				// Activate buttons
 				btnEndTurn.button('enable');
                                 
-                checkPickupBtn();
-                checkDropBtn();
+                                checkPickupBtn();
+                                checkDropBtn();
 				checkInfinityBox();
 				
 				// Check for doors, items
