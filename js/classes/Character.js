@@ -192,7 +192,7 @@ var Character = Class.extend({
 		
 		// Get gender
 		if(this.type == "wolfman"){ this.gender = setGender("male");
-		} else if (this.type == "lamia"){ this.gender = setGender("female");
+		} else if (this.type == "harpy"){ this.gender = setGender("female");
 		} else {
 			var prob = Math.ceil(Math.random()*10);
 			if(prob > 5){ this.gender = setGender("male");
