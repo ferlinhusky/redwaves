@@ -167,11 +167,9 @@ var Input = function(){
 		};
 		
 	/*
-		Spells and Ranged Attacks (and using Items)
+		Spells and Ranged Attacks (and using Items...and Talking)
 	*/
 		// Check for ranged target > tsq: target square
-		// If found, cast spell or attack ranged....
-		// Check here for action points available!!!
 		this.checkRangedTarget = function(tsq){
 			var sobj = Squares[tsq.attr('data-sid')];
                         var p = World.activePlayer;
@@ -181,6 +179,8 @@ var Input = function(){
 			} else if (Input.weaponOn == true && remaining_moves >= 2 && sobj.occupiedBy.ofType != "player"){
 				var battle = new Battle(p, sobj.occupiedBy);
 				p.handleactioncost("ranged");
+			} else if (Input.talkOn == true && sobj.occupiedBy.ofType == "npc") {
+				sobj.occupiedBy.talk();
 			}
 		};
 		

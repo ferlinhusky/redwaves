@@ -20,8 +20,9 @@ var NPC = Character.extend({
 	talk: function(){
 		Statuss.update(this.script[this.scriptnum]);
 		this.scriptnum++;
-		if(this.scriptnum >= this.script.length-1){
-			this.scriptnum = 0;	
+		// Repeat last sentence ad infinitum
+		if(this.scriptnum >= this.script.length){
+			this.scriptnum = this.script.length-1;	
 		}
 	},
 	give: function(){
@@ -61,11 +62,14 @@ var Lugner = NPC.extend({
 		this.maxMove	=	0;
 		
 		this.script = [
-			"We're just waiting to die.",
-			"I must have told you my story ten times before.",
 			"You look different. Am I going crazy?",
 			"No, I'm perfectly sane. You're the crazy one.",
-			"Do you want to hear my story or not?"
+			"We're just waiting to die.",
+			"Your friend Olaf? The Basilisk has taken him.",
+			"Soon it will be us. You can leave, but the end will be the same.",
+			"If you make it to Schlaraffenland...",
+			"tell my wife I died a hero.",
+			"*mumbles incoherently*"
 		]
   	}
 });
