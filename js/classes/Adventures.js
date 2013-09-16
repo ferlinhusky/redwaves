@@ -71,8 +71,8 @@ var Tutorial = function(){
 		a castle,&rdquo; {p3} quickly responds. &ldquo;It could be a keep.&rdquo;\
 		<p>{p1} looks around, glancing quickly over both shoulders. &ldquo;Where's {p0}?&rdquo;</p>\
 		<p><i>Hint: Watch out for Snakes!</i></p>",
-		"win": "<p>The door of the Infinity Box slams shut. {p1}, {p2}, and {p3} stand in silence, looking at the\
-		floor as the box around them begins to shake violently, ferrying them who knows where. {p0} pauses a moment\
+		"win": "<p>The door of the Infinity Box slams shut. {p0}, {p1}, {p2}, and {p3} stand in silence, looking at the\
+		floor as the box around them begins to shake violently, ferrying them who knows where. {p0} looks up\
 		and asks over the rumble, &ldquo;Why did I get stuck with the stick?&rdquo;</p>",
 		"lose": "<p><b>YOU LOSE!</b></p><p>They say virtue is its own reward. Even if it wasn't\
 		it wouldn't matter because all of your characters are super dead.</p>"

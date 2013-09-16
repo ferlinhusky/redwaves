@@ -93,12 +93,12 @@ var World = function(){
 	};
 	
 	this.endgame = function(wl, state){
-            this.gameover = true;
+        this.gameover = true;
 	    this.resetUI();
 	    if (state == "win") {
 		// Dialog content
                 var dialogcontent = this.getadventuretitle(this.Level);
-                dialogcontent += wl + $('#passcode_addon').html();
+                dialogcontent += formatforgender(wl) + $('#passcode_addon').html();
 				
                 // Update current adventure
                 Party.levelcomplete += 1;
@@ -123,8 +123,8 @@ var World = function(){
                 // Passcode addon should show next adventure, and not return to home screen
                 Input.M_Dialog("standard", dialogcontent, "Chapter " + this.Level.refID, {
                     "Play on": function(){
-                            World.playnext();
-			    //Input.M_Dialog('equip');
+                        World.playnext();
+						//Input.M_Dialog('equip');
                     },
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');
@@ -157,7 +157,7 @@ var World = function(){
                 // Get passcode
                 Input.saveGame();	
             } else {
-                Input.M_Dialog("standard", wl, this.Level.title, {
+                Input.M_Dialog("standard", formatforgender(wl), this.Level.title, {
                     "Try again": function(){
                                     World.playnext();
                             }
