@@ -62,11 +62,13 @@ var Lugner = NPC.extend({
 		this.maxMove	=	0;
 		
 		this.script = [
+			"I am still L&#252;gner, have you forgotten?",
 			"You look different. Am I going crazy?",
 			"No, I'm perfectly sane. You're the crazy one.",
 			"We're just waiting to die.",
 			"Your friend Olaf? The Basilisk has taken him.",
 			"Soon it will be us. You can leave, but the end will be the same.",
+			"Take the stick with you, I'm sure it will help.",
 			"If you make it to Schlaraffenland...",
 			"tell my wife I died a hero.",
 			"*mumbles incoherently*"
