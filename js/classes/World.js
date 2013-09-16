@@ -166,25 +166,28 @@ var World = function(){
 	};
 	
 	this.resetUI = function(){
-            // Reset UI bits
-            btnEndTurn.removeClass('blink')
-                .button('disable');                
-            btnOpenClose.button('disable');
-            btnPickup.button('disable');
-            btnDrop.button('disable');
+		// Reset UI bits
+		btnEndTurn.removeClass('blink')
+			.button('disable');                
+		btnOpenClose.button('disable');
+		btnPickup.button('disable');
+		btnDrop.button('disable');
 	    btnSave.button('disable')
-		.removeClass('blink');
-            
-            Input.spellOn = false;
-            Input.weaponOn = false;
-            Input.itemOn = false;
-            
-            $('.m_grid').removeClass('zoom dogvision');
+			.removeClass('blink');
+		btnTalk.button('disable')
+			.removeClass('blink');
+			
+		Input.spellOn = false;
+		Input.weaponOn = false;
+		Input.itemOn = false;
+		Input.talkOn = false;
+		
+		$('.m_grid').removeClass('zoom dogvision');
 
 	    unbuildAllMenus();
 		
-            $('.p').removeClass('blink'); // remove any character blinks
-	    $('.lit, .unlit').removeClass(allranges); // remove all spell ranges
+        $('.p').removeClass('blink'); // remove any character blinks
+	    $('.lit, .unlit').removeClass(allranges); // remove all spell/weapon/talk ranges
 	    monstersMoving.hide('fast');
 	};
 	
@@ -286,13 +289,14 @@ var World = function(){
 				// Activate buttons
 				btnEndTurn.button('enable');
                                 
-                                checkPickupBtn();
-                                checkDropBtn();
+                checkPickupBtn();
+                checkDropBtn();
 				checkInfinityBox();
 				
-				// Check for doors, items
+				// Check for doors, items, NPCs
 				anyDoors(this.activePlayer.coords);
 				anyItems(this.activePlayer.coords);
+				anyNPCs(this.activePlayer.coords);
                                 
 				// Check for keenness
 				this.activePlayer.checkKeenness();

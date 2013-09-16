@@ -523,6 +523,33 @@ var Input = function(){
 		};
 	
 	/*
+		Handle talk
+	*/
+		this.talkOn = false;
+		this.handleTalk = function(){
+			$('.lit, .unlit').removeClass('range'); // remove all ranges
+			btnTalk.removeClass('blink');
+			if(Input.talkOn == false){
+				// Zoom on small screens
+				if($(window).width() <= 480 ){
+					$('.m_grid').addClass('zoom'); // make only for small screen
+					centerOn(World.activePlayer);
+				}
+			
+				// Activate weapon
+				btnTalk.addClass('blink');
+				this.talkOn = true;
+				getRange(World.activePlayer, "talk");
+			} else {
+				if($('.m_grid').hasClass('zoom')){
+					$('.m_grid').removeClass('zoom');
+					centerOn(World.activePlayer);
+				}
+				this.talkOn = false;
+			}
+		}
+	
+	/*
 		Check Victory
 	*/
 		this.checkVictory = function(){
@@ -547,6 +574,7 @@ var Input = function(){
 		
 		this.downkey = "";
 		this.diaglast = false;
+		
 		// Capture key down for diagonals
 		this.doKeyDown = function(k) {
 				// Capture key
@@ -928,9 +956,9 @@ var Input = function(){
 			text: false
 		});
                 
-                btnTalk.button({ 
+        btnTalk.button({ 
 			icons: {primary:'ui-icon-comment',secondary:''},
-			disabled: false,
+			disabled: true,
 			text: false
 		});
 		
@@ -1022,6 +1050,7 @@ var Input = function(){
 		});
 		//btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});
+		btnTalk.bind('click touchend', function(e){e.preventDefault(); Input.handleTalk();});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
 		btnWeapon.bind('click touchend', function(e){e.preventDefault(); Input.handleWeapon();});

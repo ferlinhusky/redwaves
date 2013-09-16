@@ -2,7 +2,9 @@
 // Helper Functions
 //
 
+// Global vars
 var stddialogheight = 400;
+var allranges = "range fire ice energy earth steel wood light talk";
 
 // Capitalize a string
 function capitalise(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
@@ -110,6 +112,28 @@ var anyDoors = function(loc){
 			// Must be a door, and not be occupied
 			if( (s.hasClass('closed_door')||s.hasClass('open_door')) && !sobj.occupied ){
 				btnOpenClose.button('enable');
+			}
+		}
+	}
+}
+
+// Any NPCs?
+var anyNPCs = function(loc){
+	btnTalk.button('disable');
+	if (Input.talkOn == true) { Input.handleTalk(); }
+	
+	var x = new Number(loc[0]);
+	var y = new Number(loc[1]);
+	var xSq = [x-1, x, x+1];
+	var ySq = [y-1, y, y+1];
+	
+	for (i=0; i<ySq.length; i++){
+		for (j=0; j<xSq.length; j++){
+			var s = getMapSq([xSq[i],ySq[j]]);
+			var sobj = getSquare([xSq[i],ySq[j]]);
+			// Must be a door, and not be occupied
+			if(sobj.occupied && sobj.occupiedBy.ofType == "npc"){
+				btnTalk.button('enable');
 			}
 		}
 	}
@@ -413,7 +437,6 @@ var getLineOfSight = function(c){
 };
 
 // Get Range
-var allranges = "range fire ice energy earth steel wood light";
 var getRange = function(character, type){
 	$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
 	
@@ -423,6 +446,7 @@ var getRange = function(character, type){
 	switch(type){
 		case "spell": item = character.readySpell; break;
 		case "weapon": item = character.readyWeapon; break;
+		case "talk" : item = { material: "talk", rng: 1 }
 		default: break;
 	}
 	
@@ -433,22 +457,31 @@ var getRange = function(character, type){
 	var c1m = c[1]-rng;
 	var c1p = c[1]+rng;
 	
-	// Hit the corner 1 square in
-	Bresenham(c[0], c[1], c0m+1, c1m+1, hilite, false);
-	Bresenham(c[0], c[1], c0m+1, c1p-1, hilite, false);
-	
-	Bresenham(c[0], c[1], c0p-1, c1m+1, hilite, false);
-	Bresenham(c[0], c[1], c0p-1, c1p-1, hilite, false);
-	
-	// Loop borders, skipping corners
-	for(var i=-rng; i<=rng; i++){
-		// Don't hit far corners (where i = range)
-		if(Math.abs(i)!= Math.abs(rng)){
+	if (type=="talk") {
+		for(var i=-rng; i<=rng; i++){
 			Bresenham(c[0], c[1], c[0]-i, c1m, hilite, false);
 			Bresenham(c[0], c[1], c[0]+i, c1p, hilite, false);
 			Bresenham(c[0], c[1], c0m, c[1]-i, hilite, false);
 			Bresenham(c[0], c[1], c0p, c[1]+i, hilite, false);
 		}
+	} else {
+		// Hit the corner 1 square in
+		Bresenham(c[0], c[1], c0m+1, c1m+1, hilite, false);
+		Bresenham(c[0], c[1], c0m+1, c1p-1, hilite, false);
+		
+		Bresenham(c[0], c[1], c0p-1, c1m+1, hilite, false);
+		Bresenham(c[0], c[1], c0p-1, c1p-1, hilite, false);
+		
+		// Loop borders, skipping corners
+		for(var i=-rng; i<=rng; i++){
+			// Don't hit far corners (where i = range), except for "talk"
+			if(Math.abs(i)!= Math.abs(rng)){
+				Bresenham(c[0], c[1], c[0]-i, c1m, hilite, false);
+				Bresenham(c[0], c[1], c[0]+i, c1p, hilite, false);
+				Bresenham(c[0], c[1], c0m, c[1]-i, hilite, false);
+				Bresenham(c[0], c[1], c0p, c[1]+i, hilite, false);
+			}
+		}	
 	}
 }
 

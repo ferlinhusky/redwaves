@@ -68,6 +68,7 @@ var Player = Character.extend({
 		
 		// Check for doors
 		anyDoors(this.coords);
+		anyNPCs(this.coords);
 		
 		// Spell check
 		if(Input.spellOn == true){
