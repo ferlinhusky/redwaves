@@ -80,6 +80,36 @@ var Player = Character.extend({
 			getRange(this, "weapon");
 		}
 	},
+	doMove: function(square, dir, acost){
+		if(this.currentSquare != this.previousSquare){
+			this.lastDir = dir;
+			this.locIt(this.currentSquare, this.previousSquare);
+			
+			// Center map
+			centerOn(this);
+			
+			// Check for items
+			checkPickupBtn();
+			
+			// Check for Infinity Box
+			checkInfinityBox();
+			
+			// Check for actions
+			if(square.action != null){
+				var sa = square.action;
+				switch(sa.type){
+					case "alert":
+						Statuss.update("<div class='sq_alert'>" + sa.func + "</div>");
+						square.action = null;
+						break;
+					default: break;
+				}
+			}
+		}
+
+		// Track all action costs here
+		MO_set(this, acost);
+	},
 	move: function(dir, cost){
 		// How many remaining
 		var remaining_move = this.movement - this.currMove;
@@ -173,34 +203,13 @@ var Player = Character.extend({
 			$('.'+this.ofType).removeClass('blink'); // stop blinking when a player moves
 			
 			if(isPassable == true && remaining_move >=1){
-				if(this.currentSquare != this.previousSquare){
-					this.lastDir = dir;
-					this.locIt(this.currentSquare, this.previousSquare);
-					
-					// Center map
-					centerOn(this);
-					
-					// Check for items
-					checkPickupBtn();
-					
-					// Check for Infinity Box
-					checkInfinityBox();
-					
-					// Check for actions
-					if(square.action != null){
-						var sa = square.action;
-						switch(sa.type){
-							case "alert":
-								Statuss.update("<div class='sq_alert'>" + sa.func + "</div>");
-								square.action = null;
-								break;
-							default: break;
-						}
-					}
+				this.doMove(square, dir, acost);
+			} else if (square.occupied && this.movement - this.currMove >= 1){
+				if(square.occupiedBy.ofType == "player"){
+					// Switch places
+					//this.doMove(square, dir, acost);
+					//square.occupiedBy.locIt(this.previousSquare);
 				}
-
-				// Track all action costs here
-				MO_set(this, acost);
 			} else if (square.occupied && this.movement - this.currMove >= 2){
 				if (square.occupiedBy.ofType == "monster"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
@@ -211,7 +220,7 @@ var Player = Character.extend({
 						// Zero out unused moves for player
 						MO_set(this, this.movement - this.currMove);
 					} else if(!this.dead){ this.handleactioncost("weapon"); } // else if not dead, update with battle action cost (2)
-				}
+				} 
 			}
 			if (this.movement - this.currMove < 1){
 				this.endturnUI();

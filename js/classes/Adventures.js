@@ -55,7 +55,8 @@ var Tutorial = function(){
 		"Hell_Dog_5": [32, 11]
 	},
 	"npcs": {
-	    "Lugner_1": [32,6]
+	    "Lugner_1": [32,6],
+	    "Mildred_1": [5,28]
 	},
 	"gold": 500
     };

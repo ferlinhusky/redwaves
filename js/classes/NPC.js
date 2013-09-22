@@ -80,9 +80,9 @@ var Lugner = NPC.extend({
 var Mildred = NPC.extend({
 	init: function(){
 		this._super(
-			"L&#252;gner",
-			"lugner",
-			"L&#252;gners",
+			"Mildred",
+			"mildred",
+			"Mildreds",
 			["",new sackcloth,"","","",""],
 			[new hands, "", "", ""],
 			[],
