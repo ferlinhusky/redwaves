@@ -76,23 +76,24 @@ var Lugner = NPC.extend({
   	}
 });
 
-// Villager
-var Villager = NPC.extend({
+// Mildred
+var Mildred = NPC.extend({
 	init: function(){
-    	this._super(
-    		"Villager",
-    		"villager",
-    		"Villagers",
-    		["","","","","",""],
-    		[new hands, "", "", ""],
-    		[],
-    		[],
-    		[new CON, new STR, new WIS, new DEX, new INT, new CHA]);
-    	
-    		this.HP = 4;
-    		this.maxHP = 4;
-    		
-    		this.movement	=	5;
-    		this.maxMove	=	5;
+		this._super(
+			"L&#252;gner",
+			"lugner",
+			"L&#252;gners",
+			["",new sackcloth,"","","",""],
+			[new hands, "", "", ""],
+			[],
+			[],
+			[new DEX, new CHA, new STR, new INT, new CON, new WIS]);
+		
+		this.script = [
+			"My mother sent you?!",
+			"Fine, I'll come with you.",
+			"Drop me a weapon when you can.",
+			"Stop talking, I'm trying to adventure."
+		]
   	}
 });
