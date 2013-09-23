@@ -82,6 +82,29 @@ var Lugner = NPC.extend({
   	}
 });
 
+// Ena
+var Ena = NPC.extend({
+	init: function(){
+		this._super(
+			"Ena",
+			"ena",
+			"Enas",
+			["",new sackcloth,"","","",""],
+			[new hands, "", "", ""],
+			[],
+			[],
+			[new WIS, new CHA, new STR, new CON, new INT, new DEX]);
+		
+		this.script = [
+			"Have you come to slay the Basilisk?",
+			"It took my daughter Mildred two weeks ago!",
+			"Please save her, I know she must be alive.",
+			"She's strong like me when I was her age.",
+			"You must save her or I'll go myself!"
+		]
+  	}
+});
+
 // Mildred
 var Mildred = NPC.extend({
 	init: function(){
