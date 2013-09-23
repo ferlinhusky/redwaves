@@ -28,6 +28,12 @@ var NPC = Character.extend({
 	give: function(){
 		return;	
 	},
+	joinPlayers: function(){
+		return;
+	},
+	joinMonsters: function(){
+		return;
+	},
 	killed: function(){
 		if($('.' + this.ID).tooltip()){
 			$('.' + this.ID).tooltip('destroy');

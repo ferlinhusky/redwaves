@@ -277,6 +277,7 @@ var Character = Class.extend({
 		switch (this.ofType) {
 			case "monster"	: group = Monsters; break;
 			case "player"	: group = Players; break;
+			case "npc"		: group = NPCs; break;
 			default			: break;
 		}
 		

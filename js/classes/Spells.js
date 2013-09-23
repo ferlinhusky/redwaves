@@ -35,10 +35,10 @@ var Attack = Spell.extend({
 var fireball = Attack.extend({ init: function(){ this._super("Fireball", "fireball", "1d10", "fire", 3, 1); } });
 
 // Freeze
-var freeze = Attack.extend({ init: function(){ this._super("Freeze", "freeze", "1d6", "ice", 5, 2); } });
+var freeze = Attack.extend({ init: function(){ this._super("Freeze", "freeze", "1d6", "ice", 4, 2); } });
 
 // Lighting
-var lightning = Attack.extend({ init: function(){ this._super("Lightning", "lightning", "1d4", "energy", 7, 3); } });
+var lightning = Attack.extend({ init: function(){ this._super("Lightning", "lightning", "1d4", "energy", 4, 3); } });
 
 // Earthquake
 var earthquake = Spell.extend({

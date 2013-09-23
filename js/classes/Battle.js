@@ -1,4 +1,5 @@
 var Battle = function(att, def){
+	this.success;
 	this.doBattle = function(a1, d1){
 		// If a player hidden to the user is attacked, show player's position
 		if(def.ofType == "player" && def.map.length > 0){
@@ -159,37 +160,51 @@ var Battle = function(att, def){
 		Statuss.update('<b class="red">' + a1.name + ' kills ' + d1.name + '!</b>');
 		d1.killed();
     };
+	this.initBattle = function(){
+		this.success = true;
+		var status_line;
+			
+		findAndAdd(Squares[att.currentSquare].onMap, '.p', 'attacker');
+		findAndAdd(Squares[def.currentSquare].onMap, '.p', 'defender');
+		
+		if(Input.spellOn == true){ // spell attack
+			this.doRangedAttack(att, def, "spell");
+		} else if (Input.weaponOn == true){
+			this.doRangedAttack(att, def, "weapon");
+		} else { this.doBattle(att, def); }
+		
+		// If defender killed
+		if(def.HP <= 0){
+			this.doKilled(att, def);
+		} else if(def.paralyzed > 0){
+			// ...else if defender paralyzed
+			status_line = '<span class="red">' + def.name + ' is powerless to counterattack!</span>';
+			Statuss.update(status_line);
+		} else if(Input.spellOn != true && Input.weaponOn != true) {
+			// else if not a ranged attack, do counterattack
+			this.doBattle(def, att);
+			
+			// If attacker killed
+			if(att.HP <= 0){
+				this.doKilled(def, att);
+			}
+		}
+		
+		setTimeout(function(){ $('.p').removeClass('attacker defender') }, 250);
+	};
     this.init = function(){
 		if(!def.dead){
-			var status_line;
-			
-			findAndAdd(Squares[att.currentSquare].onMap, '.p', 'attacker');
-			findAndAdd(Squares[def.currentSquare].onMap, '.p', 'defender');
-			
-			if(Input.spellOn == true){ // spell attack
-			    this.doRangedAttack(att, def, "spell");
-			} else if (Input.weaponOn == true){
-			    this.doRangedAttack(att, def, "weapon");
-			} else { this.doBattle(att, def); }
-			
-			// If defender killed
-			if(def.HP <= 0){
-				this.doKilled(att, def);
-			} else if(def.paralyzed > 0){
-				// ...else if defender paralyzed
-				status_line = '<span class="red">' + def.name + ' is powerless to counterattack!</span>';
-				Statuss.update(status_line);
-			} else if(Input.spellOn != true && Input.weaponOn != true) {
-				// else if not a ranged attack, do counterattack
-				this.doBattle(def, att);
-				
-				// If attacker killed
-				if(att.HP <= 0){
-					this.doKilled(def, att);
+			if (def.ofType == "npc") {
+				if (def.killconfirm == 0) {
+					Statuss.update("Really attack " + def.name + "?");
+					def.killconfirm = 1;
+					this.success = false;
+				} else {
+					this.initBattle();
 				}
+			} else {
+				this.initBattle();
 			}
-			
-			setTimeout(function(){ $('.p').removeClass('attacker defender') }, 250);
 		}
         delete this;
     };

@@ -202,16 +202,10 @@ var Player = Character.extend({
 			//Successful Move
 			$('.'+this.ofType).removeClass('blink'); // stop blinking when a player moves
 			
-			if(isPassable == true && remaining_move >=1){
+			if(isPassable == true && remaining_move >= 1){
 				this.doMove(square, dir, acost);
-			} else if (square.occupied && this.movement - this.currMove >= 1){
-				if(square.occupiedBy.ofType == "player"){
-					// Switch places
-					//this.doMove(square, dir, acost);
-					//square.occupiedBy.locIt(this.previousSquare);
-				}
 			} else if (square.occupied && this.movement - this.currMove >= 2){
-				if (square.occupiedBy.ofType == "monster"){
+				if (square.occupiedBy.ofType != "player"){
 					var battle = new Battle(World.activePlayer, square.occupiedBy);
 					
 					// If paralyzed
@@ -219,7 +213,7 @@ var Player = Character.extend({
 						this.endturnUI();
 						// Zero out unused moves for player
 						MO_set(this, this.movement - this.currMove);
-					} else if(!this.dead){ this.handleactioncost("weapon"); } // else if not dead, update with battle action cost (2)
+					} else if(!this.dead && battle.success){ this.handleactioncost("weapon"); } // else if not dead, update with battle action cost (2)
 				} 
 			}
 			if (this.movement - this.currMove < 1){
@@ -340,10 +334,10 @@ var Wizard = Player.extend({
 		[new INT, new WIS, new DEX, new CON, new CHA, new STR]);
 		
 		this.spells = [
-			new fireball,
-			new freeze,
-			new lightning,
-			new earthquake
+			//new fireball,
+			//new freeze,
+			new lightning
+			//new earthquake
 		];
 		
 		this.thac0 = [20, 20, 20, 19, 19, 19, 18, 18, 18, 17, 17, 17, 16, 16, 16, 15, 15, 15, 14, 14];
