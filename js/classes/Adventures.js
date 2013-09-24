@@ -56,7 +56,8 @@ var Tutorial = function(){
 	},
 	"npcs": {
 	    "Lugner_1": [32,6],
-	    "Mildred_1": [5,28]
+	    "Ena_1": [5,28],
+		"Mildred_1": [20,7]
 	},
 	"gold": 500
     };

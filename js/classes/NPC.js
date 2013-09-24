@@ -29,6 +29,16 @@ var NPC = Character.extend({
 		return;	
 	},
 	joinPlayers: function(){
+		Statuss.update('<span class="join_alert">'+this.name+' joins you!</span>');
+		/*
+		 * 0. Add into World rotation of play directly after player
+		 * 1. Look around for closest: player, monster, or item
+		 * 2. If player, move towards; if monster, move/attack
+			--- Should make the following into Character functions since Monsters may need to take advantage of them too ---
+		 * 3. If item closer than nearest monster and better than current, move towards first and pick up...
+		 * 4. ...then continue towards player/monster
+		 * 5. If HP < 5 and has a healing potion, use it; if no medications and one in inventory, use it
+		 */
 		return;
 	},
 	joinMonsters: function(){
@@ -96,13 +106,21 @@ var Ena = NPC.extend({
 			[new WIS, new CHA, new STR, new CON, new INT, new DEX]);
 		
 		this.script = [
-			"Have you come to slay the Basilisk?",
+			"Are you the adventurers here to slay the Basilisk?",
+			"It has taken so many from our village.",
 			"It took my daughter Mildred two weeks ago!",
 			"Please save her, I know she must be alive.",
 			"She's strong like me when I was her age.",
-			"You must save her or I'll go myself!"
+			"You must save her or I'll go myself!",
+			"May the blessing of Master Friam be with you."
 		]
-  	}
+  	},
+	talk: function(){
+		this._super();
+		if (this.scriptnum == 2) {
+			this.joinPlayers();
+		}
+	}
 });
 
 // Mildred

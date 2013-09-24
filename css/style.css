@@ -678,6 +678,7 @@ h3{
 /* NPCs */
 .m_grid td.lit .p.npc:before { content: '@' !important; }
 .m_grid td.lit .p.lugner:before { background-color: darkblue; color: #fff; }
+.m_grid td.lit .p.ena:before { background-color: darksalmon; color: #000; }
 .m_grid td.lit .p.mildred:before { background-color: crimson; color: #fff; }
     .m_grid.dogvision td.lit .p.npc:before { background-color: #ccc; color: #000; }
 
@@ -783,6 +784,12 @@ h3{
 		padding: 1px;
 		background-color: white;
 		color: black;
+	}
+	#status .join_alert {
+		display: inline-block;
+		padding: 1px;
+		background-color: green;
+		color: white;
 	}
     #party td { font-size: .9em; }
     #party .roff, #party .landoff { display: table-cell; }
