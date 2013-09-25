@@ -39,7 +39,6 @@ var NPC = Character.extend({
 		 * 4. ...then continue towards player/monster
 		 * 5. If HP < 5 and has a healing potion, use it; if no medications and one in inventory, use it
 		 */
-		return;
 	},
 	joinMonsters: function(){
 		return;
