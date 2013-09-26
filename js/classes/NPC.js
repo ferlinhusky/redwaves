@@ -12,6 +12,7 @@ var NPC = Character.extend({
 		this.target = null;
 		this.scriptnum = 0;
 		this.killconfirm = 0;
+		this.enemy;
 		
 		this.thac0 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 		
@@ -30,6 +31,8 @@ var NPC = Character.extend({
 	},
 	joinPlayers: function(){
 		Statuss.update('<span class="join_alert">'+this.name+' joins you!</span>');
+		this.enemy = "monster";
+		World.orderOfPlay.push(this);
 		/*
 		 * 0. Add into World rotation of play directly after player
 		 * 1. Look around for closest: player, monster, or item
@@ -41,7 +44,9 @@ var NPC = Character.extend({
 		 */
 	},
 	joinMonsters: function(){
-		return;
+		Statuss.update('<span class="join_alert">'+this.name+' turns against you!</span>');
+		this.enemy = "player";
+		World.orderOfPlay.push(this);
 	},
 	killed: function(){
 		if($('.' + this.ID).tooltip()){
@@ -113,13 +118,7 @@ var Ena = NPC.extend({
 			"You must save her or I'll go myself!",
 			"May the blessing of Master Friam be with you."
 		]
-  	},
-	talk: function(){
-		this._super();
-		if (this.scriptnum == 2) {
-			this.joinPlayers();
-		}
-	}
+  	}
 });
 
 // Mildred
@@ -141,5 +140,11 @@ var Mildred = NPC.extend({
 			"Drop me a weapon when you can.",
 			"Stop talking, I'm trying to adventure."
 		]
-  	}
+  	},
+	talk: function(){
+		this._super();
+		if (this.scriptnum == 2) {
+			this.joinPlayers();
+		}
+	}
 });

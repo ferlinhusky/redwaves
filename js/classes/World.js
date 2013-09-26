@@ -39,12 +39,12 @@ var World = function(){
 		}
 		
 		for(var i=0; i<Players.length + Monsters.length; i++){
-                    if(Players[i] != undefined){
-                            this.orderOfPlay.push(Players[i]);
-                    }
-                    if(Monsters[i] != undefined){
-                            this.orderOfPlay.push(Monsters[i]);
-                    }
+			if(Players[i] != undefined){
+					this.orderOfPlay.push(Players[i]);
+			}
+			if(Monsters[i] != undefined){
+					this.orderOfPlay.push(Monsters[i]);
+			}
 		}
         this.activePlayer = this.orderOfPlay[0];
 		this.endturn(); // Start
@@ -305,8 +305,8 @@ var World = function(){
 				if(this.activePlayer.type == "wizard"){
 					SpellSet.find('.button').button('enable');
 				}
-			} else if(this.activePlayer.ofType == "monster"){
-				 this.activePlayer.doTurn();
+			} else if(this.activePlayer.ofType == "monster" || this.activePlayer.ofType == "npc"){
+				this.activePlayer.doTurn();
 			}
 		}
 	};

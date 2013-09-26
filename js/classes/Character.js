@@ -109,6 +109,7 @@ var Character = Class.extend({
 		switch (this.ofType) {
 			case "monster"	: minMove = 3; break;
 			case "player"	: minMove = 6; break;
+			case "npc"		: minMove = 4; break;
 			default			: break;
 		}
 		this.movement	=	minMove + this.DEX.mod();
@@ -295,6 +296,233 @@ var Character = Class.extend({
 			World.infinitybox = true;
 			Statuss.update("<div class='sq_alert'>The Infinity Box appears where your enemy fell!<br/>Enter it and press the flashing &#946;</div>");
 		}
+	},
+	doTurn: function(){
+		var self = this;
+		this.path = this.findTarget();
+		if (this.path.length == 0){
+			World.endturn();
+		} else {
+			centerOn(this);
+			monstersMoving.show('fast');
+			if(getMapSq(this.coords).hasClass('lit')){
+				monstersMoving.text(this.name + ' moving...');
+			} else {
+				monstersMoving.text('You hear something moving...');
+			}
+			this.currMove = 0;
+			this.moveInterval = setInterval(function(){self.move_MONNPC();}, 500);
+		}
+	},
+	move_MONNPC: function(){
+		if(this.currMove < this.movement && this.paralyzed == 0){
+			var i = this.currMove; // readability
+			var acost = 1;
+			
+			// Check ranged attack from this location
+			var getRange = this.checkRanged();
+			
+			// If movement exceeds current path, get a new path
+			// Push empty items to simulate one long path
+			if(this.path[i] == undefined){
+				this.path = this.findTarget();
+				if(this.path.length == 0){
+					clearInterval(this.moveInterval);
+					World.endturn();
+				}
+				this.path.reverse();
+				for(var j=0; j<i; j++){
+					this.path.push("");
+				}
+				this.path.reverse();
+			}
+	
+			var sq = getMapSq([this.path[i].x, this.path[i].y])
+			
+			this.previousSquare = getSquare(this.coords).id;
+			var temp_coords = [];
+			temp_coords[0] = this.path[i].x;
+			temp_coords[1] = this.path[i].y;
+			var temp_square = getSquare(temp_coords);
+			
+			// If not enough moves to attack, end
+			if((getRange.range == true || temp_square.occupiedBy.ofType == this.enemy)
+				&& this.movement - this.currMove < 2) {
+				clearInterval(this.moveInterval);
+				World.endturn();
+				return;
+			}
+			
+			if(getRange.range == true){
+				Input.weaponOn = true; // For battle to recognize ranged wpn attack
+				var battle = new Battle(this, getRange.target);
+				Input.weaponOn = false;
+				acost = 2;
+			} else {
+				if(temp_square.occupied) {
+					// attack if enemy
+					if(temp_square.occupiedBy.ofType == this.enemy){
+						this.wait = true;
+						var battle = new Battle(this, temp_square.occupiedBy);
+						acost = 2;
+					}
+				} else {
+					// Do movement
+					this.coords[0] = this.path[i].x;
+					this.coords[1] = this.path[i].y;
+					var square = getSquare(this.coords);
+					// If can open doors, do it (if necessary)
+					if(square.t.type == "closed_door"){
+						getMapSq(this.coords).removeClass('closed_door');
+						getMapSq(this.coords).addClass('open_door');
+						square.t = OpenDoor;
+						square.cthru = true;
+					}
+					this.currentSquare = getSquare(this.coords).id;
+					this.locIt(this.currentSquare, this.previousSquare);
+					// Set map position
+					centerOn(this);
+				}
+			}
+			MO_set(this, acost); // update movement
+			this.recalibrate(); // recalibrate targets
+		} else {
+			clearInterval(this.moveInterval);
+			World.endturn();
+		}
+	},
+	switchtounranged: function(){
+		// If close range, switch to non-ranged attack
+		for(var i=0; i<this.wields.length; i++){
+			// Check if carrying a ranged weapon
+			if(this.wields[i] != "" && this.wields[i].supclass!="firearm"){
+				this.readyWeapon = this.wields[i];
+				break;
+			}
+		}
+	},
+	checkRanged: function(){
+		var range = false;
+		var target = "";
+		
+		// Should eventually add spell-check and return type of attack
+		
+		// If the path to the target is greater than one sq
+		if(this.path.length > 1){
+			// Ranged weapon (non-spell) targeting
+			for(var i=0; i<this.wields.length; i++){
+				// Check if carrying a ranged weapon
+				if(this.wields[i].supclass=="firearm"){
+					this.readyWeapon = this.wields[i];
+					getRange(this, "weapon");
+					var howmanyinrange = $('.range .'+this.enemy).length; // how many .player are within .range
+					if(howmanyinrange == 0){
+						break; // try again next move
+					} else {
+						// Initiate attack against a player in range
+						range = true;
+						target = Squares[$('.range .'+this.enemy).closest('.range').attr('data-sid')].occupiedBy;
+					}
+				} else if (this.wields[i] != ""){
+					
+				}
+			}
+		} else { this.switchtounranged(); }
+		return { 
+			'range': range,
+			'target': target
+		};
+	},
+	addTarget: function(t){
+		var temptarget = {};
+		var isnew = true;
+		
+		temptarget.type = t.type;
+		temptarget.coords = t.coords;
+		
+		for(var i = 0; i < this.targets.length; i++){
+			// If it's a current target, drop the old reference
+			if(this.targets[i].type == temptarget.type){
+				this.targets.splice(i, 1, temptarget);
+				isnew = false;
+			}
+		}
+		
+		if(isnew){
+			this.targets.push(temptarget);
+		}
+	},
+	removeTarget: function(t){
+		for(var i = 0; i < this.targets.length; i++){
+			// If it's a current target, splice it out
+			if(this.targets[i].type == t.type){
+				this.targets.splice(i, 1);
+			}
+		}
+	},
+	recalibrate: function(){
+		var Enemies = this.enemy == "players" ? Players : Monsters
+		for(var i=0; i<Enemies.length; i++){
+			var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
+			if(cansee == true){
+				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Enemies[i].coords), true, true);
+				// Change course if a visible target is closer
+				if (temp_path.length < this.path.length && temp_path.length > 0){
+					this.path = [];
+					// tie up with current position or else will jump ahead
+					// push empty spaces in
+					for(var j=0; j<this.currMove; j++){
+						this.path.push("");
+					}
+					for(var j=0; j<temp_path.length; j++){
+						this.path.push(temp_path[j]);
+					}
+				}
+				// Update visible target player coords
+				this.addTarget(Enemies[i]);
+			} else if (Enemies[i].hasSkill('stealth')){
+				this.removeTarget(Enemies[i]);
+			}
+		}
+	},
+	findTarget: function(){
+		var Enemies = this.enemy == "players" ? Players : Monsters
+		var path = [];
+		if(Enemies.length == 0){
+			clearInterval(this.moveInterval);
+			World.endturn();
+		} else {
+			var temp_path;
+			// If there's a target coord(s)
+			if(this.targets.length > 0){
+				for(var i=0; i<this.targets.length; i++){
+					temp_path = astar.search(Squares, getSquare(this.coords), getSquare(this.targets[i].coords), true);
+					if(path.length == 0){
+						path = temp_path;
+					} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
+						path = temp_path;
+					}
+				}
+			} else {
+			// If not, get the nearest player(s), make targets
+				for(var i=0; i<Enemies.length; i++){
+					// Only target players you can see
+					var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
+					if(cansee == true){
+						temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Enemies[i].coords), true);
+						if(path.length == 0){
+							path = temp_path;
+						} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
+							path = temp_path;
+						}
+						this.addTarget(Enemies[i]);
+					} else if (Enemies[i].hasSkill('stealth')){
+						this.removeTarget(Enemies[i]);
+					}
+				}
+			}
+		}
+		return path;
 	},
 	updateWpn: function(){ return; },
 	updateAC: function(){ return; },

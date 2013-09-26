@@ -347,21 +347,21 @@ var setGender = function(g){
 
 // Format for gender
 var formatforgender = function(text){
-	for(var i=0; i<Players.length; i++){
+	for(var i=0; i<Party.members.length; i++){
 		var re = new RegExp("{p"+i+"}","g");
-		text = text.replace(re, Players[i].name);
+		text = text.replace(re, Party.members[i].name);
 		
 		var re = new RegExp("{p"+i+"-pro}","g");
-		text = text.replace(re, Players[i].gender.pro);
+		text = text.replace(re, Party.members[i].gender.pro);
 		
 		var re = new RegExp("{p"+i+"-probj}","g");
-		text = text.replace(re, Players[i].gender.probj);
+		text = text.replace(re, Party.members[i].gender.probj);
 		
 		var re = new RegExp("{p"+i+"-poss}","g");
-		text = text.replace(re, Players[i].gender.poss);
+		text = text.replace(re, Party.members[i].gender.poss);
 		
 		var re = new RegExp("{p"+i+"-form}","g");
-		text = text.replace(re, Players[i].gender.form);
+		text = text.replace(re, Party.members[i].gender.form);
 		
 		text = text.replace(/<p>he/g, '<p>He');
 		text = text.replace(/<p>she/g, '<p>He');
