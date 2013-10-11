@@ -5,6 +5,7 @@ var Player = Character.extend({
 		this._super(name, type, ofType, wears, wields, inven, skills, attributes);
 		this.ID = "player_" + Players.length;
 		this.map = "";
+		this.enemy = "monster";
 
 		Players.push(this);
 		Party.members.push(this);

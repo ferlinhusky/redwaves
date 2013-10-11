@@ -1,4 +1,5 @@
 var Dead = [];
+var Characters = [];
 var Character = Class.extend({
 	rollattributes: function(){
 		var rolltotals = [];
@@ -199,6 +200,8 @@ var Character = Class.extend({
 			if(prob > 5){ this.gender = setGender("male");
 			} else { this.gender = setGender("female"); }
 		}
+		
+		Characters.push(this);
 	},
 	checkwielding: function(){
 		if (this.wields.join("").length == 0) {
@@ -361,7 +364,7 @@ var Character = Class.extend({
 			} else {
 				if(temp_square.occupied) {
 					// attack if enemy
-					if(temp_square.occupiedBy.ofType == this.enemy){
+					if(temp_square.occupiedBy.enemy != this.enemy){
 						this.wait = true;
 						var battle = new Battle(this, temp_square.occupiedBy);
 						acost = 2;
@@ -440,28 +443,47 @@ var Character = Class.extend({
 		temptarget.type = t.type;
 		temptarget.coords = t.coords;
 		
-		for(var i = 0; i < this.targets.length; i++){
+		/*for(var i = 0; i < this.targets.length; i++){
 			// If it's a current target, drop the old reference
 			if(this.targets[i].type == temptarget.type){
 				this.targets.splice(i, 1, temptarget);
 				isnew = false;
 			}
+		}*/
+		
+		for(var i = 0; i < this.targets.length; i++){
+			// If it's a current target, drop the old reference
+			if(this.targets[i] === t){
+				this.targets.splice(i, 1);
+				isnew = false;
+			}
 		}
 		
 		if(isnew){
-			this.targets.push(temptarget);
+			//this.targets.push(temptarget);
+			this.targets.push(t);
 		}
 	},
 	removeTarget: function(t){
 		for(var i = 0; i < this.targets.length; i++){
 			// If it's a current target, splice it out
-			if(this.targets[i].type == t.type){
+			//if(this.targets[i].type == t.type){
+			if(this.targets[i] === t){
 				this.targets.splice(i, 1);
 			}
 		}
 	},
+	findEnemies: function(){
+		var Enemies = [];
+		for(var i=0; i<Characters.length; i++){
+			if(Characters[i].enemy != this.enemy){
+				Enemies.push(Characters[i]);
+			}
+		}
+		return Enemies;
+	},
 	recalibrate: function(){
-		var Enemies = this.enemy == "players" ? Players : Monsters
+		var Enemies = this.findEnemies();
 		for(var i=0; i<Enemies.length; i++){
 			var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
 			if(cansee == true){
@@ -486,7 +508,7 @@ var Character = Class.extend({
 		}
 	},
 	findTarget: function(){
-		var Enemies = this.enemy == "players" ? Players : Monsters
+		var Enemies = this.findEnemies();
 		var path = [];
 		if(Enemies.length == 0){
 			clearInterval(this.moveInterval);
