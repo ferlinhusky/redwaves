@@ -5,15 +5,12 @@ var NPC = Character.extend({
 		this._super(name, type, ofType, wears, wields, inven, skills, attributes);
 		
 		this.snamepl=	snamepl; // str // screen name plural
-		
 		this.ID = "npc_" + NPCs.length;
 		
-		this.targets = [];
-		this.target = null;
 		this.scriptnum = 0;
 		this.killconfirm = 0;
-		this.enemy;
 		
+		this.enemy = "";
 		this.thac0 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 		
 		NPCs.push(this);
@@ -93,6 +90,8 @@ var Lugner = NPC.extend({
 			"tell my wife I died a hero.",
 			"*mumbles incoherently*"
 		]
+		
+		this.gender = setGender('male');
   	}
 });
 
@@ -118,6 +117,8 @@ var Ena = NPC.extend({
 			"You must save her or I'll go myself!",
 			"May the blessing of Master Friam be with you."
 		]
+		
+		this.gender = setGender('female');
   	}
 });
 
@@ -140,6 +141,8 @@ var Mildred = NPC.extend({
 			"Drop me a weapon when you can.",
 			"Stop talking, I'm trying to adventure."
 		]
+		
+		this.gender = setGender('female');
   	},
 	talk: function(){
 		this._super();

@@ -215,7 +215,10 @@ var World = function(){
 			
 			// Reset to close range attack
 			World.activePlayer.switchtounranged();
-		}
+		} else if ( World.activePlayer.ofType == "npc" && World.activePlayer.dead == false ){
+                    // Reset to close range attack
+		    World.activePlayer.switchtounranged();
+                }
 		
 		if(Monsters.length == 0 && this.gameover == false){
 			this.endgame(this.Level.events.win, "win");
@@ -289,8 +292,8 @@ var World = function(){
 				// Activate buttons
 				btnEndTurn.button('enable');
                                 
-                checkPickupBtn();
-                checkDropBtn();
+                                checkPickupBtn();
+                                checkDropBtn();
 				checkInfinityBox();
 				
 				// Check for doors, items, NPCs
@@ -301,11 +304,11 @@ var World = function(){
 				// Check for keenness
 				this.activePlayer.checkKeenness();
 				
-				// Check for Wizard
-				if(this.activePlayer.type == "wizard"){
-					SpellSet.find('.button').button('enable');
+				// Check for Spells
+				if(this.activePlayer.spells.length > 0){
+				    SpellSet.find('.button').button('enable');
 				}
-			} else if(this.activePlayer.ofType == "monster" || this.activePlayer.ofType == "npc"){
+			} else {
 				this.activePlayer.doTurn();
 			}
 		}

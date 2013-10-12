@@ -126,6 +126,12 @@ var Character = Class.extend({
 		this.type	=	type; // str // in-program cat
 		this.ofType	=	ofType // str // player, monster
 		
+		// AI Moving, Targeting, and Pathing
+		this.moveInterval;
+		this.path;
+		this.targets = [];
+		this.target = null;
+		
 		// Get Attribute values
 		this.attributes = attributes;
 		this.rollattributes();
@@ -507,6 +513,15 @@ var Character = Class.extend({
 			}
 		}
 	},
+	findTargetPath: function(p, t){
+		temp_path = astar.search(Squares, getSquare(this.coords), getSquare(t.coords), true);
+		if(p.length == 0){
+			p = temp_path;
+		} else if (p.length > 0 && temp_path.length < p.length && temp_path.length > 0){
+			p = temp_path;
+		}
+		return p;
+	},
 	findTarget: function(){
 		var Enemies = this.findEnemies();
 		var path = [];
@@ -518,25 +533,16 @@ var Character = Class.extend({
 			// If there's a target coord(s)
 			if(this.targets.length > 0){
 				for(var i=0; i<this.targets.length; i++){
-					temp_path = astar.search(Squares, getSquare(this.coords), getSquare(this.targets[i].coords), true);
-					if(path.length == 0){
-						path = temp_path;
-					} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
-						path = temp_path;
-					}
+					path = this.findTargetPath(path, this.targets[i]);
 				}
+
 			} else {
-			// If not, get the nearest player(s), make targets
+				// If not, get the nearest player(s), make targets
 				for(var i=0; i<Enemies.length; i++){
 					// Only target players you can see
 					var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
 					if(cansee == true){
-						temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Enemies[i].coords), true);
-						if(path.length == 0){
-							path = temp_path;
-						} else if (path.length > 0 && temp_path.length < path.length && temp_path.length > 0){
-							path = temp_path;
-						}
+						path = this.findTargetPath(path, Enemies[i]);
 						this.addTarget(Enemies[i]);
 					} else if (Enemies[i].hasSkill('stealth')){
 						this.removeTarget(Enemies[i]);

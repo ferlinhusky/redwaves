@@ -56,7 +56,7 @@ var astar = {
             for(var i=0, il = neighbors.length; i < il; i++) {
                 var neighbor = neighbors[i];
 
-		if(neighbor.closed || !neighbor.t.passable || neighbor.occupiedBy.ofType == "monster") {
+		if(neighbor.closed || !neighbor.t.passable || neighbor.occupiedBy.enemy == start.occupiedBy.enemy) {
                     // Not a valid node to process, skip to next neighbor.
 		    // If the node is occupied by a "player", end the path and re-target
 		    if(neighbor.t.type == "closed_door" && ignoreDoors == true){

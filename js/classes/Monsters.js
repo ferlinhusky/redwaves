@@ -5,16 +5,8 @@ var Monster = Character.extend({
 		this._super(name, type, ofType, wears, wields, inven, skills, attributes);
 		
 		this.snamepl=	snamepl; // str // screen name plural
-		
-		this.moveInterval;
-		this.path;
-		
 		this.ID = "monster_" + Monsters.length;
-		
-		this.targets = [];
-		this.target = null;
 		this.enemy = "player";
-		
 		this.thac0 = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 		
 		Monsters.push(this);
