@@ -308,7 +308,15 @@ var Character = Class.extend({
 	},
 	doTurn: function(){
 		var self = this;
+		// Remove killed targets
+		for(var i=0; i<this.targets.length; i++){
+			if(this.targets[i].dead == true){
+				this.removeTarget(this.targets[i]);
+			}
+		}
+		// Find new targets
 		this.path = this.findTarget();
+		// Begin turn
 		if (this.path.length == 0){
 			World.endturn();
 		} else {
@@ -482,7 +490,7 @@ var Character = Class.extend({
 	findEnemies: function(){
 		var Enemies = [];
 		for(var i=0; i<Characters.length; i++){
-			if(Characters[i].enemy != this.enemy){
+			if(Characters[i].enemy != this.enemy && Characters[i].dead != true){
 				Enemies.push(Characters[i]);
 			}
 		}
