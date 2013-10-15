@@ -194,12 +194,13 @@ var Battle = function(att, def){
 	};
     this.init = function(){
 		if(!def.dead){
-			if (def.ofType == "npc" && att.ofType == "player") {
+			if (def.ofType == "npc") {
 				if (def.killconfirm == 0) {
 					Statuss.update("Really attack " + def.name + "?");
 					def.killconfirm = 1;
 					this.success = false;
 				} else {
+					def.turnagainst(att.ofType);
 					this.initBattle();
 				}
 			} else {

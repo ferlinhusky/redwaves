@@ -26,23 +26,8 @@ var NPC = Character.extend({
 	give: function(){
 		return;	
 	},
-	joinPlayers: function(){
-		Statuss.update('<span class="join_alert">'+this.name+' joins you!</span>');
-		this.enemy = "monster";
-		World.orderOfPlay.push(this);
-		/*
-		 * 0. Add into World rotation of play directly after player
-		 * 1. Look around for closest: player, monster, or item
-		 * 2. If player, move towards; if monster, move/attack
-			--- Should make the following into Character functions since Monsters may need to take advantage of them too ---
-		 * 3. If item closer than nearest monster and better than current, move towards first and pick up...
-		 * 4. ...then continue towards player/monster
-		 * 5. If HP < 5 and has a healing potion, use it; if no medications and one in inventory, use it
-		 */
-	},
-	joinMonsters: function(){
-		Statuss.update('<span class="join_alert">'+this.name+' turns against you!</span>');
-		this.enemy = "player";
+	join: function(t){
+		this._super(t);
 		World.orderOfPlay.push(this);
 	},
 	killed: function(){
@@ -147,7 +132,7 @@ var Mildred = NPC.extend({
 	talk: function(){
 		this._super();
 		if (this.scriptnum == 2) {
-			this.joinPlayers();
+			this.join("player");
 		}
 	}
 });

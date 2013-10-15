@@ -440,8 +440,6 @@ var Character = Class.extend({
 						range = true;
 						target = Squares[$('.range .'+this.enemy).closest('.range').attr('data-sid')].occupiedBy;
 					}
-				} else if (this.wields[i] != ""){
-					
 				}
 			}
 		} else { this.switchtounranged(); }
@@ -500,7 +498,7 @@ var Character = Class.extend({
 		var Enemies = this.findEnemies();
 		for(var i=0; i<Enemies.length; i++){
 			var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
-			if(cansee == true){
+			if(cansee == true && Enemies[i].hasSkill('stealth') == false){
 				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Enemies[i].coords), true, true);
 				// Change course if a visible target is closer
 				if (temp_path.length < this.path.length && temp_path.length > 0){
@@ -516,8 +514,6 @@ var Character = Class.extend({
 				}
 				// Update visible target player coords
 				this.addTarget(Enemies[i]);
-			} else if (Enemies[i].hasSkill('stealth')){
-				this.removeTarget(Enemies[i]);
 			}
 		}
 	},
@@ -531,6 +527,10 @@ var Character = Class.extend({
 		return p;
 	},
 	findTarget: function(){
+		// Armor: w/in 3sq if better
+		// Item: w/in 5sq
+		// Weapon: w/in 7sq if better
+		// 
 		var Enemies = this.findEnemies();
 		var path = [];
 		if(Enemies.length == 0){
@@ -543,22 +543,37 @@ var Character = Class.extend({
 				for(var i=0; i<this.targets.length; i++){
 					path = this.findTargetPath(path, this.targets[i]);
 				}
-
 			} else {
 				// If not, get the nearest player(s), make targets
 				for(var i=0; i<Enemies.length; i++){
 					// Only target players you can see
 					var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
-					if(cansee == true){
+					if(cansee == true && Enemies[i].hasSkill('stealth') == false){
 						path = this.findTargetPath(path, Enemies[i]);
 						this.addTarget(Enemies[i]);
-					} else if (Enemies[i].hasSkill('stealth')){
-						this.removeTarget(Enemies[i]);
 					}
 				}
 			}
 		}
 		return path;
+	},
+	join: function(t){
+		if (t == "player") {
+			Statuss.update('<span class="join_alert">'+this.name+' joins you!</span>');
+			this.enemy = "monster";
+		} else {
+			Statuss.update('<span class="join_alert">'+this.name+' turns against you!</span>');
+			this.enemy = "player";
+		}
+	},
+	turnagainst: function(t){
+		if (t == "monster") {
+			Statuss.update('<span class="join_alert">'+this.name+' joins you!</span>');
+			this.enemy = "monster";
+		} else {
+			Statuss.update('<span class="join_alert">'+this.name+' turns against you!</span>');
+			this.enemy = "player";
+		}
 	},
 	updateWpn: function(){ return; },
 	updateAC: function(){ return; },
