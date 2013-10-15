@@ -485,6 +485,17 @@ var Character = Class.extend({
 			}
 		}
 	},
+	findThings: function(){
+		getRange(this, "look", 5);
+		$('.look').each(function(){
+			var sq = Squares[$(this).attr('data-sid')];
+			if (sq.containsA.length > 0) {
+				// Loop through each item on each square
+				// Sort into lists of weapons, armor, items
+			}
+		});
+		clearRanges();
+	},
 	findEnemies: function(){
 		var Enemies = [];
 		for(var i=0; i<Characters.length; i++){
@@ -527,10 +538,6 @@ var Character = Class.extend({
 		return p;
 	},
 	findTarget: function(){
-		// Armor: w/in 3sq if better
-		// Item: w/in 5sq
-		// Weapon: w/in 7sq if better
-		// 
 		var Enemies = this.findEnemies();
 		var path = [];
 		if(Enemies.length == 0){

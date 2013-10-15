@@ -185,9 +185,9 @@ var World = function(){
 		$('.m_grid').removeClass('zoom dogvision');
 
 	    unbuildAllMenus();
+		clearRanges();
 		
         $('.p').removeClass('blink'); // remove any character blinks
-	    $('.lit, .unlit').removeClass(allranges); // remove all spell/weapon/talk ranges
 	    monstersMoving.hide('fast');
 	};
 	

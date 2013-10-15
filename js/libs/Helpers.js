@@ -436,9 +436,14 @@ var getLineOfSight = function(c){
 	$('.lit').removeClass('unlit visited');
 };
 
+// Clear Ranges
+var clearRanges = function(){
+	$('.lit, .unlit').removeClass(allranges);
+};
+
 // Get Range
-var getRange = function(character, type){
-	$('.lit, .unlit').removeClass(allranges); // remove all spell ranges
+var getRange = function(character, type, rngoverride){
+	clearRanges();
 	
 	var c = character.coords;
 	var item;
@@ -446,7 +451,8 @@ var getRange = function(character, type){
 	switch(type){
 		case "spell": item = character.readySpell; break;
 		case "weapon": item = character.readyWeapon; break;
-		case "talk" : item = { material: "talk", rng: 1 }
+		case "talk" : item = { material: "talk", rng: 1 }; break;
+		case "look" : item = { material: "look", rng: rngoverride }; break;
 		default: break;
 	}
 	
