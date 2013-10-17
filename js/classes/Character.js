@@ -487,13 +487,25 @@ var Character = Class.extend({
 	},
 	findThings: function(){
 		getRange(this, "look", 5);
+		var weapons = [];
+		var armor = [];
+		var items = [];
 		$('.look').each(function(){
 			var sq = Squares[$(this).attr('data-sid')];
 			if (sq.containsA.length > 0) {
-				// Loop through each item on each square
-				// Sort into lists of weapons, armor, items
+				for(var i=0; i<sq.containsA.length; i++){
+					var sqc = sq.containsA[i];
+					switch(sqc.ofType){
+						case "weapon": weapons.push(sqc.name); break;
+						case "armor": armor.push(sqc.name); break;
+						default : items.push(sqc.name); break;
+					}
+				}
 			}
 		});
+		console.log(this.name + " sees: Weapons -> " + weapons);
+		console.log(this.name + " sees: Armor -> " + armor);
+		console.log(this.name + " sees: Items -> " + items);
 		clearRanges();
 	},
 	findEnemies: function(){
@@ -538,6 +550,7 @@ var Character = Class.extend({
 		return p;
 	},
 	findTarget: function(){
+		this.findThings();
 		var Enemies = this.findEnemies();
 		var path = [];
 		if(Enemies.length == 0){

@@ -4,7 +4,7 @@
 
 // Global vars
 var stddialogheight = 400;
-var allranges = "range fire ice energy earth steel wood light talk";
+var allranges = "range fire ice energy earth steel wood light talk look";
 
 // Capitalize a string
 function capitalise(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
@@ -142,7 +142,7 @@ var anyNPCs = function(loc){
 // Any items?
 var anyItems = function(loc){
 	var square = getSquare(loc);
-	if(square.containsA.is == "item"){
+	if(square.containsA.length > 0){
 		btnPickup.button('enable');
 	} else {
 		btnPickup.button('disable');
