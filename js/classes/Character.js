@@ -496,16 +496,44 @@ var Character = Class.extend({
 				for(var i=0; i<sq.containsA.length; i++){
 					var sqc = sq.containsA[i];
 					switch(sqc.ofType){
-						case "weapon": weapons.push(sqc.name); break;
-						case "armor": armor.push(sqc.name); break;
-						default : items.push(sqc.name); break;
+						case "weapon":
+							// If sighted weapon dmg > active weapon dmg
+							var da = this.readyWeapon.dmg.split('d');
+							var mydmg = da[0] * da[1];
+							var db = sqc.dmg.split('d');
+							var sqdmg = db[0] * db[1];
+							if (sqdmg > mydmg) {
+								weapons.push(sqc);
+							}
+							break;
+						case "armor":
+							// If sighted armor ac < worn armor ac
+							var at;
+							switch (sqc.supclass) {
+								case "helmet" : at=0; break;
+								case "bodyarmor" : at=1; break;
+								case "shield" : at=2; break;
+								default: break;
+							}
+							if (this.wears[at] != "") {
+								if (sqc.ac < this.wears[at].ac) {
+									armor.push(sqc);
+								}
+							}
+							break;
+						default : items.push(sqc); break;
 					}
 				}
 			}
 		});
-		console.log(this.name + " sees: Weapons -> " + weapons);
+		
+		// If weapons sighted, path to weapon; then armor, then items last
+		// Return an object with path and type of thing, which will be compared to the path to the nearest enemy
+		// {path: [Object, Object], type: 'weapon'}
+		
+		/*console.log(this.name + " sees: Weapons -> " + weapons);
 		console.log(this.name + " sees: Armor -> " + armor);
-		console.log(this.name + " sees: Items -> " + items);
+		console.log(this.name + " sees: Items -> " + items);*/
 		clearRanges();
 	},
 	findEnemies: function(){
