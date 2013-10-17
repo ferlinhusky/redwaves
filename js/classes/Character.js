@@ -401,6 +401,7 @@ var Character = Class.extend({
 					centerOn(this);
 				}
 			}
+			
 			MO_set(this, acost); // update movement
 			this.recalibrate(); // recalibrate targets
 		} else {
@@ -455,14 +456,6 @@ var Character = Class.extend({
 		temptarget.type = t.type;
 		temptarget.coords = t.coords;
 		
-		/*for(var i = 0; i < this.targets.length; i++){
-			// If it's a current target, drop the old reference
-			if(this.targets[i].type == temptarget.type){
-				this.targets.splice(i, 1, temptarget);
-				isnew = false;
-			}
-		}*/
-		
 		for(var i = 0; i < this.targets.length; i++){
 			// If it's a current target, drop the old reference
 			if(this.targets[i] === t){
@@ -479,17 +472,23 @@ var Character = Class.extend({
 	removeTarget: function(t){
 		for(var i = 0; i < this.targets.length; i++){
 			// If it's a current target, splice it out
-			//if(this.targets[i].type == t.type){
 			if(this.targets[i] === t){
 				this.targets.splice(i, 1);
 			}
 		}
 	},
 	findThings: function(){
-		getRange(this, "look", 5);
+		var self = this;
 		var weapons = [];
 		var armor = [];
 		var items = [];
+		var chosen = {
+				path: [],
+				type: ""
+			};
+			
+		getRange(this, "look", 5);
+
 		$('.look').each(function(){
 			var sq = Squares[$(this).attr('data-sid')];
 			if (sq.containsA.length > 0) {
@@ -498,7 +497,7 @@ var Character = Class.extend({
 					switch(sqc.ofType){
 						case "weapon":
 							// If sighted weapon dmg > active weapon dmg
-							var da = this.readyWeapon.dmg.split('d');
+							var da = self.readyWeapon.dmg.split('d');
 							var mydmg = da[0] * da[1];
 							var db = sqc.dmg.split('d');
 							var sqdmg = db[0] * db[1];
@@ -515,8 +514,8 @@ var Character = Class.extend({
 								case "shield" : at=2; break;
 								default: break;
 							}
-							if (this.wears[at] != "") {
-								if (sqc.ac < this.wears[at].ac) {
+							if (self.wears[at] != "") {
+								if (sqc.ac < self.wears[at].ac) {
 									armor.push(sqc);
 								}
 							}
@@ -528,13 +527,39 @@ var Character = Class.extend({
 		});
 		
 		// If weapons sighted, path to weapon; then armor, then items last
-		// Return an object with path and type of thing, which will be compared to the path to the nearest enemy
-		// {path: [Object, Object], type: 'weapon'}
-		
-		/*console.log(this.name + " sees: Weapons -> " + weapons);
-		console.log(this.name + " sees: Armor -> " + armor);
-		console.log(this.name + " sees: Items -> " + items);*/
+		if (weapons.length > 0) {
+			chosen.type = "weapon";
+			for (var i=0; i<weapons.length; i++) {
+				var cansee = Bresenham(this.coords[0], this.coords[1], weapons[i].coords[0], weapons[i].coords[1], "monster_target", true);
+				if (cansee == true) {
+					chosen.path = this.findTargetPath(chosen.path, weapons[i]);
+				}
+			}
+		}
+
+		if (armor.length > 0 && chosen.path.length == 0) {
+			chosen.type = "armor";
+			for (var i=0; i<armor.length; i++) {
+				var cansee = Bresenham(this.coords[0], this.coords[1], armor[i].coords[0], armor[i].coords[1], "monster_target", true);
+				if (cansee == true) {
+					chosen.path = this.findTargetPath(chosen.path, armor[i]);
+				}
+			}
+		}
+
+		if (items.length > 0 && chosen.path.length == 0) {
+			chosen.type = "item";
+			for (var i=0; i<items.length; i++) {
+				var cansee = Bresenham(this.coords[0], this.coords[1], items[i].coords[0], items[i].coords[1], "monster_target", true);
+				if (cansee == true) {
+					chosen.path = this.findTargetPath(chosen.path, items[i]);
+				}
+			}
+		}
+
 		clearRanges();
+		
+		return chosen;
 	},
 	findEnemies: function(){
 		var Enemies = [];
@@ -547,15 +572,21 @@ var Character = Class.extend({
 	},
 	recalibrate: function(){
 		var Enemies = this.findEnemies();
+		var Things = this.findThings();
+		
 		for(var i=0; i<Enemies.length; i++){
 			var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
 			if(cansee == true && Enemies[i].hasSkill('stealth') == false){
 				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Enemies[i].coords), true, true);
+				if (Things.path.length < temp_path.length) {
+					if (Things.type == "weapon" || Things.type == "armor" || (Things.type == "item" && this.HP < this.maxHP*.25)) {
+						temp_path = Things.path;
+					}
+				}	
 				// Change course if a visible target is closer
 				if (temp_path.length < this.path.length && temp_path.length > 0){
 					this.path = [];
-					// tie up with current position or else will jump ahead
-					// push empty spaces in
+					// tie up with current position or else will jump ahead; push empty spaces in
 					for(var j=0; j<this.currMove; j++){
 						this.path.push("");
 					}
@@ -578,8 +609,9 @@ var Character = Class.extend({
 		return p;
 	},
 	findTarget: function(){
-		this.findThings();
 		var Enemies = this.findEnemies();
+		var Things = this.findThings();
+		
 		var path = [];
 		if(Enemies.length == 0){
 			clearInterval(this.moveInterval);
@@ -601,6 +633,11 @@ var Character = Class.extend({
 						this.addTarget(Enemies[i]);
 					}
 				}
+			}
+		}
+		if (Things.path.length < path.length) {
+			if (Things.type == "weapon" || Things.type == "armor" || (Things.type == "item" && this.HP < this.maxHP*.25)) {
+				path = Things.path;
 			}
 		}
 		return path;

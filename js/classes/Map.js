@@ -77,11 +77,14 @@ var Map = function(){
 					
 					// Update square
 					var curr = getSquare(value).id;
-					Squares[curr].contains = true;
-					Squares[curr].containsA.push(item);
+					var sqcurr = Squares[curr];
+					
+					sqcurr.contains = true;
+					sqcurr.containsA.push(item);
+					item.coords = [sqcurr.x, sqcurr.y];
 					
 					// Get item position
-					var current = Squares[curr].onMap;
+					var current = sqcurr.onMap;
 					
 					// Add item to current square
 					findAndAdd(current, '.p', 'item ' + item.ofType);
