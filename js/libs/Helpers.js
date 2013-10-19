@@ -180,8 +180,6 @@ var centerOn = function(i){
 	var mapY = activeMap.mg.offset().top;
 	var xDiff = new Number(pageCenterX - sq.offset().left);
 	var yDiff = new Number(pageCenterY - sq.offset().top);
-	//activeMap.mg.css('top', (mapY+yDiff)-22);
-	//activeMap.mg.css('left', (mapX+xDiff)-22);
 	
 	activeMap.mg.animate({
 		top: (mapY+yDiff)-22,

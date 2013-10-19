@@ -59,6 +59,12 @@ var World = function(){
 			delete Monsters[i];
 		}
 		Monsters = [];
+                
+                // Delete remaining NPCs
+		for (var i=0; i<NPCs.length; i++){
+			delete NPCs[i];
+		}
+		NPCs = [];
 		
 		// Reset Players & party table
 		Players = [];
@@ -124,7 +130,7 @@ var World = function(){
                 Input.M_Dialog("standard", dialogcontent, "Chapter " + this.Level.refID, {
                     "Play on": function(){
                         World.playnext();
-						//Input.M_Dialog('equip');
+			//Input.M_Dialog('equip');
                     },
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');

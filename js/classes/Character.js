@@ -390,11 +390,12 @@ var Character = Class.extend({
 					this.coords[1] = this.path[i].y;
 					var square = getSquare(this.coords);
 					if(square.containsA.length > 0){
-						for(var i; i<square.containsA.length; i++){
+						for(var i=0; i<square.containsA.length; i++){
 							var sqc = square.containsA[i];
+							var pickup = false;
 							
 							if(sqc === this.chosenItem){
-								sqc.pickup(square.id, i);
+								pickup = true;
 							} else if (square.containsA.length > 0){
 								switch(sqc.ofType){
 									case "weapon":
@@ -404,8 +405,7 @@ var Character = Class.extend({
 										var db = sqc.dmg.split('d');
 										var sqdmg = db[0] * db[1];
 										if (sqdmg > mydmg) {
-											sqc.pickup(square.id, i);
-											i=-1;
+											pickup = true;
 										}
 										break;
 									case "armor":
@@ -417,16 +417,20 @@ var Character = Class.extend({
 											case "shield" : at=2; break;
 											default: break;
 										}
+										console.log(this.name + ' sees armor');
 										if (this.wears[at] != "") {
-											console.log('see armor');
+											console.log(this.name + ' sees armor');
 											if (sqc.ac < this.wears[at].ac) {
-												sqc.pickup(square.id, i);
-												i=-1;
+												pickup = true;
 											}
-										} else { sqc.pickup(square.id, i); i=-1;}
+										} else { pickup = true; }
 										break;
-									default : sqc.pickup(square.id, i); i=-1; break;
+									default : pickup = true; break;
 								}
+							}
+							if(pickup == true){
+								sqc.pickup(square.id, i);
+								i=-1;
 							}
 						}
 					}
