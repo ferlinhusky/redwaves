@@ -131,6 +131,7 @@ var Character = Class.extend({
 		this.path;
 		this.targets = [];
 		this.target = null;
+		this.chosenItem;
 		
 		// Get Attribute values
 		this.attributes = attributes;
@@ -160,10 +161,10 @@ var Character = Class.extend({
 		this.inven	=	inven; // array // [ item, item, ... ]
 		this.skills	=	skills; // array // [ skill, skill, ... ]
 		this.skillnames = [];
-			// Be sure that if skills are updated at any time during a session, that skillnames[] gets updated as well
-			for (var i=0; i<this.skills.length; i++) {
-				this.skillnames.push(this.skills[i].name);
-			}
+		// Be sure that if skills are updated at any time during a session, that skillnames[] gets updated as well
+		for (var i=0; i<this.skills.length; i++) {
+			this.skillnames.push(this.skills[i].name);
+		}
 		this.spells = []; // array // [ { name : f(x) }, ... ]
 		
 		// Set ready weapon, start w/hands then face then feet
@@ -388,6 +389,47 @@ var Character = Class.extend({
 					this.coords[0] = this.path[i].x;
 					this.coords[1] = this.path[i].y;
 					var square = getSquare(this.coords);
+					if(square.containsA.length > 0){
+						for(var i; i<square.containsA.length; i++){
+							var sqc = square.containsA[i];
+							
+							if(sqc === this.chosenItem){
+								sqc.pickup(square.id, i);
+							} else if (square.containsA.length > 0){
+								switch(sqc.ofType){
+									case "weapon":
+										// If sighted weapon dmg > active weapon dmg
+										var da = this.readyWeapon.dmg.split('d');
+										var mydmg = da[0] * da[1];
+										var db = sqc.dmg.split('d');
+										var sqdmg = db[0] * db[1];
+										if (sqdmg > mydmg) {
+											sqc.pickup(square.id, i);
+											i=-1;
+										}
+										break;
+									case "armor":
+										// If sighted armor ac < worn armor ac
+										var at;
+										switch (sqc.supclass) {
+											case "helmet" : at=0; break;
+											case "bodyarmor" : at=1; break;
+											case "shield" : at=2; break;
+											default: break;
+										}
+										if (this.wears[at] != "") {
+											console.log('see armor');
+											if (sqc.ac < this.wears[at].ac) {
+												sqc.pickup(square.id, i);
+												i=-1;
+											}
+										} else { sqc.pickup(square.id, i); i=-1;}
+										break;
+									default : sqc.pickup(square.id, i); i=-1; break;
+								}
+							}
+						}
+					}
 					// If can open doors, do it (if necessary)
 					if(square.t.type == "closed_door"){
 						getMapSq(this.coords).removeClass('closed_door');
@@ -482,7 +524,7 @@ var Character = Class.extend({
 		var weapons = [];
 		var armor = [];
 		var items = [];
-		var chosen = {
+		chosen = {
 				path: [],
 				type: ""
 			};
@@ -533,6 +575,7 @@ var Character = Class.extend({
 				var cansee = Bresenham(this.coords[0], this.coords[1], weapons[i].coords[0], weapons[i].coords[1], "monster_target", true);
 				if (cansee == true) {
 					chosen.path = this.findTargetPath(chosen.path, weapons[i]);
+					this.chosenItem = weapons[i];
 				}
 			}
 		}
@@ -543,6 +586,7 @@ var Character = Class.extend({
 				var cansee = Bresenham(this.coords[0], this.coords[1], armor[i].coords[0], armor[i].coords[1], "monster_target", true);
 				if (cansee == true) {
 					chosen.path = this.findTargetPath(chosen.path, armor[i]);
+					this.chosenItem = armor[i];
 				}
 			}
 		}
@@ -553,6 +597,7 @@ var Character = Class.extend({
 				var cansee = Bresenham(this.coords[0], this.coords[1], items[i].coords[0], items[i].coords[1], "monster_target", true);
 				if (cansee == true) {
 					chosen.path = this.findTargetPath(chosen.path, items[i]);
+					this.chosenItem = items[i];
 				}
 			}
 		}
@@ -578,11 +623,7 @@ var Character = Class.extend({
 			var cansee = Bresenham(this.coords[0], this.coords[1], Enemies[i].coords[0], Enemies[i].coords[1], "monster_target", true);
 			if(cansee == true && Enemies[i].hasSkill('stealth') == false){
 				temp_path = astar.search(Squares, getSquare(this.coords), getSquare(Enemies[i].coords), true, true);
-				if (Things.path.length < temp_path.length) {
-					if (Things.type == "weapon" || Things.type == "armor" || (Things.type == "item" && this.HP < this.maxHP*.25)) {
-						temp_path = Things.path;
-					}
-				}	
+	
 				// Change course if a visible target is closer
 				if (temp_path.length < this.path.length && temp_path.length > 0){
 					this.path = [];
@@ -635,7 +676,7 @@ var Character = Class.extend({
 				}
 			}
 		}
-		if (Things.path.length < path.length) {
+		if (Things.path.length < path.length && Things.path.length > 0) {
 			if (Things.type == "weapon" || Things.type == "armor" || (Things.type == "item" && this.HP < this.maxHP*.25)) {
 				path = Things.path;
 			}
