@@ -742,8 +742,7 @@ var Input = function(){
 			
 				var pwields=[]; var pwears=[]; var pinven=[]; var pspells=[];
 				
-				for(var i=0; i < Party.members[j].wields.length; i++){ pwields.push(Party.members[j].wields[i]);
-                                console.log(Party.members[j].wields[i]);}
+				for(var i=0; i < Party.members[j].wields.length; i++){ pwields.push(Party.members[j].wields[i]);}
 				for(var i=0; i < Party.members[j].wears.length; i++){ pwears.push(Party.members[j].wears[i]); }
 				for(var i=0; i < Party.members[j].inven.length; i++){ pinven.push(Party.members[j].inven[i]); }
 				for(var i=0; i < Party.members[j].spells.length; i++){ pspells.push(Party.members[j].spells[i]); }
@@ -1048,7 +1047,7 @@ var Input = function(){
                                 e.preventDefault(); 
                         });
 		});
-		//btnSave.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
 		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});
 		btnTalk.bind('click touchend', function(e){e.preventDefault(); Input.handleTalk();});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
@@ -1060,7 +1059,7 @@ var Input = function(){
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
 		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.selectPickup();});
 		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.selectDrop();});
-		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
+		//btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
 		var updateBtnState = function(b, val){

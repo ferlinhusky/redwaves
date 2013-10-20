@@ -116,6 +116,7 @@ var Monastery = function(){
 			"Shaolin_Beatnik_2": [21, 3],
 			"Master_Killer_1": [20, 3]
 		},
+		"npcs": {},
 		"gold": 750
     };
     this.victory = {
@@ -207,6 +208,7 @@ var CaveDwellers = function(){
 			"Guard_of_Zor_4": [17, 18],
 			"Guard_of_Zor_5": [18, 18]
 		},
+		"npcs": {},
 		"gold": 1000
     };
     this.victory = {
