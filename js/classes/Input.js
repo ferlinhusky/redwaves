@@ -1047,7 +1047,7 @@ var Input = function(){
                                 e.preventDefault(); 
                         });
 		});
-		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		
 		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});
 		btnTalk.bind('click touchend', function(e){e.preventDefault(); Input.handleTalk();});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
@@ -1059,7 +1059,8 @@ var Input = function(){
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
 		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.selectPickup();});
 		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.selectDrop();});
-		//btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
+		//btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
 		var updateBtnState = function(b, val){
