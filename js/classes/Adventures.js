@@ -66,17 +66,14 @@ var Tutorial = function(){
 		"value": ["Basilisk", 1] // type and # to kill
 	};
     this.events = {
-		"preamble": "<p><a href='javascript:void(0);' onclick='loadfullscreen(\"prologue\");'>Read the Prologue</a></p><p>The door of the Infinity Box opens with a creak.\
-		&ldquo;That was some roller coaster ride,&rdquo; {p1} says dryly as {p1-pro}, {p2}, and {p3} step\
-		out onto a grassy patch. Before them stands a wide, stone complex.</p>\
-		<p>&ldquo;What do you imagine it is? Some kind of castle?&rdquo;, {p2} asks. &ldquo;Too small to be\
-		a castle,&rdquo; {p3} quickly responds. &ldquo;It could be a keep.&rdquo;\
-		<p>{p1} looks around, glancing quickly over both shoulders. &ldquo;Where's {p0}?&rdquo;</p>\
+		"preamble": "<p><!--<a href='javascript:void(0);' onclick='loadfullscreen(\"prologue\");'>Read the Prologue</a></p>--><p>The door of the Infinity Box opens with a creak.\
+		Before you stands a wide, stone complex.</p>\
+		<p>What do you imagine it is? Some kind of castle? Too small to be\
+		a castle. It could be a keep.\
 		<p><i>Hint: Watch out for Snakes!</i></p>",
 		"win": "<p>The door of the Infinity Box slams shut. A previously unnoticed sign flashes above the interior\
-		doorway - \"TEMPORAL LOOP BROKEN - RECONSTITUTION COMPLETE\". {p0}, {p1}, {p2}, and {p3} stand in silence, looking at the\
-		floor as the box around them begins to shake violently, ferrying them who knows where. {p0} looks up\
-		and asks over the rumble, &ldquo;Why did I get stuck with the stick?&rdquo;</p>",
+		doorway - \"TEMPORAL LOOP BROKEN - RECONSTITUTION COMPLETE\" You stand in silence, looking at the\
+		floor as the box begins to shake violently, ferrying you who knows where.</p>",
 		"lose": "<p><b>YOU LOSE!</b></p><p>They say virtue is its own reward. Even if it wasn't\
 		it wouldn't matter because all of your characters are super dead.</p>"
     };
@@ -125,15 +122,15 @@ var Monastery = function(){
 	};
     this.events = {
 		"preamble": "<p>You and your companions find yourselves at the\
-		entrance of an incredibly blocky temple complex. A convenient\
+		entrance of an incredibly blocky temple. A convenient\
 		villager tells you of the Shaolin Beatniks who reside within and\
 		of their brutal master.</p>\
 		<p><i>Hint: He was the best, so he killed the rest!</i></p>",
 		"win": "<p><b>YOU WIN!</b></p><p>Congratulations! You receive 750 gold for defeating\
 		the Master Killer. Now the money *did* kind of come from looting what was basically\
-		the villagers' stolen goods, but hey, TIME PORTAL.</p>",
+		the villagers' stolen goods, but hey, INFINITY BOX.</p>",
 		"lose": "<p><b>YOU LOSE!</b></p><p>All of your heads are on pikes outside of\
-		the temple complex. The villagers are all super-sad. Good one.</p>"
+		the temple. The villagers are all super sad. Good one.</p>"
     };
     this.status = "enabled";
 };
