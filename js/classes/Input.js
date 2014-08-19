@@ -1025,14 +1025,17 @@ var Input = function(){
 		
 		// Touch events
 		btnOpts.bind('click touchend', function(e){e.preventDefault(); Input.M_Dialog('options');});
+		
 		btnHelp.bind('click touchend', function(e){
 			e.preventDefault();
 			loadfullscreen('help');
 		});
-                btnTalk.bind('click touchend', function(e){
+		//btnHelp.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		
+		btnTalk.bind('click touchend', function(e){
 			e.preventDefault();
-			//loadfullscreen('help');
 		});
+		
 		btnCloseHelp.bind('click touchend', function(e){
 			e.preventDefault();
 			$('.ui-widget-overlay, .ui-dialog').removeClass('hideforfullscreen');
@@ -1043,12 +1046,11 @@ var Input = function(){
 				overflow: 'hidden',
 			});
 			$(window).bind('touchmove', function(e) { 
-                                // Tell Safari not to move the window. 
-                                e.preventDefault(); 
-                        });
+				// Tell Safari not to move the window. 
+				e.preventDefault(); 
+			});
 		});
 		
-		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});
 		btnTalk.bind('click touchend', function(e){e.preventDefault(); Input.handleTalk();});
 		btnSpell.bind('click touchend', function(e){e.preventDefault(); Input.handleSpell();});
 		btnSelectSpell.bind('click touchend', function(e){e.preventDefault(); Input.selectSpell();});
@@ -1059,12 +1061,12 @@ var Input = function(){
 		btnOpenClose.bind('click touchend', function(e){e.preventDefault(); Input.openCloseDoor();});
 		btnPickup.bind('click touchend', function(e){e.preventDefault(); Input.selectPickup();});
 		btnDrop.bind('click touchend', function(e){e.preventDefault(); Input.selectDrop();});
-		//btnEndTurn.bind('click touchend', function(e){e.preventDefault(); World.endgame(World.Level.events.win, "win"); });
+		btnSave.bind('click touchend', function(e){e.preventDefault(); Input.checkVictory();});
 		btnEndTurn.bind('click touchend', function(e){e.preventDefault(); btnEndTurn.button('disable'); World.endturn();}); // disable the button immediately or it takes too long
 	
 		// Update Action Buttons
 		var updateBtnState = function(b, val){
-			b.button( "option", "disabled", val );
+			//b.button( "option", "disabled", val );
 		};
 	/*
 		Map Drag (touch)

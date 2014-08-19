@@ -121,8 +121,8 @@ var Mildred = NPC.extend({
 			[new DEX, new CHA, new STR, new INT, new CON, new WIS]);
 		
 		this.script = [
-			"My mother sent you?!",
-			"Fine, I'll come with you.",
+			"Is my mother still alive?!",
+			"I want to come with you.",
 			"Drop me a weapon when you can.",
 			"Stop talking, I'm trying to adventure."
 		]
