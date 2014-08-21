@@ -113,12 +113,20 @@ var World = function(){
                 // Update XP
                 dialogcontent += "Survival XP (+10): ";
                 for (var i=0; i<Players.length; i++) {
-                    Players[i].XP += 10;
+                    // Update XP
+					Players[i].XP += 10;
+					
+					// Calculate new stats
+                    Players[i].calcstats();
+					
+					// Update spells
+					
+					
+					// Add to dialog
                     dialogcontent += Players[i].name;
                     if (i<Players.length-1) {
                             dialogcontent += ", ";
                     }
-                    Players[i].calcstats();
                 }
 				
                 if (Party.levelcomplete >= Adventures.length){
@@ -130,7 +138,6 @@ var World = function(){
                 Input.M_Dialog("standard", dialogcontent, "Chapter " + this.Level.refID, {
                     "Play on": function(){
                         World.playnext();
-			//Input.M_Dialog('equip');
                     },
                     "Email passcode": function(){
                             $('.ui-dialog #emailpasscoderesponse').css('color', '#333');

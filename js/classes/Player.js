@@ -287,6 +287,11 @@ var Hero = Player.extend({
 		[],
 		[new heroism, new swordsmanship],
 		[new STR, new CON, new CHA, new WIS, new DEX, new INT]);
+	
+		this.spellsList = [
+			{ 5: new lightning },
+			{ 10: new freeze }
+		];
 		
 		this.thac0 = [20, 20, 19, 19, 18, 17, 17, 16, 16, 15, 14, 14, 13, 13, 12, 11, 11, 10, 10, 9];
 	}
@@ -318,6 +323,10 @@ var Knight = Player.extend({
 		[new swordsmanship],
 		[new CHA, new STR, new CON, new DEX, new WIS, new INT]);
 	
+		this.spellsList = [
+			{ 10: new fireball }
+		];
+	
 		this.thac0 = [20, 19, 19, 18, 17, 16, 16, 15, 14, 13, 13, 12, 11, 10, 10, 9, 8, 7, 7, 6];
 	}
 });
@@ -334,11 +343,13 @@ var Wizard = Player.extend({
 		[new necromancy],
 		[new INT, new WIS, new DEX, new CON, new CHA, new STR]);
 		
-		this.spells = [
-			//new fireball,
-			//new freeze,
-			new lightning
-			//new earthquake
+		this.spells = [ new lightning ];
+		
+		this.spellsList = [
+			{ 0: new lightning },
+			{ 1: new freeze },
+			{ 2: new fireball },
+			{ 3: new earthquake }
 		];
 		
 		this.thac0 = [20, 20, 20, 19, 19, 19, 18, 18, 18, 17, 17, 17, 16, 16, 16, 15, 15, 15, 14, 14];
